@@ -27,7 +27,7 @@ class Sidebar extends React.Component{
           openmenu: 'none',
           profilename: 'Eric Nelson',
           profileimg: IMGDIR+'/images/profile/profile.jpg',
-          profileposition: 'Web Developer',
+          profileposition: 'Docente',
         };
         this.handleOpendd = this.handleOpendd.bind(this);
         this.handlecurrent = this.handlecurrent.bind(this);
