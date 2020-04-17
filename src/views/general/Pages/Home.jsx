@@ -1,19 +1,25 @@
-import React from "react";
-import { Container } from "reactstrap";
+import React, { useState } from "react";
+import { Container, Modal } from "reactstrap";
 // import { Link } from "react-router-dom";
 import { news, clients, contact } from "api/fakedata";
 import {
-  // NavBarLogout,
+  NavBarLogout,
   NewsCarouselItem,
   Carousel,
   ClientCarouselItem,
   ContactIcon,
+  LoginForm,
 } from "components";
 
 const Home = () => {
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
   return (
     <Container className="main-home-container" fluid={true}>
-      {/* <NavBarLogout /> */}
+      <Modal isOpen={modal} toggle={toggle} centered={true}>
+        <LoginForm onHide={toggle} />
+      </Modal>
+      <NavBarLogout onHide={toggle} />
       <div className="home-image"></div>
       <div className="discover-sige">
         <Container fluid={true}>
@@ -40,6 +46,7 @@ const Home = () => {
               src="https://www.youtube.com/embed/8r95xn7XTyo"
               frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              title="show-sige"
             ></iframe>
           </div>
           <div className="videos-section-container__title">
@@ -90,14 +97,14 @@ const Home = () => {
           })}
         </div>
         <div className="download-section">
-          <a href="" className="download-section__url">
+          <a href="#ww" className="download-section__url">
             <img
               className="download-section__imagen--app"
               src="https://i.pinimg.com/originals/09/f6/3d/09f63d458e7a50364610224cb92df14c.png"
               alt=""
             />
           </a>
-          <a href="" className="download-section__url">
+          <a href="#ww" className="download-section__url">
             <img
               className="download-section__imagen--google"
               src="https://res.cloudinary.com/duyflkcyn/image/upload/v1587064666/SIGE/Icons/googleplay.png"

@@ -25,7 +25,8 @@ import Carousel from "./home_page/Carousel";
 import ClientCarouselItem from "./home_page/ClientCarouselItem";
 import ContactIcon from "./home_page/ContactIcon";
 import NewsCarouselItem from "./home_page/NewsCarouselItem";
-// import NavBarLogout from "./home_page/NavBarLogout";
+import NavBarLogout from "./home_page/NavBarLogout";
+import LoginForm from "./home_page/LoginForm";
 
 export {
   // CardElements
@@ -72,5 +73,6 @@ export {
   ClientCarouselItem,
   ContactIcon,
   NewsCarouselItem,
-  // NavBarLogout,
+  NavBarLogout,
+  LoginForm,
 };
