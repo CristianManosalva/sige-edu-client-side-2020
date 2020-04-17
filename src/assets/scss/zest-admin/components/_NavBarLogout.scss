@@ -1,0 +1,33 @@
+.navbar-container {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.Navbar {
+  height: 5rem;
+}
+
+.navbar-brand img {
+  width: 12rem;
+  margin-bottom: -1.8rem;
+  // height: 5rem;
+}
+
+.navbar-link {
+  padding: 0.5rem 1rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  color: white;
+  font-weight: bold;
+  font-size: 1.6rem;
+  transition: 450ms all;
+}
+
+.navbar-link:hover {
+  color: white;
+  text-decoration: none;
+  border: 1px solid white;
+  border-radius: 7px;
+}

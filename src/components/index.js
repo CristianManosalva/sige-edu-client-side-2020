@@ -20,6 +20,13 @@ import Studentslist from "./university/Studentslist/Studentslist";
 import UniStaffslist from "./university/UniStaffslist/UniStaffslist";
 import Courseslist from "./university/Courseslist/Courseslist";
 
+/*--------------- Home Page Components ------------------*/
+import Carousel from "./home_page/Carousel";
+import ClientCarouselItem from "./home_page/ClientCarouselItem";
+import ContactIcon from "./home_page/ContactIcon";
+import NewsCarouselItem from "./home_page/NewsCarouselItem";
+// import NavBarLogout from "./home_page/NavBarLogout";
+
 export {
   // CardElements
   Navmenudropdown,
@@ -60,4 +67,10 @@ export {
   Studentslist,
   UniStaffslist,
   Courseslist,
+  //home page components
+  Carousel,
+  ClientCarouselItem,
+  ContactIcon,
+  NewsCarouselItem,
+  // NavBarLogout,
 };

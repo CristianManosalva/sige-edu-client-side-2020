@@ -344,6 +344,7 @@ var dashRoutes = [
   },
   { path: BASEDIR + "/login", component: Login, type: "child" },
   { path: BASEDIR + "/lockscreen", component: LockScreen, type: "child" },
+  // { path: BASEDIR + "/home", component: Home, type: "child" },
   { path: BASEDIR + "/register", component: Register, type: "child" },
   { path: BASEDIR + "/403", component: Page403, type: "child" },
   { path: BASEDIR + "/404", component: Page404, type: "child" },
@@ -352,6 +353,7 @@ var dashRoutes = [
   { path: BASEDIR + "/500", component: Page500, type: "child" },
   { path: BASEDIR + "/503", component: Page503, type: "child" },
   { path: BASEDIR + "/offline", component: Offline, type: "child" },
+
   /* {
     path: "#",
     name: "Multi Purpose",

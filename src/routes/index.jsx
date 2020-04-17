@@ -9,6 +9,7 @@ import UniversityLayout from "layouts/University.jsx";
 // import BlogLayout from 'layouts/Blog.jsx';
 import BlankPage from "layouts/BlankPage.jsx";
 import LoginPage from "layouts/LoginPage.jsx";
+import Home from "views/general/Pages/Home.jsx";
 
 // import DefaultLayout from "layouts/PageLayouts/DefaultLayout.jsx";
 // import FoldedMenu from "layouts/PageLayouts/FoldedMenu.jsx";
@@ -36,6 +37,7 @@ var BASEDIR = process.env.REACT_APP_BASEDIR;
 var indexRoutes = [
   { path: BASEDIR + "/login", name: "Login", component: LoginPage },
   { path: BASEDIR + "/register", name: "Register", component: LoginPage },
+  { path: BASEDIR + "/home", name: "HomePage", component: Home },
 
   { path: BASEDIR + "/lockscreen", name: "Lockscreen", component: BlankPage },
   { path: BASEDIR + "/403", name: "403", component: BlankPage },
