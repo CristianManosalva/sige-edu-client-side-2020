@@ -4,6 +4,7 @@ import { Nav } from 'reactstrap';
 
 import { Navmenudropdown } from 'components';
 import { Navmenugroup } from 'components';
+import Joyride ,{ ACTIONS, EVENTS, LIFECYCLE, STATUS } from "react-joyride";
 
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from 'perfect-scrollbar';
@@ -28,6 +29,22 @@ class Sidebar extends React.Component{
           profilename: 'Eric Nelson',
           profileimg: IMGDIR+'/images/profile/profile.jpg',
           profileposition: 'Web Developer',
+          steps: [
+            {
+              target: ".step-1",
+              content: "This is super awesome feature ",
+              title: "Empecemos a conocernos...",
+            },
+            {
+              target: ".step-2",
+              content: "Everyone's learning Joyride!",
+            },
+          ],
+          stepIndex: 0, // a controlled tour
+          showProgress : true,
+          continuous : true,
+          run : true,
+          showSkipButton : true,
         };
         this.handleOpendd = this.handleOpendd.bind(this);
         this.handlecurrent = this.handlecurrent.bind(this);
@@ -139,7 +156,7 @@ class Sidebar extends React.Component{
         }
     }
     render(){
-        
+        const { steps, stepIndex, showProgress, continuous, run, showSkipButton } = this.state;
         const children = (child, parent) => {
             var links = [];
             if (child) {
@@ -174,7 +191,24 @@ class Sidebar extends React.Component{
 
         return (
             <div className="sidebar menubar" data-color="black">
-
+<Joyride 
+      steps={steps}
+      showProgress = {showProgress}
+      continuous={continuous}
+      run = {run}
+      showSkipButton = {showSkipButton}
+      styles={{
+        options: {
+          arrowColor: '#e3ffeb',
+          backgroundColor: '#e3ffeb',
+          overlayColor: 'rgba(79, 26, 0, 0.4)',
+          primaryColor: '#000',
+          textColor: '#004a14',
+          width: 900,
+          zIndex: 1000,
+        }
+      }}
+      />
                 <div className="logo">
                     <a href="/" className="logo-mini">
                         <div className="logo-img">

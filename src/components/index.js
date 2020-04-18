@@ -11,42 +11,33 @@ import Chatgroups from "./common/Chatbar/Chatgroups";
 import Notifications from "./common/Notifications/Notifications";
 import Messages from "./common/Messages/Messages";
 import Mailbox from "./common/Mailbox/Mailbox";
+import Navmenudropdown from "./common/Navmenudropdown/Navmenudropdown";
+import Navmenugroup from "./common/Navmenugroup/Navmenugroup";
 
-/*--------------- General Admin Components ------------------*/
-import CardAuthor from "./general/CardElements/CardAuthor";
-import CardCategory from "./general/CardElements/CardCategory";
-import CardSocials from "./general/CardElements/CardSocials";
-import Button from "./general/CustomButton/CustomButton";
-import Checkbox from "./general/CustomCheckbox/SimpleCheckbox";
-import Radio from "./general/CustomRadio/CustomRadio";
-import FormInputs from "./general/FormInputs/FormInputs";
-import Navmenudropdown from "./general/Navmenudropdown/Navmenudropdown";
-import Navmenugroup from "./general/Navmenudropdown/Navmenugroup";
-import BlogPosts from "./general/BlogPosts/BlogPosts";
-import SearchPosts from "./general/SearchPosts/SearchPosts";
-import Memberslist from "./general/Memberslist/Memberslist";
-import Messagewidget from "./general/Messagewidget/Messagewidget";
+/*--------------- University Admin Components ------------------*/
+import Professorslist from "./university/Professorslist/Professorslist";
+import Studentslist from "./university/Studentslist/Studentslist";
+import UniStaffslist from "./university/UniStaffslist/UniStaffslist";
+import Courseslist from "./university/Courseslist/Courseslist";
 
-/*--------------- Unused Components ------------------*/
-//import PanelHeader from './general/PanelHeader/PanelHeader';
-//import Stats from './general/Stats/Stats';
-//import Tasks from './general/Tasks/Tasks';
+/*--------------- Home Page Components ------------------*/
+import Carousel from "./home_page/Carousel";
+import ClientCarouselItem from "./home_page/ClientCarouselItem";
+import ContactIcon from "./home_page/ContactIcon";
+import NewsCarouselItem from "./home_page/NewsCarouselItem";
+import NavBarLogout from "./home_page/NavBarLogout";
+import LoginForm from "./home_page/LoginForm";
 
 export {
   // CardElements
-  CardAuthor,
-  CardCategory,
-  CardSocials,
+  Navmenudropdown,
   // CustomButton
-  Button,
+  Navmenugroup,
   // CustomCheckbox
-  Checkbox,
   // CustomRadio
-  Radio,
   // Footer
   Footer,
   // FormInputs
-  FormInputs,
   // Header
   Header,
   // PanelHeader
@@ -71,12 +62,17 @@ export {
   // chatbar Groups
   Chatgroups,
   // dropdown links in navigation side menu
-  Navmenudropdown,
-  Navmenugroup,
   Mailbox,
-  Messagewidget,
-  BlogPosts,
-  SearchPosts,
-  Memberslist,
   StyleSettings,
+  Professorslist,
+  Studentslist,
+  UniStaffslist,
+  Courseslist,
+  //home page components
+  Carousel,
+  ClientCarouselItem,
+  ContactIcon,
+  NewsCarouselItem,
+  NavBarLogout,
+  LoginForm,
 };
