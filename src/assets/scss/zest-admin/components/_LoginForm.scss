@@ -1,0 +1,81 @@
+.formsigncontainer {
+  /*width: 100%;*/
+  background-color: #009ad0;
+  padding: 1rem;
+}
+
+.modal-close-button {
+  background: white !important;
+  color: gray !important;
+  border-radius: 50% !important;
+  min-height: 2rem !important;
+  min-width: 2rem !important;
+  font-size: 1rem !important;
+  padding: 0;
+}
+
+.modal-close-button:hover {
+  background: white;
+  color: gray;
+}
+
+.modal-close-button:active {
+  background: white !important;
+  color: gray !important;
+}
+
+.col-form {
+  margin: 1rem 1rem 0 0;
+}
+
+.cb {
+  padding-top: 0.5rem;
+  color: white;
+  font-weight: bold;
+}
+
+.button-register {
+  background-color: #28cb1f !important;
+  width: 100%;
+  color: white !important;
+  font-weight: bold !important;
+  margin: 1rem 0;
+}
+
+.line-separation {
+  border: 0.5px solid white;
+}
+
+.footer-form {
+  color: white;
+  font-weight: bold;
+}
+
+.footer-form a {
+  color: white;
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+.form-login-p-forgotpass {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+
+/*Errores en los datos de ingreso*/
+.error {
+  margin: 0;
+  margin-bottom: -0.7rem;
+  margin-top: 0.2rem;
+  padding: 0;
+  padding-left: 0.5rem;
+  font-size: 0.9rem;
+  color: #ef696c;
+  font-weight: bold;
+}
+
+.error.error-pass {
+  margin-bottom: -0.5rem;
+}
