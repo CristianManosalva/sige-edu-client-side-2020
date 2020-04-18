@@ -4,12 +4,12 @@
 // import CrmLayout from 'layouts/Crm.jsx';
 // import FreelanceLayout from 'layouts/Freelance.jsx';
 // import GeneralLayout from 'layouts/General.jsx';
-import UniversityLayout from "layouts/University.jsx";
+import UniversityLayout from 'layouts/University.jsx'
 // import EcommerceLayout from 'layouts/Ecommerce.jsx';
 // import BlogLayout from 'layouts/Blog.jsx';
-import BlankPage from "layouts/BlankPage.jsx";
-import LoginPage from "layouts/LoginPage.jsx";
-import Home from "views/general/Pages/Home.jsx";
+import BlankPage from 'layouts/BlankPage.jsx'
+import LoginPage from 'layouts/LoginPage.jsx'
+import Home from 'views/general/Pages/Home.jsx'
 
 // import DefaultLayout from "layouts/PageLayouts/DefaultLayout.jsx";
 // import FoldedMenu from "layouts/PageLayouts/FoldedMenu.jsx";
@@ -32,21 +32,21 @@ import Home from "views/general/Pages/Home.jsx";
 // import Layout14 from "layouts/PageLayouts/Layout14.jsx";
 // import Layout15 from "layouts/PageLayouts/Layout15.jsx";
 
-var BASEDIR = process.env.REACT_APP_BASEDIR;
+var BASEDIR = process.env.REACT_APP_BASEDIR
 
 var indexRoutes = [
-  { path: BASEDIR + "/login", name: "Login", component: LoginPage },
-  { path: BASEDIR + "/register", name: "Register", component: LoginPage },
-  { path: BASEDIR + "/home", name: "HomePage", component: Home },
+  { path: BASEDIR + '/login', name: 'Login', component: LoginPage },
+  { path: BASEDIR + '/register', name: 'Register', component: LoginPage },
+  { path: BASEDIR + '/home', name: 'HomePage', component: Home },
 
-  { path: BASEDIR + "/lockscreen", name: "Lockscreen", component: BlankPage },
-  { path: BASEDIR + "/403", name: "403", component: BlankPage },
-  { path: BASEDIR + "/404", name: "404", component: BlankPage },
-  { path: BASEDIR + "/405", name: "405", component: BlankPage },
-  { path: BASEDIR + "/408", name: "408", component: BlankPage },
-  { path: BASEDIR + "/500", name: "500", component: BlankPage },
-  { path: BASEDIR + "/503", name: "503", component: BlankPage },
-  { path: BASEDIR + "/offline", name: "Offline", component: BlankPage },
+  { path: BASEDIR + '/lockscreen', name: 'Lockscreen', component: BlankPage },
+  { path: BASEDIR + '/403', name: '403', component: BlankPage },
+  { path: BASEDIR + '/404', name: '404', component: BlankPage },
+  { path: BASEDIR + '/405', name: '405', component: BlankPage },
+  { path: BASEDIR + '/408', name: '408', component: BlankPage },
+  { path: BASEDIR + '/500', name: '500', component: BlankPage },
+  { path: BASEDIR + '/503', name: '503', component: BlankPage },
+  { path: BASEDIR + '/offline', name: 'Offline', component: BlankPage },
 
   /* {
     path: BASEDIR + "/hospital",
@@ -66,8 +66,8 @@ var indexRoutes = [
     component: FreelanceLayout,
   }, */
   {
-    path: BASEDIR + "/university",
-    name: "University Dashboard",
+    path: BASEDIR + '/university',
+    name: 'University Dashboard',
     component: UniversityLayout,
   },
   /* {
@@ -107,8 +107,8 @@ var indexRoutes = [
   // { path: BASEDIR + "/layout14", name: "Layout 14", component: Layout14 },
   // { path: BASEDIR + "/layout15", name: "Layout 15", component: Layout15 },
 
-  { path: BASEDIR + "/", name: "Home", component: UniversityLayout },
-  { path: "/", name: "Home", component: UniversityLayout },
-];
+  { path: BASEDIR + '/', name: 'Home', component: Home },
+  { path: '/', name: 'Home', component: Home },
+]
 
-export default indexRoutes;
+export default indexRoutes
