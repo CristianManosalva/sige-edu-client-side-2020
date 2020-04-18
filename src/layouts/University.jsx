@@ -2,7 +2,6 @@ import React from "react";
 // javascript plugin used to create scrollbars on windows
 // import PerfectScrollbar from 'perfect-scrollbar';
 import { Route, Switch, Redirect } from "react-router-dom";
-
 import { Header, Footer, Sidebar, ChatSidebar, Stylebar } from "components";
 
 import dashboardRoutes from "routes/university.jsx";
@@ -26,6 +25,8 @@ class UniversityLayout extends React.Component {
       topbarColor: topbarStyle,
       menuType: menuType,
       topbarType: topbarType,
+      
+      
     };
     this.menuSettings = this.menuSettings.bind(this);
     this.topbarSettings = this.topbarSettings.bind(this);
@@ -72,8 +73,9 @@ class UniversityLayout extends React.Component {
         data-menutype={this.state.menuType}
         data-topbartype={this.state.topbarType}
       >
+        
         <Header {...this.props} navtype={navWidth} admintype={"university"} />
-        <Sidebar
+        <Sidebar className="step-1"
           {...this.props}
           routes={dashboardRoutes}
           admintype={"university"}

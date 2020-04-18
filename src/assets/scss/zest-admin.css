@@ -10381,6 +10381,12 @@ table.fixheight {
   border: 1px solid white;
   border-radius: 7px; }
 
+.header-custom-link:active {
+  color: white; }
+
+.header-custom-link:visited {
+  color: white; }
+
 /*47*/
 .news-item {
   background-color: white;
