@@ -308,7 +308,7 @@ class Header extends React.Component {
                 toggle={(e) => this.userddToggle(e)}
                 className="userdd"
               >
-                <DropdownToggle caret nav>
+                <DropdownToggle className="joyride-welcome1" caret nav>
                   <img
                     src={this.state.profileimg}
                     alt="react-logo"
@@ -331,12 +331,12 @@ class Header extends React.Component {
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-              <NavItem>
+              <NavItem >
                 <div className="navbar-toggle chat-toggle">
                   <button
                     type="button"
                     ref="chatToggle"
-                    className="navbar-toggler"
+                    className="joyride-welcome2 navbar-toggler"
                     onClick={() => this.openChat()}
                   >
                     <i className="i-bubbles"></i>
