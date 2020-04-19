@@ -4,355 +4,369 @@
 // import Crm from 'views/crm/Dashboard/Crm.jsx';
 // import Social from 'views/social/Dashboard/Social.jsx';
 // import Freelance from 'views/freelance/Dashboard/Freelance.jsx';
-import University from "views/university/Dashboard/University.jsx";
+import University from 'views/university/Dashboard/University.jsx'
 // import Ecommerce from 'views/ecommerce/Dashboard/Ecommerce.jsx';
 // import Blog from 'views/blog/Dashboard/Blog.jsx';
 
-import Login from "views/general/Pages/Login.jsx";
-import Register from "views/general/Pages/Register.jsx";
-import LockScreen from "views/general/Pages/LockScreen.jsx";
+import Login from 'views/general/Pages/Login.jsx'
+import Register from 'views/general/Pages/Register.jsx'
+import LockScreen from 'views/general/Pages/LockScreen.jsx'
 
-import Page403 from "views/general/Pages/403.jsx";
-import Page404 from "views/general/Pages/404.jsx";
-import Page405 from "views/general/Pages/405.jsx";
-import Page408 from "views/general/Pages/408.jsx";
-import Page500 from "views/general/Pages/500.jsx";
-import Page503 from "views/general/Pages/503.jsx";
-import Offline from "views/general/Pages/Offline.jsx";
+import Page403 from 'views/general/Pages/403.jsx'
+import Page404 from 'views/general/Pages/404.jsx'
+import Page405 from 'views/general/Pages/405.jsx'
+import Page408 from 'views/general/Pages/408.jsx'
+import Page500 from 'views/general/Pages/500.jsx'
+import Page503 from 'views/general/Pages/503.jsx'
+import Offline from 'views/general/Pages/Offline.jsx'
 
-import Professor from "views/university/Professor/Professor.jsx";
-import AddProfessor from "views/university/Professor/AddProfessor.jsx";
-import EditProfessor from "views/university/Professor/EditProfessor.jsx";
-import ProfessorProfile from "views/university/Professor/ProfessorProfile.jsx";
+import Professor from 'views/university/Professor/Professor.jsx'
+import AddProfessor from 'views/university/Professor/AddProfessor.jsx'
+import EditProfessor from 'views/university/Professor/EditProfessor.jsx'
+import ProfessorProfile from 'views/university/Professor/ProfessorProfile.jsx'
 
-import Student from "views/university/Student/Student.jsx";
-import AddStudent from "views/university/Student/AddStudent.jsx";
-import EditStudent from "views/university/Student/EditStudent.jsx";
-import StudentProfile from "views/university/Student/StudentProfile.jsx";
+import Student from 'views/university/Student/Student.jsx'
+import AddStudent from 'views/university/Student/AddStudent.jsx'
+import EditStudent from 'views/university/Student/EditStudent.jsx'
+import StudentProfile from 'views/university/Student/StudentProfile.jsx'
 
-import Staff from "views/university/Staff/Staff.jsx";
-import AddStaff from "views/university/Staff/AddStaff.jsx";
-import EditStaff from "views/university/Staff/EditStaff.jsx";
-import StaffProfile from "views/university/Staff/StaffProfile.jsx";
+import Staff from 'views/university/Staff/Staff.jsx'
+import AddStaff from 'views/university/Staff/AddStaff.jsx'
+import EditStaff from 'views/university/Staff/EditStaff.jsx'
+import StaffProfile from 'views/university/Staff/StaffProfile.jsx'
 
-import UniversityCentres from "views/university/Centres/UniversityCentres.jsx";
+import UniversityCentres from 'views/university/Centres/UniversityCentres.jsx'
 
-import Course from "views/university/Course/Course.jsx";
-import AddCourse from "views/university/Course/AddCourse.jsx";
-import EditCourse from "views/university/Course/EditCourse.jsx";
-import CourseView from "views/university/Course/CourseView.jsx";
+import Course from 'views/university/Course/Course.jsx'
+import AddCourse from 'views/university/Course/AddCourse.jsx'
+import EditCourse from 'views/university/Course/EditCourse.jsx'
+import CourseView from 'views/university/Course/CourseView.jsx'
 
-import Library from "views/university/Library/Library.jsx";
-import AddLibrary from "views/university/Library/AddLibrary.jsx";
-import EditLibrary from "views/university/Library/EditLibrary.jsx";
+import Library from 'views/university/Library/Library.jsx'
+import AddLibrary from 'views/university/Library/AddLibrary.jsx'
+import EditLibrary from 'views/university/Library/EditLibrary.jsx'
 
-import Department from "views/university/Department/Department.jsx";
-import AddDepartment from "views/university/Department/AddDepartment.jsx";
-import EditDepartment from "views/university/Department/EditDepartment.jsx";
+import Department from 'views/university/Department/Department.jsx'
+import AddDepartment from 'views/university/Department/AddDepartment.jsx'
+import EditDepartment from 'views/university/Department/EditDepartment.jsx'
 
-import UniversityEvents from "views/university/Events/UniversityEvents.jsx";
-import AddEvent from "views/university/Events/AddEvent.jsx";
+import UniversityEvents from 'views/university/Events/UniversityEvents.jsx'
+import AddEvent from 'views/university/Events/AddEvent.jsx'
 
-import UniversityMailinbox from "views/university/Mail/Inbox.jsx";
-import UniversityMailcompose from "views/university/Mail/Compose.jsx";
-import UniversityMailview from "views/university/Mail/View.jsx";
+import UniversityMailinbox from 'views/university/Mail/Inbox.jsx'
+import UniversityMailcompose from 'views/university/Mail/Compose.jsx'
+import UniversityMailview from 'views/university/Mail/View.jsx'
 
-import UniversityReportsDepartment from "views/university/Reports/ReportsDepartment.jsx";
-import UniversityReportsStudents from "views/university/Reports/ReportsStudent.jsx";
-import UniversityReportsUniversity from "views/university/Reports/ReportsUniversity.jsx";
+import UniversityReportsDepartment from 'views/university/Reports/ReportsDepartment.jsx'
+import UniversityReportsStudents from 'views/university/Reports/ReportsStudent.jsx'
+import UniversityReportsUniversity from 'views/university/Reports/ReportsUniversity.jsx'
 
-var BASEDIR = process.env.REACT_APP_BASEDIR;
+var BASEDIR = process.env.REACT_APP_BASEDIR
 
 var dashRoutes = [
   //{ path: "#", name: "Main", type: "navgroup"},
   {
-    path: BASEDIR + "/university/dashboard",
-    name: "Dashboard",
-    icon: "speedometer",
-    badge: "",
+    path: BASEDIR + '/university/dashboard',
+    name: 'Inicio',
+    icon: 'speedometer',
+    badge: '',
     component: University,
   },
 
   {
-    path: "#",
-    name: "Professors",
-    icon: "user",
-    type: "dropdown",
-    parentid: "professors",
+    path: '#',
+    name: 'Grupos',
+    icon: 'user',
+    type: 'dropdown',
+    parentid: 'professors',
+    tour: 'joyride-welcome-3',
     child: [
-      { path: BASEDIR + "/university/professors", name: "Professors" },
-      { path: BASEDIR + "/university/add-professor", name: "Add Professor" },
-      { path: BASEDIR + "/university/edit-professor", name: "Edit Professor" },
+      { path: BASEDIR + '/university/professors', name: 'Professors' },
+      { path: BASEDIR + '/university/add-professor', name: 'Add Professor' },
+      { path: BASEDIR + '/university/edit-professor', name: 'Edit Professor' },
       {
-        path: BASEDIR + "/university/professor-profile",
-        name: "Professor Profile",
+        path: BASEDIR + '/university/professor-profile',
+        name: 'Professor Profile',
       },
     ],
   },
   {
-    path: BASEDIR + "/university/professors",
+    path: BASEDIR + '/university/professors',
     component: Professor,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/add-professor",
+    path: BASEDIR + '/university/add-professor',
     component: AddProfessor,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/edit-professor",
+    path: BASEDIR + '/university/edit-professor',
     component: EditProfessor,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/professor-profile",
+    path: BASEDIR + '/university/professor-profile',
     component: ProfessorProfile,
-    type: "child",
+    type: 'child',
   },
 
   {
-    path: "#",
-    name: "Students",
-    icon: "people",
-    type: "dropdown",
-    parentid: "students",
+    path: '#',
+    name: 'Estudiantes',
+    icon: 'people',
+    type: 'dropdown',
+    parentid: 'students',
     child: [
-      { path: BASEDIR + "/university/students", name: "Students" },
-      { path: BASEDIR + "/university/add-student", name: "Add Student" },
-      { path: BASEDIR + "/university/edit-student", name: "Edit Student" },
+      { path: BASEDIR + '/university/students', name: 'Students' },
+      { path: BASEDIR + '/university/add-student', name: 'Add Student' },
+      { path: BASEDIR + '/university/edit-student', name: 'Edit Student' },
       {
-        path: BASEDIR + "/university/student-profile",
-        name: "Student Profile",
+        path: BASEDIR + '/university/student-profile',
+        name: 'Student Profile',
       },
     ],
   },
-  { path: BASEDIR + "/university/students", component: Student, type: "child" },
+  { path: BASEDIR + '/university/students', component: Student, type: 'child' },
   {
-    path: BASEDIR + "/university/add-student",
+    path: BASEDIR + '/university/add-student',
     component: AddStudent,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/edit-student",
+    path: BASEDIR + '/university/edit-student',
     component: EditStudent,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/student-profile",
+    path: BASEDIR + '/university/student-profile',
     component: StudentProfile,
-    type: "child",
+    type: 'child',
   },
 
   {
-    path: "#",
-    name: "Staffs",
-    icon: "user-female",
-    type: "dropdown",
-    parentid: "staffs",
+    path: '#',
+    name: 'Comunidad Educativa',
+    icon: 'user-female',
+    type: 'dropdown',
+    parentid: 'staffs',
     child: [
-      { path: BASEDIR + "/university/staffs", name: "Staffs" },
-      { path: BASEDIR + "/university/add-staff", name: "Add Staff" },
-      { path: BASEDIR + "/university/edit-staff", name: "Edit Staff" },
-      { path: BASEDIR + "/university/staff-profile", name: "Staff Profile" },
+      { path: BASEDIR + '/university/staffs', name: 'Staffs' },
+      { path: BASEDIR + '/university/add-staff', name: 'Add Staff' },
+      { path: BASEDIR + '/university/edit-staff', name: 'Edit Staff' },
+      { path: BASEDIR + '/university/staff-profile', name: 'Staff Profile' },
     ],
   },
-  { path: BASEDIR + "/university/staffs", component: Staff, type: "child" },
+  { path: BASEDIR + '/university/staffs', component: Staff, type: 'child' },
   {
-    path: BASEDIR + "/university/add-staff",
+    path: BASEDIR + '/university/add-staff',
     component: AddStaff,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/edit-staff",
+    path: BASEDIR + '/university/edit-staff',
     component: EditStaff,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/staff-profile",
+    path: BASEDIR + '/university/staff-profile',
     component: StaffProfile,
-    type: "child",
+    type: 'child',
   },
 
   {
-    path: "#",
-    name: "Reports",
-    icon: "chart",
-    type: "dropdown",
-    parentid: "reports",
+    path: '#',
+    name: 'Indicadores / Informers',
+    icon: 'chart',
+    type: 'dropdown',
+    parentid: 'reports',
     child: [
-      { path: BASEDIR + "/university/reports-department", name: "Department" },
-      { path: BASEDIR + "/university/reports-students", name: "Students" },
-      { path: BASEDIR + "/university/reports-university", name: "University" },
+      { path: BASEDIR + '/university/reports-department', name: 'Department' },
+      { path: BASEDIR + '/university/reports-students', name: 'Students' },
+      { path: BASEDIR + '/university/reports-university', name: 'University' },
     ],
   },
   {
-    path: BASEDIR + "/university/reports-department",
+    path: BASEDIR + '/university/reports-department',
     component: UniversityReportsDepartment,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/reports-students",
+    path: BASEDIR + '/university/reports-students',
     component: UniversityReportsStudents,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/reports-university",
+    path: BASEDIR + '/university/reports-university',
     component: UniversityReportsUniversity,
-    type: "child",
+    type: 'child',
   },
 
   {
-    path: BASEDIR + "/university/centres",
-    name: "University Centres",
-    icon: "map",
+    path: BASEDIR + '/university/centres',
+    name: 'Invoice',
+    icon: 'map',
     component: UniversityCentres,
   },
 
   {
-    path: "#",
-    name: "Courses",
-    icon: "folder-alt",
-    type: "dropdown",
-    parentid: "courses",
+    path: '#',
+    name: 'Herramientas',
+    icon: 'folder-alt',
+    type: 'dropdown',
+    parentid: 'courses',
     child: [
-      { path: BASEDIR + "/university/courses", name: "Courses" },
-      { path: BASEDIR + "/university/add-course", name: "Add Course" },
-      { path: BASEDIR + "/university/edit-course", name: "Edit Course" },
-      { path: BASEDIR + "/university/course-view", name: "View Course" },
+      { path: BASEDIR + '/university/courses', name: 'Courses' },
+      { path: BASEDIR + '/university/add-course', name: 'Add Course' },
+      { path: BASEDIR + '/university/edit-course', name: 'Edit Course' },
+      { path: BASEDIR + '/university/course-view', name: 'View Course' },
     ],
   },
-  { path: BASEDIR + "/university/courses", component: Course, type: "child" },
+  { path: BASEDIR + '/university/courses', component: Course, type: 'child' },
   {
-    path: BASEDIR + "/university/add-course",
+    path: BASEDIR + '/university/add-course',
     component: AddCourse,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/edit-course",
+    path: BASEDIR + '/university/edit-course',
     component: EditCourse,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/course-view",
+    path: BASEDIR + '/university/course-view',
     component: CourseView,
-    type: "child",
+    type: 'child',
   },
 
   {
-    path: "#",
-    name: "Library",
-    icon: "notebook",
-    type: "dropdown",
-    parentid: "library",
+    path: '#',
+    name: 'Grupos',
+    icon: 'notebook',
+    type: 'dropdown',
+    parentid: 'library',
     child: [
-      { path: BASEDIR + "/university/library", name: "Library Assets" },
-      { path: BASEDIR + "/university/add-library", name: "Add Library" },
-      { path: BASEDIR + "/university/edit-library", name: "Edit Library" },
+      { path: BASEDIR + '/university/library', name: 'Library Assets' },
+      { path: BASEDIR + '/university/add-library', name: 'Add Library' },
+      { path: BASEDIR + '/university/edit-library', name: 'Edit Library' },
     ],
   },
-  { path: BASEDIR + "/university/library", component: Library, type: "child" },
+  { path: BASEDIR + '/university/library', component: Library, type: 'child' },
   {
-    path: BASEDIR + "/university/add-library",
+    path: BASEDIR + '/university/add-library',
     component: AddLibrary,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/edit-library",
+    path: BASEDIR + '/university/edit-library',
     component: EditLibrary,
-    type: "child",
+    type: 'child',
   },
 
   {
-    path: "#",
-    name: "Departments",
-    icon: "organization",
-    type: "dropdown",
-    parentid: "departments",
+    path: '#',
+    name: 'Centro de Ayuda',
+    icon: 'organization',
+    type: 'dropdown',
+    parentid: 'departments',
+    tour: 'joyride-welcome-4',
     child: [
-      { path: BASEDIR + "/university/department", name: "Departments" },
-      { path: BASEDIR + "/university/add-department", name: "Add Department" },
+      { path: BASEDIR + '/university/department', name: 'Departments' },
+      { path: BASEDIR + '/university/add-department', name: 'Add Department' },
       {
-        path: BASEDIR + "/university/edit-department",
-        name: "Edit Department",
+        path: BASEDIR + '/university/edit-department',
+        name: 'Edit Department',
       },
     ],
   },
   {
-    path: BASEDIR + "/university/department",
+    path: BASEDIR + '/university/department',
     component: Department,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/add-department",
+    path: BASEDIR + '/university/add-department',
     component: AddDepartment,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/edit-department",
+    path: BASEDIR + '/university/edit-department',
     component: EditDepartment,
-    type: "child",
+    type: 'child',
   },
 
   {
-    path: "#",
-    name: "Events",
-    icon: "event",
-    type: "dropdown",
-    parentid: "events",
+    path: '#',
+    name: 'Calendario',
+    icon: 'event',
+    type: 'dropdown',
+    parentid: 'events',
     child: [
-      { path: BASEDIR + "/university/events", name: "Events" },
-      { path: BASEDIR + "/university/addevent", name: "Add Event" },
+      { path: BASEDIR + '/university/events', name: 'Events' },
+      { path: BASEDIR + '/university/addevent', name: 'Add Event' },
     ],
   },
   {
-    path: BASEDIR + "/university/events",
+    path: BASEDIR + '/university/events',
     component: UniversityEvents,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/addevent",
+    path: BASEDIR + '/university/addevent',
     component: AddEvent,
-    type: "child",
+    type: 'child',
   },
 
   {
-    path: "#",
-    name: "Mail Box",
-    icon: "envelope",
-    type: "dropdown",
-    parentid: "mailbox",
+    path: '#',
+    name: 'Correo Electronico',
+    icon: 'envelope',
+    type: 'dropdown',
+    parentid: 'mailbox',
     child: [
-      { path: BASEDIR + "/university/mail-inbox", name: "Inbox" },
-      { path: BASEDIR + "/university/mail-compose", name: "Compose" },
-      { path: BASEDIR + "/university/mail-view", name: "View" },
+      { path: BASEDIR + '/university/mail-inbox', name: 'Inbox' },
+      { path: BASEDIR + '/university/mail-compose', name: 'Compose' },
+      { path: BASEDIR + '/university/mail-view', name: 'View' },
     ],
   },
   {
-    path: BASEDIR + "/university/mail-inbox",
+    path: BASEDIR + '/university/mail-inbox',
     component: UniversityMailinbox,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/mail-compose",
+    path: BASEDIR + '/university/mail-compose',
     component: UniversityMailcompose,
-    type: "child",
+    type: 'child',
   },
   {
-    path: BASEDIR + "/university/mail-view",
+    path: BASEDIR + '/university/mail-view',
     component: UniversityMailview,
-    type: "child",
+    type: 'child',
   },
-  { path: BASEDIR + "/login", component: Login, type: "child" },
-  { path: BASEDIR + "/lockscreen", component: LockScreen, type: "child" },
+  {
+    path: BASEDIR + '/university/centres',
+    name: 'Herramientas',
+    icon: 'settings',
+    component: UniversityCentres,
+  },
+  {
+    path: BASEDIR + '/university/centres',
+    name: 'Chat',
+    icon: 'bubbles',
+    component: UniversityCentres,
+  },
+  { path: BASEDIR + '/login', component: Login, type: 'child' },
+  { path: BASEDIR + '/lockscreen', component: LockScreen, type: 'child' },
   // { path: BASEDIR + "/home", component: Home, type: "child" },
-  { path: BASEDIR + "/register", component: Register, type: "child" },
-  { path: BASEDIR + "/403", component: Page403, type: "child" },
-  { path: BASEDIR + "/404", component: Page404, type: "child" },
-  { path: BASEDIR + "/405", component: Page405, type: "child" },
-  { path: BASEDIR + "/408", component: Page408, type: "child" },
-  { path: BASEDIR + "/500", component: Page500, type: "child" },
-  { path: BASEDIR + "/503", component: Page503, type: "child" },
-  { path: BASEDIR + "/offline", component: Offline, type: "child" },
+  { path: BASEDIR + '/register', component: Register, type: 'child' },
+  { path: BASEDIR + '/403', component: Page403, type: 'child' },
+  { path: BASEDIR + '/404', component: Page404, type: 'child' },
+  { path: BASEDIR + '/405', component: Page405, type: 'child' },
+  { path: BASEDIR + '/408', component: Page408, type: 'child' },
+  { path: BASEDIR + '/500', component: Page500, type: 'child' },
+  { path: BASEDIR + '/503', component: Page503, type: 'child' },
+  { path: BASEDIR + '/offline', component: Offline, type: 'child' },
 
   /* {
     path: "#",
@@ -397,9 +411,9 @@ var dashRoutes = [
 
   {
     redirect: true,
-    path: BASEDIR + "/",
-    pathTo: "/university/dashboard",
-    name: "Dashboard",
+    path: BASEDIR + '/',
+    pathTo: '/university/dashboard',
+    name: 'Dashboard',
   },
-];
-export default dashRoutes;
+]
+export default dashRoutes
