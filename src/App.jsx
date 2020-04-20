@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import React ,{ useState } from 'react'
+=======
+import React, { useState } from 'react'
+>>>>>>> 91f3dd029a8d688b2bf52bc99ebdbc88036f9974
 import { history } from '_helpers'
 import { Router, Route, Switch } from 'react-router-dom'
+import Joyride, { ACTIONS, EVENTS, LIFECYCLE, STATUS } from 'react-joyride'
 import indexRoutes from 'routes/index.jsx'
 import Joyride ,{ ACTIONS, EVENTS, LIFECYCLE, STATUS } from "react-joyride";
 
@@ -9,14 +14,22 @@ const App = () => {
   const [configTour, setConfigTour] = useState({
     steps: [
       {
-        target: '.joyride-welcome1',
-        content: 'This is super awesome feature ',
-        title: 'Empecemos a conocernos...',
+        target: '.joyride-welcome-1',
+        content: '- Foto de perfil\n- Seguridad\n- Estilos',
+        title: 'Informacion sobre tu perfil',
         disableBeacon: true,
       },
       {
-        target: '.joyride-welcome2',
-        content: "Everyone's learning Joyride!",
+        target: '.joyride-welcome-2',
+        content: 'Estas en la pagina de inicio',
+      },
+      {
+        target: '.joyride-welcome-3',
+        content: 'Aqui Aparecen tus grupos',
+      },
+      {
+        target: '.joyride-welcome-4',
+        content: 'Aqui podemos ayudarte',
       },
     ],
     stepIndex: 0, // a controlled tour
@@ -24,11 +37,24 @@ const App = () => {
     continuous: true,
     run: true,
     showSkipButton: true,
+<<<<<<< HEAD
     locale: { back: 'Atrás', close: 'Cerrar', next: 'Siguiente', skip: 'Omitir', last: 'Último' },
   })
   const {
     steps,
     stepIndex,
+=======
+    locale: {
+      back: 'Atrás',
+      close: 'Cerrar',
+      next: 'Siguiente',
+      skip: 'Omitir',
+      last: 'Último',
+    },
+  })
+  const {
+    steps,
+>>>>>>> 91f3dd029a8d688b2bf52bc99ebdbc88036f9974
     showProgress,
     continuous,
     run,
@@ -45,6 +71,14 @@ const App = () => {
         run={run}
         showSkipButton={showSkipButton}
         locale={locale}
+<<<<<<< HEAD
+=======
+        styles={{
+          options: {
+            zIndex: 2000,
+          },
+        }}
+>>>>>>> 91f3dd029a8d688b2bf52bc99ebdbc88036f9974
       />
       <Switch>
         {indexRoutes.map((prop, key) => {
@@ -57,3 +91,22 @@ const App = () => {
 }
 
 export default App
+
+/* <Joyride 
+      steps={steps}
+      showProgress = {showProgress}
+      continuous={continuous}
+      run = {run}
+      showSkipButton = {showSkipButton}
+      styles={{
+        options: {
+          arrowColor: '#e3ffeb',
+          backgroundColor: '#e3ffeb',
+          overlayColor: 'rgba(79, 26, 0, 0.4)',
+          primaryColor: '#000',
+          textColor: '#004a14',
+          width: 900,
+          zIndex: 1000,
+        }
+      }}
+      /> */
