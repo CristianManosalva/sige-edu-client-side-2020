@@ -308,11 +308,7 @@ class Header extends React.Component {
                 toggle={(e) => this.userddToggle(e)}
                 className="userdd"
               >
-<<<<<<< HEAD
-                <DropdownToggle className="joyride-welcome1" caret nav>
-=======
                 <DropdownToggle caret nav className="joyride-welcome-1">
->>>>>>> 91f3dd029a8d688b2bf52bc99ebdbc88036f9974
                   <img
                     src={this.state.profileimg}
                     alt="react-logo"

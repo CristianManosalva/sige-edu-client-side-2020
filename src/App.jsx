@@ -3,7 +3,6 @@ import { history } from '_helpers'
 import { Router, Route, Switch } from 'react-router-dom'
 import Joyride, { ACTIONS, EVENTS, LIFECYCLE, STATUS } from 'react-joyride'
 import indexRoutes from 'routes/index.jsx'
-import Joyride ,{ ACTIONS, EVENTS, LIFECYCLE, STATUS } from "react-joyride";
 
 
 const App = () => {
@@ -33,13 +32,6 @@ const App = () => {
     continuous: true,
     run: true,
     showSkipButton: true,
-<<<<<<< HEAD
-    locale: { back: 'Atrás', close: 'Cerrar', next: 'Siguiente', skip: 'Omitir', last: 'Último' },
-  })
-  const {
-    steps,
-    stepIndex,
-=======
     locale: {
       back: 'Atrás',
       close: 'Cerrar',
@@ -50,7 +42,6 @@ const App = () => {
   })
   const {
     steps,
->>>>>>> 91f3dd029a8d688b2bf52bc99ebdbc88036f9974
     showProgress,
     continuous,
     run,
@@ -67,14 +58,11 @@ const App = () => {
         run={run}
         showSkipButton={showSkipButton}
         locale={locale}
-<<<<<<< HEAD
-=======
         styles={{
           options: {
             zIndex: 2000,
           },
         }}
->>>>>>> 91f3dd029a8d688b2bf52bc99ebdbc88036f9974
       />
       <Switch>
         {indexRoutes.map((prop, key) => {
