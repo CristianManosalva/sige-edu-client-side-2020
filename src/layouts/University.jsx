@@ -1,10 +1,17 @@
-import React from "react";
+import React from 'react'
 // javascript plugin used to create scrollbars on windows
 // import PerfectScrollbar from 'perfect-scrollbar';
-import { Route, Switch, Redirect } from "react-router-dom";
-import { Header, Footer, Sidebar, ChatSidebar, Stylebar } from "components";
+import { Route, Switch, Redirect } from 'react-router-dom'
+import {
+  Header,
+  Footer,
+  Sidebar,
+  ChatSidebar,
+  Stylebar,
+  PrivateRoute,
+} from 'components'
 
-import dashboardRoutes from "routes/university.jsx";
+import dashboardRoutes from 'routes/university.jsx'
 import {
   topbarStyle,
   menuStyle,
@@ -13,36 +20,34 @@ import {
   navWidth,
   chatWidth,
   chatType,
-} from "variables/settings/university.jsx";
+} from 'variables/settings/university.jsx'
 
 //var ps;
 
 class UniversityLayout extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       menuColor: menuStyle,
       topbarColor: topbarStyle,
       menuType: menuType,
       topbarType: topbarType,
-      
-      
-    };
-    this.menuSettings = this.menuSettings.bind(this);
-    this.topbarSettings = this.topbarSettings.bind(this);
+    }
+    this.menuSettings = this.menuSettings.bind(this)
+    this.topbarSettings = this.topbarSettings.bind(this)
   }
 
   menuSettings(val1, val2) {
     this.setState({
       menuColor: val1,
       menuType: val2,
-    });
+    })
   }
   topbarSettings(val1, val2) {
     this.setState({
       topbarColor: val1,
       topbarType: val2,
-    });
+    })
   }
 
   componentDidMount() {
@@ -58,9 +63,9 @@ class UniversityLayout extends React.Component {
         }*/
   }
   componentDidUpdate(e) {
-    if (e.history.action === "PUSH") {
-      this.refs.mainPanel.scrollTop = 0;
-      document.scrollingElement.scrollTop = 0;
+    if (e.history.action === 'PUSH') {
+      this.refs.mainPanel.scrollTop = 0
+      document.scrollingElement.scrollTop = 0
     }
   }
   render() {
@@ -73,12 +78,12 @@ class UniversityLayout extends React.Component {
         data-menutype={this.state.menuType}
         data-topbartype={this.state.topbarType}
       >
-        
-        <Header {...this.props} navtype={navWidth} admintype={"university"} />
-        <Sidebar className="step-1"
+        <Header {...this.props} navtype={navWidth} admintype={'university'} />
+        <Sidebar
+          className="step-1"
           {...this.props}
           routes={dashboardRoutes}
-          admintype={"university"}
+          admintype={'university'}
         />
         <div className="main-panel" ref="mainPanel">
           <Switch>
@@ -115,19 +120,25 @@ class UniversityLayout extends React.Component {
               if (prop.collapse) {
                 return prop.views.map((prop2, key2) => {
                   return (
-                    <Route
+                    <PrivateRoute
+                      exact
                       path={prop2.path}
-                      component={prop2.component}
                       key={key2}
+                      component={prop2.component}
                     />
-                  );
-                });
+                  )
+                })
               }
               if (prop.redirect)
-                return <Redirect from={prop.path} to={prop.pathTo} key={key} />;
+                return <Redirect from={prop.path} to={prop.pathTo} key={key} />
               return (
-                <Route path={prop.path} component={prop.component} key={key} />
-              );
+                <PrivateRoute
+                  exact
+                  path={prop.path}
+                  key={key}
+                  component={prop.component}
+                />
+              )
             })}
           </Switch>
           <Footer fluid />
@@ -143,8 +154,8 @@ class UniversityLayout extends React.Component {
           topbarSettings={this.topbarSettings}
         />
       </div>
-    );
+    )
   }
 }
 
-export default UniversityLayout;
+export default UniversityLayout

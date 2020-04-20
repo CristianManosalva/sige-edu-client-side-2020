@@ -318,16 +318,23 @@ class Header extends React.Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem tag="a">
-                    <i className="i-wrench" href="#!"></i> Settings
+                    <i className="i-wrench" href="#!"></i> Configuracion
                   </DropdownItem>
                   <DropdownItem tag="a">
-                    <i className="i-user" href="#!"></i> Profile
+                    <i className="i-user" href="#!"></i> Perfil
                   </DropdownItem>
                   <DropdownItem tag="a">
-                    <i className="i-info" href="#!"></i> Help
+                    <i className="i-info" href="#!"></i> Ayuda
                   </DropdownItem>
-                  <DropdownItem tag="a" className="" href="#!">
-                    <i className="i-lock"></i> Logout
+                  <DropdownItem
+                    onClick={() => {
+                      localStorage.removeItem('user')
+                    }}
+                    tag="a"
+                    className=""
+                    href="#!"
+                  >
+                    <i className="i-lock"></i> Cerrar Sesión
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
