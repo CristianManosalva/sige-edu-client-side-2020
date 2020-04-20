@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React ,{ useState } from 'react'
-=======
 import React, { useState } from 'react'
->>>>>>> 91f3dd029a8d688b2bf52bc99ebdbc88036f9974
 import { history } from '_helpers'
 import { Router, Route, Switch } from 'react-router-dom'
 import Joyride, { ACTIONS, EVENTS, LIFECYCLE, STATUS } from 'react-joyride'
