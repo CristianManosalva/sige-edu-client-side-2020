@@ -33,8 +33,8 @@ const App = () => {
     ],
     stepIndex: 0, // a controlled tour
     showProgress: true,
-    continuous: true,
     run: true,
+    continuous: true,
     showSkipButton: true,
     locale: {
       back: 'Atrás',
@@ -48,13 +48,14 @@ const App = () => {
     steps,
     showProgress,
     continuous,
-    run,
     showSkipButton,
     locale,
+    run,
   } = configTour
+
   return (
     <Router history={history} basename={process.env.REACT_APP_BASEDIR}>
-      <Joyride
+      {/* <Joyride
         steps={steps}
         showProgress={showProgress}
         continuous={continuous}
@@ -66,7 +67,7 @@ const App = () => {
             zIndex: 2000,
           },
         }}
-      />
+      /> */}
       <Switch>
         {indexRoutes.map((prop, key) => {
           //console.log(prop.path, " / " , key , " / ", prop._public);
