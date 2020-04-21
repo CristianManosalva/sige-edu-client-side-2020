@@ -300,5 +300,12 @@ var dashRoutes = [
         { path: BASEDIR+"/blog/dashboard", component: Blog, type: "child"}, */
 
   //{ redirect: true, path: BASEDIR+"/", pathTo: "/dashboard", name: "Dashboard" }
+  {
+    path: BASEDIR + '/hospital',
+    name: 'Dashboard',
+    icon: 'speedometer',
+    badge: '',
+    component: Hospital,
+  },
 ]
 export default dashRoutes

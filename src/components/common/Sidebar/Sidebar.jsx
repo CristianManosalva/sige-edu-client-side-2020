@@ -1,11 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Nav } from 'reactstrap'
-
 import { Navmenudropdown } from 'components'
 import { Navmenugroup } from 'components'
-import Joyride, { ACTIONS, EVENTS, LIFECYCLE, STATUS } from 'react-joyride'
-
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from 'perfect-scrollbar'
 //import useravatar from "assets/img/profile.jpg";
@@ -29,22 +26,6 @@ class Sidebar extends React.Component {
       profilename: 'Eric Nelson',
       profileimg: IMGDIR + '/images/profile/profile.jpg',
       profileposition: 'Web Developer',
-      steps: [
-        {
-          target: '.step-1',
-          content: 'This is super awesome feature ',
-          title: 'Empecemos a conocernos...',
-        },
-        {
-          target: '.step-2',
-          content: "Everyone's learning Joyride!",
-        },
-      ],
-      stepIndex: 0, // a controlled tour
-      showProgress: true,
-      continuous: true,
-      run: true,
-      showSkipButton: true,
     }
     this.handleOpendd = this.handleOpendd.bind(this)
     this.handlecurrent = this.handlecurrent.bind(this)
@@ -154,14 +135,6 @@ class Sidebar extends React.Component {
     }
   }
   render() {
-    const {
-      steps,
-      stepIndex,
-      showProgress,
-      continuous,
-      run,
-      showSkipButton,
-    } = this.state
     const children = (child, parent) => {
       var links = []
       if (child) {

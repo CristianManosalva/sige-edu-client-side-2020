@@ -1,72 +1,12 @@
-import React /* , { useState } */ from 'react'
+import React from 'react'
 import { history } from '_helpers'
 import { Router, Route, Switch } from 'react-router-dom'
 import { PrivateRoute } from 'components'
-// import Joyride, { ACTIONS, EVENTS, LIFECYCLE, STATUS } from 'react-joyride'
 import indexRoutes from 'routes/index.jsx'
 
 const App = () => {
-  // const [configTour, setConfigTour] = useState({
-  //   steps: [
-  //     {
-  //       target: '.joyride-welcome-1',
-  //       content:
-  //         'Aqui podras configurar tu perfil y algunas opciones de seguridad',
-  //       title: 'Informacion sobre tu perfil',
-  //       disableBeacon: true,
-  //     },
-  //     {
-  //       target: '.joyride-welcome-2',
-  //       title: 'Pagina de inicio',
-  //       content: 'Aqui encontraras informacion relevante y de manera resumidad',
-  //     },
-  //     {
-  //       target: '.joyride-welcome-3',
-  //       title: 'Grupos',
-  //       content: 'Gestiona la informacion sobre tus grupos',
-  //     },
-  //     {
-  //       target: '.joyride-welcome-4',
-  //       title: 'Ayuda',
-  //       content: 'Contactanos para resolver tus inquietudes',
-  //     },
-  //   ],
-  //   stepIndex: 0, // a controlled tour
-  //   showProgress: true,
-  //   continuous: true,
-  //   run: true,
-  //   showSkipButton: true,
-  //   locale: {
-  //     back: 'Atrás',
-  //     close: 'Cerrar',
-  //     next: 'Siguiente',
-  //     skip: 'Omitir',
-  //     last: 'Último',
-  //   },
-  // })
-  /* const {
-    steps,
-    showProgress,
-    continuous,
-    run,
-    showSkipButton,
-    locale,
-  } = configTour */
   return (
     <Router history={history} basename={process.env.REACT_APP_BASEDIR}>
-      {/* <Joyride
-        steps={steps}
-        showProgress={showProgress}
-        continuous={continuous}
-        run={run}
-        showSkipButton={showSkipButton}
-        locale={locale}
-        styles={{
-          options: {
-            zIndex: 2000,
-          },
-        }}
-      /> */}
       <Switch>
         {indexRoutes.map((prop, key) => {
           //console.log(prop.path, " / " , key , " / ", prop._public);

@@ -1,4 +1,5 @@
 import React from 'react'
+import Joyride from 'react-joyride'
 // javascript plugin used to create scrollbars on windows
 // import PerfectScrollbar from 'perfect-scrollbar';
 import { /* Route, */ Switch, Redirect } from 'react-router-dom'
@@ -32,6 +33,43 @@ class UniversityLayout extends React.Component {
       topbarColor: topbarStyle,
       menuType: menuType,
       topbarType: topbarType,
+      steps: [
+        {
+          target: '.joyride-welcome-1',
+          content:
+            'Aqui podras configurar tu perfil y algunas opciones de seguridad',
+          title: 'Informacion sobre tu perfil',
+          disableBeacon: true,
+        },
+        {
+          target: '.joyride-welcome-2',
+          title: 'Pagina de inicio',
+          content:
+            'Aqui encontraras informacion relevante y de manera resumidad',
+        },
+        {
+          target: '.joyride-welcome-3',
+          title: 'Grupos',
+          content: 'Gestiona la informacion sobre tus grupos',
+        },
+        {
+          target: '.joyride-welcome-4',
+          title: 'Ayuda',
+          content: 'Contactanos para resolver tus inquietudes',
+        },
+      ],
+      stepIndex: 0, // a controlled tour
+      showProgress: true,
+      run: true,
+      continuous: true,
+      showSkipButton: true,
+      locale: {
+        back: 'Atrás',
+        close: 'Cerrar',
+        next: 'Siguiente',
+        skip: 'Omitir',
+        last: 'Último',
+      },
     }
     this.menuSettings = this.menuSettings.bind(this)
     this.topbarSettings = this.topbarSettings.bind(this)
@@ -69,6 +107,14 @@ class UniversityLayout extends React.Component {
     }
   }
   render() {
+    const {
+      steps,
+      showProgress,
+      continuous,
+      showSkipButton,
+      locale,
+      run,
+    } = this.state
     return (
       <div
         className="wrapper"
@@ -78,6 +124,19 @@ class UniversityLayout extends React.Component {
         data-menutype={this.state.menuType}
         data-topbartype={this.state.topbarType}
       >
+        <Joyride
+          steps={steps}
+          showProgress={showProgress}
+          continuous={continuous}
+          run={run}
+          showSkipButton={showSkipButton}
+          locale={locale}
+          styles={{
+            options: {
+              zIndex: 2000,
+            },
+          }}
+        />
         <Header {...this.props} navtype={navWidth} admintype={'university'} />
         <Sidebar
           className="step-1"

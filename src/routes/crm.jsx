@@ -276,6 +276,14 @@ var dashRoutes = [
   },
   { path: BASEDIR + '/crm/mail-view', component: CrmMailview, type: 'child' },
 
+  {
+    path: BASEDIR + '/crm',
+    name: 'Dashboard',
+    icon: 'speedometer',
+    badge: '',
+    component: Crm,
+  },
+
   /* { 
         path: "#", name: "Multi Purpose", icon: "layers", type: "dropdown", parentid: "multipurpose",
             child: [
