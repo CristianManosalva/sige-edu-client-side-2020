@@ -1,9 +1,9 @@
-import React from "react";
-import { Row, Col, Table } from "reactstrap";
-import Joyride ,{ ACTIONS, EVENTS, LIFECYCLE, STATUS } from "react-joyride";
-import {} from "components";
+import React from 'react'
+import { Row, Col, Table } from 'reactstrap'
+// import Joyride ,{ ACTIONS, EVENTS, LIFECYCLE, STATUS } from "react-joyride";
+import {} from 'components'
 
-import { Line, Bar, Scatter, HorizontalBar } from "react-chartjs-2";
+import { Line, Bar, Scatter, HorizontalBar } from 'react-chartjs-2'
 
 //import styles from 'jvectormap/jquery-jvectormap.css'
 //import { VectorMap } from 'react-jvectormap';
@@ -21,25 +21,25 @@ import {
   playlistCharts8,
   playlistCharts9,
   playlistCharts10,
-} from "variables/university/dashboard-charts.jsx";
-var IMGDIR = process.env.REACT_APP_IMGDIR;
+} from 'variables/university/dashboard-charts.jsx'
+var IMGDIR = process.env.REACT_APP_IMGDIR
 
 class University extends React.Component {
   render() {
     const data32 = {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
       datasets: [
         {
-          label: "Visitors",
-          backgroundColor: "rgba(255, 138, 101,1)",
-          borderColor: "rgba(255, 138, 101,0.8)",
+          label: 'Visitors',
+          backgroundColor: 'rgba(255, 138, 101,1)',
+          borderColor: 'rgba(255, 138, 101,0.8)',
           borderWidth: 1,
-          hoverBackgroundColor: "rgba(255, 138, 101,0.8)",
-          hoverBorderColor: "rgba(255, 138, 101,1)",
+          hoverBackgroundColor: 'rgba(255, 138, 101,0.8)',
+          hoverBorderColor: 'rgba(255, 138, 101,1)',
           data: [165, 259, 170, 181, 256, 155, 170],
         },
       ],
-    };
+    }
 
     const options32 = {
       legend: {
@@ -49,7 +49,7 @@ class University extends React.Component {
         xAxes: [
           {
             gridLines: {
-              color: "rgba(0, 0, 0, 0)",
+              color: 'rgba(0, 0, 0, 0)',
             },
             ticks: {
               display: false,
@@ -62,7 +62,7 @@ class University extends React.Component {
             barPercentage: 0.5,
             maxBarThickness: 8,
             gridLines: {
-              color: "rgba(0, 0, 0, 0.07)",
+              color: 'rgba(0, 0, 0, 0.07)',
             },
             ticks: {
               display: true,
@@ -71,21 +71,21 @@ class University extends React.Component {
         ],
       },
       maintainAspectRatio: false,
-    };
+    }
 
     const data4 = {
-      labels: ["Scatter"],
+      labels: ['Scatter'],
       datasets: [
         {
-          label: "Users New / Visitors",
+          label: 'Users New / Visitors',
           fill: true,
-          backgroundColor: "rgba(255, 138, 101,0.4)",
-          pointBorderColor: "rgba(255, 138, 101,1)",
-          pointBackgroundColor: "#fff",
+          backgroundColor: 'rgba(255, 138, 101,0.4)',
+          pointBorderColor: 'rgba(255, 138, 101,1)',
+          pointBackgroundColor: '#fff',
           pointBorderWidth: 2,
           pointHoverRadius: 8,
-          pointHoverBackgroundColor: "rgba255, 138, 101,1)",
-          pointHoverBorderColor: "rgba(255, 138, 101,1)",
+          pointHoverBackgroundColor: 'rgba255, 138, 101,1)',
+          pointHoverBorderColor: 'rgba(255, 138, 101,1)',
           pointHoverBorderWidth: 4,
           pointRadius: 6,
           pointHitRadius: 5,
@@ -112,7 +112,7 @@ class University extends React.Component {
           ],
         },
       ],
-    };
+    }
 
     const options4 = {
       legend: {
@@ -123,7 +123,7 @@ class University extends React.Component {
           {
             display: 1,
             gridLines: {
-              color: "rgba(0, 0, 0, 0.01)",
+              color: 'rgba(0, 0, 0, 0.01)',
             },
             ticks: {
               display: false,
@@ -137,7 +137,7 @@ class University extends React.Component {
             maxBarThickness: 12,
             display: 1,
             gridLines: {
-              color: "rgba(0, 0, 0, 0.01)",
+              color: 'rgba(0, 0, 0, 0.01)',
             },
             ticks: {
               display: true,
@@ -146,7 +146,7 @@ class University extends React.Component {
         ],
       },
       maintainAspectRatio: false,
-    };
+    }
 
     return (
       <div>
@@ -228,7 +228,7 @@ class University extends React.Component {
                       <h2 className="title float-left">Users Today</h2>
                     </header>
                     <div className="content-body">
-                      {" "}
+                      {' '}
                       <div className="row">
                         <div className="col-12">
                           <div className="chart-container">
@@ -250,7 +250,7 @@ class University extends React.Component {
                       <h2 className="title float-left">Browsers</h2>
                     </header>
                     <div className="content-body">
-                      {" "}
+                      {' '}
                       <div className="row">
                         <div className="col-12">
                           <div className="chart-container">
@@ -274,7 +274,7 @@ class University extends React.Component {
                       <h2 className="title float-left">Site Referrals</h2>
                     </header>
                     <div className="content-body">
-                      {" "}
+                      {' '}
                       <div className="row">
                         <div className="col-12">
                           <div className="chart-container">
@@ -296,7 +296,7 @@ class University extends React.Component {
                       <h2 className="title float-left">Visitors</h2>
                     </header>
                     <div className="content-body">
-                      {" "}
+                      {' '}
                       <div className="row">
                         <div className="col-12">
                           <div className="">
@@ -312,8 +312,8 @@ class University extends React.Component {
                                       <div
                                         className="chart-area"
                                         style={{
-                                          height: 50 + "px",
-                                          width: 100 + "px",
+                                          height: 50 + 'px',
+                                          width: 100 + 'px',
                                         }}
                                       >
                                         <Bar
@@ -337,8 +337,8 @@ class University extends React.Component {
                                       <div
                                         className="chart-area"
                                         style={{
-                                          height: 50 + "px",
-                                          width: 100 + "px",
+                                          height: 50 + 'px',
+                                          width: 100 + 'px',
                                         }}
                                       >
                                         <Bar
@@ -362,8 +362,8 @@ class University extends React.Component {
                                       <div
                                         className="chart-area"
                                         style={{
-                                          height: 50 + "px",
-                                          width: 100 + "px",
+                                          height: 50 + 'px',
+                                          width: 100 + 'px',
                                         }}
                                       >
                                         <Bar
@@ -387,8 +387,8 @@ class University extends React.Component {
                                       <div
                                         className="chart-area"
                                         style={{
-                                          height: 50 + "px",
-                                          width: 100 + "px",
+                                          height: 50 + 'px',
+                                          width: 100 + 'px',
                                         }}
                                       >
                                         <Bar
@@ -414,7 +414,7 @@ class University extends React.Component {
                       <h2 className="title float-left">Blog Posts</h2>
                     </header>
                     <div className="content-body">
-                      {" "}
+                      {' '}
                       <div className="row">
                         <div className="col-12">
                           <div className="chart-container">
@@ -455,7 +455,7 @@ class University extends React.Component {
                             <tr>
                               <td className="user-inline-img">
                                 <img
-                                  src={IMGDIR + "/images/profile/avatar-4.jpg"}
+                                  src={IMGDIR + '/images/profile/avatar-4.jpg'}
                                   alt="user avatar"
                                   className="avatar-image img-inline"
                                 />
@@ -471,8 +471,8 @@ class University extends React.Component {
                                   <div
                                     className="chart-area"
                                     style={{
-                                      height: 40 + "px",
-                                      width: 80 + "px",
+                                      height: 40 + 'px',
+                                      width: 80 + 'px',
                                     }}
                                   >
                                     <Bar
@@ -488,7 +488,7 @@ class University extends React.Component {
                             <tr>
                               <td className="user-inline-img">
                                 <img
-                                  src={IMGDIR + "/images/profile/avatar-6.jpg"}
+                                  src={IMGDIR + '/images/profile/avatar-6.jpg'}
                                   alt="user avatar"
                                   className="avatar-image img-inline"
                                 />
@@ -504,8 +504,8 @@ class University extends React.Component {
                                   <div
                                     className="chart-area"
                                     style={{
-                                      height: 40 + "px",
-                                      width: 80 + "px",
+                                      height: 40 + 'px',
+                                      width: 80 + 'px',
                                     }}
                                   >
                                     <Bar
@@ -521,7 +521,7 @@ class University extends React.Component {
                             <tr>
                               <td className="user-inline-img">
                                 <img
-                                  src={IMGDIR + "/images/profile/avatar-3.jpg"}
+                                  src={IMGDIR + '/images/profile/avatar-3.jpg'}
                                   alt="user avatar"
                                   className="avatar-image img-inline"
                                 />
@@ -537,8 +537,8 @@ class University extends React.Component {
                                   <div
                                     className="chart-area"
                                     style={{
-                                      height: 40 + "px",
-                                      width: 80 + "px",
+                                      height: 40 + 'px',
+                                      width: 80 + 'px',
                                     }}
                                   >
                                     <Bar
@@ -554,7 +554,7 @@ class University extends React.Component {
                             <tr>
                               <td className="user-inline-img">
                                 <img
-                                  src={IMGDIR + "/images/profile/avatar-2.jpg"}
+                                  src={IMGDIR + '/images/profile/avatar-2.jpg'}
                                   alt="user avatar"
                                   className="avatar-image img-inline"
                                 />
@@ -570,8 +570,8 @@ class University extends React.Component {
                                   <div
                                     className="chart-area"
                                     style={{
-                                      height: 40 + "px",
-                                      width: 80 + "px",
+                                      height: 40 + 'px',
+                                      width: 80 + 'px',
                                     }}
                                   >
                                     <Bar
@@ -587,7 +587,7 @@ class University extends React.Component {
                             <tr>
                               <td className="user-inline-img">
                                 <img
-                                  src={IMGDIR + "/images/profile/avatar-1.jpg"}
+                                  src={IMGDIR + '/images/profile/avatar-1.jpg'}
                                   alt="user avatar"
                                   className="avatar-image img-inline"
                                 />
@@ -603,8 +603,8 @@ class University extends React.Component {
                                   <div
                                     className="chart-area"
                                     style={{
-                                      height: 40 + "px",
-                                      width: 80 + "px",
+                                      height: 40 + 'px',
+                                      width: 80 + 'px',
                                     }}
                                   >
                                     <Bar
@@ -620,7 +620,7 @@ class University extends React.Component {
                             <tr>
                               <td className="user-inline-img">
                                 <img
-                                  src={IMGDIR + "/images/profile/avatar-9.jpg"}
+                                  src={IMGDIR + '/images/profile/avatar-9.jpg'}
                                   alt="user avatar"
                                   className="avatar-image img-inline"
                                 />
@@ -636,8 +636,8 @@ class University extends React.Component {
                                   <div
                                     className="chart-area"
                                     style={{
-                                      height: 40 + "px",
-                                      width: 80 + "px",
+                                      height: 40 + 'px',
+                                      width: 80 + 'px',
                                     }}
                                   >
                                     <Bar
@@ -661,8 +661,8 @@ class University extends React.Component {
           </Row>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default University;
+export default University
