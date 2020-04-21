@@ -2,7 +2,7 @@
   "name": "zestadmin-react",
   "version": "1.1.0",
   "private": true,
-  "homepage": "https://jaybabani.com/zestreact/app",
+  "homepage": ".",
   "dependencies": {
     "ajv": "6.10.0",
     "bootstrap": "4.4.1",

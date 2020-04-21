@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   Container,
   Col,
@@ -7,27 +7,36 @@ import {
   Button,
   Label,
   Form,
-} from "reactstrap";
-import { Link } from "react-router-dom";
+} from 'reactstrap'
+import { Link } from 'react-router-dom'
+import { history } from '_helpers'
 
 const LoginForm = (props) => {
   const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-  });
-  const { email, password } = inputs;
+    email: '',
+    password: '',
+  })
+  const { email, password } = inputs
 
   function handleChange(e) {
-    const { name, value } = e.target;
-    setInputs((inputs) => ({ ...inputs, [name]: value }));
+    const { name, value } = e.target
+    setInputs((inputs) => ({ ...inputs, [name]: value }))
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
 
     if (email && password) {
       //   dispatch(userActions.login(username, password));
-      alert(email + "\n" + password);
+      if (email == 'rubunu@gmail.com' && password == 'requiem') {
+        localStorage.setItem('user', JSON.stringify({ email, password }))
+        // eslint-disable-next-line
+        history.push('/')
+      } else {
+        alert('Datos de ingreso incorrectos')
+      }
+    } else {
+      alert('Por favor ingrese los datos necesarios')
     }
   }
   return (
@@ -86,7 +95,7 @@ const LoginForm = (props) => {
         </Form>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm
