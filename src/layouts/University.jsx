@@ -1,8 +1,8 @@
 import React from 'react'
-import Joyride, { ACTIONS, EVENTS, LIFECYCLE, STATUS } from 'react-joyride'
+import Joyride from 'react-joyride'
 // javascript plugin used to create scrollbars on windows
 // import PerfectScrollbar from 'perfect-scrollbar';
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { /* Route, */ Switch, Redirect } from 'react-router-dom'
 import {
   Header,
   Footer,

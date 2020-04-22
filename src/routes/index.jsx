@@ -1,7 +1,7 @@
-// import HospitalLayout from 'layouts/Hospital.jsx';
+import HospitalLayout from 'layouts/Hospital.jsx'
 // import MusicLayout from 'layouts/Music.jsx';
 // import SocialLayout from 'layouts/Social.jsx';
-// import CrmLayout from 'layouts/Crm.jsx';
+import CrmLayout from 'layouts/Crm.jsx'
 // import FreelanceLayout from 'layouts/Freelance.jsx';
 // import GeneralLayout from 'layouts/General.jsx';
 import UniversityLayout from 'layouts/University.jsx'
@@ -48,18 +48,25 @@ var indexRoutes = [
   { path: BASEDIR + '/503', name: '503', component: BlankPage },
   { path: BASEDIR + '/offline', name: 'Offline', component: BlankPage },
 
-  /* {
-    path: BASEDIR + "/hospital",
-    name: "Hospital Dashboard",
+  {
+    path: BASEDIR + '/hospital',
+    name: 'Hospital Dashboard',
     component: HospitalLayout,
+    _public: true,
   },
+  {
+    path: BASEDIR + '/crm',
+    name: 'CRM Dashboard',
+    component: CrmLayout,
+    _public: true,
+  },
+  /*
   { path: BASEDIR + "/music", name: "Music Dashboard", component: MusicLayout },
   {
     path: BASEDIR + "/social",
     name: "Social Dashboard",
     component: SocialLayout,
   },
-  { path: BASEDIR + "/crm", name: "CRM Dashboard", component: CrmLayout },
   {
     path: BASEDIR + "/freelance",
     name: "Freelance Dashboard",

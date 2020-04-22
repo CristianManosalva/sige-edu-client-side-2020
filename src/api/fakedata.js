@@ -14,69 +14,29 @@ const news = [
       'https://images.pexels.com/photos/373883/pexels-photo-373883.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     title: 'Tareas Automaticas',
   },
-  {
-    urlImage:
-      'https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    title: 'informes en tiempo real',
-  },
-  {
-    urlImage:
-      'https://images.pexels.com/photos/50614/pexels-photo-50614.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    title: 'desde tu celular',
-  },
-  {
-    urlImage:
-      'https://images.pexels.com/photos/373883/pexels-photo-373883.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    title: 'Tareas Automaticas',
-  },
-  {
-    urlImage:
-      'https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    title: 'informes en tiempo real',
-  },
-  {
-    urlImage:
-      'https://images.pexels.com/photos/50614/pexels-photo-50614.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    title: 'desde tu celular',
-  },
-  {
-    urlImage:
-      'https://images.pexels.com/photos/373883/pexels-photo-373883.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    title: 'Tareas Automaticas',
-  },
 ];
 
 const clients = [
-  {
-    urlImage:
-      'https://res.cloudinary.com/duyflkcyn/image/upload/v1587040139/bjcvnyjhk7xnln24gevp-removebg-preview_krbgkv.png',
-    title: 'central de bachillerato integrado',
-  },
-  {
-    urlImage:
-      'https://res.cloudinary.com/duyflkcyn/image/upload/v1587040139/bjcvnyjhk7xnln24gevp-removebg-preview_krbgkv.png',
-    title: 'central de bachillerato integrado',
-  },
-  {
-    urlImage:
-      'https://res.cloudinary.com/duyflkcyn/image/upload/v1587040139/bjcvnyjhk7xnln24gevp-removebg-preview_krbgkv.png',
-    title: 'central de bachillerato integrado',
-  },
-  {
-    urlImage:
-      'https://res.cloudinary.com/duyflkcyn/image/upload/v1587040139/bjcvnyjhk7xnln24gevp-removebg-preview_krbgkv.png',
-    title: 'central de bachillerato integrado',
-  },
-  {
-    urlImage:
-      'https://res.cloudinary.com/duyflkcyn/image/upload/v1587040139/bjcvnyjhk7xnln24gevp-removebg-preview_krbgkv.png',
-    title: 'central de bachillerato integrado',
-  },
-  {
-    urlImage:
-      'https://res.cloudinary.com/duyflkcyn/image/upload/v1587040139/bjcvnyjhk7xnln24gevp-removebg-preview_krbgkv.png',
-    title: 'central de bachillerato integrado',
-  },
+  // {
+  //   urlImage:
+  //     'https://res.cloudinary.com/duyflkcyn/image/upload/v1587040139/bjcvnyjhk7xnln24gevp-removebg-preview_krbgkv.png',
+  //   title: 'Central de Bachillerato Integrado',
+  // },
+  // {
+  //   urlImage:
+  //     'http://alfredobonillajamundi.com/images/Abmlogo.png',
+  //   title: 'Alfredo Bonilla Montaño',
+  // },
+  // {
+  //   urlImage:
+  //     'https://res.cloudinary.com/duyflkcyn/image/upload/v1587040139/bjcvnyjhk7xnln24gevp-removebg-preview_krbgkv.png',
+  //   title: 'central de bachillerato integrado',
+  // },
+  // {
+  //   urlImage:
+  //     'https://res.cloudinary.com/duyflkcyn/image/upload/v1587040139/bjcvnyjhk7xnln24gevp-removebg-preview_krbgkv.png',
+  //   title: 'central de bachillerato integrado',
+  // },
 ];
 
 const contact = [

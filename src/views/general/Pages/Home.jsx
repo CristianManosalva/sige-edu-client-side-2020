@@ -40,17 +40,17 @@ const Home = () => {
       <div className="videos-section">
         <div className="videos-section-container">
           <div className="videos-section-container__video">
-            <iframe
+            {/* <iframe
               width="560"
               height="315"
               src="https://www.youtube.com/embed/8r95xn7XTyo"
               frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               title="show-sige"
-            ></iframe>
+            ></iframe> */}
           </div>
           <div className="videos-section-container__title">
-            <p>
+            {/* <p>
               Vea cómo SIGE <br />
               Te conecta
               <br />
@@ -59,7 +59,7 @@ const Home = () => {
               comunidad
               <br />
               educativa
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

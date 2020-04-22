@@ -1,9 +1,9 @@
-import React from "react";
-import { Row, Col, Table } from "reactstrap";
-import Joyride ,{ ACTIONS, EVENTS, LIFECYCLE, STATUS } from "react-joyride";
-import {} from "components";
+import React from 'react'
+import { Row, Col, Table } from 'reactstrap'
+// import Joyride ,{ ACTIONS, EVENTS, LIFECYCLE, STATUS } from "react-joyride";
+import {} from 'components'
 
-import { Line, Bar, Scatter, HorizontalBar } from "react-chartjs-2";
+import { Line, Bar, Scatter, HorizontalBar } from 'react-chartjs-2'
 
 //import styles from 'jvectormap/jquery-jvectormap.css'
 //import { VectorMap } from 'react-jvectormap';
@@ -21,25 +21,25 @@ import {
   playlistCharts8,
   playlistCharts9,
   playlistCharts10,
-} from "variables/university/dashboard-charts.jsx";
-var IMGDIR = process.env.REACT_APP_IMGDIR;
+} from 'variables/university/dashboard-charts.jsx'
+var IMGDIR = process.env.REACT_APP_IMGDIR
 
 class University extends React.Component {
   render() {
     const data32 = {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
       datasets: [
         {
-          label: "Visitors",
-          backgroundColor: "rgba(255, 138, 101,1)",
-          borderColor: "rgba(255, 138, 101,0.8)",
+          label: 'Visitors',
+          backgroundColor: 'rgba(255, 138, 101,1)',
+          borderColor: 'rgba(255, 138, 101,0.8)',
           borderWidth: 1,
-          hoverBackgroundColor: "rgba(255, 138, 101,0.8)",
-          hoverBorderColor: "rgba(255, 138, 101,1)",
+          hoverBackgroundColor: 'rgba(255, 138, 101,0.8)',
+          hoverBorderColor: 'rgba(255, 138, 101,1)',
           data: [165, 259, 170, 181, 256, 155, 170],
         },
       ],
-    };
+    }
 
     const options32 = {
       legend: {
@@ -49,7 +49,7 @@ class University extends React.Component {
         xAxes: [
           {
             gridLines: {
-              color: "rgba(0, 0, 0, 0)",
+              color: 'rgba(0, 0, 0, 0)',
             },
             ticks: {
               display: false,
@@ -62,7 +62,7 @@ class University extends React.Component {
             barPercentage: 0.5,
             maxBarThickness: 8,
             gridLines: {
-              color: "rgba(0, 0, 0, 0.07)",
+              color: 'rgba(0, 0, 0, 0.07)',
             },
             ticks: {
               display: true,
@@ -71,21 +71,21 @@ class University extends React.Component {
         ],
       },
       maintainAspectRatio: false,
-    };
+    }
 
     const data4 = {
-      labels: ["Scatter"],
+      labels: ['Scatter'],
       datasets: [
         {
-          label: "Users New / Visitors",
+          label: 'Users New / Visitors',
           fill: true,
-          backgroundColor: "rgba(255, 138, 101,0.4)",
-          pointBorderColor: "rgba(255, 138, 101,1)",
-          pointBackgroundColor: "#fff",
+          backgroundColor: 'rgba(255, 138, 101,0.4)',
+          pointBorderColor: 'rgba(255, 138, 101,1)',
+          pointBackgroundColor: '#fff',
           pointBorderWidth: 2,
           pointHoverRadius: 8,
-          pointHoverBackgroundColor: "rgba255, 138, 101,1)",
-          pointHoverBorderColor: "rgba(255, 138, 101,1)",
+          pointHoverBackgroundColor: 'rgba255, 138, 101,1)',
+          pointHoverBorderColor: 'rgba(255, 138, 101,1)',
           pointHoverBorderWidth: 4,
           pointRadius: 6,
           pointHitRadius: 5,
@@ -112,7 +112,7 @@ class University extends React.Component {
           ],
         },
       ],
-    };
+    }
 
     const options4 = {
       legend: {
@@ -123,7 +123,7 @@ class University extends React.Component {
           {
             display: 1,
             gridLines: {
-              color: "rgba(0, 0, 0, 0.01)",
+              color: 'rgba(0, 0, 0, 0.01)',
             },
             ticks: {
               display: false,
@@ -137,7 +137,7 @@ class University extends React.Component {
             maxBarThickness: 12,
             display: 1,
             gridLines: {
-              color: "rgba(0, 0, 0, 0.01)",
+              color: 'rgba(0, 0, 0, 0.01)',
             },
             ticks: {
               display: true,
@@ -146,7 +146,7 @@ class University extends React.Component {
         ],
       },
       maintainAspectRatio: false,
-    };
+    }
 
     return (
       <div>
@@ -155,7 +155,7 @@ class University extends React.Component {
             <Col xs={12} md={12}>
               <div className="page-title">
                 <div className="float-left">
-                  <h1 className="title">University Dashboard</h1>
+                  <h1 className="title">Inicio</h1>
                 </div>
               </div>
 
@@ -164,8 +164,8 @@ class University extends React.Component {
                   <div className="db_box iconbox">
                     <div className="widdata">
                       <i className="widicon i-notebook icon-lg icon-accent"></i>
-                      <h3 className="widtitle">12 Pages</h3>
-                      <p className="widtag">19% increase</p>
+                      <h3 className="widtitle">Horario</h3>
+                      <p className="widtag">Lunes 20 de Abril</p>
                     </div>
                   </div>
                 </div>
@@ -174,8 +174,8 @@ class University extends React.Component {
                   <div className="db_box iconbox">
                     <div className="widdata">
                       <i className="widicon i-docs icon-lg icon-accent"></i>
-                      <h3 className="widtitle">312 Posts</h3>
-                      <p className="widtag">12% increase</p>
+                      <h3 className="widtitle">Observador</h3>
+                      <p className="widtag">12 nuevas</p>
                     </div>
                   </div>
                 </div>
@@ -183,9 +183,9 @@ class University extends React.Component {
                 <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
                   <div className="db_box iconbox">
                     <div className="widdata">
-                      <i className="widicon i-user icon-lg icon-accent"></i>
-                      <h3 className="widtitle">221 Users</h3>
-                      <p className="widtag">31% increase</p>
+                      <i className="widicon i-people icon-lg icon-accent"></i>
+                      <h3 className="widtitle">Comunidad</h3>
+                      <p className="widtag">Educativa</p>
                     </div>
                   </div>
                 </div>
@@ -194,247 +194,28 @@ class University extends React.Component {
                   <div className="db_box iconbox">
                     <div className="widdata">
                       <i className="widicon i-wallet icon-lg icon-accent"></i>
-                      <h3 className="widtitle">34K Earnings</h3>
-                      <p className="widtag">10% increase</p>
+                      <h3 className="widtitle">Soy Financiero</h3>
+                      <p className="widtag">100 U-coin</p>
                     </div>
                   </div>
                 </div>
-
-                <div className="col-xl-2 d-xl-block d-lg-none d-md-none d-sm-block col-sm-4 col-6">
+                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
                   <div className="db_box iconbox">
                     <div className="widdata">
-                      <i className="widicon i-share icon-lg icon-accent"></i>
-                      <h3 className="widtitle">221 Shares</h3>
-                      <p className="widtag">30% increase</p>
+                      <i className="widicon i-puzzle icon-lg icon-accent"></i>
+                      <h3 className="widtitle">Libro Bolsillo</h3>
+                      <p className="widtag">1 actualización</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="col-xl-2 d-xl-block d-lg-none d-md-none d-sm-block col-sm-4 col-6">
-                  <div className="db_box iconbox">
-                    <div className="widdata">
-                      <i className="widicon i-heart icon-lg icon-accent"></i>
-                      <h3 className="widtitle">342 Likes</h3>
-                      <p className="widtag">20% increase</p>
-                    </div>
-                  </div>
-                </div>
               </div>
 
-              <div className="row margin-0">
-                <div className="col-12 col-md-6 col-lg-6 col-xl-4">
-                  <section className="box ">
-                    <header className="panel_header">
-                      <h2 className="title float-left">Users Today</h2>
-                    </header>
-                    <div className="content-body">
-                      {" "}
-                      <div className="row">
-                        <div className="col-12">
-                          <div className="chart-container">
-                            <Line
-                              data={dashboardAllProductsChart2.data}
-                              options={dashboardAllProductsChart2.options}
-                              height={295}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-
-                <div className="col-12 col-md-6 col-lg-6 col-xl-4">
-                  <section className="box ">
-                    <header className="panel_header">
-                      <h2 className="title float-left">Browsers</h2>
-                    </header>
-                    <div className="content-body">
-                      {" "}
-                      <div className="row">
-                        <div className="col-12">
-                          <div className="chart-container">
-                            <div className="chart-area">
-                              <HorizontalBar
-                                data={data32}
-                                options={options32}
-                                height={295}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-
-                <div className="col-12 col-md-6 col-lg-6 col-xl-4">
-                  <section className="box ">
-                    <header className="panel_header">
-                      <h2 className="title float-left">Site Referrals</h2>
-                    </header>
-                    <div className="content-body">
-                      {" "}
-                      <div className="row">
-                        <div className="col-12">
-                          <div className="chart-container">
-                            <Scatter
-                              data={data4}
-                              options={options4}
-                              height={295}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-
-                <div className="col-12 col-md-6 col-lg-6 col-xl-4">
-                  <section className="box ">
-                    <header className="panel_header">
-                      <h2 className="title float-left">Visitors</h2>
-                    </header>
-                    <div className="content-body">
-                      {" "}
-                      <div className="row">
-                        <div className="col-12">
-                          <div className="">
-                            <div className="row">
-                              <div className="bar_graph_rows">
-                                <div className="graph-stats">
-                                  <div className="graph_widget">
-                                    <div className="widdata float-left">
-                                      <h3 className="widtitle">4534</h3>
-                                      <p className="widtag">Users Subscribed</p>
-                                    </div>
-                                    <div className="float-right">
-                                      <div
-                                        className="chart-area"
-                                        style={{
-                                          height: 50 + "px",
-                                          width: 100 + "px",
-                                        }}
-                                      >
-                                        <Bar
-                                          data={playlistCharts.data}
-                                          options={playlistCharts.options}
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div className="graph-stats">
-                                  <div className="graph_widget">
-                                    <div className="widdata float-left">
-                                      <h3 className="widtitle">1240</h3>
-                                      <p className="widtag">
-                                        New Site Visitors
-                                      </p>
-                                    </div>
-                                    <div className="float-right">
-                                      <div
-                                        className="chart-area"
-                                        style={{
-                                          height: 50 + "px",
-                                          width: 100 + "px",
-                                        }}
-                                      >
-                                        <Bar
-                                          data={playlistCharts1.data}
-                                          options={playlistCharts1.options}
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div className="graph-stats">
-                                  <div className="graph_widget">
-                                    <div className="widdata float-left">
-                                      <h3 className="widtitle">5563</h3>
-                                      <p className="widtag">
-                                        Social Media Referrals
-                                      </p>
-                                    </div>
-                                    <div className="float-right">
-                                      <div
-                                        className="chart-area"
-                                        style={{
-                                          height: 50 + "px",
-                                          width: 100 + "px",
-                                        }}
-                                      >
-                                        <Bar
-                                          data={playlistCharts2.data}
-                                          options={playlistCharts2.options}
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div className="graph-stats d-lg-none d-md-none d-sm-block d-xl-block">
-                                  <div className="graph_widget">
-                                    <div className="widdata float-left">
-                                      <h3 className="widtitle">1214</h3>
-                                      <p className="widtag">
-                                        New Registrations
-                                      </p>
-                                    </div>
-                                    <div className="float-right">
-                                      <div
-                                        className="chart-area"
-                                        style={{
-                                          height: 50 + "px",
-                                          width: 100 + "px",
-                                        }}
-                                      >
-                                        <Bar
-                                          data={playlistCharts3.data}
-                                          options={playlistCharts3.options}
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-
-                <div className="col-12 col-lg-12 col-xl-8 col-md-12">
-                  <section className="box ">
-                    <header className="panel_header">
-                      <h2 className="title float-left">Blog Posts</h2>
-                    </header>
-                    <div className="content-body">
-                      {" "}
-                      <div className="row">
-                        <div className="col-12">
-                          <div className="chart-container">
-                            <Line
-                              data={dashboardAllProductsChart3.data}
-                              options={dashboardAllProductsChart3.options}
-                              height={375}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-              </div>
 
               <div className="col-lg-12 col-xl-12 col-md-12 col-12">
                 <section className="box ">
                   <header className="panel_header">
-                    <h2 className="title float-left">Users</h2>
+                    <h2 className="title float-left">Estudiantes</h2>
                   </header>
                   <div className="content-body">
                     <div className="row">
@@ -442,13 +223,13 @@ class University extends React.Component {
                         <Table hover responsive>
                           <thead>
                             <tr>
-                              <th>Name</th>
-                              <th>Earnings</th>
-                              <th>Sales</th>
-                              <th>Status</th>
-                              <th>Progress</th>
-                              <th>Type</th>
-                              <th>Added On</th>
+                              <th>Nombre</th>
+                              <th>Jornada</th>
+                              <th>Puntaje</th>
+                              <th>Estado</th>
+                              <th>Avance</th>
+                              <th>Materias</th>
+                              <th>Ultima Conexión</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -461,7 +242,7 @@ class University extends React.Component {
                                 />
                                 Tim May
                               </td>
-                              <td>$145,666</td>
+                              <td>Tarde</td>
                               <td>33412</td>
                               <td>
                                 <span className="badge">Approved</span>
@@ -482,7 +263,7 @@ class University extends React.Component {
                                   </div>
                                 </span>
                               </td>
-                              <td>Premium</td>
+                              <td>Ingles</td>
                               <td>11 April 2019</td>
                             </tr>
                             <tr>
@@ -494,7 +275,7 @@ class University extends React.Component {
                                 />
                                 Simon Morrison
                               </td>
-                              <td>$345,666</td>
+                              <td>Mañana</td>
                               <td>32332</td>
                               <td>
                                 <span className="badge">Pending</span>
@@ -515,7 +296,7 @@ class University extends React.Component {
                                   </div>
                                 </span>
                               </td>
-                              <td>Standard</td>
+                              <td>Ciencias Sociales</td>
                               <td>21 April 2019</td>
                             </tr>
                             <tr>
@@ -527,7 +308,7 @@ class University extends React.Component {
                                 />
                                 Amanda Oliver
                               </td>
-                              <td>$245,132</td>
+                              <td>Tarde</td>
                               <td>76533</td>
                               <td>
                                 <span className="badge">Approved</span>
@@ -548,7 +329,7 @@ class University extends React.Component {
                                   </div>
                                 </span>
                               </td>
-                              <td>Standard</td>
+                              <td>Español</td>
                               <td>15 April 2019</td>
                             </tr>
                             <tr>
@@ -560,7 +341,7 @@ class University extends React.Component {
                                 />
                                 Anna Rees
                               </td>
-                              <td>$312,444</td>
+                              <td>Nocturna</td>
                               <td>75646</td>
                               <td>
                                 <span className="badge">Pending</span>
@@ -581,7 +362,7 @@ class University extends React.Component {
                                   </div>
                                 </span>
                               </td>
-                              <td>Premium</td>
+                              <td>Ética</td>
                               <td>12 April 2019</td>
                             </tr>
                             <tr>
@@ -593,7 +374,7 @@ class University extends React.Component {
                                 />
                                 Caroline Quinn
                               </td>
-                              <td>$532,232</td>
+                              <td>Mañana</td>
                               <td>64333</td>
                               <td>
                                 <span className="badge">Approved</span>
@@ -614,7 +395,7 @@ class University extends React.Component {
                                   </div>
                                 </span>
                               </td>
-                              <td>Standard</td>
+                              <td>Religión</td>
                               <td>22 April 2019</td>
                             </tr>
                             <tr>
@@ -626,7 +407,7 @@ class University extends React.Component {
                                 />
                                 Peter Lee
                               </td>
-                              <td>$133,533</td>
+                              <td>Mañana</td>
                               <td>54567</td>
                               <td>
                                 <span className="badge">Approved</span>
@@ -647,7 +428,7 @@ class University extends React.Component {
                                   </div>
                                 </span>
                               </td>
-                              <td>Premium</td>
+                              <td>Español</td>
                               <td>04 May 2019</td>
                             </tr>
                           </tbody>
@@ -665,4 +446,4 @@ class University extends React.Component {
   }
 }
 
-export default University;
+export default University

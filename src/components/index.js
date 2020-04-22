@@ -11,8 +11,11 @@ import Chatgroups from './common/Chatbar/Chatgroups'
 import Notifications from './common/Notifications/Notifications'
 import Messages from './common/Messages/Messages'
 import Mailbox from './common/Mailbox/Mailbox'
+/*--------------- General Admin Components ------------------*/
+import Messagewidget from './common/Messagewidget/Messagewidget'
 import Navmenudropdown from './common/Navmenudropdown/Navmenudropdown'
 import Navmenugroup from './common/Navmenugroup/Navmenugroup'
+/*--------------- Custom Components ------------------*/
 import PrivateRoute from './common/PrivateRoute/PrivateRoute'
 
 /*--------------- University Admin Components ------------------*/
@@ -20,6 +23,11 @@ import Professorslist from './university/Professorslist/Professorslist'
 import Studentslist from './university/Studentslist/Studentslist'
 import UniStaffslist from './university/UniStaffslist/UniStaffslist'
 import Courseslist from './university/Courseslist/Courseslist'
+
+/*--------------- Hospital Admin Components ------------------*/
+import Doctorslist from './hospital/Doctorslist/Doctorslist'
+import Patientslist from './hospital/Patientslist/Patientslist'
+import Staffslist from './hospital/Staffslist/Staffslist'
 
 /*--------------- Home Page Components ------------------*/
 import Carousel from './home_page/Carousel'
@@ -30,6 +38,8 @@ import NavBarLogout from './home_page/NavBarLogout'
 import LoginForm from './home_page/LoginForm'
 
 export {
+  //Common component
+  Messagewidget,
   //PrivateRoute
   PrivateRoute,
   // CardElements
@@ -78,4 +88,8 @@ export {
   NewsCarouselItem,
   NavBarLogout,
   LoginForm,
+  //Hospital components
+  Doctorslist,
+  Patientslist,
+  Staffslist,
 }

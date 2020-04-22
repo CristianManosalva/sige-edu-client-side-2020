@@ -28,7 +28,7 @@ const LoginForm = (props) => {
 
     if (email && password) {
       //   dispatch(userActions.login(username, password));
-      if (email == 'rubunu@gmail.com' && password == 'requiem') {
+      if (email === 'rubunu@gmail.com' && password === 'requiem') {
         localStorage.setItem('user', JSON.stringify({ email, password }))
         // eslint-disable-next-line
         history.push('/')
