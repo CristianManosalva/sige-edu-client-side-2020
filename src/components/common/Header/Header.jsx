@@ -23,6 +23,11 @@ import { messages } from 'variables/topbar.jsx'
 import { notifications } from 'variables/topbar.jsx'
 
 var IMGDIR = process.env.REACT_APP_IMGDIR
+
+
+const navStyle = {
+  backgroundColor : '#1EAEDF',
+};
 class Header extends React.Component {
   constructor(props) {
     super(props)
@@ -241,7 +246,7 @@ class Header extends React.Component {
             : 'navbar-absolute fixed-top '
         }
       >
-        <Container fluid>
+        <Container fluid style={navStyle}>
           <div className="navbar-wrapper">
             <div className="navbar-toggle">
               <button

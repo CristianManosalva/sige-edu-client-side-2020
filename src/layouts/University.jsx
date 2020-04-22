@@ -24,7 +24,9 @@ import {
 } from 'variables/settings/university.jsx'
 
 //var ps;
-
+const sideBarStyle = {
+  backgroundColor : '#1EAEDF',
+};
 class UniversityLayout extends React.Component {
   constructor(props) {
     super(props)
@@ -139,6 +141,7 @@ class UniversityLayout extends React.Component {
         />
         <Header {...this.props} navtype={navWidth} admintype={'university'} />
         <Sidebar
+          style={sideBarStyle}
           className="step-1"
           {...this.props}
           routes={dashboardRoutes}

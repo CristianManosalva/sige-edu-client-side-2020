@@ -15,7 +15,12 @@ var ps
 var currentmenu = 'notset'
 
 var IMGDIR = process.env.REACT_APP_IMGDIR
-
+const SidebarStyle = {
+  backgroundColor : '#1EAEDF',
+};
+const navLinkStyle = {
+  backgroundColor: '#415359',
+}
 class Sidebar extends React.Component {
   constructor(props) {
     super(props)
@@ -170,7 +175,7 @@ class Sidebar extends React.Component {
     }
 
     return (
-      <div className="sidebar menubar" data-color="black">
+      <div className="sidebar menubar" style={SidebarStyle} data-color="black">
         <div className="logo">
           <a href="/" className="logo-mini">
             <div className="logo-img">
@@ -266,6 +271,7 @@ class Sidebar extends React.Component {
                   onClick={() => this.handleOpendd(prop.name)}
                 >
                   <NavLink
+                    style={navLinkStyle}
                     to={prop.path}
                     className="nav-link joyride-welcome-2"
                     activeClassName="active"
