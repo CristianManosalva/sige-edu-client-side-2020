@@ -18,8 +18,9 @@ var IMGDIR = process.env.REACT_APP_IMGDIR
 const SidebarStyle = {
   backgroundColor : '#1EAEDF',
 };
-const navLinkStyle = {
+const navlinkStyle = {
   backgroundColor: '#415359',
+  borderColor: '#29F441',
 }
 class Sidebar extends React.Component {
   constructor(props) {
@@ -190,7 +191,7 @@ class Sidebar extends React.Component {
         </div>
 
         <div className="sidebar-wrapper" ref="sidebar">
-          <div className="profile-info row">
+         {/*  <div className="profile-info row">
             <div className="profile-image col-4">
               <a href="#!">
                 <img
@@ -207,7 +208,7 @@ class Sidebar extends React.Component {
               </h3>
               <p className="profile-title">{this.state.profileposition}</p>
             </div>
-          </div>
+          </div> */}
 
           <Nav className="navigation">
             {this.props.routes.map((prop, key) => {
@@ -271,10 +272,11 @@ class Sidebar extends React.Component {
                   onClick={() => this.handleOpendd(prop.name)}
                 >
                   <NavLink
-                    style={navLinkStyle}
+                    style={navlinkStyle}
                     to={prop.path}
                     className="nav-link joyride-welcome-2"
                     activeClassName="active"
+                    activeStyle={navlinkStyle}
                   >
                     <i className={'i-' + prop.icon}></i>
                     <p>{prop.name}</p>
