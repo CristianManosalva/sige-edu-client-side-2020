@@ -155,7 +155,7 @@ class University extends React.Component {
             <Col xs={12} md={12}>
               <div className="page-title">
                 <div className="float-left">
-                  <h1 className="title">University Dashboard</h1>
+                  <h1 className="title">Inicio</h1>
                 </div>
               </div>
 
@@ -164,8 +164,8 @@ class University extends React.Component {
                   <div className="db_box iconbox">
                     <div className="widdata">
                       <i className="widicon i-notebook icon-lg icon-accent"></i>
-                      <h3 className="widtitle">12 Pages</h3>
-                      <p className="widtag">19% increase</p>
+                      <h3 className="widtitle">Horario</h3>
+                      <p className="widtag">Lunes 20 de Abril</p>
                     </div>
                   </div>
                 </div>
@@ -174,8 +174,8 @@ class University extends React.Component {
                   <div className="db_box iconbox">
                     <div className="widdata">
                       <i className="widicon i-docs icon-lg icon-accent"></i>
-                      <h3 className="widtitle">312 Posts</h3>
-                      <p className="widtag">12% increase</p>
+                      <h3 className="widtitle">Observador</h3>
+                      <p className="widtag">12 nuevas</p>
                     </div>
                   </div>
                 </div>
@@ -183,9 +183,9 @@ class University extends React.Component {
                 <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
                   <div className="db_box iconbox">
                     <div className="widdata">
-                      <i className="widicon i-user icon-lg icon-accent"></i>
-                      <h3 className="widtitle">221 Users</h3>
-                      <p className="widtag">31% increase</p>
+                      <i className="widicon i-people icon-lg icon-accent"></i>
+                      <h3 className="widtitle">Comunidad</h3>
+                      <p className="widtag">Educativa</p>
                     </div>
                   </div>
                 </div>
@@ -194,247 +194,28 @@ class University extends React.Component {
                   <div className="db_box iconbox">
                     <div className="widdata">
                       <i className="widicon i-wallet icon-lg icon-accent"></i>
-                      <h3 className="widtitle">34K Earnings</h3>
-                      <p className="widtag">10% increase</p>
+                      <h3 className="widtitle">Soy Financiero</h3>
+                      <p className="widtag">100 U-coin</p>
                     </div>
                   </div>
                 </div>
-
-                <div className="col-xl-2 d-xl-block d-lg-none d-md-none d-sm-block col-sm-4 col-6">
+                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
                   <div className="db_box iconbox">
                     <div className="widdata">
-                      <i className="widicon i-share icon-lg icon-accent"></i>
-                      <h3 className="widtitle">221 Shares</h3>
-                      <p className="widtag">30% increase</p>
+                      <i className="widicon i-puzzle icon-lg icon-accent"></i>
+                      <h3 className="widtitle">Libro Bolsillo</h3>
+                      <p className="widtag">1 actualización</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="col-xl-2 d-xl-block d-lg-none d-md-none d-sm-block col-sm-4 col-6">
-                  <div className="db_box iconbox">
-                    <div className="widdata">
-                      <i className="widicon i-heart icon-lg icon-accent"></i>
-                      <h3 className="widtitle">342 Likes</h3>
-                      <p className="widtag">20% increase</p>
-                    </div>
-                  </div>
-                </div>
               </div>
 
-              <div className="row margin-0">
-                <div className="col-12 col-md-6 col-lg-6 col-xl-4">
-                  <section className="box ">
-                    <header className="panel_header">
-                      <h2 className="title float-left">Users Today</h2>
-                    </header>
-                    <div className="content-body">
-                      {' '}
-                      <div className="row">
-                        <div className="col-12">
-                          <div className="chart-container">
-                            <Line
-                              data={dashboardAllProductsChart2.data}
-                              options={dashboardAllProductsChart2.options}
-                              height={295}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-
-                <div className="col-12 col-md-6 col-lg-6 col-xl-4">
-                  <section className="box ">
-                    <header className="panel_header">
-                      <h2 className="title float-left">Browsers</h2>
-                    </header>
-                    <div className="content-body">
-                      {' '}
-                      <div className="row">
-                        <div className="col-12">
-                          <div className="chart-container">
-                            <div className="chart-area">
-                              <HorizontalBar
-                                data={data32}
-                                options={options32}
-                                height={295}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-
-                <div className="col-12 col-md-6 col-lg-6 col-xl-4">
-                  <section className="box ">
-                    <header className="panel_header">
-                      <h2 className="title float-left">Site Referrals</h2>
-                    </header>
-                    <div className="content-body">
-                      {' '}
-                      <div className="row">
-                        <div className="col-12">
-                          <div className="chart-container">
-                            <Scatter
-                              data={data4}
-                              options={options4}
-                              height={295}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-
-                <div className="col-12 col-md-6 col-lg-6 col-xl-4">
-                  <section className="box ">
-                    <header className="panel_header">
-                      <h2 className="title float-left">Visitors</h2>
-                    </header>
-                    <div className="content-body">
-                      {' '}
-                      <div className="row">
-                        <div className="col-12">
-                          <div className="">
-                            <div className="row">
-                              <div className="bar_graph_rows">
-                                <div className="graph-stats">
-                                  <div className="graph_widget">
-                                    <div className="widdata float-left">
-                                      <h3 className="widtitle">4534</h3>
-                                      <p className="widtag">Users Subscribed</p>
-                                    </div>
-                                    <div className="float-right">
-                                      <div
-                                        className="chart-area"
-                                        style={{
-                                          height: 50 + 'px',
-                                          width: 100 + 'px',
-                                        }}
-                                      >
-                                        <Bar
-                                          data={playlistCharts.data}
-                                          options={playlistCharts.options}
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div className="graph-stats">
-                                  <div className="graph_widget">
-                                    <div className="widdata float-left">
-                                      <h3 className="widtitle">1240</h3>
-                                      <p className="widtag">
-                                        New Site Visitors
-                                      </p>
-                                    </div>
-                                    <div className="float-right">
-                                      <div
-                                        className="chart-area"
-                                        style={{
-                                          height: 50 + 'px',
-                                          width: 100 + 'px',
-                                        }}
-                                      >
-                                        <Bar
-                                          data={playlistCharts1.data}
-                                          options={playlistCharts1.options}
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div className="graph-stats">
-                                  <div className="graph_widget">
-                                    <div className="widdata float-left">
-                                      <h3 className="widtitle">5563</h3>
-                                      <p className="widtag">
-                                        Social Media Referrals
-                                      </p>
-                                    </div>
-                                    <div className="float-right">
-                                      <div
-                                        className="chart-area"
-                                        style={{
-                                          height: 50 + 'px',
-                                          width: 100 + 'px',
-                                        }}
-                                      >
-                                        <Bar
-                                          data={playlistCharts2.data}
-                                          options={playlistCharts2.options}
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div className="graph-stats d-lg-none d-md-none d-sm-block d-xl-block">
-                                  <div className="graph_widget">
-                                    <div className="widdata float-left">
-                                      <h3 className="widtitle">1214</h3>
-                                      <p className="widtag">
-                                        New Registrations
-                                      </p>
-                                    </div>
-                                    <div className="float-right">
-                                      <div
-                                        className="chart-area"
-                                        style={{
-                                          height: 50 + 'px',
-                                          width: 100 + 'px',
-                                        }}
-                                      >
-                                        <Bar
-                                          data={playlistCharts3.data}
-                                          options={playlistCharts3.options}
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-
-                <div className="col-12 col-lg-12 col-xl-8 col-md-12">
-                  <section className="box ">
-                    <header className="panel_header">
-                      <h2 className="title float-left">Blog Posts</h2>
-                    </header>
-                    <div className="content-body">
-                      {' '}
-                      <div className="row">
-                        <div className="col-12">
-                          <div className="chart-container">
-                            <Line
-                              data={dashboardAllProductsChart3.data}
-                              options={dashboardAllProductsChart3.options}
-                              height={375}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </div>
-              </div>
 
               <div className="col-lg-12 col-xl-12 col-md-12 col-12">
                 <section className="box ">
                   <header className="panel_header">
-                    <h2 className="title float-left">Users</h2>
+                    <h2 className="title float-left">Estudiantes</h2>
                   </header>
                   <div className="content-body">
                     <div className="row">
@@ -442,26 +223,26 @@ class University extends React.Component {
                         <Table hover responsive>
                           <thead>
                             <tr>
-                              <th>Name</th>
-                              <th>Earnings</th>
-                              <th>Sales</th>
-                              <th>Status</th>
-                              <th>Progress</th>
-                              <th>Type</th>
-                              <th>Added On</th>
+                              <th>Nombre</th>
+                              <th>Jornada</th>
+                              <th>Puntaje</th>
+                              <th>Estado</th>
+                              <th>Avance</th>
+                              <th>Materias</th>
+                              <th>Ultima Conexión</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr>
                               <td className="user-inline-img">
                                 <img
-                                  src={IMGDIR + '/images/profile/avatar-4.jpg'}
+                                  src={IMGDIR + "/images/profile/avatar-4.jpg"}
                                   alt="user avatar"
                                   className="avatar-image img-inline"
                                 />
                                 Tim May
                               </td>
-                              <td>$145,666</td>
+                              <td>Tarde</td>
                               <td>33412</td>
                               <td>
                                 <span className="badge">Approved</span>
@@ -471,8 +252,8 @@ class University extends React.Component {
                                   <div
                                     className="chart-area"
                                     style={{
-                                      height: 40 + 'px',
-                                      width: 80 + 'px',
+                                      height: 40 + "px",
+                                      width: 80 + "px",
                                     }}
                                   >
                                     <Bar
@@ -482,19 +263,19 @@ class University extends React.Component {
                                   </div>
                                 </span>
                               </td>
-                              <td>Premium</td>
+                              <td>Ingles</td>
                               <td>11 April 2019</td>
                             </tr>
                             <tr>
                               <td className="user-inline-img">
                                 <img
-                                  src={IMGDIR + '/images/profile/avatar-6.jpg'}
+                                  src={IMGDIR + "/images/profile/avatar-6.jpg"}
                                   alt="user avatar"
                                   className="avatar-image img-inline"
                                 />
                                 Simon Morrison
                               </td>
-                              <td>$345,666</td>
+                              <td>Mañana</td>
                               <td>32332</td>
                               <td>
                                 <span className="badge">Pending</span>
@@ -504,8 +285,8 @@ class University extends React.Component {
                                   <div
                                     className="chart-area"
                                     style={{
-                                      height: 40 + 'px',
-                                      width: 80 + 'px',
+                                      height: 40 + "px",
+                                      width: 80 + "px",
                                     }}
                                   >
                                     <Bar
@@ -515,19 +296,19 @@ class University extends React.Component {
                                   </div>
                                 </span>
                               </td>
-                              <td>Standard</td>
+                              <td>Ciencias Sociales</td>
                               <td>21 April 2019</td>
                             </tr>
                             <tr>
                               <td className="user-inline-img">
                                 <img
-                                  src={IMGDIR + '/images/profile/avatar-3.jpg'}
+                                  src={IMGDIR + "/images/profile/avatar-3.jpg"}
                                   alt="user avatar"
                                   className="avatar-image img-inline"
                                 />
                                 Amanda Oliver
                               </td>
-                              <td>$245,132</td>
+                              <td>Tarde</td>
                               <td>76533</td>
                               <td>
                                 <span className="badge">Approved</span>
@@ -537,8 +318,8 @@ class University extends React.Component {
                                   <div
                                     className="chart-area"
                                     style={{
-                                      height: 40 + 'px',
-                                      width: 80 + 'px',
+                                      height: 40 + "px",
+                                      width: 80 + "px",
                                     }}
                                   >
                                     <Bar
@@ -548,19 +329,19 @@ class University extends React.Component {
                                   </div>
                                 </span>
                               </td>
-                              <td>Standard</td>
+                              <td>Español</td>
                               <td>15 April 2019</td>
                             </tr>
                             <tr>
                               <td className="user-inline-img">
                                 <img
-                                  src={IMGDIR + '/images/profile/avatar-2.jpg'}
+                                  src={IMGDIR + "/images/profile/avatar-2.jpg"}
                                   alt="user avatar"
                                   className="avatar-image img-inline"
                                 />
                                 Anna Rees
                               </td>
-                              <td>$312,444</td>
+                              <td>Nocturna</td>
                               <td>75646</td>
                               <td>
                                 <span className="badge">Pending</span>
@@ -570,8 +351,8 @@ class University extends React.Component {
                                   <div
                                     className="chart-area"
                                     style={{
-                                      height: 40 + 'px',
-                                      width: 80 + 'px',
+                                      height: 40 + "px",
+                                      width: 80 + "px",
                                     }}
                                   >
                                     <Bar
@@ -581,19 +362,19 @@ class University extends React.Component {
                                   </div>
                                 </span>
                               </td>
-                              <td>Premium</td>
+                              <td>Ética</td>
                               <td>12 April 2019</td>
                             </tr>
                             <tr>
                               <td className="user-inline-img">
                                 <img
-                                  src={IMGDIR + '/images/profile/avatar-1.jpg'}
+                                  src={IMGDIR + "/images/profile/avatar-1.jpg"}
                                   alt="user avatar"
                                   className="avatar-image img-inline"
                                 />
                                 Caroline Quinn
                               </td>
-                              <td>$532,232</td>
+                              <td>Mañana</td>
                               <td>64333</td>
                               <td>
                                 <span className="badge">Approved</span>
@@ -603,8 +384,8 @@ class University extends React.Component {
                                   <div
                                     className="chart-area"
                                     style={{
-                                      height: 40 + 'px',
-                                      width: 80 + 'px',
+                                      height: 40 + "px",
+                                      width: 80 + "px",
                                     }}
                                   >
                                     <Bar
@@ -614,19 +395,19 @@ class University extends React.Component {
                                   </div>
                                 </span>
                               </td>
-                              <td>Standard</td>
+                              <td>Religión</td>
                               <td>22 April 2019</td>
                             </tr>
                             <tr>
                               <td className="user-inline-img">
                                 <img
-                                  src={IMGDIR + '/images/profile/avatar-9.jpg'}
+                                  src={IMGDIR + "/images/profile/avatar-9.jpg"}
                                   alt="user avatar"
                                   className="avatar-image img-inline"
                                 />
                                 Peter Lee
                               </td>
-                              <td>$133,533</td>
+                              <td>Mañana</td>
                               <td>54567</td>
                               <td>
                                 <span className="badge">Approved</span>
@@ -636,8 +417,8 @@ class University extends React.Component {
                                   <div
                                     className="chart-area"
                                     style={{
-                                      height: 40 + 'px',
-                                      width: 80 + 'px',
+                                      height: 40 + "px",
+                                      width: 80 + "px",
                                     }}
                                   >
                                     <Bar
@@ -647,7 +428,7 @@ class University extends React.Component {
                                   </div>
                                 </span>
                               </td>
-                              <td>Premium</td>
+                              <td>Español</td>
                               <td>04 May 2019</td>
                             </tr>
                           </tbody>
@@ -661,7 +442,7 @@ class University extends React.Component {
           </Row>
         </div>
       </div>
-    )
+    );
   }
 }
 
