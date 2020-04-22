@@ -16,6 +16,7 @@ import dashboardRoutes from 'routes/university.jsx'
 import {
   topbarStyle,
   menuStyle,
+  menuBackgroundColor,
   menuType,
   topbarType,
   navWidth,
@@ -31,7 +32,7 @@ class UniversityLayout extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      menuColor: menuStyle,
+      menuColor: menuBackgroundColor,
       topbarColor: topbarStyle,
       menuType: menuType,
       topbarType: topbarType,
