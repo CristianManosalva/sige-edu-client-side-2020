@@ -28,6 +28,17 @@ import {
 const sideBarStyle = {
   backgroundColor : '#1EAEDF',
 };
+const defaultOptions = {
+  arrowColor: '#fff',
+  backgroundColor: '#fff',
+  beaconSize: 36,
+  overlayColor: 'rgba(0, 0, 0, 0.5)',
+  primaryColor: '#f04',
+  spotlightShadow: '0 0 15px rgba(0, 0, 0, 0.5)',
+  textColor: '#333',
+  width: undefined,
+  zIndex: 100,
+};
 class UniversityLayout extends React.Component {
   constructor(props) {
     super(props)
@@ -40,21 +51,22 @@ class UniversityLayout extends React.Component {
         {
           target: '.joyride-welcome-1',
           content:
-            'Aqui podras configurar tu perfil y algunas opciones de seguridad',
-          title: 'Informacion sobre tu perfil',
+            'Aqui encontrarás tu foto de perfil, seguridad y estilos',
+          title: 'Información sobre tu perfil',
           disableBeacon: true,
+          
         },
         {
           target: '.joyride-welcome-2',
           title: 'Pagina de inicio',
           content:
-            'Aqui encontraras informacion relevante y de manera resumidad',
+            'Aqui encontraras información relevante y de manera resumidad',
             placement: 'left',
         },
         {
           target: '.joyride-welcome-3',
           title: 'Grupos',
-          content: 'Gestiona la informacion sobre tus grupos',
+          content: 'Gestiona la información sobre tus grupos',
         },
         {
           target: '.joyride-welcome-4',
@@ -137,8 +149,13 @@ class UniversityLayout extends React.Component {
           locale={locale}
           styles={{
             options: {
+              arrowColor: '#e3ffeb',
+              backgroundColor: 'rgb(30, 174, 223)',
+              primaryColor: '#15ff54',
+              textColor: '#fff',
+              width: 400,
               zIndex: 2000,
-            },
+            }
           }}
         />
         <Header {...this.props} navtype={navWidth} admintype={'university'} />
