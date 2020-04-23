@@ -49,6 +49,7 @@ class UniversityLayout extends React.Component {
           title: 'Pagina de inicio',
           content:
             'Aqui encontraras informacion relevante y de manera resumidad',
+            placement: 'left',
         },
         {
           target: '.joyride-welcome-3',
