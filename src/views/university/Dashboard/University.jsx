@@ -3,18 +3,12 @@ import { Row, Col, Table } from 'reactstrap'
 // import Joyride ,{ ACTIONS, EVENTS, LIFECYCLE, STATUS } from "react-joyride";
 import {} from 'components'
 
-import { Line, Bar, Scatter, HorizontalBar } from 'react-chartjs-2'
+import { Bar} from 'react-chartjs-2'
 
 //import styles from 'jvectormap/jquery-jvectormap.css'
 //import { VectorMap } from 'react-jvectormap';
 
 import {
-  dashboardAllProductsChart2,
-  dashboardAllProductsChart3,
-  playlistCharts,
-  playlistCharts1,
-  playlistCharts2,
-  playlistCharts3,
   playlistCharts5,
   playlistCharts6,
   playlistCharts7,
@@ -26,127 +20,127 @@ var IMGDIR = process.env.REACT_APP_IMGDIR
 
 class University extends React.Component {
   render() {
-    const data32 = {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-      datasets: [
-        {
-          label: 'Visitors',
-          backgroundColor: 'rgba(255, 138, 101,1)',
-          borderColor: 'rgba(255, 138, 101,0.8)',
-          borderWidth: 1,
-          hoverBackgroundColor: 'rgba(255, 138, 101,0.8)',
-          hoverBorderColor: 'rgba(255, 138, 101,1)',
-          data: [165, 259, 170, 181, 256, 155, 170],
-        },
-      ],
-    }
+    // const data32 = {
+    //   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+    //   datasets: [
+    //     {
+    //       label: 'Visitors',
+    //       backgroundColor: 'rgba(255, 138, 101,1)',
+    //       borderColor: 'rgba(255, 138, 101,0.8)',
+    //       borderWidth: 1,
+    //       hoverBackgroundColor: 'rgba(255, 138, 101,0.8)',
+    //       hoverBorderColor: 'rgba(255, 138, 101,1)',
+    //       data: [165, 259, 170, 181, 256, 155, 170],
+    //     },
+    //   ],
+    // }
 
-    const options32 = {
-      legend: {
-        display: false,
-      },
-      scales: {
-        xAxes: [
-          {
-            gridLines: {
-              color: 'rgba(0, 0, 0, 0)',
-            },
-            ticks: {
-              display: false,
-            },
-          },
-        ],
-        yAxes: [
-          {
-            categoryPercentage: 0.6,
-            barPercentage: 0.5,
-            maxBarThickness: 8,
-            gridLines: {
-              color: 'rgba(0, 0, 0, 0.07)',
-            },
-            ticks: {
-              display: true,
-            },
-          },
-        ],
-      },
-      maintainAspectRatio: false,
-    }
+    // const options32 = {
+    //   legend: {
+    //     display: false,
+    //   },
+    //   scales: {
+    //     xAxes: [
+    //       {
+    //         gridLines: {
+    //           color: 'rgba(0, 0, 0, 0)',
+    //         },
+    //         ticks: {
+    //           display: false,
+    //         },
+    //       },
+    //     ],
+    //     yAxes: [
+    //       {
+    //         categoryPercentage: 0.6,
+    //         barPercentage: 0.5,
+    //         maxBarThickness: 8,
+    //         gridLines: {
+    //           color: 'rgba(0, 0, 0, 0.07)',
+    //         },
+    //         ticks: {
+    //           display: true,
+    //         },
+    //       },
+    //     ],
+    //   },
+    //   maintainAspectRatio: false,
+    // }
 
-    const data4 = {
-      labels: ['Scatter'],
-      datasets: [
-        {
-          label: 'Users New / Visitors',
-          fill: true,
-          backgroundColor: 'rgba(255, 138, 101,0.4)',
-          pointBorderColor: 'rgba(255, 138, 101,1)',
-          pointBackgroundColor: '#fff',
-          pointBorderWidth: 2,
-          pointHoverRadius: 8,
-          pointHoverBackgroundColor: 'rgba255, 138, 101,1)',
-          pointHoverBorderColor: 'rgba(255, 138, 101,1)',
-          pointHoverBorderWidth: 4,
-          pointRadius: 6,
-          pointHitRadius: 5,
-          data: [
-            { x: 165, y: 275 },
-            { x: 159, y: 349 },
-            { x: 280, y: 290 },
-            { x: 181, y: 329 },
-            { x: 156, y: 236 },
-            { x: 255, y: 225 },
-            { x: 240, y: 278 },
-            { x: 275, y: 455 },
-            { x: 149, y: 439 },
-            { x: 160, y: 240 },
-            { x: 171, y: 359 },
-            { x: 186, y: 436 },
-            { x: 235, y: 355 },
-            { x: 250, y: 268 },
-            { x: 255, y: 245 },
-            { x: 169, y: 359 },
-            { x: 270, y: 440 },
-            { x: 151, y: 359 },
-            { x: 246, y: 366 },
-          ],
-        },
-      ],
-    }
+    // const data4 = {
+    //   labels: ['Scatter'],
+    //   datasets: [
+    //     {
+    //       label: 'Users New / Visitors',
+    //       fill: true,
+    //       backgroundColor: 'rgba(255, 138, 101,0.4)',
+    //       pointBorderColor: 'rgba(255, 138, 101,1)',
+    //       pointBackgroundColor: '#fff',
+    //       pointBorderWidth: 2,
+    //       pointHoverRadius: 8,
+    //       pointHoverBackgroundColor: 'rgba255, 138, 101,1)',
+    //       pointHoverBorderColor: 'rgba(255, 138, 101,1)',
+    //       pointHoverBorderWidth: 4,
+    //       pointRadius: 6,
+    //       pointHitRadius: 5,
+    //       data: [
+    //         { x: 165, y: 275 },
+    //         { x: 159, y: 349 },
+    //         { x: 280, y: 290 },
+    //         { x: 181, y: 329 },
+    //         { x: 156, y: 236 },
+    //         { x: 255, y: 225 },
+    //         { x: 240, y: 278 },
+    //         { x: 275, y: 455 },
+    //         { x: 149, y: 439 },
+    //         { x: 160, y: 240 },
+    //         { x: 171, y: 359 },
+    //         { x: 186, y: 436 },
+    //         { x: 235, y: 355 },
+    //         { x: 250, y: 268 },
+    //         { x: 255, y: 245 },
+    //         { x: 169, y: 359 },
+    //         { x: 270, y: 440 },
+    //         { x: 151, y: 359 },
+    //         { x: 246, y: 366 },
+    //       ],
+    //     },
+    //   ],
+    // }
 
-    const options4 = {
-      legend: {
-        display: false,
-      },
-      scales: {
-        xAxes: [
-          {
-            display: 1,
-            gridLines: {
-              color: 'rgba(0, 0, 0, 0.01)',
-            },
-            ticks: {
-              display: false,
-            },
-          },
-        ],
-        yAxes: [
-          {
-            categoryPercentage: 0.8,
-            barPercentage: 0.6,
-            maxBarThickness: 12,
-            display: 1,
-            gridLines: {
-              color: 'rgba(0, 0, 0, 0.01)',
-            },
-            ticks: {
-              display: true,
-            },
-          },
-        ],
-      },
-      maintainAspectRatio: false,
-    }
+    // const options4 = {
+    //   legend: {
+    //     display: false,
+    //   },
+    //   scales: {
+    //     xAxes: [
+    //       {
+    //         display: 1,
+    //         gridLines: {
+    //           color: 'rgba(0, 0, 0, 0.01)',
+    //         },
+    //         ticks: {
+    //           display: false,
+    //         },
+    //       },
+    //     ],
+    //     yAxes: [
+    //       {
+    //         categoryPercentage: 0.8,
+    //         barPercentage: 0.6,
+    //         maxBarThickness: 12,
+    //         display: 1,
+    //         gridLines: {
+    //           color: 'rgba(0, 0, 0, 0.01)',
+    //         },
+    //         ticks: {
+    //           display: true,
+    //         },
+    //       },
+    //     ],
+    //   },
+    //   maintainAspectRatio: false,
+    // }
 
     return (
       <div>

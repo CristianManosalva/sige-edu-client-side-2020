@@ -1,12 +1,10 @@
 import University from 'views/university/Dashboard/University.jsx'
 import Course from 'views/university/Course/Course.jsx'
 import AddCourse from 'views/university/Course/AddCourse.jsx'
-import EditCourse from 'views/university/Course/EditCourse.jsx'
-import CourseView from 'views/university/Course/CourseView.jsx'
-
 import Library from 'views/university/Library/Library.jsx'
-import AddLibrary from 'views/university/Library/AddLibrary.jsx'
-import EditLibrary from 'views/university/Library/EditLibrary.jsx'
+import Professor from 'views/university/Professor/Professor.jsx';
+import Student from 'views/university/Student/Student.jsx'
+
 
 var BASEDIR = process.env.REACT_APP_BASEDIR
 
@@ -21,45 +19,65 @@ var dashRoutes = [
   },
   // Options Teacher
   {
-    path: BASEDIR + '/university/AddProfessor',
+    path: BASEDIR+"/university/professors",
     icon: 'user',
     name: 'Docentes',
-    component: University,
+    component: Professor,
   },
   {
-    path: BASEDIR + '/university/professors',
+    path: BASEDIR + '/university/students',
     icon: 'people',
     name: 'Estudiantes',
-    component: University,
+    component: Student,
   },
   {
-    path: BASEDIR + '/university/professors',
-    icon: 'folder-alt',
+    path: BASEDIR + '/university/courses',
+    icon: 'people',
     name: 'Cursos',
-    tour: 'joyride-welcome-3',
-    component: University,
+    component: Course,
   },
   {
-    path: BASEDIR + '/university/add-professor',
-    icon: 'folder-alt',
-    name: 'Clases Online',
-    component: University,
+    path: BASEDIR + '/university/add-course',
+    icon: 'arrow-up-circle',
+    name: 'Añadir Actividad Online',
+    component: AddCourse,
   },
-  { path: BASEDIR + '/university/professors', icon: 'chart', name: 'Informes' },
+  // {
+  //   path: "#",
+  //   name: "Cursos",
+  //   icon: "folder-alt", type: "dropdown", parentid: "courses",
+  //            child: [
+  //                {
+  //                  path: BASEDIR+"/university/courses",
+  //                  name: "Cursos",
+  //                  component: Course,
+  //                },
+  //                {
+  //                  path: BASEDIR+"/university/add-course",
+  //                  name: "Añadir Actividad Online",
+  //                  component: AddCourse,
+  //                },
+  //            ]
+  //    },
+     // {
+     //   path: BASEDIR + '/university/professors',
+     //   icon: 'chart',
+     //   name: 'Informes'
+     // },
   {
-    path: BASEDIR + '/university/professors',
+    path: BASEDIR + '/university/library',
     icon: 'notebook',
     name: 'Biblioteca',
-    component: University,
+    component: Library,
   },
-  { path: BASEDIR + '/university/professors', icon: 'event', name: 'Eventos' },
-  { path: BASEDIR + '/university/professors', icon: 'envelope', name: 'Email' },
+  // { path: BASEDIR + '/university/professors', icon: 'event', name: 'Eventos' },
+  // { path: BASEDIR + '/university/professors', icon: 'envelope', name: 'Email' },
   {
-    path: BASEDIR + '/university/professors',
+    path: "#",
     tour: 'joyride-welcome-4',
     icon: 'question',
     name: '¿Te Ayudamos?',
-    component: University,
+    component: Library,
   },
 
   {

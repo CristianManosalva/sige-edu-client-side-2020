@@ -15,7 +15,6 @@ import {
 import dashboardRoutes from 'routes/university.jsx'
 import {
   topbarStyle,
-  menuStyle,
   menuBackgroundColor,
   menuType,
   topbarType,

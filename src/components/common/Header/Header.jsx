@@ -27,12 +27,12 @@ var IMGDIR = process.env.REACT_APP_IMGDIR
 const navStyle = {
   backgroundColor: '#1EAEDF',
 }
-const searchIconGray = {
-  color: 'gray',
-}
-const styleBackSearch = {
-  backgroundColor: 'white',
-}
+// const searchIconGray = {
+//   color: 'gray',
+// }
+// const styleBackSearch = {
+//   backgroundColor: 'white',
+// }
 class Header extends React.Component {
   constructor(props) {
     super(props)
