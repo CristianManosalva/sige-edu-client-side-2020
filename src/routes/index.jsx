@@ -37,11 +37,7 @@ var BASEDIR = process.env.REACT_APP_BASEDIR
 var indexRoutes = [
   { path: BASEDIR + '/login', name: 'Login', component: LoginPage },
   { path: BASEDIR + '/register', name: 'Register', component: LoginPage },
-<<<<<<< HEAD
   { path: BASEDIR + '/home', name: 'HomePage', component: Home, _public: true },
-=======
-  { path: BASEDIR + '/home', name: 'HomePage', component: Home },
->>>>>>> master
 
   { path: BASEDIR + '/lockscreen', name: 'Lockscreen', component: BlankPage },
   { path: BASEDIR + '/403', name: '403', component: BlankPage },
@@ -118,7 +114,6 @@ var indexRoutes = [
   // { path: BASEDIR + "/layout14", name: "Layout 14", component: Layout14 },
   // { path: BASEDIR + "/layout15", name: "Layout 15", component: Layout15 },
 
-<<<<<<< HEAD
   {
     path: BASEDIR + '/',
     name: 'Home',
@@ -126,10 +121,6 @@ var indexRoutes = [
     _public: true,
   },
   { path: '/', name: 'Home', component: UniversityLayout, _public: true },
-=======
-  { path: BASEDIR + '/', name: 'Home', component: Home },
-  { path: '/', name: 'Home', component: Home },
->>>>>>> master
 ]
 
 export default indexRoutes

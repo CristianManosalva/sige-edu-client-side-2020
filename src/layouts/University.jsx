@@ -26,8 +26,8 @@ import {
 
 //var ps;
 const sideBarStyle = {
-  backgroundColor : '#1EAEDF',
-};
+  backgroundColor: '#1EAEDF',
+}
 class UniversityLayout extends React.Component {
   constructor(props) {
     super(props)
@@ -49,12 +49,12 @@ class UniversityLayout extends React.Component {
           title: 'Pagina de inicio',
           content:
             'Aqui encontraras informacion relevante y de manera resumidad',
-            placement: 'left',
+          placement: 'left',
         },
         {
           target: '.joyride-welcome-3',
-          title: 'Grupos',
-          content: 'Gestiona la informacion sobre tus grupos',
+          title: 'Cursos',
+          content: 'Gestiona la informacion sobre tus Cursos',
         },
         {
           target: '.joyride-welcome-4',
