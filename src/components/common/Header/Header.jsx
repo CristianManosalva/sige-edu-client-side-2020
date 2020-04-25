@@ -23,6 +23,16 @@ import { messages } from 'variables/topbar.jsx'
 import { notifications } from 'variables/topbar.jsx'
 
 var IMGDIR = process.env.REACT_APP_IMGDIR
+
+const navStyle = {
+  backgroundColor: '#1EAEDF',
+}
+const searchIconGray = {
+  color: 'gray',
+}
+const styleBackSearch = {
+  backgroundColor: 'white',
+}
 class Header extends React.Component {
   constructor(props) {
     super(props)
@@ -241,7 +251,7 @@ class Header extends React.Component {
             : 'navbar-absolute fixed-top '
         }
       >
-        <Container fluid>
+        <Container fluid style={navStyle}>
           <div className="navbar-wrapper">
             <div className="navbar-toggle">
               <button
@@ -253,32 +263,6 @@ class Header extends React.Component {
                 <i className="i-menu"></i>
               </button>
             </div>
-
-            <Dropdown
-              nav
-              isOpen={this.state.messagesddOpen}
-              toggle={(e) => this.messagesddToggle(e)}
-              className="navbardd"
-            >
-              <DropdownToggle caret nav>
-                <i className="i-envelope"></i>
-                <span className="badge badge-pill badge-primary">3</span>
-              </DropdownToggle>
-              <Messages messages={messages} />
-            </Dropdown>
-
-            <Dropdown
-              nav
-              isOpen={this.state.notificationsddOpen}
-              toggle={(e) => this.notificationsddToggle(e)}
-              className="navbardd"
-            >
-              <DropdownToggle caret nav>
-                <i className="i-bell"></i>
-                <span className="badge badge-pill badge-primary">7</span>
-              </DropdownToggle>
-              <Notifications notifications={notifications} />
-            </Dropdown>
 
             <form className="topbar-search-form">
               <InputGroup
@@ -343,7 +327,7 @@ class Header extends React.Component {
                   <button
                     type="button"
                     ref="chatToggle"
-                    className="navbar-toggler"
+                    className="navbar-toggler mr-2"
                     onClick={() => this.openChat()}
                   >
                     <i className="i-bubbles"></i>
@@ -351,6 +335,31 @@ class Header extends React.Component {
                   </button>
                 </div>
               </NavItem>
+              <Dropdown
+                nav
+                isOpen={this.state.messagesddOpen}
+                toggle={(e) => this.messagesddToggle(e)}
+                className="navbardd ml-0 mr-2"
+              >
+                <DropdownToggle caret nav left>
+                  <i className="i-envelope"></i>
+                  <span className="badge badge-pill badge-primary">3</span>
+                </DropdownToggle>
+                <Messages messages={messages} />
+              </Dropdown>
+
+              <Dropdown
+                nav
+                isOpen={this.state.notificationsddOpen}
+                toggle={(e) => this.notificationsddToggle(e)}
+                className="navbardd mr-3"
+              >
+                <DropdownToggle caret nav>
+                  <i className="i-bell"></i>
+                  <span className="badge badge-pill badge-primary">7</span>
+                </DropdownToggle>
+                <Notifications notifications={notifications} />
+              </Dropdown>
             </Nav>
             <div
               className="screensize"

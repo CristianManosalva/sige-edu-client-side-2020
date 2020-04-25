@@ -16,6 +16,7 @@ import dashboardRoutes from 'routes/university.jsx'
 import {
   topbarStyle,
   menuStyle,
+  menuBackgroundColor,
   menuType,
   topbarType,
   navWidth,
@@ -24,12 +25,14 @@ import {
 } from 'variables/settings/university.jsx'
 
 //var ps;
-
+const sideBarStyle = {
+  backgroundColor: '#1EAEDF',
+}
 class UniversityLayout extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      menuColor: menuStyle,
+      menuColor: menuBackgroundColor,
       topbarColor: topbarStyle,
       menuType: menuType,
       topbarType: topbarType,
@@ -46,11 +49,12 @@ class UniversityLayout extends React.Component {
           title: 'Pagina de inicio',
           content:
             'Aqui encontraras informacion relevante y de manera resumidad',
+          placement: 'left',
         },
         {
           target: '.joyride-welcome-3',
-          title: 'Grupos',
-          content: 'Gestiona la informacion sobre tus grupos',
+          title: 'Cursos',
+          content: 'Gestiona la informacion sobre tus Cursos',
         },
         {
           target: '.joyride-welcome-4',
@@ -139,6 +143,7 @@ class UniversityLayout extends React.Component {
         />
         <Header {...this.props} navtype={navWidth} admintype={'university'} />
         <Sidebar
+          style={sideBarStyle}
           className="step-1"
           {...this.props}
           routes={dashboardRoutes}
