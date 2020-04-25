@@ -341,7 +341,7 @@ class Header extends React.Component {
                 toggle={(e) => this.messagesddToggle(e)}
                 className="navbardd ml-0 mr-2"
               >
-                <DropdownToggle caret nav left>
+                <DropdownToggle caret nav>
                   <i className="i-envelope"></i>
                   <span className="badge badge-pill badge-primary">3</span>
                 </DropdownToggle>
