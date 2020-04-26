@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Container, Modal } from "reactstrap";
+import React, { useState } from 'react'
+import { Container, Modal } from 'reactstrap'
 // import { Link } from "react-router-dom";
-import { news, clients, contact } from "api/fakedata";
+import { news, clients, contact } from 'api/fakedata'
 import {
   NavBarLogout,
   NewsCarouselItem,
@@ -9,11 +9,11 @@ import {
   ClientCarouselItem,
   ContactIcon,
   LoginForm,
-} from "components";
+} from 'components'
 
 const Home = () => {
-  const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
+  const [modal, setModal] = useState(true)
+  const toggle = () => setModal(!modal)
   return (
     <Container className="main-home-container" fluid={true}>
       <Modal isOpen={modal} toggle={toggle} centered={true}>
@@ -32,7 +32,7 @@ const Home = () => {
                   urlImage={value.urlImage}
                   title={value.title}
                 />
-              );
+              )
             })}
           </Carousel>
         </Container>
@@ -78,7 +78,7 @@ const Home = () => {
                   urlImage={value.urlImage}
                   title={value.title}
                 />
-              );
+              )
             })}
           </Carousel>
         </Container>
@@ -93,7 +93,7 @@ const Home = () => {
                 name={value.name}
                 key={key}
               />
-            );
+            )
           })}
         </div>
         <div className="download-section">
@@ -114,7 +114,7 @@ const Home = () => {
         </div>
       </footer>
     </Container>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

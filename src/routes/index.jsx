@@ -58,7 +58,7 @@ var indexRoutes = [
     path: BASEDIR + '/crm',
     name: 'CRM Dashboard',
     component: CrmLayout,
-    _public: true,
+    _public: false,
   },
   /*
   { path: BASEDIR + "/music", name: "Music Dashboard", component: MusicLayout },

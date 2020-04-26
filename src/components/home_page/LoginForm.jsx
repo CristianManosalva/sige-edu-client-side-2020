@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Spinner } from 'reactstrap'
+import { userActions } from '_accions'
 import {
   Container,
   Col,
@@ -16,7 +19,10 @@ const LoginForm = (props) => {
     email: '',
     password: '',
   })
+  const [submitted, setSubmitted] = useState(false)
   const { email, password } = inputs
+  const loggingIn = useSelector((state) => state.authentication.loggingIn)
+  const dispatch = useDispatch()
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -27,16 +33,18 @@ const LoginForm = (props) => {
     e.preventDefault()
 
     if (email && password) {
+      dispatch(userActions.login(email, password))
+
       //   dispatch(userActions.login(username, password));
-      if (email === 'demo@gmail.com' && password === 'demo') {
-        localStorage.setItem('user', JSON.stringify({ email, password }))
-        // eslint-disable-next-line
-        history.push('/')
-      } else {
-        alert('Datos de ingreso incorrectos')
-      }
+      // if (email === 'demo@gmail.com' && password === 'demo') {
+      //   localStorage.setItem('user', JSON.stringify({ email, password }))
+      //   // eslint-disable-next-line
+      //   history.push('/')
+      // } else {
+      //   alert('Datos de ingreso incorrectos')
+      // }
     } else {
-      alert('Por favor ingrese los datos necesarios')
+      alert('Por favor ingrese su cedula y contraseña')
     }
   }
   return (
@@ -75,6 +83,7 @@ const LoginForm = (props) => {
           </Col>
           <Col xs="12">
             <Button color="success" className="button-register">
+              {loggingIn && <Spinner size="sm" color="info" />}
               Inicia sesión
             </Button>
           </Col>

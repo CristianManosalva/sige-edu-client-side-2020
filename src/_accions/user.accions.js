@@ -1,7 +1,7 @@
-import { userConstants } from "../_constants";
-import { userService } from "../_services";
-import { alertActions } from "./alert.accions";
-import { history } from "../_helpers";
+import { userConstants } from '../_constants'
+import { userService } from '../_services'
+import { alertActions } from './alert.accions'
+import { history } from '../_helpers'
 
 export const userActions = {
   login,
@@ -9,39 +9,48 @@ export const userActions = {
   // register,
   // getAll,
   // delete: _delete,
-};
+}
 
 function login(email, password) {
   return (dispatch) => {
-    dispatch(request({ email }));
+    dispatch(request({ email }))
 
     userService.login(email, password).then(
       (user) => {
-        dispatch(success(user));
-        //eslint-disable-next-line
-        history.push("/");
+        dispatch(success(user))
+        if (user.teacher) {
+          history.push('/')
+        }
+        if (user.student) {
+          history.push('/home')
+          alert('Estamos construyendo tu dashboard')
+        }
+        if (user.staff) {
+          history.push('/home')
+          alert('Estamos construyendo tu dashboard')
+        }
       },
       (error) => {
-        dispatch(failure(error.toString()));
-        dispatch(alertActions.error(error.toString()));
+        dispatch(failure(error))
+        dispatch(alertActions.error(error)) //dispatch(alertActions.error(error.toString()));
       }
-    );
-  };
+    )
+  }
 
   function request(user) {
-    return { type: userConstants.LOGIN_REQUEST, user };
+    return { type: userConstants.LOGIN_REQUEST, user }
   }
   function success(user) {
-    return { type: userConstants.LOGIN_SUCCESS, user };
+    return { type: userConstants.LOGIN_SUCCESS, user }
   }
   function failure(error) {
-    return { type: userConstants.LOGIN_FAILURE, error };
+    return { type: userConstants.LOGIN_FAILURE, error }
   }
 }
 
 function logout() {
-  userService.logout();
-  return { type: userConstants.LOGOUT };
+  userService.logout()
+  return { type: userConstants.LOGOUT }
 }
 
 // function register(user) {
