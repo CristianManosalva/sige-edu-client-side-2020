@@ -5,11 +5,11 @@ export const userService = {
   logout,
 }
 
-function login(email, password) {
+function login(national_id, password) {
   const options = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ national_id, password }),
   }
   return fetch(`${config.apiEndPoint}/user/login`, options)
     .then(handleResponse)

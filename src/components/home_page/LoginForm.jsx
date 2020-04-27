@@ -12,7 +12,14 @@ import {
   Form,
 } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import { history } from '_helpers'
+// import { history } from '_helpers'
+
+const AlertStyle = {
+  margin: '0',
+  textAlign: 'center',
+  color: 'goldenrod',
+  fontWeight: 'bold',
+}
 
 const LoginForm = (props) => {
   const [inputs, setInputs] = useState({
@@ -22,6 +29,7 @@ const LoginForm = (props) => {
   const [submitted, setSubmitted] = useState(false)
   const { email, password } = inputs
   const loggingIn = useSelector((state) => state.authentication.loggingIn)
+  const message = useSelector((state) => state.alert.message)
   const dispatch = useDispatch()
 
   function handleChange(e) {
@@ -74,6 +82,9 @@ const LoginForm = (props) => {
                 onChange={handleChange}
               />
             </FormGroup>
+          </Col>
+          <Col xs="12" className="col-form">
+            <p style={AlertStyle}>{message}</p>
           </Col>
           <Col xs="12">
             <FormGroup check className="cb">
