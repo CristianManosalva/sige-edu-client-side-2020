@@ -11,7 +11,7 @@ function login(email, password) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
   }
-  return fetch(`${config.apiEndPoint}/login`, options)
+  return fetch(`${config.apiEndPoint}/user/login`, options)
     .then(handleResponse)
     .then((user) => {
       localStorage.setItem('user', JSON.stringify(user))
