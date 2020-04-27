@@ -57,9 +57,10 @@ const LoginForm = (props) => {
           <Col xs="12" className="col-form">
             <FormGroup>
               <Input
-                type="email"
+                type="number"
                 name="email"
-                placeholder="Dirección de Correo Electronico"
+                placeholder="Ingresa tu numero de cedula"
+                step={1}
                 onChange={handleChange}
               />
             </FormGroup>
