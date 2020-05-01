@@ -2,9 +2,9 @@ import University from 'views/university/Dashboard/University.jsx'
 import Course from 'views/university/Course/Course.jsx'
 import AddCourse from 'views/university/Course/AddCourse.jsx'
 import Library from 'views/university/Library/Library.jsx'
-import Professor from 'views/university/Professor/Professor.jsx';
+import Professor from 'views/university/Professor/Professor.jsx'
+import AddProfessor from 'views/university/Professor/AddProfessor.jsx'
 import Student from 'views/university/Student/Student.jsx'
-
 
 var BASEDIR = process.env.REACT_APP_BASEDIR
 
@@ -19,10 +19,15 @@ var dashRoutes = [
   },
   // Options Teacher
   {
-    path: BASEDIR+"/university/professors",
+    path: BASEDIR + '/university/professors',
     icon: 'user',
     name: 'Docentes',
     component: Professor,
+  },
+  {
+    path: BASEDIR + '/university/add-professors',
+    component: AddProfessor,
+    type: 'child',
   },
   {
     path: BASEDIR + '/university/students',
@@ -59,11 +64,11 @@ var dashRoutes = [
   //                },
   //            ]
   //    },
-     // {
-     //   path: BASEDIR + '/university/professors',
-     //   icon: 'chart',
-     //   name: 'Informes'
-     // },
+  // {
+  //   path: BASEDIR + '/university/professors',
+  //   icon: 'chart',
+  //   name: 'Informes'
+  // },
   {
     path: BASEDIR + '/university/library',
     icon: 'notebook',
@@ -73,7 +78,7 @@ var dashRoutes = [
   // { path: BASEDIR + '/university/professors', icon: 'event', name: 'Eventos' },
   // { path: BASEDIR + '/university/professors', icon: 'envelope', name: 'Email' },
   {
-    path: "#",
+    path: '#',
     tour: 'joyride-welcome-4',
     icon: 'question',
     name: '¿Te Ayudamos?',
