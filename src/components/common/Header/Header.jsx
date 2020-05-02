@@ -277,7 +277,7 @@ class Header extends React.Component {
                 >
                   <i className="i-magnifier"></i>
                 </InputGroupAddon>
-                <Input placeholder="Search..." />
+                <Input placeholder="Buscar..." />
               </InputGroup>
             </form>
 
