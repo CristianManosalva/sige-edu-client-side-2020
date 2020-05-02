@@ -322,7 +322,7 @@ class Header extends React.Component {
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-              <NavItem>
+              {/* <NavItem>
                 <div className="navbar-toggle chat-toggle">
                   <button
                     type="button"
@@ -334,8 +334,8 @@ class Header extends React.Component {
                     <span className="badge badge-pill badge-primary">9</span>
                   </button>
                 </div>
-              </NavItem>
-              <Dropdown
+              </NavItem> */}
+              {/* <Dropdown
                 nav
                 isOpen={this.state.messagesddOpen}
                 toggle={(e) => this.messagesddToggle(e)}
@@ -346,9 +346,9 @@ class Header extends React.Component {
                   <span className="badge badge-pill badge-primary">3</span>
                 </DropdownToggle>
                 <Messages messages={messages} />
-              </Dropdown>
+              </Dropdown> */}
 
-              <Dropdown
+              {/* <Dropdown
                 nav
                 isOpen={this.state.notificationsddOpen}
                 toggle={(e) => this.notificationsddToggle(e)}
@@ -359,7 +359,7 @@ class Header extends React.Component {
                   <span className="badge badge-pill badge-primary">7</span>
                 </DropdownToggle>
                 <Notifications notifications={notifications} />
-              </Dropdown>
+              </Dropdown> */}
             </Nav>
             <div
               className="screensize"

@@ -39,6 +39,7 @@ var dashRoutes = [
   {
     path: BASEDIR + '/university/add-course',
     icon: 'arrow-up-circle',
+    tour: 'joyride-welcome-3',
     name: 'Añadir Actividad Online',
     component: AddCourse,
   },
