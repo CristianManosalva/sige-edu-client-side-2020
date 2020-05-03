@@ -12,7 +12,6 @@ import {
   Form,
 } from 'reactstrap'
 import { Link } from 'react-router-dom'
-// import { history } from '_helpers'
 
 const AlertStyle = {
   margin: '0',

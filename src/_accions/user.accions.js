@@ -32,7 +32,8 @@ function login(email, password) {
       },
       (error) => {
         dispatch(failure(error))
-        dispatch(alertActions.error(error)) //dispatch(alertActions.error(error.toString()));
+        console.log('El error', error)
+        dispatch(alertActions.error(error.toString())) //dispatch(alertActions.error(error.toString()));
       }
     )
   }
