@@ -12,6 +12,7 @@ class Footer extends React.Component {
         <Container fluid={this.props.fluid ? true : false}>
           <div className="copyright">
             &copy; {1900 + new Date().getYear()},{' '}
+            {/* eslint-disable-next-line */}
             <a href="#" rel="noopener noreferrer">
               SIGE: Sistema Infomatico de Gestion Estudiantil
             </a>

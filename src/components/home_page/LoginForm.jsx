@@ -25,7 +25,6 @@ const LoginForm = (props) => {
     email: '',
     password: '',
   })
-  const [submitted, setSubmitted] = useState(false)
   const { email, password } = inputs
   const loggingIn = useSelector((state) => state.authentication.loggingIn)
   const message = useSelector((state) => state.alert.message)

@@ -389,10 +389,5 @@ function mapState(state) {
   return { user }
 }
 
-const actionCreators = {
-  /* login: userActions.login,
-  logout: userActions.logout, */
-}
-
 const Header = connect(mapState, {})(HeaderR)
 export default Header

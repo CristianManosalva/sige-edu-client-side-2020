@@ -50,7 +50,7 @@ const clients = [
   // },
 ]
 
-const sampleLucho = [
+/* const sampleLucho = [
   {
     codeWorkSpace: 1,
     nameWorkSpace: 'Ingles Work Space',
@@ -108,36 +108,7 @@ const sampleLucho = [
       },
     ],
   },
-]
-
-const respuestaBuena = {
-  grupos: [
-    {
-      grupo_id: '2',
-      nombre_grupo: '6-2 tarde',
-      materias: [
-        {
-          name: 'ingles',
-          id: '1',
-        },
-      ],
-    },
-    {
-      grupo_id: '4',
-      nombre_grupo: '6-4 tarde',
-      materias: [
-        {
-          name: 'español',
-          id: '2',
-        },
-      ],
-    },
-  ],
-}
-
-const grupos2 = [
-  { prescolar: ['matematica', 'ciencias naturales', 'español', 'ingles'] },
-]
+] */
 
 const contact = [
   {

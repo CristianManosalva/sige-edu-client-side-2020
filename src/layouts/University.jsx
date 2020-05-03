@@ -63,7 +63,7 @@ class UniversityLayout extends React.Component {
       ],
       stepIndex: 0, // a controlled tour
       showProgress: true,
-      run: true,
+      run: false,
       continuous: true,
       showSkipButton: true,
       locale: {

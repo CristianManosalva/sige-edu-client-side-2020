@@ -6,14 +6,6 @@ import 'react-datepicker/dist/react-datepicker.css'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
 
-/* let user = JSON.parse(localStorage.getItem('user')) || {
-  user: {
-    national_id: '31526568',
-  },
-}
-console.log(user) */
-const global_id = '123'
-
 var api = process.env.REACT_APP_API_END_POINT
 
 const AddProfessor = (props) => {
@@ -33,7 +25,7 @@ const AddProfessor = (props) => {
     blood_type_id: 1,
     is_active: 1,
   })
-  const [institutions, setInstitutions] = useState([
+  const [institutions] = useState([
     {
       name: 'Institución Educativa Central de Bachillerato Integrado',
       dane: 176364000015,
@@ -91,7 +83,7 @@ const AddProfessor = (props) => {
   })
   const [sedes, setSedes] = useState([])
   //   const [grados, setGrados] = useState(moment())
-  const [grados, setGrados] = useState({
+  const [grados] = useState({
     grado: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
     sub: ['1', '2', '3', '4'],
     materia: ['Ingles', 'Español', 'Matematica'],
@@ -120,7 +112,7 @@ const AddProfessor = (props) => {
     console.log(date)
     setTeacher((teacher) => ({
       ...teacher,
-      ['birthdate']: date.format('YYYY-MM-DD'),
+      birthdate: date.format('YYYY-MM-DD'),
     }))
   }
 
@@ -130,7 +122,8 @@ const AddProfessor = (props) => {
       ...combox,
       [name]: value,
     }))
-    institutions.map((item) => {
+
+    institutions.forEach((item) => {
       if (item.dane == value) {
         setSedes(item.headquarters)
       }
@@ -166,32 +159,6 @@ const AddProfessor = (props) => {
     }
   }
 
-  /* async function getTeacher() {
-    setLoaders((loaders) => ({
-      ...loaders,
-      firstLoad: true,
-    }))
-    try {
-      const rawResponse = await fetch(api + `/teachers/${user.national_id}`, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
-      const content = await rawResponse.json()
-      console.log(content)
-      if (content.data) {
-        // content.data.birthdate = moment()
-        setTeacher(content.data)
-        setLoaders((loaders) => ({
-          ...loaders,
-          firstLoad: false,
-        }))
-      }
-    } catch (error) {}
-  } */
-
   function getTeacher() {
     setLoaders((loaders) => ({
       ...loaders,
@@ -217,24 +184,6 @@ const AddProfessor = (props) => {
         }))
       })
   }
-
-  /* async function updateTeacher(id, teacher) {
-    setLoaders((loaders) => ({
-      ...loaders,
-      firstLoad: true,
-    }))
-    const rawResponse = await fetch(api + `/teachers/${id}`, {
-      method: 'PUT',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(teacher),
-    })
-    const content = await rawResponse.json()
-
-    console.log('content for post ', content)
-  } */
 
   function updateTeacher(id, teacher) {
     setLoaders((loaders) => ({
@@ -349,9 +298,7 @@ const AddProfessor = (props) => {
     email,
     phone_number,
     address,
-    password,
     birthdate,
-    last_connection,
     gender,
   } = teacher
 
