@@ -4,11 +4,8 @@ import { Router, Route, Switch } from 'react-router-dom'
 import { PrivateRoute } from 'components'
 import indexRoutes from 'routes/index.jsx'
 
-
-
 const App = () => {
   return (
-    
     <Router history={history} basename={process.env.REACT_APP_BASEDIR}>
       <Switch>
         {indexRoutes.map((prop, key) => {
@@ -19,7 +16,7 @@ const App = () => {
               <Route path={prop.path} key={key} component={prop.component} />
             )
           }
-          console.log('Entro aqui ', prop.name)
+          // console.log('Entro aqui ', prop.name)
           return (
             <PrivateRoute
               exact
