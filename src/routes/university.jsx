@@ -1,6 +1,7 @@
 import University from 'views/university/Dashboard/University.jsx'
 import Course from 'views/university/Course/Course.jsx'
 import AddCourse from 'views/university/Course/AddCourse.jsx'
+import CourseView from 'views/university/Course/CourseView.jsx'
 import Library from 'views/university/Library/Library.jsx'
 import Professor from 'views/university/Professor/Professor.jsx'
 import AddProfessor from 'views/university/Professor/AddProfessor.jsx'
@@ -40,6 +41,11 @@ var dashRoutes = [
     icon: 'people',
     name: 'Cursos',
     component: Course,
+  },
+  {
+    path: BASEDIR + '/university/activity/:id_teacher/:id_group',
+    component: CourseView,
+    type: 'child',
   },
   {
     path: BASEDIR + '/university/add-course',

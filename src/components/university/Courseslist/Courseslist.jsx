@@ -25,7 +25,7 @@ const Courseslist = (props) => {
                 </div>
                 <div className="team-info col-8">
                   <h3>
-                    <NavLink to={BASEDIR + '/university/course-view'}>
+                    <NavLink to={BASEDIR + '/university/activity/12436/2332'}>
                       {group.nameGroup
                         ? group.nameGroup.split('-')[0] +
                           '-' +
