@@ -183,8 +183,11 @@ class HeaderR extends React.Component {
     } else if (this.props.admintype === 'university') {
       this.setState({
         // profilename: 'Henry Gibson',
-        profilename:
-          this.props.user.name || this.props.user.surname || 'Henry Gibson',
+        profilename: this.props.user
+          ? this.props.user.lastNameUser ||
+            this.props.user.lastNameUser ||
+            'Henry Gibson'
+          : 'Henry Gibson',
         profileimg: IMGDIR + '/images/profile/profile-university.jpg',
       })
     } else if (this.props.admintype === 'crm') {
@@ -306,7 +309,7 @@ class HeaderR extends React.Component {
                   {/* <DropdownItem tag="a">
                     <i className="i-wrench" href="#!"></i> Configuracion
                   </DropdownItem> */}
-                  <DropdownItem
+                  {/* <DropdownItem
                     tag="a"
                     onClick={() => {
                       // eslint-disable-next-line
@@ -316,7 +319,7 @@ class HeaderR extends React.Component {
                     }}
                   >
                     <i className="i-user" href="#!"></i> Perfil
-                  </DropdownItem>
+                  </DropdownItem> */}
                   {/* <DropdownItem tag="a">
                     <i className="i-info" href="#!"></i> Ayuda
                   </DropdownItem> */}
@@ -332,7 +335,7 @@ class HeaderR extends React.Component {
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-              <NavItem>
+              {/* <NavItem>
                 <div className="navbar-toggle chat-toggle">
                   <button
                     type="button"
@@ -344,8 +347,8 @@ class HeaderR extends React.Component {
                     <span className="badge badge-pill badge-primary">9</span>
                   </button>
                 </div>
-              </NavItem>
-              <Dropdown
+              </NavItem> */}
+              {/* <Dropdown
                 nav
                 isOpen={this.state.messagesddOpen}
                 toggle={(e) => this.messagesddToggle(e)}
@@ -356,9 +359,8 @@ class HeaderR extends React.Component {
                   <span className="badge badge-pill badge-primary">3</span>
                 </DropdownToggle>
                 <Messages messages={messages} />
-              </Dropdown>
-
-              <Dropdown
+              </Dropdown> */}
+              {/* <Dropdown
                 nav
                 isOpen={this.state.notificationsddOpen}
                 toggle={(e) => this.notificationsddToggle(e)}
@@ -369,7 +371,8 @@ class HeaderR extends React.Component {
                   <span className="badge badge-pill badge-primary">7</span>
                 </DropdownToggle>
                 <Notifications notifications={notifications} />
-              </Dropdown>
+              </Dropdown */}
+              >
             </Nav>
             <div
               className="screensize"
@@ -385,7 +388,7 @@ class HeaderR extends React.Component {
 // export default Header
 
 function mapState(state) {
-  const { user } = state.authentication.user
+  const { user } = state.authentication.user.user_data
   return { user }
 }
 

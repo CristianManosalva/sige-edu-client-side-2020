@@ -21,7 +21,11 @@ export function authentication(state = initialState, action) {
       return {}
     case 'INICIAR':
       return {
-        user: { user: {} },
+        user: {
+          user_data: {
+            user: {},
+          },
+        },
       }
     default:
       return state

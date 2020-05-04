@@ -43,7 +43,7 @@ var dashRoutes = [
     component: Course,
   },
   {
-    path: BASEDIR + '/university/activity/:id_teacher/:id_group',
+    path: BASEDIR + '/university/activity/:id_teacher/:id_group/:id_materia',
     component: CourseView,
     type: 'child',
   },
