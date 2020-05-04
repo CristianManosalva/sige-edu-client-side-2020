@@ -11,8 +11,8 @@ import {
 import { courses } from 'variables/university/courses.jsx';
 
 class Course extends React.Component{
-   
-    
+
+
     render(){
 
         return (
@@ -23,20 +23,20 @@ class Course extends React.Component{
 
                     <div className="page-title">
                         <div className="float-left">
-                            <h1 className="title">Course</h1>
+                            <h1 className="title">Cursos</h1>
                         </div>
                     </div>
 
 
-                            
-           
+
+
 
                     <div className="col-xl-12">
                         <section className="box ">
                             <header className="panel_header">
-                                <h2 className="title float-left">All Courses</h2>
+                                <h2 className="title float-left">Todos los Cursos</h2>
                             </header>
-                            <div className="content-body">    
+                            <div className="content-body">
 
 
                             <div className="row">
@@ -52,8 +52,8 @@ class Course extends React.Component{
 
 
 
-           
-                                
+
+
                         </Col>
 
                     </Row>

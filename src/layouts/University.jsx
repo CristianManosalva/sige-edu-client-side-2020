@@ -15,7 +15,6 @@ import {
 import dashboardRoutes from 'routes/university.jsx'
 import {
   topbarStyle,
-  menuStyle,
   menuBackgroundColor,
   menuType,
   topbarType,
@@ -60,13 +59,14 @@ class UniversityLayout extends React.Component {
           target: '.joyride-welcome-2',
           title: 'Pagina de inicio',
           content:
-            'Aqui encontraras información relevante y de manera resumidad',
-            placement: 'left',
+            'Aqui encontraras informacion relevante y de manera resumidad',
+          placement: 'left',
         },
         {
           target: '.joyride-welcome-3',
-          title: 'Grupos',
-          content: 'Gestiona la información sobre tus grupos',
+          title: 'Cursos',
+          content: 'Gestiona la informacion sobre tus Cursos',
+          placement: 'bottom',
         },
         {
           target: '.joyride-welcome-4',
