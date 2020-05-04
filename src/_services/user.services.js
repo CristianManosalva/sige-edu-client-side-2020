@@ -20,7 +20,7 @@ function login(documentIdUser, passwordUser) {
   return fetch(`${config.apiOficial}/users/login/`, options)
     .then(handleResponse)
     .then(({ data }) => {
-      localStorage.setItem('user', JSON.stringify(data))
+      localStorage.setItem('userv2', JSON.stringify(data))
       return data
     })
   /* .catch((error) => {
@@ -30,7 +30,7 @@ function login(documentIdUser, passwordUser) {
 }
 
 function logout() {
-  localStorage.removeItem('user')
+  localStorage.removeItem('userv2')
 }
 
 function handleResponse(response) {

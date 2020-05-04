@@ -5,7 +5,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
-      localStorage.getItem('user')
+      localStorage.getItem('userv2')
         ? (console.log('Paso el protected'), (<Component {...props} />))
         : (console.log('No paso el protected'),
           (

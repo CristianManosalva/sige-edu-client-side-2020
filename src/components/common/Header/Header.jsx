@@ -325,7 +325,7 @@ class HeaderR extends React.Component {
                   </DropdownItem> */}
                   <DropdownItem
                     onClick={() => {
-                      localStorage.removeItem('user')
+                      localStorage.removeItem('userv2')
                     }}
                     tag="a"
                     className=""
