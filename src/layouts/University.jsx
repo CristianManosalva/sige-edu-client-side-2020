@@ -65,8 +65,7 @@ class UniversityLayout extends React.Component {
         {
           target: '.joyride-welcome-3',
           title: 'Cursos',
-          content: 'Gestiona la informacion sobre tus Cursos',
-          placement: 'bottom',
+          content: 'Aqui puedes agregar una actividad online a tus cursos',
         },
         {
           target: '.joyride-welcome-4',

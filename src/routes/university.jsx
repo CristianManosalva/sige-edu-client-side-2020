@@ -1,5 +1,6 @@
 import University from 'views/university/Dashboard/University.jsx'
 import Course from 'views/university/Course/Course.jsx'
+import Subjects from 'views/university/Course/Subjects.jsx'
 import AddCourse from 'views/university/Course/AddCourse.jsx'
 import Library from 'views/university/Library/Library.jsx'
 import Professor from 'views/university/Professor/Professor.jsx'
@@ -43,8 +44,15 @@ var dashRoutes = [
     component: Course,
   },
   {
+    path: BASEDIR + '/university/subjects',
+    icon: 'people',
+    name: 'Materias',
+    component: Subjects,
+  },
+  {
     path: BASEDIR + '/university/add-course',
     icon: 'arrow-up-circle',
+    tour: 'joyride-welcome-3',
     name: 'Añadir Actividad Online',
     component: AddCourse,
   },
