@@ -140,8 +140,13 @@ const customLabels = {
 };
 
 class Library extends React.Component{
+<<<<<<< HEAD
    
     
+=======
+
+
+>>>>>>> master
     render(){
 
         return (
@@ -152,23 +157,40 @@ class Library extends React.Component{
 
                     <div className="page-title">
                         <div className="float-left">
+<<<<<<< HEAD
                             <h1 className="title">Library Assets</h1>
+=======
+                            <h1 className="title">Inventario de La Biblioteca</h1>
+>>>>>>> master
                         </div>
                     </div>
 
 
+<<<<<<< HEAD
                           
+=======
+
+>>>>>>> master
 
                     <div className="col-12">
                         <section className="box ">
                             <header className="panel_header">
+<<<<<<< HEAD
                                 <h2 className="title float-left">All Library</h2>
                                 
+=======
+                                <h2 className="title float-left">Todos los Libros</h2>
+
+>>>>>>> master
                             </header>
                             <div className="content-body">
                                 <div className="row">
                                     <div className="col-lg-12 dt-disp">
+<<<<<<< HEAD
                             
+=======
+
+>>>>>>> master
   <Datatable
   tableHeader={header}
   tableBody={body}
@@ -181,7 +203,11 @@ class Library extends React.Component{
   labels={customLabels}
 />
 
+<<<<<<< HEAD
                                
+=======
+
+>>>>>>> master
 
                                     </div>
                                 </div>

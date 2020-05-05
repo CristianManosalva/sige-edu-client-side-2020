@@ -3,7 +3,11 @@
     // black, white, teal, purple, red, pink, orange, transparent, image1, image2, image3, image4
 ***********************************/
 const menuStyle = "image3";
+<<<<<<< HEAD
 
+=======
+const menuBackgroundColor = "#1EAEDF";
+>>>>>>> master
 
 /***********************************
     // Menu Type
@@ -55,4 +59,8 @@ export {
     navWidth,
     chatWidth,
     chatType,
+<<<<<<< HEAD
+=======
+    menuBackgroundColor,
+>>>>>>> master
 };
