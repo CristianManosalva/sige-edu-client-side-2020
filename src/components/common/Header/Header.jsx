@@ -44,7 +44,8 @@ class HeaderR extends React.Component {
       notificationsddOpen: false,
       color: 'primary',
       profilename: 'Eric Nelson',
-      profileimg: IMGDIR + '/images/profile/profile.jpg',
+      //profileimg: IMGDIR + '/images/profile/profile.jpg',
+      profileimg: "https://image.flaticon.com/icons/svg/566/566985.svg",
     }
     this.toggle = this.toggle.bind(this)
     this.userddToggle = this.userddToggle.bind(this)
@@ -282,7 +283,7 @@ class HeaderR extends React.Component {
                 >
                   <i className="i-magnifier"></i>
                 </InputGroupAddon>
-                <Input placeholder="Search..." />
+                <Input placeholder="Buscar..." />
               </InputGroup>
             </form>
 
@@ -299,7 +300,7 @@ class HeaderR extends React.Component {
               >
                 <DropdownToggle caret nav className="joyride-welcome-1">
                   <img
-                    src={this.state.profileimg}
+                    src="https://image.flaticon.com/icons/svg/2089/2089828.svg"
                     alt="react-logo"
                     className="avatar-image"
                   />{' '}
