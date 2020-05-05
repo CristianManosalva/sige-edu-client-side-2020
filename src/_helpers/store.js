@@ -10,7 +10,7 @@ const store = createStore(
   applyMiddleware(thunkMiddleware, loggerMiddleware)
 )
 
-let user = JSON.parse(localStorage.getItem('user'))
+let user = JSON.parse(localStorage.getItem('userv2'))
 if (!user) {
   store.dispatch({
     type: 'INICIAR',

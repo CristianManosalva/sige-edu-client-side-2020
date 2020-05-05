@@ -50,7 +50,7 @@ const clients = [
   // },
 ]
 
-const sampleLucho = [
+/* const sampleLucho = [
   {
     codeWorkSpace: 1,
     nameWorkSpace: 'Ingles Work Space',
@@ -108,37 +108,49 @@ const sampleLucho = [
       },
     ],
   },
+] */
+
+const actividades = [
+  {
+    codeWorkSpace: 17,
+    nameWorkSpace: 'Educación Artística y Cultural-10-01-1-2020',
+    descriptionWorkSpace: 'Educación Artística y Cultural 10-01-1-2020',
+    academicCharge: {
+      codeAcademicCharge: 17,
+      teacherDictate: 109,
+      courseDictate: {
+        codeCourse: 4,
+        nameCourse: 'Educación Artística y Cultural',
+        areaCourse: 3,
+      },
+      groupDictate: '10-01-1-2020',
+      hourlyintensity: 1,
+      schedule: [],
+    },
+    secctions: [],
+  },
+  {
+    codeWorkSpace: 228,
+    nameWorkSpace: 'Educación Artística y Cultural-10-01-1-2020',
+    descriptionWorkSpace: 'Educación Artística y Cultural 10-01-1-2020',
+    academicCharge: {
+      codeAcademicCharge: 228,
+      teacherDictate: 109,
+      courseDictate: {
+        codeCourse: 4,
+        nameCourse: 'Educación Artística y Cultural',
+        areaCourse: 3,
+      },
+      groupDictate: '10-01-1-2020',
+      hourlyintensity: 1,
+      schedule: [],
+    },
+    secctions: [],
+  },
 ]
 
-const respuestaBuena = {
-  grupos: [
-    {
-      grupo_id: '2',
-      nombre_grupo: '6-2 tarde',
-      materias: [
-        {
-          name: 'ingles',
-          id: '1',
-        },
-      ],
-    },
-    {
-      grupo_id: '4',
-      nombre_grupo: '6-4 tarde',
-      materias: [
-        {
-          name: 'español',
-          id: '2',
-        },
-      ],
-    },
-  ],
-}
-
-const grupos2 = [
-  { prescolar: ['matematica', 'ciencias naturales', 'español', 'ingles'] },
-]
-
+//http://api.sige-edu.com:8000/api/workspaces/courses/109/10-01-1-2020
+//http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher/109
 const contact = [
   {
     url: 'facebook.com',

@@ -11,21 +11,21 @@ export const userActions = {
   // delete: _delete,
 }
 
-function login(email, password) {
+function login(documentIdUser, passwordUser) {
   return (dispatch) => {
-    dispatch(request({ email }))
+    dispatch(request({ email: documentIdUser }))
 
-    userService.login(email, password).then(
+    userService.login(documentIdUser, passwordUser).then(
       (user) => {
         dispatch(success(user))
-        if (user.teacher) {
+        if (user.user_data.teacher) {
           history.push('/')
         }
-        if (user.student) {
+        if (user.user_data.student) {
           history.push('/home')
           alert('Estamos construyendo tu dashboard')
         }
-        if (user.staff) {
+        if (user.user_data.staff) {
           history.push('/home')
           alert('Estamos construyendo tu dashboard')
         }

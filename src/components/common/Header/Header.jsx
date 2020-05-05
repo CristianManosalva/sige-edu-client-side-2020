@@ -183,8 +183,11 @@ class HeaderR extends React.Component {
     } else if (this.props.admintype === 'university') {
       this.setState({
         // profilename: 'Henry Gibson',
-        profilename:
-          this.props.user.name || this.props.user.surname || 'Henry Gibson',
+        profilename: this.props.user
+          ? this.props.user.lastNameUser ||
+            this.props.user.lastNameUser ||
+            'Henry Gibson'
+          : 'Henry Gibson',
         profileimg: IMGDIR + '/images/profile/profile-university.jpg',
       })
     } else if (this.props.admintype === 'crm') {
@@ -306,7 +309,7 @@ class HeaderR extends React.Component {
                   {/* <DropdownItem tag="a">
                     <i className="i-wrench" href="#!"></i> Configuracion
                   </DropdownItem> */}
-                  <DropdownItem
+                  {/* <DropdownItem
                     tag="a"
                     onClick={() => {
                       // eslint-disable-next-line
@@ -316,13 +319,13 @@ class HeaderR extends React.Component {
                     }}
                   >
                     <i className="i-user" href="#!"></i> Perfil
-                  </DropdownItem>
+                  </DropdownItem> */}
                   {/* <DropdownItem tag="a">
                     <i className="i-info" href="#!"></i> Ayuda
                   </DropdownItem> */}
                   <DropdownItem
                     onClick={() => {
-                      localStorage.removeItem('user')
+                      localStorage.removeItem('userv2')
                     }}
                     tag="a"
                     className=""
@@ -357,7 +360,6 @@ class HeaderR extends React.Component {
                 </DropdownToggle>
                 <Messages messages={messages} />
               </Dropdown> */}
-
               {/* <Dropdown
                 nav
                 isOpen={this.state.notificationsddOpen}
@@ -369,7 +371,8 @@ class HeaderR extends React.Component {
                   <span className="badge badge-pill badge-primary">7</span>
                 </DropdownToggle>
                 <Notifications notifications={notifications} />
-              </Dropdown> */}
+              </Dropdown */}
+              >
             </Nav>
             <div
               className="screensize"
@@ -385,13 +388,8 @@ class HeaderR extends React.Component {
 // export default Header
 
 function mapState(state) {
-  const { user } = state.authentication.user
+  const { user } = state.authentication.user.user_data
   return { user }
-}
-
-const actionCreators = {
-  /* login: userActions.login,
-  logout: userActions.logout, */
 }
 
 const Header = connect(mapState, {})(HeaderR)

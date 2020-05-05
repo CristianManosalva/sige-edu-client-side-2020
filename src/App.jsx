@@ -1,6 +1,6 @@
 import React from 'react'
 import { history } from '_helpers'
-import { Router, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch, match } from 'react-router-dom'
 import { PrivateRoute } from 'components'
 import indexRoutes from 'routes/index.jsx'
 

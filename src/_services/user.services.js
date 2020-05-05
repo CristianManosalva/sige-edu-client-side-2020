@@ -5,17 +5,23 @@ export const userService = {
   logout,
 }
 
-function login(national_id, password) {
+function login(documentIdUser, passwordUser) {
+  console.log('Document ', documentIdUser)
   const options = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ national_id, password }),
+    body: JSON.stringify({
+      documentIdUser: documentIdUser,
+      passwordUser: passwordUser,
+    }),
   }
-  return fetch(`${config.apiEndPoint}/user/login`, options)
+
+  console.log('Options: ', options)
+  return fetch(`${config.apiOficial}/users/login/`, options)
     .then(handleResponse)
-    .then((user) => {
-      localStorage.setItem('user', JSON.stringify(user))
-      return user
+    .then(({ data }) => {
+      localStorage.setItem('userv2', JSON.stringify(data))
+      return data
     })
   /* .catch((error) => {
       console.log(error)
@@ -24,10 +30,11 @@ function login(national_id, password) {
 }
 
 function logout() {
-  localStorage.removeItem('user')
+  localStorage.removeItem('userv2')
 }
 
 function handleResponse(response) {
+  console.log('LA response: ', response)
   return response.json().then((data) => {
     //return response.text().then((text) => {
     // const data = text && JSON.parse(text)
@@ -39,8 +46,16 @@ function handleResponse(response) {
         //location.reload(true) recarga la direccion, mejor cambiar por un push
       }
 
-      const error = data.message || response.statusText
+      const error = data.message || response.statusText || 'Error mostro'
       return Promise.reject(error)
+    }
+
+    if (response.ok) {
+      if (data.code !== 200) {
+        logout()
+        const error = data.message || response.statusText || 'Error mostro'
+        return Promise.reject(error)
+      }
     }
 
     return data

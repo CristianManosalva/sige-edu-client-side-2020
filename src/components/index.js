@@ -24,6 +24,7 @@ import Studentslist from './university/Studentslist/Studentslist'
 import UniStaffslist from './university/UniStaffslist/UniStaffslist'
 import Courseslist from './university/Courseslist/Courseslist'
 import SubjectList from './university/Courseslist/SubjectList'
+import ActivityItem from './university/Activities/ActivityItem'
 
 /*--------------- Hospital Admin Components ------------------*/
 import Doctorslist from './hospital/Doctorslist/Doctorslist'
@@ -94,4 +95,6 @@ export {
   Patientslist,
   Staffslist,
   SubjectList,
+  //item de actividad
+  ActivityItem,
 }
