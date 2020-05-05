@@ -290,12 +290,12 @@ const AddCourse = () => {
                               />
                             </div>
 
-                            <div className="form-group col-md-12">
+                            {/* <div className="form-group col-md-12">
                               <Label htmlFor="exampleFile" style={stylesLabels}>
                                 Cargar Archivo
                               </Label>
                               <Input type="file" name="file" color="primary" id="exampleFile" />
-                            </div>
+                            </div> */}
                             <div className="form-group col-md-12">
                               <label htmlFor="input4" style={stylesLabels}>Enlace</label>
                               <input

@@ -159,7 +159,7 @@ class University extends React.Component {
                     <div className="widdata">
                       <i className="widicon i-notebook icon-lg icon-accent"></i>
                       <h3 className="widtitle">Horario</h3>
-                      <p className="widtag">Lunes 20 de Abril</p>
+                      {/* <p className="widtag">Lunes 20 de Abril</p> */}
                     </div>
                   </div>
                 </div>
@@ -169,7 +169,7 @@ class University extends React.Component {
                     <div className="widdata">
                       <i className="widicon i-docs icon-lg icon-accent"></i>
                       <h3 className="widtitle">Observador</h3>
-                      <p className="widtag">12 nuevas</p>
+                      {/* <p className="widtag">12 nuevas</p> */}
                     </div>
                   </div>
                 </div>
@@ -227,7 +227,7 @@ class University extends React.Component {
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
+                            {/* <tr>
                               <td className="user-inline-img">
                                 <img
                                   src={IMGDIR + "/images/profile/avatar-4.jpg"}
@@ -259,172 +259,8 @@ class University extends React.Component {
                               </td>
                               <td>Ingles</td>
                               <td>11 April 2019</td>
-                            </tr>
-                            <tr>
-                              <td className="user-inline-img">
-                                <img
-                                  src={IMGDIR + "/images/profile/avatar-6.jpg"}
-                                  alt="user avatar"
-                                  className="avatar-image img-inline"
-                                />
-                                Simon Morrison
-                              </td>
-                              <td>Mañana</td>
-                              <td>32332</td>
-                              <td>
-                                <span className="badge">Pending</span>
-                              </td>
-                              <td>
-                                <span className="playlist_song1">
-                                  <div
-                                    className="chart-area"
-                                    style={{
-                                      height: 40 + "px",
-                                      width: 80 + "px",
-                                    }}
-                                  >
-                                    <Bar
-                                      data={playlistCharts6.data}
-                                      options={playlistCharts6.options}
-                                    />
-                                  </div>
-                                </span>
-                              </td>
-                              <td>Ciencias Sociales</td>
-                              <td>21 April 2019</td>
-                            </tr>
-                            <tr>
-                              <td className="user-inline-img">
-                                <img
-                                  src={IMGDIR + "/images/profile/avatar-3.jpg"}
-                                  alt="user avatar"
-                                  className="avatar-image img-inline"
-                                />
-                                Amanda Oliver
-                              </td>
-                              <td>Tarde</td>
-                              <td>76533</td>
-                              <td>
-                                <span className="badge">Approved</span>
-                              </td>
-                              <td>
-                                <span className="playlist_song1">
-                                  <div
-                                    className="chart-area"
-                                    style={{
-                                      height: 40 + "px",
-                                      width: 80 + "px",
-                                    }}
-                                  >
-                                    <Bar
-                                      data={playlistCharts7.data}
-                                      options={playlistCharts7.options}
-                                    />
-                                  </div>
-                                </span>
-                              </td>
-                              <td>Español</td>
-                              <td>15 April 2019</td>
-                            </tr>
-                            <tr>
-                              <td className="user-inline-img">
-                                <img
-                                  src={IMGDIR + "/images/profile/avatar-2.jpg"}
-                                  alt="user avatar"
-                                  className="avatar-image img-inline"
-                                />
-                                Anna Rees
-                              </td>
-                              <td>Nocturna</td>
-                              <td>75646</td>
-                              <td>
-                                <span className="badge">Pending</span>
-                              </td>
-                              <td>
-                                <span className="playlist_song1">
-                                  <div
-                                    className="chart-area"
-                                    style={{
-                                      height: 40 + "px",
-                                      width: 80 + "px",
-                                    }}
-                                  >
-                                    <Bar
-                                      data={playlistCharts8.data}
-                                      options={playlistCharts8.options}
-                                    />
-                                  </div>
-                                </span>
-                              </td>
-                              <td>Ética</td>
-                              <td>12 April 2019</td>
-                            </tr>
-                            <tr>
-                              <td className="user-inline-img">
-                                <img
-                                  src={IMGDIR + "/images/profile/avatar-1.jpg"}
-                                  alt="user avatar"
-                                  className="avatar-image img-inline"
-                                />
-                                Caroline Quinn
-                              </td>
-                              <td>Mañana</td>
-                              <td>64333</td>
-                              <td>
-                                <span className="badge">Approved</span>
-                              </td>
-                              <td>
-                                <span className="playlist_song1">
-                                  <div
-                                    className="chart-area"
-                                    style={{
-                                      height: 40 + "px",
-                                      width: 80 + "px",
-                                    }}
-                                  >
-                                    <Bar
-                                      data={playlistCharts9.data}
-                                      options={playlistCharts9.options}
-                                    />
-                                  </div>
-                                </span>
-                              </td>
-                              <td>Religión</td>
-                              <td>22 April 2019</td>
-                            </tr>
-                            <tr>
-                              <td className="user-inline-img">
-                                <img
-                                  src={IMGDIR + "/images/profile/avatar-9.jpg"}
-                                  alt="user avatar"
-                                  className="avatar-image img-inline"
-                                />
-                                Peter Lee
-                              </td>
-                              <td>Mañana</td>
-                              <td>54567</td>
-                              <td>
-                                <span className="badge">Approved</span>
-                              </td>
-                              <td>
-                                <span className="playlist_song1">
-                                  <div
-                                    className="chart-area"
-                                    style={{
-                                      height: 40 + "px",
-                                      width: 80 + "px",
-                                    }}
-                                  >
-                                    <Bar
-                                      data={playlistCharts10.data}
-                                      options={playlistCharts10.options}
-                                    />
-                                  </div>
-                                </span>
-                              </td>
-                              <td>Español</td>
-                              <td>04 May 2019</td>
-                            </tr>
+                            </tr> */}
+                            
                           </tbody>
                         </Table>
                       </div>

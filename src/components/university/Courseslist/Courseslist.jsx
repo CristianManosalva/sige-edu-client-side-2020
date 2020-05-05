@@ -7,7 +7,7 @@ var BASEDIR = process.env.REACT_APP_BASEDIR
 const Courseslist = (props) => {
   const { teacher_id, materia_id } = props.user
   const tempImg =
-    'https://res.cloudinary.com/duyflkcyn/image/upload/v1588498513/SIGE/Grupos/grupo_temp_kamazz.jpg'
+    ['https://images.pexels.com/photos/2170/creative-desk-pens-school.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', 'https://images.pexels.com/photos/1053687/pexels-photo-1053687.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940']
   return (
     <div className="row">
       {props.courses.map((group, key) => {
@@ -59,7 +59,7 @@ const Courseslist = (props) => {
   <div className="team-img">
   <img
                     className="img-fluid"
-                    src={tempImg}
+                    src={tempImg[0]}
                     alt=""
                     style={{ objectFit: 'cover' }}
                   />
