@@ -1,6 +1,7 @@
 import University from 'views/university/Dashboard/University.jsx'
 import Course from 'views/university/Course/Course.jsx'
 import Subjects from 'views/university/Course/Subjects.jsx'
+import Help from 'views/university/Help/Help.jsx'
 import AddCourse from 'views/university/Course/AddCourse.jsx'
 import CourseView from 'views/university/Course/CourseView.jsx'
 import Library from 'views/university/Library/Library.jsx'
@@ -91,11 +92,11 @@ var dashRoutes = [
   // { path: BASEDIR + '/university/professors', icon: 'event', name: 'Eventos' },
   // { path: BASEDIR + '/university/professors', icon: 'envelope', name: 'Email' },
   {
-    path: '#',
+    path: '/university/help',
     tour: 'joyride-welcome-4',
     icon: 'question',
     name: '¿Te Ayudamos?',
-    component: Library,
+    component: Help,
   },
 
   {
