@@ -23,6 +23,7 @@ import Professorslist from './university/Professorslist/Professorslist'
 import Studentslist from './university/Studentslist/Studentslist'
 import UniStaffslist from './university/UniStaffslist/UniStaffslist'
 import Courseslist from './university/Courseslist/Courseslist'
+import SubjectList from './university/Courseslist/SubjectList'
 
 /*--------------- Hospital Admin Components ------------------*/
 import Doctorslist from './hospital/Doctorslist/Doctorslist'
@@ -92,4 +93,5 @@ export {
   Doctorslist,
   Patientslist,
   Staffslist,
+  SubjectList,
 }
