@@ -3,6 +3,8 @@ import { history } from '_helpers'
 import { Router, Route, Switch, match } from 'react-router-dom'
 import { PrivateRoute } from 'components'
 import indexRoutes from 'routes/index.jsx'
+import { hotjar } from 'react-hotjar';
+hotjar.initialize(1778911, 6);
 
 const App = () => {
   return (

@@ -11,26 +11,8 @@ import logomini from 'assets/img/logo-mini.png'
 import logofulldark from 'assets/img/logo-full-dark.png'
 import logominidark from 'assets/img/logo-mini-dark.png'
 
-<<<<<<< HEAD
-var IMGDIR = process.env.REACT_APP_IMGDIR;
-
-class Sidebar extends React.Component{
-    constructor(props){
-        super(props);
-        this.activeRoute.bind(this);
-        this.state = {
-          opendd: '',
-          openmenu: 'none',
-          profilename: 'Eric Nelson',
-          profileimg: IMGDIR+'/images/profile/profile.jpg',
-          profileposition: 'Docente',
-        };
-        this.handleOpendd = this.handleOpendd.bind(this);
-        this.handlecurrent = this.handlecurrent.bind(this);
-=======
 var ps
 var currentmenu = 'notset'
->>>>>>> master
 
 var IMGDIR = process.env.REACT_APP_IMGDIR
 const SidebarStyle = {
