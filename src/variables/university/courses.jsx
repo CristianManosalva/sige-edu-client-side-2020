@@ -23,7 +23,7 @@ var IMGDIR = process.env.REACT_APP_IMGDIR
 
 const courses = [
   {
-    avatar: IMGDIR + '/images/university/courses/course-1.jpg',
+    avatar: 'https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     name: '6-1  Mañana',
     position: 'Horario',
     length: '1 week',
@@ -31,7 +31,7 @@ const courses = [
       'Their endowment by a prince or monarch and their role in training government officials',
   },
   {
-    avatar: IMGDIR + '/images/university/courses/course-2.jpg',
+    avatar: 'https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     name: '7-1  Tarde',
     position: 'Horario',
     length: '2 weeks',
@@ -39,7 +39,7 @@ const courses = [
       'The first documentary evidence of this comes from early in the life of the University ',
   },
   {
-    avatar: IMGDIR + '/images/university/courses/course-4.jpg',
+    avatar: 'https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     name: '10-1  Mañana',
     position: 'Horario',
     length: '3 weeks',
@@ -47,7 +47,7 @@ const courses = [
       'An important idea in the definition of a university is the notion of academic freedom.',
   },
   {
-    avatar: IMGDIR + '/images/university/courses/course-5.jpg',
+    avatar: 'https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     name: 'Preescolar',
     position: 'Horario',
     length: '2 weeks',
@@ -55,7 +55,7 @@ const courses = [
       'Some scholars, including Makdisi, have argued that early medieval universities were influenced',
   },
   {
-    avatar: IMGDIR + '/images/university/courses/course-8.jpg',
+    avatar: 'https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     name: '3-1 mañana',
     position: 'Horario',
     length: '4 weeks',
@@ -63,7 +63,7 @@ const courses = [
       'The university is generally regarded as a formal institution that has its origin',
   },
   {
-    avatar: IMGDIR + '/images/university/courses/course-9.jpg',
+    avatar: 'https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     name: '5-2 Tarde',
     position: 'Horario',
     length: '1 month',
@@ -71,7 +71,7 @@ const courses = [
       'The earliest universities were developed under the governance to great philosophers',
   },
   {
-    avatar: IMGDIR + '/images/university/courses/course-12.jpg',
+    avatar: 'https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     name: '11-1 Tarde',
     position: 'Horario',
     length: '3 weeks',
@@ -79,7 +79,7 @@ const courses = [
       'The propagation of universities was not necessarily a steady progression in history',
   },
   {
-    avatar: IMGDIR + '/images/university/courses/course-13.jpg',
+    avatar: 'https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     name: '8-2 Mañanas',
     position: 'Horario',
     length: '15 days',

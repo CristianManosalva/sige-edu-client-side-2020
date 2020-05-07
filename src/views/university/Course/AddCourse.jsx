@@ -278,6 +278,8 @@ const AddCourse = () => {
     sMateria: '',
     sWorkSpace: '',
   })
+
+
   const [options, setOptions] = useState([
     {
       value: -1,
@@ -291,6 +293,16 @@ const AddCourse = () => {
     },
   ])
 
+  const stylesLabels = {
+    
+    fontSize : 25,
+  }
+  const styleInputFile = {
+    color: "white",
+      backgroundColor: "DodgerBlue",
+      padding: "10px",
+      fontFamily: "Arial"
+  }
   function handleChange(e) {
     const { name, value } = e.target
     setInputs((inputs) => ({ ...inputs, [name]: value }))
@@ -482,7 +494,7 @@ const AddCourse = () => {
                         <form onSubmit={handleSubmit}>
                           <div className="form-row">
                             <div className="form-group col-md-12">
-                              <label htmlFor="inputname4">
+                              <label htmlFor="inputname4" style={stylesLabels}>
                                 Nombre de la Actividad
                               </label>
                               <input
@@ -496,7 +508,7 @@ const AddCourse = () => {
                               />
                             </div>
                             <div className="form-group col-md-12">
-                              <label htmlFor="description">
+                              <label htmlFor="description" style={stylesLabels}>
                                 Descripcion de la Actividad
                               </label>
                               <Input
@@ -510,7 +522,7 @@ const AddCourse = () => {
                             </div>
 
                             <div className="form-group col-md-12">
-                              <Label htmlFor="exampleSelect3">Grupo</Label>
+                              <Label htmlFor="exampleSelect3"style={stylesLabels}>Grupo</Label>
                               <Select
                                 options={options}
                                 defaultValue={options[0]}
@@ -519,7 +531,7 @@ const AddCourse = () => {
                             </div>
 
                             <div className="form-group col-md-12">
-                              <Label htmlFor="exampleSelect3">Materia</Label>
+                              <Label htmlFor="exampleSelect3" style={stylesLabels}>Materia</Label>
                               <Select
                                 options={subjects}
                                 defaultValue={subjects[0]}
@@ -527,14 +539,14 @@ const AddCourse = () => {
                               />
                             </div>
 
-                            <div className="form-group col-md-12">
-                              <Label htmlFor="exampleFile">
+                            {/* <div className="form-group col-md-12">
+                              <Label htmlFor="exampleFile" style={stylesLabels}>
                                 Cargar Archivo
                               </Label>
-                              <Input type="file" name="file" id="exampleFile" />
-                            </div>
+                              <Input type="file" name="file" color="primary" id="exampleFile" />
+                            </div> */}
                             <div className="form-group col-md-12">
-                              <label htmlFor="input4">Enlace</label>
+                              <label htmlFor="input4" style={stylesLabels}>Enlace</label>
                               <input
                                 type="text"
                                 className="form-control"

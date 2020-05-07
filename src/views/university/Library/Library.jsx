@@ -8,18 +8,18 @@ import {
 
 const header = [
   { title: 'ID', prop: 'id', sortable: true, filterable: true },
-  { title: 'Title', prop: 'title', sortable: true, filterable: true },
-  { title: 'Subject', prop: 'subject', sortable: true, filterable: true },
-  { title: 'Year', prop: 'year', sortable: true, filterable: true },
-  { title: 'Department', prop: 'department', sortable: true, filterable: true },
-  { title: 'Price', prop: 'price', sortable: true, filterable: true },
-  { title: 'Type', prop: 'type', sortable: true, filterable: true },
-  { title: 'Status', prop: 'status', sortable: true, filterable: true },
+  { title: 'Título', prop: 'title', sortable: true, filterable: true },
+  { title: 'Asignatura', prop: 'subject', sortable: true, filterable: true },
+  { title: 'Año', prop: 'year', sortable: true, filterable: true },
+  { title: 'Departamento', prop: 'department', sortable: true, filterable: true },
+  { title: 'Precio', prop: 'price', sortable: true, filterable: true },
+  { title: 'Tipo', prop: 'type', sortable: true, filterable: true },
+  { title: 'Estado', prop: 'status', sortable: true, filterable: true },
 ];
 
 
 
-const body = [{id: 1, title: "Web Programming", subject: "Mechanics", year: "First Year", department: "Automobile Engg.", type: "Book", status: "In Stock", price: "$136.88"},
+const body = [/* {id: 1, title: "Web Programming", subject: "Mechanics", year: "First Year", department: "Automobile Engg.", type: "Book", status: "In Stock", price: "$136.88"},
 {id: 2, title: "Designing", subject: "Mechanics", year: "First Year", department: "Automobile Engg.", type: "Newpaper", status: "Out of Stock", price: "$82.82"},
 {id: 3, title: "Mechanics", subject: "Computer", year: "Second Year", department: "Computer Engineering", type: "DVD", status: "Out of Stock", price: "$151.65"},
 {id: 4, title: "Theory of Relaivity", subject: "Animation", year: "First Year", department: "Civil Engg.", type: "CD", status: "In Stock", price: "$182.81"},
@@ -119,7 +119,7 @@ const body = [{id: 1, title: "Web Programming", subject: "Mechanics", year: "Fir
 {id: 98, title: "Politics", subject: "Graphics", year: "First Year", department: "Mechanical Engineering", type: "DVD", status: "In Stock", price: "$166.12"},
 {id: 99, title: "Management Basics", subject: "Management", year: "Second Year", department: "Automobile Engg.", type: "Newpaper", status: "Out of Stock", price: "$118.85"},
 {id: 100, title: "Animation Graphic Fundamentals", subject: "Graphics", year: "Second Year", department: "MBA", type: "Book", status: "In Stock", price: "$145.11"}
-];
+ */];
 
 const onSortFunction = {
   date(columnValue) {
@@ -136,7 +136,7 @@ const customLabels = {
   next: '>',
   show: 'Display ',
   entries: ' rows',
-  noResults: 'There is no data to be displayed',
+  noResults: 'No hay datos para mostrar',
 };
 
 class Library extends React.Component{

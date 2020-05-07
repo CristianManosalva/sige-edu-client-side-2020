@@ -79,6 +79,7 @@ const Course = () => {
   const { teacher } = useSelector(
     (state) => state.authentication.user.user_data
   )
+
   const teacher_id = teacher.codeTeacher
   const [options, setOptions] = useState([])
   const [groups, setGroups] = useState(courses)
@@ -517,11 +518,16 @@ const Course = () => {
                   <div className="row">
                     <div className="col-4">
                       <Select
+                        placeholder = 'Selecciona un curso...'
                         options={options}
+                        label="Age"
                         defaultValue={options[0]}
                         onChange={handleChangeSelect}
                       />
                     </div>
+                  </div>
+                  <br />
+                  <div className="row">
                     <div className="col-12">
                       <Courseslist
                         courses={groups}
