@@ -13,15 +13,9 @@ const Courseslist = (props) => {
     <div className="row">
       {props.courses.map((group, key) => {
         
-        var jornada = (() => (
-          var nameJourney = '----'
-          if(group.journeyGroup === 1){
-            nameJourney = 'Mañana'
-          }else if(group.journeyGroup === 2){
-            nameJourney = 'Tarde'
-          }
-          return nameJourney
-        ))}
+        var jornada = group.
+        
+
         
             
         var nameGroupCourse = group.nameGroup 
@@ -54,7 +48,7 @@ const Courseslist = (props) => {
                   </NavLink>
                 </h3>
                 <span>Jornada </span>
-                <span>{jornada}</span>
+                <span>{}</span>
                 <p>{group.msg}</p>
                 <ul className="social-icons list-inline list-unstyled">
                   <li className="list-inline-item">
