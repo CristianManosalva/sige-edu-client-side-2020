@@ -52,7 +52,7 @@ const Courseslist = (props) => {
                       `/university/activity/${teacher_id}/${group.nameGroup}/${materia_id}`
                     }
                   >
-                    {group.nameGroup.spl}
+                    {group.nameGroup.split('-')[1]}
                   </NavLink>
                 </h3>
                 <span>Jornada </span>
