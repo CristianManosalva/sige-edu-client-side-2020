@@ -9,7 +9,7 @@ const Help = () => {
           <Col xs={12} md={12}>
             <div className="page-title">
               <div className="float-left">
-                <h1 className="title">Material de ayuda</h1>
+                <h1 className="title">Aquí podemos ayudarte</h1>
               </div>
             </div>
 
