@@ -10,14 +10,11 @@ import AddProfessor from 'views/university/Professor/AddProfessor.jsx'
 import Student from 'views/university/Student/Student.jsx'
 
 var BASEDIR = process.env.REACT_APP_BASEDIR
-
 var dashRoutes = [
   {
     path: BASEDIR + '/university/dashboard',
     name: 'Inicio',
     icon: 'home',
-    tour: 'joyride-welcome-2',
-    badge: '',
     component: University,
   },
   // Options Teacher
@@ -40,9 +37,10 @@ var dashRoutes = [
   },
   {
     path: BASEDIR + '/university/courses',
-    icon: 'people',
+    icon: 'star',
     name: 'Cursos',
-    tour: 'joyride-welcome-3',
+    badge: '',
+    tour: 'joyride-welcome-2',
     component: Course,
   },
   {
@@ -58,39 +56,16 @@ var dashRoutes = [
     path: BASEDIR + '/university/add-course',
     icon: 'arrow-up-circle',
     tour: 'joyride-welcome-3',
-    name: 'Añadir Actividad Online',
+    name: 'Actividad Online',
     component: AddCourse,
   },
-  // {
-  //   path: "#",
-  //   name: "Cursos",
-  //   icon: "folder-alt", type: "dropdown", parentid: "courses",
-  //            child: [
-  //                {
-  //                  path: BASEDIR+"/university/courses",
-  //                  name: "Cursos",
-  //                  component: Course,
-  //                },
-  //                {
-  //                  path: BASEDIR+"/university/add-course",
-  //                  name: "Añadir Actividad Online",
-  //                  component: AddCourse,
-  //                },
-  //            ]
-  //    },
-  // {
-  //   path: BASEDIR + '/university/professors',
-  //   icon: 'chart',
-  //   name: 'Informes'
-  // },
+ 
   {
     path: BASEDIR + '/university/library',
     icon: 'notebook',
     name: 'Biblioteca',
     component: Library,
   },
-  // { path: BASEDIR + '/university/professors', icon: 'event', name: 'Eventos' },
-  // { path: BASEDIR + '/university/professors', icon: 'envelope', name: 'Email' },
   {
     path: '/university/help',
     tour: 'joyride-welcome-4',
@@ -98,7 +73,6 @@ var dashRoutes = [
     name: '¿Te Ayudamos?',
     component: Help,
   },
-
   {
     redirect: true,
     path: BASEDIR + '/',
