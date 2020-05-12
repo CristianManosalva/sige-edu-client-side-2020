@@ -1,10 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
-
 var BASEDIR = process.env.REACT_APP_BASEDIR
-
-
 const Courseslist = (props) => {
   const { teacher_id, materia_id} = props.user
   const tempImg =
