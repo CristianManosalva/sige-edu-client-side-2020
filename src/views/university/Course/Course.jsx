@@ -7,6 +7,22 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`
 
+// {
+//   codeAcademicCharge: 40,
+//   groupDictate: {
+//     nameGroup: '8-02-1-2020',
+//     journeyGroup: 1,
+//     headquarter: 1,
+//     managerGroup: 29,
+//   },
+//   courseDictate: {
+//     codeCourse: 5,
+//     nameCourse: 'Ciencias Económicas y Politicas',
+//     areaCourse: 2,
+//   },
+//   teacherDictate: 26,
+// }
+
 const Course = () => {
   const { teacher } = useSelector(
     (state) => state.authentication.user.user_data
@@ -14,346 +30,10 @@ const Course = () => {
 
   const teacher_id = teacher.codeTeacher
   const [options, setOptions] = useState([])
-  const [groups, setGroups] = useState(courses)
-  const [data, setData] = useState([
-    /* 
-    {
-      codeAcademicCharge: 1,
-      groupDictate: {
-        nameGroup: '10-01-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 28,
-      },
-      courseDictate: {
-        codeCourse: 1,
-        nameCourse: 'Ciencias Naturales Biología',
-        areaCourse: 1,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 2,
-      groupDictate: {
-        nameGroup: '10-02-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 41,
-      },
-      courseDictate: {
-        codeCourse: 1,
-        nameCourse: 'Ciencias Naturales Biología',
-        areaCourse: 1,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 3,
-      groupDictate: {
-        nameGroup: '10-03-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 2,
-      },
-      courseDictate: {
-        codeCourse: 1,
-        nameCourse: 'Ciencias Naturales Biología',
-        areaCourse: 1,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 4,
-      groupDictate: {
-        nameGroup: '10-04-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 35,
-      },
-      courseDictate: {
-        codeCourse: 1,
-        nameCourse: 'Ciencias Naturales Biología',
-        areaCourse: 1,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 16,
-      groupDictate: {
-        nameGroup: '8-01-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 50,
-      },
-      courseDictate: {
-        codeCourse: 1,
-        nameCourse: 'Ciencias Naturales Biología',
-        areaCourse: 1,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 17,
-      groupDictate: {
-        nameGroup: '8-02-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 29,
-      },
-      courseDictate: {
-        codeCourse: 1,
-        nameCourse: 'Ciencias Naturales Biología',
-        areaCourse: 1,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 18,
-      groupDictate: {
-        nameGroup: '8-03-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 26,
-      },
-      courseDictate: {
-        codeCourse: 1,
-        nameCourse: 'Ciencias Naturales Biología',
-        areaCourse: 1,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 39,
-      groupDictate: {
-        nameGroup: '8-01-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 50,
-      },
-      courseDictate: {
-        codeCourse: 5,
-        nameCourse: 'Ciencias Económicas y Politicas',
-        areaCourse: 2,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 40,
-      groupDictate: {
-        nameGroup: '8-02-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 29,
-      },
-      courseDictate: {
-        codeCourse: 5,
-        nameCourse: 'Ciencias Económicas y Politicas',
-        areaCourse: 2,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 41,
-      groupDictate: {
-        nameGroup: '8-03-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 26,
-      },
-      courseDictate: {
-        codeCourse: 5,
-        nameCourse: 'Ciencias Económicas y Politicas',
-        areaCourse: 2,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 42,
-      groupDictate: {
-        nameGroup: '8-04-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 15,
-      },
-      courseDictate: {
-        codeCourse: 5,
-        nameCourse: 'Ciencias Económicas y Politicas',
-        areaCourse: 2,
-      },
-      teacherDictate: 26,
-    },
-   */
-  ])
+  const [groups, setGroups] = useState([])
+  const [data, setData] = useState([])
   const [selectMateria, setSelectMateria] = useState('')
 
-  //use a fect to get this variable
-  /*  const data = [
-    {
-      codeAcademicCharge: 1,
-      groupDictate: {
-        nameGroup: '10-01-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 28,
-      },
-      courseDictate: {
-        codeCourse: 1,
-        nameCourse: 'Ciencias Naturales Biología',
-        areaCourse: 1,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 2,
-      groupDictate: {
-        nameGroup: '10-02-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 41,
-      },
-      courseDictate: {
-        codeCourse: 1,
-        nameCourse: 'Ciencias Naturales Biología',
-        areaCourse: 1,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 3,
-      groupDictate: {
-        nameGroup: '10-03-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 2,
-      },
-      courseDictate: {
-        codeCourse: 1,
-        nameCourse: 'Ciencias Naturales Biología',
-        areaCourse: 1,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 4,
-      groupDictate: {
-        nameGroup: '10-04-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 35,
-      },
-      courseDictate: {
-        codeCourse: 1,
-        nameCourse: 'Ciencias Naturales Biología',
-        areaCourse: 1,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 16,
-      groupDictate: {
-        nameGroup: '8-01-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 50,
-      },
-      courseDictate: {
-        codeCourse: 1,
-        nameCourse: 'Ciencias Naturales Biología',
-        areaCourse: 1,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 17,
-      groupDictate: {
-        nameGroup: '8-02-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 29,
-      },
-      courseDictate: {
-        codeCourse: 1,
-        nameCourse: 'Ciencias Naturales Biología',
-        areaCourse: 1,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 18,
-      groupDictate: {
-        nameGroup: '8-03-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 26,
-      },
-      courseDictate: {
-        codeCourse: 1,
-        nameCourse: 'Ciencias Naturales Biología',
-        areaCourse: 1,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 39,
-      groupDictate: {
-        nameGroup: '8-01-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 50,
-      },
-      courseDictate: {
-        codeCourse: 5,
-        nameCourse: 'Ciencias Económicas y Politicas',
-        areaCourse: 2,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 40,
-      groupDictate: {
-        nameGroup: '8-02-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 29,
-      },
-      courseDictate: {
-        codeCourse: 5,
-        nameCourse: 'Ciencias Económicas y Politicas',
-        areaCourse: 2,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 41,
-      groupDictate: {
-        nameGroup: '8-03-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 26,
-      },
-      courseDictate: {
-        codeCourse: 5,
-        nameCourse: 'Ciencias Económicas y Politicas',
-        areaCourse: 2,
-      },
-      teacherDictate: 26,
-    },
-    {
-      codeAcademicCharge: 42,
-      groupDictate: {
-        nameGroup: '8-04-1-2020',
-        journeyGroup: 1,
-        headquarter: 1,
-        managerGroup: 15,
-      },
-      courseDictate: {
-        codeCourse: 5,
-        nameCourse: 'Ciencias Económicas y Politicas',
-        areaCourse: 2,
-      },
-      teacherDictate: 26,
-    },
-  ] */
   function removeDuplicityAcademic(array) {
     let hash = Object.create(null)
     return array.reduce((result, value) => {
@@ -382,14 +62,6 @@ const Course = () => {
     return array.map(({ groupDictate }, key) => {
       return groupDictate
     })
-  }
-
-  const handleChangeSelect = ({ value }) => {
-    value == -1
-      ? setGroups(allgroups(data))
-      : setGroups(filterGroup(value, data))
-
-    setSelectMateria(value)
   }
 
   function getGroups(teacher_id) {
@@ -427,6 +99,14 @@ const Course = () => {
     setOptions((options) => [...options, ...optionsfromarray])
   }
 
+  const handleChangeSelect = ({ value }) => {
+    value == -1
+      ? setGroups(allgroups(data))
+      : setGroups(filterGroup(value, data))
+
+    setSelectMateria(value)
+  }
+
   useEffect(() => {
     getGroups(teacher_id)
   }, [])
@@ -450,7 +130,7 @@ const Course = () => {
                   <div className="row">
                     <div className="col-4">
                       <Select
-                        placeholder = 'Selecciona un curso...'
+                        placeholder="Selecciona una meteria..."
                         options={options}
                         label="Age"
                         defaultValue={options[0]}
@@ -459,17 +139,29 @@ const Course = () => {
                     </div>
                   </div>
                   <br />
-                  <div className="row">
-                    <div className="col-12">
-                      <Courseslist
-                        courses={groups}
-                        user={{
-                          teacher_id: teacher_id,
-                          materia_id: selectMateria,
-                        }}
-                      />
+                  {selectMateria ? (
+                    <div className="row">
+                      <div className="col-12">
+                        <Courseslist
+                          courses={groups}
+                          user={{
+                            teacher_id: teacher_id,
+                            materia_id: selectMateria,
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="row">
+                      <div className="col-12">
+                        <p>
+                          Por favor Selecciona una asignatura de las que dictas,
+                          para poder mostrarte los grupos a los que enseñas esta
+                          asignatura
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </section>
             </div>
