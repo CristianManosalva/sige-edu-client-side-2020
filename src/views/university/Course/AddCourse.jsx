@@ -234,7 +234,6 @@ const AddCourse = () => {
       .then((response) => response.json())
       .then((data) => {
         let formartSecctionsArray = formatSecctions(data)
-        console.log('data for gerSecctioins by teacher ', formartSecctionsArray)
         formartSecctionsArray.length && setActivities(formartSecctionsArray)
       })
       .catch((error) => console.log(error))
@@ -439,14 +438,17 @@ const AddCourse = () => {
                         <div className="last-activities">
                           <h1>Tus Ultimas Actividades </h1>
                           <div style={styleHeightDiv} className="col-12">
-                            {activities.slice(0, 5).map((value, key) => {
-                              return (
-                                <ActivityCarouselItem
-                                  key={key}
-                                  activity={value}
-                                />
-                              )
-                            })}
+                            {activities
+                              .sort((a, b) => b.codeSecction - a.codeSecction)
+                              .slice(0, 5)
+                              .map((value, key) => {
+                                return (
+                                  <ActivityCarouselItem
+                                    key={key}
+                                    activity={value}
+                                  />
+                                )
+                              })}
                           </div>
                         </div>
                       )}
