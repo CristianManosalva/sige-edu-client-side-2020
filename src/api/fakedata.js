@@ -177,4 +177,8 @@ const contact = [
       'https://res.cloudinary.com/duyflkcyn/image/upload/v1587062835/SIGE/Icons/youtube_64px_ymdaz4.png',
   },
 ]
+
+const videosTutoriales = [
+  
+]
 export { news, clients, contact, grupos, materias }
