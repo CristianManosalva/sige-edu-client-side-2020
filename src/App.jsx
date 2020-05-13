@@ -3,6 +3,8 @@ import { history } from '_helpers'
 import { Router, Route, Switch, match } from 'react-router-dom'
 import { PrivateRoute } from 'components'
 import indexRoutes from 'routes/index.jsx'
+import { hotjar } from 'react-hotjar';
+hotjar.initialize(1778911, 6);
 
 const App = () => {
   return (
@@ -32,22 +34,3 @@ const App = () => {
 }
 
 export default App
-
-/* <Joyride 
-      steps={steps}
-      showProgress = {showProgress}
-      continuous={continuous}
-      run = {run}
-      showSkipButton = {showSkipButton}
-      styles={{
-        options: {
-          arrowColor: '#e3ffeb',
-          backgroundColor: '#e3ffeb',
-          overlayColor: 'rgba(79, 26, 0, 0.4)',
-          primaryColor: '#000',
-          textColor: '#004a14',
-          width: 900,
-          zIndex: 1000,
-        }
-      }}
-      /> */

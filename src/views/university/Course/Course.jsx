@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`
 
-
 // {
 //   codeAcademicCharge: 40,
 //   groupDictate: {
@@ -99,7 +98,7 @@ const Course = () => {
     }, [])
     setOptions((options) => [...options, ...optionsfromarray])
   }
-  
+
   const handleChangeSelect = ({ value }) => {
     value == -1
       ? setGroups(allgroups(data))
@@ -107,8 +106,6 @@ const Course = () => {
 
     setSelectMateria(value)
   }
-
-  
 
   useEffect(() => {
     getGroups(teacher_id)
@@ -133,7 +130,7 @@ const Course = () => {
                   <div className="row">
                     <div className="col-4">
                       <Select
-                        placeholder = 'Selecciona una meteria...'
+                        placeholder="Selecciona una meteria..."
                         options={options}
                         label="Age"
                         defaultValue={options[0]}
@@ -142,21 +139,29 @@ const Course = () => {
                     </div>
                   </div>
                   <br />
-                  {selectMateria ? <div className="row">
-                    <div className="col-12">
-                      <Courseslist
-                        courses={groups}
-                        user={{
-                          teacher_id: teacher_id,
-                          materia_id: selectMateria,
-                        }}
-                      />
+                  {selectMateria ? (
+                    <div className="row">
+                      <div className="col-12">
+                        <Courseslist
+                          courses={groups}
+                          user={{
+                            teacher_id: teacher_id,
+                            materia_id: selectMateria,
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div> : <div className="row">
-                    <div className="col-12">
-                      <p>Por favor Selecciona una asignatura de las que dictas, para poder mostrarte los grupos a los que enseñas esta asignatura</p>
+                  ) : (
+                    <div className="row">
+                      <div className="col-12">
+                        <p>
+                          Por favor Selecciona una asignatura de las que dictas,
+                          para poder mostrarte los grupos a los que enseñas esta
+                          asignatura
+                        </p>
+                      </div>
                     </div>
-                  </div>}
+                  )}
                 </div>
               </section>
             </div>
