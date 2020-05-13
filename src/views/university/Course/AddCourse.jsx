@@ -358,7 +358,10 @@ const AddCourse = () => {
                     />
                   </div>
 
-                  <div className="form-group col-md-12">
+                  <div
+                    className="form-group col-md-12"
+                    style={{ color: 'black' }}
+                  >
                     <Label htmlFor="exampleSelect3" style={stylesLabels}>
                       Grupo
                     </Label>
@@ -370,7 +373,10 @@ const AddCourse = () => {
                     />
                   </div>
 
-                  <div className="form-group col-md-12">
+                  <div
+                    className="form-group col-md-12"
+                    style={{ color: 'black' }}
+                  >
                     <Label htmlFor="exampleSelect3" style={stylesLabels}>
                       Materia
                     </Label>
