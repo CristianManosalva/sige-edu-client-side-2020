@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col } from 'reactstrap';
 import YoutubeVideoHelp from '../../../components/youtube_card/YoutubeVideoHelp';
-const videoIdTutoriales = ['N4Tk98pSJ7E', 'YpLMnziTwCA', 'csx53ZqoQqI' ];
+const videoIdTutoriales = ['9koZzkKjQrE'];
 
 
 const Help = () => {
