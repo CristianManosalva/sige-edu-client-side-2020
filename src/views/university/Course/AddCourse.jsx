@@ -188,9 +188,6 @@ const AddCourse = () => {
       return result
     }, [])
   }
-  // Fin funciones auxiliares
-
-  //Inicio Fecth information
   function getMaterias(array, selectedGroup) {
     // let hash = Object.create(null)
     return array.reduce((result, value) => {
@@ -203,7 +200,17 @@ const AddCourse = () => {
       return result
     }, [])
   }
+  function loadEditableSecction(activity) {
+    console.log(activity)
+    const { nameSecction, descriptionSecction } = activity
+    setInputs({
+      name: nameSecction,
+      description: descriptionSecction,
+    })
+  }
+  // Fin funciones auxiliares
 
+  //Inicio Fecth information
   function getGroups(teacher_id) {
     fetch(api + `/${teacher_id}`, {
       method: 'GET',
@@ -284,15 +291,16 @@ const AddCourse = () => {
   //Fin post request
 
   // Inicio Handle functions
-  const handleChangeSelect = async ({ value }) => {
+  const handleChangeSelect = async (rowData) => {
+    console.log(rowData)
     let materiasPro = await removeDuplicityAcademic(full)
-    let materias = await getMaterias(materiasPro, value)
-    setSelected((selected) => ({ ...selected, sGroup: value }))
+    let materias = await getMaterias(materiasPro, rowData.value)
+    setSelected((selected) => ({ ...selected, sGroup: rowData }))
     setSubjects(materias)
   }
   const handleChangeSelectMateria = ({ value }) => {
     setSelected((selected) => ({ ...selected, sMateria: value }))
-    getWorkSpaces(teacher_id, selected.sGroup, value)
+    getWorkSpaces(teacher_id, selected.sGroup.value, value)
   }
   function handleChange(e) {
     const { name, value } = e.target
@@ -314,6 +322,9 @@ const AddCourse = () => {
   }
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
+  const handle2Modal = () => {
+    setShow2modal(!show2modal)
+  }
   // Fin Handle functions
 
   useEffect(() => {
@@ -358,7 +369,10 @@ const AddCourse = () => {
                     />
                   </div>
 
-                  <div className="form-group col-md-12">
+                  <div
+                    className="form-group col-md-12"
+                    style={{ color: 'black' }}
+                  >
                     <Label htmlFor="exampleSelect3" style={stylesLabels}>
                       Grupo
                     </Label>
@@ -370,7 +384,10 @@ const AddCourse = () => {
                     />
                   </div>
 
-                  <div className="form-group col-md-12">
+                  <div
+                    className="form-group col-md-12"
+                    style={{ color: 'black' }}
+                  >
                     <Label htmlFor="exampleSelect3" style={stylesLabels}>
                       Materia
                     </Label>
@@ -405,6 +422,92 @@ const AddCourse = () => {
           </Modal.Body>
         </Modal>
         {/*FIN MODAL*/}
+        {/*SEGUNDO MODAL*/}
+        <Modal show={show2modal} onHide={handle2Modal}>
+          <Modal.Header style={backgroundBlue} closeButton>
+            <Modal.Title>EDITAR ACTIVIDAD</Modal.Title>
+          </Modal.Header>
+          <Modal.Body style={backgroundBlue}>
+            <div className="content-body">
+              <form onSubmit={handleSubmit}>
+                <div className="form-row">
+                  <div className="form-group col-md-12">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputname4"
+                      placeholder=""
+                      name="name"
+                      placeholder="Nombre de la actividad"
+                      value={name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="form-group col-md-12">
+                    <Input
+                      type="textarea"
+                      name="description"
+                      id="description"
+                      placeholder="Descripcion de la Actividad"
+                      value={description}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div
+                    className="form-group col-md-12"
+                    style={{ color: 'black' }}
+                  >
+                    <Label htmlFor="exampleSelect3" style={stylesLabels}>
+                      Grupo
+                    </Label>
+                    <Select
+                      value={selected.sGroup}
+                      options={options}
+                      defaultValue={options[0]}
+                      onChange={handleChangeSelect}
+                      placeholder="Grupos"
+                    />
+                  </div>
+
+                  <div
+                    className="form-group col-md-12"
+                    style={{ color: 'black' }}
+                  >
+                    <Label htmlFor="exampleSelect3" style={stylesLabels}>
+                      Materia
+                    </Label>
+                    <Select
+                      options={subjects}
+                      defaultValue={subjects[0]}
+                      onChange={handleChangeSelectMateria}
+                    />
+                  </div>
+                  <div className="form-group col-md-12">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="input4"
+                      placeholder=""
+                      name="enlace"
+                      value={enlace}
+                      onChange={handleChange}
+                      placeholder="Enlace"
+                    />
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  style={styleButtonSave}
+                >
+                  Editar
+                </button>
+              </form>
+            </div>
+          </Modal.Body>
+        </Modal>
+        {/*FIN SEGUNDO MODAL*/}
         <Row>
           <Col xs={12} md={12}>
             <div className="page-title">
@@ -438,6 +541,8 @@ const AddCourse = () => {
                                 <ActivityCarouselItem
                                   key={key}
                                   activity={value}
+                                  setShow={handle2Modal}
+                                  load={loadEditableSecction}
                                 />
                               )
                             })}
