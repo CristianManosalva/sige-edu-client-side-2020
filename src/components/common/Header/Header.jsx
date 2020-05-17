@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useState, useEffect } from 'react'
 import {
   Collapse,
   Navbar,
@@ -20,6 +20,9 @@ import dashboardRoutes from 'routes/university.jsx'
 import { connect } from 'react-redux'
 import { messages } from 'variables/topbar.jsx'
 import { notifications } from 'variables/topbar.jsx'
+
+import Modal from 'react-bootstrap/Modal'
+import EditCustomer from '../../../views/crm/Customer/EditCustomer'
 
 var IMGDIR = process.env.REACT_APP_IMGDIR
 var BASEDIR = process.env.REACT_APP_BASEDIR
@@ -53,6 +56,8 @@ class HeaderR extends React.Component {
     this.notificationsddToggle = this.notificationsddToggle.bind(this)
     this.searchToggle = this.searchToggle.bind(this)
   }
+
+
   toggle() {
     if (this.state.isOpen) {
       this.setState({
@@ -246,6 +251,8 @@ class HeaderR extends React.Component {
       // this.refs.chatToggle.classList.toggle('toggled');
     }
   }
+
+  
   render() {
     return (
       // add or remove classes depending if we are on full-screen-maps page or not
@@ -324,6 +331,32 @@ class HeaderR extends React.Component {
                   {/* <DropdownItem tag="a">
                     <i className="i-info" href="#!"></i> Ayuda
                   </DropdownItem> */}
+
+                  {/**  dropdown de editar perfil */}
+                  <DropdownItem
+                    onClick={() => {
+                    }}
+                    tag="a"
+                    className=""
+                    href="#!"
+                  >
+                    <i className="i-user" href="#!"></i>Perfil
+                  </DropdownItem>
+                  {/**  fin dropdown de editar perfil */}
+
+                  
+                  {/**dropdown configuración{cambiar contraseña} */}
+                  <DropdownItem
+                    onClick={() => {
+                      console.log("componente cambiar contraseña")
+                    }}
+                    tag="a"
+                    className=""
+                    href="#!"
+                  >
+                    <i className="i-settings" href="#!"></i>Configuración
+                  </DropdownItem>
+                  {/**fin dropdown configuración */}
                   <DropdownItem
                     onClick={() => {
                       localStorage.removeItem('userv2')
