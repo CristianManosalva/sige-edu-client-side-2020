@@ -3,9 +3,12 @@ import { Row, Col } from 'reactstrap'
 import { Courseslist } from 'components'
 import { courses } from 'variables/university/courses.jsx'
 import Select from 'react-select'
-import { useDispatch, useSelector } from 'react-redux'
+import JoyRide, { ACTIONS, EVENTS, STATUS } from "react-joyride";
+import SelectCourseModal from '../../../modal/SelectCourseModal'
+import { useDispatch, useSelector } from 'react-redux';
 
-const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`
+const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`;
+const nameCourses = [];
 
 const Course = () => {
   const { teacher } = useSelector(
@@ -14,11 +17,10 @@ const Course = () => {
 
   const teacher_id = teacher.codeTeacher
   const [options, setOptions] = useState([])
-  const [groups, setGroups] = useState(courses)
-  const [data, setData] = useState([
-    
-  ])
+  const [groups, setGroups] = useState([])
+  const [data, setData] = useState([])
   const [selectMateria, setSelectMateria] = useState('')
+
   function removeDuplicityAcademic(array) {
     let hash = Object.create(null)
     return array.reduce((result, value) => {
@@ -30,6 +32,7 @@ const Course = () => {
         ] = true
         result.push(value)
       }
+
       return result
     }, [])
   }
@@ -49,14 +52,6 @@ const Course = () => {
     })
   }
 
-  const handleChangeSelect = ({ value }) => {
-    value == -1
-      ? setGroups(allgroups(data))
-      : setGroups(filterGroup(value, data))
-
-    setSelectMateria(value)
-  }
-
   function getGroups(teacher_id) {
     fetch(api + `/${teacher_id}`, {
       method: 'GET',
@@ -68,14 +63,16 @@ const Course = () => {
       .then((response) => response.json())
       .then((data) => {
         let depuredData = removeDuplicityAcademic(data)
-        console.log('Depurado', depuredData)
+        // console.log('Depurado', depuredData)
         setData(depuredData)
+        // console.log(depuredData);
         setGroups(allgroups(depuredData))
         filterMaterias(depuredData)
       })
       .catch((error) => console.log(error))
-      .finally(() => {})
+      .finally(() => { })
   }
+
 
   function filterMaterias(array) {
     let hash = Object.create(null)
@@ -86,10 +83,24 @@ const Course = () => {
           label: value.courseDictate.nameCourse,
           value: value.courseDictate.codeCourse,
         })
+        let namescourses = `${value.courseDictate.nameCourse}`;
+        let codecourses = `${value.courseDictate.codeCourse}`;
+        nameCourses.push({
+          key: codecourses,
+          value: namescourses
+        });
       }
       return result
     }, [])
     setOptions((options) => [...options, ...optionsfromarray])
+  }
+
+  const handleChangeSelect = ({ value }) => {
+    value == -1
+      ? setGroups(allgroups(data))
+      : setGroups(filterGroup(value, data))
+
+    setSelectMateria(value)
   }
 
   useEffect(() => {
@@ -97,8 +108,10 @@ const Course = () => {
   }, [])
 
   return (
+    
     <div>
       <div className="content">
+        <SelectCourseModal />
         <Row>
           <Col xs={12} md={12}>
             <div className="page-title">
@@ -115,9 +128,10 @@ const Course = () => {
                   <div className="row">
                     <div className="col-4">
                       <Select
-                        placeholder = 'Selecciona un curso...'
+                        placeholder="Selecciona una meteria..."
                         options={options}
                         label="Age"
+                        className="nameCourse"
                         defaultValue={options[0]}
                         onChange={handleChangeSelect}
                       />
@@ -125,13 +139,15 @@ const Course = () => {
                   </div>
                   <br />
                   <div className="row">
-                    <div className="col-12">
+                    <div className="groupsCharge">
+
                       <Courseslist
                         courses={groups}
                         user={{
                           teacher_id: teacher_id,
                           materia_id: selectMateria,
                         }}
+                        nameCourses={nameCourses}
                       />
                     </div>
                   </div>

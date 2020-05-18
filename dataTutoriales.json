@@ -1,22 +1,22 @@
 {
   "tutorial": [
     {
-      "id": null,
-      "Name": "Inicio de Sesión",
-      "Description": "lorem impus..",
-      "Type": "video/doc",
-      "idVideo": "kkj",
-      "Url": "url",
-      "Like": 12
+      "nameTutorial": "Inicio de Sesión",
+      "typeTutorial": "Video",
+      "urlTutorial": "9koZzkKjQrE",
+      "likeTutorial": "null"
     },
     {
-      "id": null,
-      "Name": "Inicio de Sesión",
-      "Description": "lorem impus..",
-      "Type": "video/doc",
-      "idVideo": "kkj",
-      "Url": "url",
-      "Like": 12
+      "nameTutorial": "Buscar por Cursos",
+      "typeTutorial": "Video",
+      "urlTutorial": "-Gy1smHRD58",
+      "likeTutorial": "null"
+    },
+    {
+      "nameTutorial": "Ver Actividades Creadas",
+      "typeTutorial": "Video",
+      "urlTutorial": "sFQmqu2kE9A",
+      "likeTutorial": "null"
     }
   ],
   "profile": {

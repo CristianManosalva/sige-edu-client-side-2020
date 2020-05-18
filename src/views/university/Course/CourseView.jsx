@@ -7,29 +7,14 @@ var IMGDIR = process.env.REACT_APP_IMGDIR
 
 const CourseProfile = (props) => {
   const { id_teacher, id_group, id_materia } = props.match.params
-  console.log('Los params: ', props.match.params)
-  const [secctions, setSecctions] = useState([
-    {
-      codeSecction: 1,
-      nameSecction: 'El renacimiento',
-      descriptionSecction: 'Leer el documento adjunto y resolver las preguntas',
-      uploadOnSecction: '2020-01-01',
-      workspaceSecction: 17,
-    },
-    {
-      codeSecction: 1,
-      nameSecction: 'El renacimiento',
-      descriptionSecction: 'Leer el documento adjunto y resolver las preguntas',
-      uploadOnSecction: '2020-01-01',
-      workspaceSecction: 17,
-    },
-  ])
+  // console.log('Los parametros: ', props.match.params)
+  const [secctions, setSecctions] = useState([])
 
   function removeDuplicityWork(array, codeMateria) {
     let hash = Object.create(null)
     let filter = array.reduce((result, value) => {
       if (!hash[value.nameWorkSpace]) {
-        console.log(value.nameWorkSpace)
+        //console.log(value.nameWorkSpace)
         hash[value.nameWorkSpace] = true
         result.push(value)
       }
@@ -80,9 +65,15 @@ const CourseProfile = (props) => {
                 <h1 className="title">Actividades</h1>
               </div>
             </div>
-            {secctions.map((value, key) => {
-              return <ActivityItem activity={value} key={key} />
-            })}
+            {secctions.length ? (
+              secctions.map((value, key) => {
+                return <ActivityItem activity={value} key={key} />
+              })
+            ) : (
+              <p>
+                No Tienes ninguna actividad con este grupo para esta materia
+              </p>
+            )}
           </Col>
         </Row>
       </div>
