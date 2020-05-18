@@ -7,14 +7,14 @@ var IMGDIR = process.env.REACT_APP_IMGDIR
 
 const CourseProfile = (props) => {
   const { id_teacher, id_group, id_materia } = props.match.params
-  console.log('Los params: ', props.match.params)
+  // console.log('Los parametros: ', props.match.params)
   const [secctions, setSecctions] = useState([])
 
   function removeDuplicityWork(array, codeMateria) {
     let hash = Object.create(null)
     let filter = array.reduce((result, value) => {
       if (!hash[value.nameWorkSpace]) {
-        console.log(value.nameWorkSpace)
+        //console.log(value.nameWorkSpace)
         hash[value.nameWorkSpace] = true
         result.push(value)
       }

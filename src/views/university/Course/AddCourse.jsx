@@ -4,32 +4,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { config } from '_config'
 import Button from '@material-ui/core/Button'
 import {
-  NavBarLogout,
-  NewsCarouselItem,
-  Carousel,
-  ClientCarouselItem,
-  ContactIcon,
-  LoginForm,
   ActivityCarouselItem,
 } from 'components'
-import { Container } from 'reactstrap'
-import { news, clients, contact } from 'api/fakedata'
-//import img
-import logoCard1 from 'assets/img/background-card1.jpg'
-import logoCard2 from 'assets/img/background-card2.jpeg'
 
 // import InputMask from 'react-input-mask';
 import 'react-datepicker/dist/react-datepicker.css'
-import DatePicker from 'react-datepicker'
-import moment from 'moment'
 import Select from 'react-select'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Modal from 'react-bootstrap/Modal'
-import Backdrop from '@material-ui/core/Backdrop'
-import Fade from '@material-ui/core/Fade'
-
-import { /* grupos, */ materias } from 'api/fakedata'
 
 const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`
 const apiSecction = `http://api.sige-edu.com:8000/api/secctions/secction/create/`
@@ -308,7 +291,7 @@ const AddCourse = () => {
       }
       createSecction(body)
     } else {
-      alert('Por favor escribe el nombre y la descripcion de la actividad')
+      alert('Escribe el nombre y la descripción de la actividad')
     }
   }
   const handleClose = () => setShow(false)

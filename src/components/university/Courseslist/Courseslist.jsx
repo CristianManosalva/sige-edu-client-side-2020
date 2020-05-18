@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import JoyRide from "react-joyride";
 import { NavLink } from 'react-router-dom'
-var BASEDIR = process.env.REACT_APP_BASEDIR
-const Courseslist = (props) => {
+
+  var BASEDIR = process.env.REACT_APP_BASEDIR
+  const Courseslist = (props) => {
+
   const { teacher_id, materia_id } = props.user
+  const { nameCourses } = props.nameCourses
+  
   const tempImg = [
     'https://images.pexels.com/photos/2170/creative-desk-pens-school.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     'https://images.pexels.com/photos/1053687/pexels-photo-1053687.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
@@ -33,6 +38,7 @@ const Courseslist = (props) => {
     <div className="row">
       {props.courses.map((group, key) => {
         var nameJourneyGroup
+        
         if (group.journeyGroup == 1) {
           nameJourneyGroup = 'Mañana'
         } else if (group.journeyGroup == 2) {
@@ -64,27 +70,26 @@ const Courseslist = (props) => {
                   style={{ objectFit: 'cover' }}
                 />
               </div>
+              
               <div className="team-info">
-                <h3>
-                  <NavLink
-                    to={
-                      BASEDIR +
-                      `/university/activity/${teacher_id}/${group.nameGroup}/${materia_id}`
-                    }
-                  >
-                    {nameGroup}
-                  </NavLink>
-                </h3>
-                <span>Jornada </span>
-                <span>{nameJourneyGroup}</span>
-                <p>{group.msg}</p>
-                <ul className="social-icons list-inline list-unstyled">
-                  <li className="list-inline-item">
-                    <a href="#!">
-                      <i className="i-envelope icon-primary icon-xs"></i>
-                    </a>
-                  </li>
-                </ul>
+                {materia_id ? (
+                  console.log('0', materia_id),
+                  <h3>
+                    <NavLink
+                      to={
+                        BASEDIR +
+                        `/university/activity/${teacher_id}/${group.nameGroup}/${materia_id}`
+                      }
+                    >
+                      {nameGroup}
+                    </NavLink>
+                  </h3>
+                ) : (
+                    console.log('1----', materia_id),
+                    <div>
+                      
+                    </div>
+                  )}
               </div>
             </div>
           </div>

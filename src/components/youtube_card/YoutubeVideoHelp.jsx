@@ -10,12 +10,17 @@ const YoutubeVideoHelp = (props) => {
   return (
     <div className="row">
       {props.videoId.map((videoId) => {
-        console.log(videoId);
+        // console.log(videoId.urlTutorial);
         return (
-          <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3" >
+          <div className="col-xs-12 col-sm-6" >
             <div className="team-member">
               <div className="col-12">
-                <VideosYoutube videoId={videoId} />
+                <VideosYoutube videoId={videoId.urlTutorial} />
+              </div>
+              <div className="user-info">
+                <h3>
+                  {videoId.nameTutorial}
+                </h3>
               </div>
             </div>
           </div>
@@ -23,10 +28,6 @@ const YoutubeVideoHelp = (props) => {
       })}
     </div>
   )
-}
-
-YoutubeVideoHelp.propTypes = {
-  videos: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default YoutubeVideoHelp

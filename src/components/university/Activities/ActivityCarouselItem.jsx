@@ -30,7 +30,7 @@ const logoCard3 =
   'https://www.speakymagazine.com/wp-content/uploads/2018/07/How-to-overcome-the-study-block-The-advice-of-the-psychologist.jpg'
 
 const ActivityCarouselItem = (props) => {
-  console.log(props)
+  // console.log(props)
   const { activity } = props
   return (
     <div style={styleTeamMember} className="team-member">

@@ -98,18 +98,18 @@ const LoginForm = (props) => {
             </Button>
           </Col>
           <Col xs="12">
-            <p className="form-login-p-forgotpass">
+            {/* <p className="form-login-p-forgotpass">
               ¿Has olvidado tu contraseña?
-            </p>
+            </p> */}
           </Col>
           <Col xs="12">
             <hr className="line-separation" />
           </Col>
           <Col xs="12">
-            <p className="footer-form">
+            {/* <p className="footer-form">
               ¿No tienes cuenta?
               <Link to="#">Regístrate</Link>
-            </p>
+            </p> */}
           </Col>
         </Form>
       </Container>
