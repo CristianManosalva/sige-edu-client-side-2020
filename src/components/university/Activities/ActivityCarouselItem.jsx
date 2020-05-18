@@ -38,7 +38,15 @@ const ActivityCarouselItem = (props) => {
         <img className="img-fluid" src={logoCard3} alt="" />
       </div>
       <div style={styleDivCreate}>
-        <span style={styleIconCreate} className="material-icons">
+        <span
+          style={styleIconCreate}
+          className="material-icons"
+          onClick={() => {
+            // props.load(activity)
+            // props.setShow()
+            console.log('In button')
+          }}
+        >
           create
         </span>
       </div>
