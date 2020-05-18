@@ -6,7 +6,7 @@ export const userService = {
 }
 
 function login(documentIdUser, passwordUser) {
-  console.log('Document ', documentIdUser)
+  // console.log('Document ', documentIdUser)
   const options = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -16,7 +16,7 @@ function login(documentIdUser, passwordUser) {
     }),
   }
 
-  console.log('Options: ', options)
+  // console.log('Options: ', options)
   return fetch(`${config.apiOficial}/users/login/`, options)
     .then(handleResponse)
     .then(({ data }) => {
@@ -34,7 +34,7 @@ function logout() {
 }
 
 function handleResponse(response) {
-  console.log('LA response: ', response)
+  // console.log('LA response: ', response)
   return response.json().then((data) => {
     //return response.text().then((text) => {
     // const data = text && JSON.parse(text)

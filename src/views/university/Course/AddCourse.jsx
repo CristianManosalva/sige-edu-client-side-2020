@@ -3,33 +3,14 @@ import { Row, Col, Label, Input } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { config } from '_config'
 import Button from '@material-ui/core/Button'
-import {
-  NavBarLogout,
-  NewsCarouselItem,
-  Carousel,
-  ClientCarouselItem,
-  ContactIcon,
-  LoginForm,
-  ActivityCarouselItem,
-} from 'components'
-import { Container } from 'reactstrap'
-import { news, clients, contact } from 'api/fakedata'
-//import img
-import logoCard1 from 'assets/img/background-card1.jpg'
-import logoCard2 from 'assets/img/background-card2.jpeg'
+import { ActivityCarouselItem } from 'components'
 
 // import InputMask from 'react-input-mask';
 import 'react-datepicker/dist/react-datepicker.css'
-import DatePicker from 'react-datepicker'
-import moment from 'moment'
 import Select from 'react-select'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Modal from 'react-bootstrap/Modal'
-import Backdrop from '@material-ui/core/Backdrop'
-import Fade from '@material-ui/core/Fade'
-
-import { /* grupos, */ materias } from 'api/fakedata'
 
 const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`
 const apiSecction = `http://api.sige-edu.com:8000/api/secctions/secction/create/`
@@ -241,7 +222,6 @@ const AddCourse = () => {
       .then((response) => response.json())
       .then((data) => {
         let formartSecctionsArray = formatSecctions(data)
-        console.log('data for gerSecctioins by teacher ', formartSecctionsArray)
         formartSecctionsArray.length && setActivities(formartSecctionsArray)
       })
       .catch((error) => console.log(error))
@@ -317,7 +297,7 @@ const AddCourse = () => {
       }
       createSecction(body)
     } else {
-      alert('Por favor escribe el nombre y la descripcion de la actividad')
+      alert('Escribe el nombre y la descripción de la actividad')
     }
   }
   const handleClose = () => setShow(false)
@@ -536,16 +516,17 @@ const AddCourse = () => {
                         <div className="last-activities">
                           <h1>Tus Ultimas Actividades </h1>
                           <div style={styleHeightDiv} className="col-12">
-                            {activities.slice(0, 5).map((value, key) => {
-                              return (
-                                <ActivityCarouselItem
-                                  key={key}
-                                  activity={value}
-                                  setShow={handle2Modal}
-                                  load={loadEditableSecction}
-                                />
-                              )
-                            })}
+                            {activities
+                              .sort((a, b) => b.codeSecction - a.codeSecction)
+                              .slice(0, 5)
+                              .map((value, key) => {
+                                return (
+                                  <ActivityCarouselItem
+                                    key={key}
+                                    activity={value}
+                                  />
+                                )
+                              })}
                           </div>
                         </div>
                       )}
