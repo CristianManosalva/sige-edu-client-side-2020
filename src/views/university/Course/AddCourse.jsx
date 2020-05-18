@@ -3,33 +3,14 @@ import { Row, Col, Label, Input } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { config } from '_config'
 import Button from '@material-ui/core/Button'
-import {
-  NavBarLogout,
-  NewsCarouselItem,
-  Carousel,
-  ClientCarouselItem,
-  ContactIcon,
-  LoginForm,
-  ActivityCarouselItem,
-} from 'components'
-import { Container } from 'reactstrap'
-import { news, clients, contact } from 'api/fakedata'
-//import img
-import logoCard1 from 'assets/img/background-card1.jpg'
-import logoCard2 from 'assets/img/background-card2.jpeg'
+import { ActivityCarouselItem } from 'components'
 
 // import InputMask from 'react-input-mask';
 import 'react-datepicker/dist/react-datepicker.css'
-import DatePicker from 'react-datepicker'
-import moment from 'moment'
 import Select from 'react-select'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Modal from 'react-bootstrap/Modal'
-import Backdrop from '@material-ui/core/Backdrop'
-import Fade from '@material-ui/core/Fade'
-
-import { /* grupos, */ materias } from 'api/fakedata'
 
 const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`
 const apiSecction = `http://api.sige-edu.com:8000/api/secctions/secction/create/`
@@ -188,9 +169,6 @@ const AddCourse = () => {
       return result
     }, [])
   }
-  // Fin funciones auxiliares
-
-  //Inicio Fecth information
   function getMaterias(array, selectedGroup) {
     // let hash = Object.create(null)
     return array.reduce((result, value) => {
@@ -203,7 +181,17 @@ const AddCourse = () => {
       return result
     }, [])
   }
+  function loadEditableSecction(activity) {
+    console.log(activity)
+    const { nameSecction, descriptionSecction } = activity
+    setInputs({
+      name: nameSecction,
+      description: descriptionSecction,
+    })
+  }
+  // Fin funciones auxiliares
 
+  //Inicio Fecth information
   function getGroups(teacher_id) {
     fetch(api + `/${teacher_id}`, {
       method: 'GET',
@@ -283,15 +271,16 @@ const AddCourse = () => {
   //Fin post request
 
   // Inicio Handle functions
-  const handleChangeSelect = async ({ value }) => {
+  const handleChangeSelect = async (rowData) => {
+    console.log(rowData)
     let materiasPro = await removeDuplicityAcademic(full)
-    let materias = await getMaterias(materiasPro, value)
-    setSelected((selected) => ({ ...selected, sGroup: value }))
+    let materias = await getMaterias(materiasPro, rowData.value)
+    setSelected((selected) => ({ ...selected, sGroup: rowData }))
     setSubjects(materias)
   }
   const handleChangeSelectMateria = ({ value }) => {
     setSelected((selected) => ({ ...selected, sMateria: value }))
-    getWorkSpaces(teacher_id, selected.sGroup, value)
+    getWorkSpaces(teacher_id, selected.sGroup.value, value)
   }
   function handleChange(e) {
     const { name, value } = e.target
@@ -308,11 +297,14 @@ const AddCourse = () => {
       }
       createSecction(body)
     } else {
-      alert('Por favor escribe el nombre y la descripcion de la actividad')
+      alert('Escribe el nombre y la descripción de la actividad')
     }
   }
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
+  const handle2Modal = () => {
+    setShow2modal(!show2modal)
+  }
   // Fin Handle functions
 
   useEffect(() => {
@@ -410,6 +402,92 @@ const AddCourse = () => {
           </Modal.Body>
         </Modal>
         {/*FIN MODAL*/}
+        {/*SEGUNDO MODAL*/}
+        <Modal show={show2modal} onHide={handle2Modal}>
+          <Modal.Header style={backgroundBlue} closeButton>
+            <Modal.Title>EDITAR ACTIVIDAD</Modal.Title>
+          </Modal.Header>
+          <Modal.Body style={backgroundBlue}>
+            <div className="content-body">
+              <form onSubmit={handleSubmit}>
+                <div className="form-row">
+                  <div className="form-group col-md-12">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="inputname4"
+                      placeholder=""
+                      name="name"
+                      placeholder="Nombre de la actividad"
+                      value={name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="form-group col-md-12">
+                    <Input
+                      type="textarea"
+                      name="description"
+                      id="description"
+                      placeholder="Descripcion de la Actividad"
+                      value={description}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div
+                    className="form-group col-md-12"
+                    style={{ color: 'black' }}
+                  >
+                    <Label htmlFor="exampleSelect3" style={stylesLabels}>
+                      Grupo
+                    </Label>
+                    <Select
+                      value={selected.sGroup}
+                      options={options}
+                      defaultValue={options[0]}
+                      onChange={handleChangeSelect}
+                      placeholder="Grupos"
+                    />
+                  </div>
+
+                  <div
+                    className="form-group col-md-12"
+                    style={{ color: 'black' }}
+                  >
+                    <Label htmlFor="exampleSelect3" style={stylesLabels}>
+                      Materia
+                    </Label>
+                    <Select
+                      options={subjects}
+                      defaultValue={subjects[0]}
+                      onChange={handleChangeSelectMateria}
+                    />
+                  </div>
+                  <div className="form-group col-md-12">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="input4"
+                      placeholder=""
+                      name="enlace"
+                      value={enlace}
+                      onChange={handleChange}
+                      placeholder="Enlace"
+                    />
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  style={styleButtonSave}
+                >
+                  Editar
+                </button>
+              </form>
+            </div>
+          </Modal.Body>
+        </Modal>
+        {/*FIN SEGUNDO MODAL*/}
         <Row>
           <Col xs={12} md={12}>
             <div className="page-title">

@@ -7,6 +7,7 @@ import { hotjar } from 'react-hotjar';
 hotjar.initialize(1778911, 6);
 
 const App = () => {
+  
   return (
     <Router history={history} basename={process.env.REACT_APP_BASEDIR}>
       <Switch>

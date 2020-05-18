@@ -3,25 +3,12 @@ import { Row, Col } from 'reactstrap'
 import { Courseslist } from 'components'
 import { courses } from 'variables/university/courses.jsx'
 import Select from 'react-select'
-import { useDispatch, useSelector } from 'react-redux'
+import JoyRide, { ACTIONS, EVENTS, STATUS } from "react-joyride";
+import SelectCourseModal from '../../../modal/SelectCourseModal'
+import { useDispatch, useSelector } from 'react-redux';
 
-const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`
-
-// {
-//   codeAcademicCharge: 40,
-//   groupDictate: {
-//     nameGroup: '8-02-1-2020',
-//     journeyGroup: 1,
-//     headquarter: 1,
-//     managerGroup: 29,
-//   },
-//   courseDictate: {
-//     codeCourse: 5,
-//     nameCourse: 'Ciencias Económicas y Politicas',
-//     areaCourse: 2,
-//   },
-//   teacherDictate: 26,
-// }
+const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`;
+const nameCourses = [];
 
 const Course = () => {
   const { teacher } = useSelector(
@@ -45,6 +32,7 @@ const Course = () => {
         ] = true
         result.push(value)
       }
+
       return result
     }, [])
   }
@@ -75,14 +63,16 @@ const Course = () => {
       .then((response) => response.json())
       .then((data) => {
         let depuredData = removeDuplicityAcademic(data)
-        console.log('Depurado', depuredData)
+        // console.log('Depurado', depuredData)
         setData(depuredData)
+        // console.log(depuredData);
         setGroups(allgroups(depuredData))
         filterMaterias(depuredData)
       })
       .catch((error) => console.log(error))
-      .finally(() => {})
+      .finally(() => { })
   }
+
 
   function filterMaterias(array) {
     let hash = Object.create(null)
@@ -93,6 +83,12 @@ const Course = () => {
           label: value.courseDictate.nameCourse,
           value: value.courseDictate.codeCourse,
         })
+        let namescourses = `${value.courseDictate.nameCourse}`;
+        let codecourses = `${value.courseDictate.codeCourse}`;
+        nameCourses.push({
+          key: codecourses,
+          value: namescourses
+        });
       }
       return result
     }, [])
@@ -112,8 +108,10 @@ const Course = () => {
   }, [])
 
   return (
+    
     <div>
       <div className="content">
+        <SelectCourseModal />
         <Row>
           <Col xs={12} md={12}>
             <div className="page-title">
@@ -133,35 +131,26 @@ const Course = () => {
                         placeholder="Selecciona una meteria..."
                         options={options}
                         label="Age"
+                        className="nameCourse"
                         defaultValue={options[0]}
                         onChange={handleChangeSelect}
                       />
                     </div>
                   </div>
                   <br />
-                  {selectMateria ? (
-                    <div className="row">
-                      <div className="col-12">
-                        <Courseslist
-                          courses={groups}
-                          user={{
-                            teacher_id: teacher_id,
-                            materia_id: selectMateria,
-                          }}
-                        />
-                      </div>
+                  <div className="row">
+                    <div className="groupsCharge">
+
+                      <Courseslist
+                        courses={groups}
+                        user={{
+                          teacher_id: teacher_id,
+                          materia_id: selectMateria,
+                        }}
+                        nameCourses={nameCourses}
+                      />
                     </div>
-                  ) : (
-                    <div className="row">
-                      <div className="col-12">
-                        <p>
-                          Por favor Selecciona una asignatura de las que dictas,
-                          para poder mostrarte los grupos a los que enseñas esta
-                          asignatura
-                        </p>
-                      </div>
-                    </div>
-                  )}
+                  </div>
                 </div>
               </section>
             </div>
