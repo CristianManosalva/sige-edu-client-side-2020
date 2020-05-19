@@ -8,7 +8,7 @@ import { ActivityCarouselItem } from 'components'
 // import InputMask from 'react-input-mask';
 import 'react-datepicker/dist/react-datepicker.css'
 import Select from 'react-select'
-
+import UseModalAddActivity from '../../../modal/UseModalAddActivity'
 import { makeStyles } from '@material-ui/core/styles'
 import Modal from 'react-bootstrap/Modal'
 
@@ -315,8 +315,10 @@ const AddCourse = () => {
   const { name, description, enlace } = inputs
 
   return (
+    
     <div>
       <div className="content">
+      <UseModalAddActivity />
         {/*MODAL*/}
         <Modal show={show} onHide={handleClose}>
           <Modal.Header style={backgroundBlue} closeButton>
@@ -514,7 +516,7 @@ const AddCourse = () => {
                     <div className="col-12">
                       {activities.length > 0 && (
                         <div className="last-activities">
-                          <h1>Tus Ultimas Actividades </h1>
+                          <h1>Tus Últimas Actividades </h1>
                           <div style={styleHeightDiv} className="col-12">
                             {activities
                               .sort((a, b) => b.codeSecction - a.codeSecction)

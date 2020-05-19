@@ -12,7 +12,7 @@ class VideosYoutube extends Component {
   render() {
     const opts = {
       height: '400',
-      width: '500',
+      width: '450',
       playerVars: {
         // https://developers.google.com/youtube/player_parameters
         autoplay: 1,

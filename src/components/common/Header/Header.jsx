@@ -23,6 +23,8 @@ import { notifications } from 'variables/topbar.jsx'
 
 var IMGDIR = process.env.REACT_APP_IMGDIR
 var BASEDIR = process.env.REACT_APP_BASEDIR
+let user = JSON.parse(localStorage.getItem('userv2'))
+var nameUserProfile = user.user_data.user.firstNameUser;
 
 const navStyle = {
   backgroundColor: '#1EAEDF',
@@ -304,7 +306,8 @@ class HeaderR extends React.Component {
                     alt="react-logo"
                     className="avatar-image"
                   />{' '}
-                  <span>{this.state.profilename}</span>
+                  <span>{nameUserProfile}</span>
+                  {console.log('this.state', this.state)}
                 </DropdownToggle>
                 <DropdownMenu right>
                   {/* <DropdownItem tag="a">
