@@ -11,7 +11,7 @@ const SelectCourseModal = () => {
         title: <div><h6>El hombre que es un maestro de la paciencia es un maestro de todo lo demás (George Saville)</h6></div>,
         target: "body",
         placement: "center",
-        content: <div><h4><bold>Vamos a seleccionar una Asignatura.</bold></h4><p>Arranquemos...!!  </p></div>,
+        content: <div><h4>Vamos a seleccionar una Asignatura.</h4><p>Arranquemos...!!  </p></div>,
         disableBeacon: true,
         locale: { back: 'Atras', close: 'Cerrar', last: 'Último', next: 'Siguiente', skip: 'Omitir' }
       },

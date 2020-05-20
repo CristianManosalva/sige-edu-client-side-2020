@@ -26,8 +26,7 @@ function login(documentIdUser, passwordUser) {
           alert('Estamos construyendo tu dashboard')
         }
         if (user.user_data.staff) {
-          history.push('/home')
-          alert('Estamos construyendo tu dashboard')
+          history.push('/')
         }
       },
       (error) => {

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'reactstrap'
 import { Courseslist } from 'components'
-import { courses } from 'variables/university/courses.jsx'
 import Select from 'react-select'
-import JoyRide, { ACTIONS, EVENTS, STATUS } from "react-joyride";
 import SelectCourseModal from '../../../modal/SelectCourseModal'
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -128,7 +126,7 @@ const Course = () => {
                   <div className="row">
                     <div className="col-4">
                       <Select
-                        placeholder="Selecciona una meteria..."
+                        placeholder="Selecciona una Asignatura..."
                         options={options}
                         label="Age"
                         className="nameCourse"

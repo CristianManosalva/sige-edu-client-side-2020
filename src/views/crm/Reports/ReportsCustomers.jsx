@@ -12,10 +12,10 @@ class CrmReportsCustomers extends React.Component{
 
     render(){
       const data = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+  labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
   datasets: [
     {
-      label: 'New Customers',
+      label: 'Semana Actual',
       fill: true,
       lineTension: 0.6,
       backgroundColor: 'rgba(38, 166, 154,1)',
@@ -33,10 +33,10 @@ class CrmReportsCustomers extends React.Component{
       pointHoverBorderWidth: 2,
       pointRadius: 6,
       pointHitRadius: 10,
-      data: [265, 359, 350, 265, 416, 250, 160]
+      data: [10, 35, 22, 2, 0, 0, 0]
     },
     {
-      label: 'Renewals',
+      label: 'Semana anterior',
       fill: true,
       lineTension: 0.4,
       backgroundColor: 'rgba(255, 138, 101,1)',
@@ -54,24 +54,21 @@ class CrmReportsCustomers extends React.Component{
       pointHoverBorderWidth: 2,
       pointRadius: 6,
       pointHitRadius: 10,
-      data: [345, 474, 260, 165, 256, 165, 270]
+      data: [0, 3, 0, 10, 0, 0, 1]
     }
   ]
 };
-
-
-
 const data2 = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+  labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
   datasets: [
     {
-      label: 'Customers',
+      label: 'Actividades',
       backgroundColor: 'rgba(38, 166, 154,1)',
       borderColor: 'rgba(38, 166, 154,0.8)',
       borderWidth: 1,
       hoverBackgroundColor: 'rgba(38, 166, 154,0.8)',
       hoverBorderColor: 'rgba(38, 166, 154,1)',
-      data: [165, 259, 180, 381, 156, 355, 240]
+      data: [10, 35, 22, 2, 0, 2, 1]
     }
   ]
 };
@@ -175,7 +172,7 @@ const gradientChartOptionsConfiguration2 = {
 
                     <div className="page-title">
                         <div className="float-left">
-                            <h1 className="title">Customers Reports</h1>
+                            <h1 className="title">Información General</h1>
                         </div>
                     </div>
 
@@ -184,7 +181,7 @@ const gradientChartOptionsConfiguration2 = {
                     <div className="col-12">
                         <section className="box ">
                             <header className="panel_header">
-                                <h2 className="title float-left">Monthly Customers</h2>
+                                <h2 className="title float-left">Actividades creadas por Día</h2>
                                 
                             </header>
                             <div className="content-body">
@@ -207,7 +204,7 @@ const gradientChartOptionsConfiguration2 = {
                     <div className="col-12">
                         <section className="box ">
                             <header className="panel_header">
-                                <h2 className="title float-left">Monthly Customer Type</h2>
+                                <h2 className="title float-left">Creación de actividades por Semana</h2>
                                 
                             </header>
                             <div className="content-body">
