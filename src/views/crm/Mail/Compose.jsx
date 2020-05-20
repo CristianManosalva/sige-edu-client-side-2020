@@ -77,7 +77,7 @@ class CrmMailcompose extends React.Component{
 
                                                     <div className="form-group">
                                                         <label className="form-label">Message:</label>
-                                                        <textarea className="mail-compose-editor" placeholder="Enter text ..." style={{width: 100+'%',height: 250+'px',fontSize: 14+'px',lineHeight: 23+'px',padding: 15+'px'}}></textarea>
+                                                        <textarea className="mail-compose-editor" placeholder="Ingresa el Texto ..." style={{width: 100+'%',height: 250+'px',fontSize: 14+'px',lineHeight: 23+'px',padding: 15+'px'}}></textarea>
                                                     </div>
 
 

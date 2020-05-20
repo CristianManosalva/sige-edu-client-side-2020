@@ -249,7 +249,7 @@ const options2={
 
                     <div className="page-title">
                         <div className="float-left">
-                            <h1 className="title">CRM Dashboard</h1>
+                            <h1 className="title">Información General</h1>
                         </div>
                     </div>
 

@@ -11,27 +11,27 @@ class Mailmenu extends React.Component{
 
 
                                         <ul className="list-unstyled mail_tabs">
-                                            <li className="compose">
+                                            {/* <li className="compose">
                                             <NavLink to={BASEDIR+'/crm/mail-compose'}>
                                                 <i className="i-envelope"></i> Compose
                                             </NavLink>
-                                            </li>
+                                            </li> */}
                                             <li className="">
                                             <NavLink to={BASEDIR+'/crm/mail-inbox'}>
-                                                <i className="i-drawer"></i> Inbox 
+                                                <i className="i-drawer"></i> Bandeja 
                                             </NavLink>
                                             </li>
                                             <li className="">
                                                 <NavLink to={'#!'}>
-                                                    <i className="i-paper-plane"></i> Sent
+                                                    <i className="i-paper-plane"></i> Enviados
                                                 </NavLink>
                                             </li>
-                                            <li className="">
+                                            {/* <li className="">
                                                 <NavLink to={'#!'}>
-                                                    <i className="i-pencil"></i> Drafts 
+                                                    <i className="i-pencil"></i> Borradores 
                                                 </NavLink>
-                                            </li>
-                                            <li className="">
+                                            </li> */}
+                                            {/* <li className="">
                                                 <NavLink to={'#!'}>
                                                     <i className="i-star"></i> Important
                                                 </NavLink>
@@ -40,7 +40,7 @@ class Mailmenu extends React.Component{
                                                 <NavLink to={'#!'}>
                                                     <i className="i-trash"></i> Trash
                                                 </NavLink>
-                                            </li>
+                                            </li> */}
                                         </ul>
 
                                     </div>

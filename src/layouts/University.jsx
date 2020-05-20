@@ -11,8 +11,7 @@ import {
   Stylebar,
   PrivateRoute,
 } from 'components'
-
-import dashboardRoutes from 'routes/university.jsx'
+import dashboardRoutes from 'routes/crm.jsx'
 import {
   topbarStyle,
   menuBackgroundColor,

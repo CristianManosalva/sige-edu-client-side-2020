@@ -25,7 +25,7 @@ var IMGDIR = process.env.REACT_APP_IMGDIR
 var BASEDIR = process.env.REACT_APP_BASEDIR
 let user = JSON.parse(localStorage.getItem('userv2'))
 var nameUserProfile = user.user_data.user.firstNameUser;
-
+//console.log('User..', user.user_data.user.firstNameUser)
 const navStyle = {
   backgroundColor: '#1EAEDF',
 }
