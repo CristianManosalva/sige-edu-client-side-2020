@@ -42,8 +42,9 @@ const ActivityCarouselItem = (props) => {
           style={styleIconCreate}
           className="material-icons"
           onClick={() => {
-            // props.load(activity)
-            // props.setShow()
+            props.load(activity.codeSecction)
+            props.showModalEdit()
+            console.log(activity)
             console.log('In button')
           }}
         >
