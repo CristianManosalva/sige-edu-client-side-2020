@@ -18,16 +18,7 @@ function login(documentIdUser, passwordUser) {
     userService.login(documentIdUser, passwordUser).then(
       (user) => {
         dispatch(success(user))
-        if (user.user_data.teacher) {
-          history.push('/')
-        }
-        if (user.user_data.student) {
-          history.push('/home')
-          alert('Estamos construyendo tu dashboard')
-        }
-        if (user.user_data.staff) {
-          history.push('/')
-        }
+        history.push('/')
       },
       (error) => {
         dispatch(failure(error))

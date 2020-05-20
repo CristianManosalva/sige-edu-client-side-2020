@@ -211,6 +211,27 @@ const AddCourse = () => {
       .finally(() => {})
   }
 
+  function getSeccions(code) {
+    fetch(`${config.apiOficial}/secctions/secction/${code}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setInputs({
+          name: data.nameSecction,
+          enlace: '',
+          description: data.descriptionSecction,
+        })
+        console.log(data)
+      })
+      .catch((error) => console.log(error))
+      .finally(() => {})
+  }
+
   function getSecctionsByTeacher(teacherId) {
     fetch(`${config.apiOficial}/workspaces/only/secctions/${teacherId}`, {
       method: 'GET',
@@ -268,6 +289,23 @@ const AddCourse = () => {
       .catch((error) => console.log(error))
       .finally(() => {})
   }
+
+  function editSeccion(body, code) {
+    fetch(`${config.apiOficial}/secctions/secction/${code}`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert('Seccion creada con exito')
+      })
+      .catch((error) => console.log(error))
+      .finally(() => {})
+  }
   //Fin post request
 
   // Inicio Handle functions
@@ -296,6 +334,21 @@ const AddCourse = () => {
         workspaceSecction: selected.sWorkSpace,
       }
       createSecction(body)
+    } else {
+      alert('Escribe el nombre y la descripción de la actividad')
+    }
+  }
+
+  function handleEdit(e) {
+    e.preventDefault()
+
+    if (name && description) {
+      let body = {
+        nameSecction: name,
+        descriptionSecction: description,
+        workspaceSecction: selected.sWorkSpace,
+      }
+      editSeccion(body)
     } else {
       alert('Escribe el nombre y la descripción de la actividad')
     }
@@ -525,7 +578,9 @@ const AddCourse = () => {
                                 return (
                                   <ActivityCarouselItem
                                     key={key}
+                                    load={getSeccions}
                                     activity={value}
+                                    showModalEdit={handle2Modal}
                                   />
                                 )
                               })}
