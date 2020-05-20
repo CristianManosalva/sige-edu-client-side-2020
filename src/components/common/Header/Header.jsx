@@ -45,7 +45,7 @@ class HeaderR extends React.Component {
       color: 'primary',
       profilename: 'Eric Nelson',
       //profileimg: IMGDIR + '/images/profile/profile.jpg',
-      profileimg: "https://image.flaticon.com/icons/svg/566/566985.svg",
+      profileimg: 'https://image.flaticon.com/icons/svg/566/566985.svg',
     }
     this.toggle = this.toggle.bind(this)
     this.userddToggle = this.userddToggle.bind(this)
@@ -185,7 +185,7 @@ class HeaderR extends React.Component {
       this.setState({
         // profilename: 'Henry Gibson',
         profilename: this.props.user
-          ? this.props.user.lastNameUser ||
+          ? this.props.user.firstNameUser ||
             this.props.user.lastNameUser ||
             'Henry Gibson'
           : 'Henry Gibson',
