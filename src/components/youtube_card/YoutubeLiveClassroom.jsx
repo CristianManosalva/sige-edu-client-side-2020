@@ -1,6 +1,9 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var YoutubeLive = require('youtube-live-react');
+import React, { Component } from 'react'
+import YoutubeLive from 'youtube-live-react'
+
+// var React = require('react');
+// var ReactDOM = require('react-dom');
+// var YoutubeLive = require('youtube-live-react');
 
 //https://www.youtube.com/watch?v=_nBlN9yp9R8
 //https://youtu.be/_nBlN9yp9R8
