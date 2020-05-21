@@ -5,26 +5,78 @@ import InputMask from 'react-input-mask'
 import 'react-datepicker/dist/react-datepicker.css'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
+import Modal from 'react-bootstrap/Modal'
 
-var api = process.env.REACT_APP_API_END_POINT
+
+var api = process.env.REACT_APP_API_END_POINT_OFICIAL
+const backgroundBlue = {
+  backgroundColor: '#1EAEDF',
+  color: 'white',
+}
+
+const whiteText = {
+  color: 'white',
+}
+const styleButtonSave = {
+  backgroundColor: '#29F441',
+  width: '100%',
+  fontWeight: 'bold',
+}
+
+let teacherInitial = JSON.parse(localStorage.getItem('userv2'));
 
 const AddProfessor = (props) => {
-  //   const [teacher, setTeacher] = useState({
-  //     id: '',
-  //     national_id: '',
-  //     national_type_id: -1,
-  //     name: ' ',
-  //     surname: '',
-  //     email: '',
-  //     phone_number: '',
-  //     address: '',
-  //     password: '',
-  //     birthdate: '2000-01-01',
-  //     last_connection: '',
-  //     gender: '',
-  //     blood_type_id: 1,
-  //     is_active: 1,
-  //   })
+  const [teacher, setTeacher] = useState(
+    teacherInitial.user_data.user
+    /* {
+    "documentIdUser": "31965839",
+    "password": "",
+    "last_login": null,
+    "email": "",
+    "date_joined": "2020-05-03T20:22:46.167416Z",
+    "typeIdeUser": "CC",
+    "firstNameUser": "MARLENY ",
+    "lastNameUser": "BERMUDEZ  VIVEROS",
+    "emailUser": "maryi716@hotmail.com",
+    "phoneUser": "",
+    "addressUser": "",
+    "passwordUser": "pbkdf2_sha256$120000$aTA9KWLeoIdh$mhoSzSixjWvgwWFTSJRHmV2h3vFEvP2MuBvJWhYkdAQ=",
+    "dateOfBirthUser": "2018-04-12",
+    "dateLastAccessUser": "2020-05-01",
+    "genderUser": "",
+    "rhUser": "",
+    "is_active": true,
+    "is_staff": false,
+    "is_superuser": false,
+    "codeIE": "276364000141",
+    "codeHeadquarters": 1,
+    "groups": [],
+    "user_permissions": []
+  } */
+  );
+  // const [nameUserProfile, setNameUserProfile] = useState(teacher.user.firstNameUser);
+  // const [surnameUserProfile, setSurnameUserProfile] = useState(teacher.user.surnameUserProfile);
+  // const [typeIdeUser, setTypeIdeUser] = useState(teacher.user.typeIdeUser);
+
+  // const [nameUserProfile, setNameUserProfile] = useState(teacher.user.firstNameUser);
+  // const [nameUserProfile, setNameUserProfile] = useState(teacher.user.firstNameUser);
+  // const [nameUserProfile, setNameUserProfile] = useState(teacher.user.firstNameUser);
+
+  console.log("maestro desde usestate",teacher);
+  //USER DEFINITION
+  //let user = JSON.parse(localStorage.getItem('userv2'));
+  let nameUserProfile = teacher.firstNameUser;
+  let surnameUserProfile = teacher.lastNameUser;
+  let typeIdeUser = teacher.typeIdeUser;
+  let documentIdUser = teacher.documentIdUser;
+  let dateOfBirthUser = teacher.dateOfBirthUser;
+  let genderUser = teacher.genderUser;
+  let emailUser = teacher.emailUser;
+  let phoneUser = teacher.phoneUser;
+  let addressUser = teacher.addressUser;
+
+  const [show, setShow] = useState(true)
+  const handleClose = () => setShow(false)
   //   const [institutions] = useState([
   //     {
   //       name: 'Institución Educativa Central de Bachillerato Integrado',
@@ -77,10 +129,10 @@ const AddProfessor = (props) => {
   //       ],
   //     },
   //   ])
-  //   const [loaders, setLoaders] = useState({
-  //     firstLoad: false,
-  //     updateLoad: false,
-  //   })
+  const [loaders, setLoaders] = useState({
+    firstLoad: false,
+    updateLoad: false,
+  })
   //   const [sedes, setSedes] = useState([])
   //   //   const [grados, setGrados] = useState(moment())
   //   const [grados] = useState({
@@ -99,22 +151,24 @@ const AddProfessor = (props) => {
   //   //{ ins: '112233', sede: '2', grupo: '6-2', materia: 'Español' },
   //   const [carga, setCarga] = useState([])
   //   const { user } = useSelector((state) => state.authentication.user)
-  //   function handleChange(e) {
-  //     const { name, value } = e.target
-  //     console.log(name, ' v ', value)
-  //     setTeacher((teacher) => ({
-  //       ...teacher,
-  //       [name]: value,
-  //     }))
-  //   }
 
-  //   function handleChangeDate(date) {
-  //     console.log(date)
-  //     setTeacher((teacher) => ({
-  //       ...teacher,
-  //       birthdate: date.format('YYYY-MM-DD'),
-  //     }))
-  //   }
+  function handleChange(e) {
+    const { name, value } = e.target
+    console.log(name, ' v ', value)
+
+    setTeacher((teacher) => ({
+      ...teacher,
+      [name]: value,
+    }))
+  }
+
+  function handleChangeDate(date) {
+    console.log(date)
+    setTeacher((teacher) => ({
+      ...teacher,
+      dateOfBirthUser: date.format('YYYY-MM-DD'),
+    }))
+  }
 
   //   function handleChangeInstitucions(e) {
   //     const { name, value } = e.target
@@ -159,6 +213,7 @@ const AddProfessor = (props) => {
   //     }
   //   }
 
+
   //   function getTeacher() {
   //     setLoaders((loaders) => ({
   //       ...loaders,
@@ -185,31 +240,39 @@ const AddProfessor = (props) => {
   //       })
   //   }
 
-  //   function updateTeacher(id, teacher) {
-  //     setLoaders((loaders) => ({
-  //       ...loaders,
-  //       updateLoad: true,
-  //     }))
-  //     fetch(api + `/teachers/${id}`, {
-  //       method: 'PUT',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(teacher),
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         console.log('content for put ', data)
-  //       })
-  //       .catch((error) => console.log(error))
-  //       .finally(() => {
-  //         setLoaders((loaders) => ({
-  //           ...loaders,
-  //           updateLoad: false,
-  //         }))
-  //       })
-  //   }
+  function updateTeacher(documentIdUser, teacher) {
+
+    console.log("Maestro",  JSON.stringify(teacher));
+    console.log(api + "/users/update/" + documentIdUser);
+
+
+    setLoaders((loaders) => ({
+      ...loaders,
+      updateLoad: true,
+    }))
+    fetch(api + `/users/update/${documentIdUser}`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(teacher),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('content for put ', data)
+      })
+      .catch((error) => console.log(error))
+      .finally(() => {
+        setLoaders((loaders) => ({
+          ...loaders,
+          updateLoad: false,
+        }))
+      })
+
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
+  }
 
   //   function createCarga(cargaitem) {
   //     fetch(api + `/cargas/`, {
@@ -302,10 +365,10 @@ const AddProfessor = (props) => {
   //     gender,
   //   } = teacher
 
-  //   function handleSubmit(e) {
-  //     e.preventDefault()
-  //     updateTeacher(id, teacher)
-  //   }
+  function handleSubmit(e) {
+    e.preventDefault()
+    updateTeacher(documentIdUser, teacher)
+  }
 
   //   return (
   //     <div>
@@ -644,7 +707,200 @@ const AddProfessor = (props) => {
   //       </div>
   //     </div>
   //   )
-  return <h1>Hola mundo</h1>
+  return (
+
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header style={backgroundBlue} closeButton>
+        <Modal.Title>MI PERFIL</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={backgroundBlue}>
+        <div >
+          <div className="content">
+            <Row>
+              <Col xs={12} md={12}>
+
+                <div className="row margin-0">
+                  <div className="col-12">
+                    <section style={backgroundBlue} className="box ">
+                      <header  className="panel_header">
+                        <h2 style={whiteText} className="title float-left">
+                          Informacion Personal{' '}
+                          {loaders.firstLoad && (
+                            <Spinner
+                              style={{ width: '1.3rem', height: '1.3rem' }}
+                              color="info"
+                            />
+                          )}
+                        </h2>
+                      </header>
+
+                      <div className="content-body">
+                        <div className="row">
+                          <div className="col-12 col-sm-12">
+                            <form onSubmit={handleSubmit}>
+                              <div className="form-row">
+                                {/**DIV DE NOMBRE */}
+                                <div className="form-group col-md-6">
+                                  <label htmlFor="name">Nombres</label>
+                                  <input
+                                    onChange={handleChange}
+                                    type="text"
+                                    className="form-control"
+                                    id="name"
+                                    name="nameUserProfile"
+                                    defaultValue={nameUserProfile}
+                                    placeholder=""
+                                  />
+                                </div>
+                                {/**FIN DIV DE NOMBRE */}
+
+                                {/**DIV DE APELLIDOS */}
+                                <div className="form-group col-md-6">
+                                  <label htmlFor="surname">Apellidos</label>
+                                  <input
+                                    name="surnameUserProfile"
+                                    onChange={handleChange}
+                                    defaultValue={surnameUserProfile}
+                                    type="text"
+                                    className="form-control"
+                                    id="surname"
+                                    placeholder=""
+                                  />
+                                </div>
+                                {/**FIN DIV DE APELLIDO */}
+
+                                {/**DIV DE DOCUMENTO */}
+                                <div className="form-group col-sm-12 col-md-6">
+                                  <label htmlFor="document-group">Documento</label>
+                                  <select
+                                    onChange={handleChange}
+                                    defaultValue={typeIdeUser}
+                                    name="typeIdeUser"
+                                    id="document-group"
+                                    className="form-control"
+                                    contentEditable={false}
+                                  >
+                                    {/* <option value={-1}>Tipo</option> */}
+                                    <option value={0}>Cedula de cuidadania</option>
+                                    {/* <option value={1}>Pasaporte</option> */}
+                                  </select>
+                                </div>
+                                {/**FIN DIV DE DOCUMENTO */}
+
+                                {/**DIV DE NUMERO DE DOCUMENTO */}
+                                <div className="form-group col-sm-12 col-md-6">
+                                  <label htmlFor="number-group">
+                                    <br />
+                                  </label>
+                                  <input
+                                    onChange={handleChange}
+                                    disabled={true}
+                                    id="number-group"
+                                    type="number"
+                                    name="documentIdUser"
+                                    defaultValue={documentIdUser}
+                                    className="form-control"
+                                    placeholder="numero"
+                                  />
+                                </div>
+                                {/**FIN DIV DE NUMERO DE DOCUMENTO */}
+
+                                {/**DIV FECHA DE NACIMIENTO */}
+                                <div className="form-group col-sm-12 col-md-6">
+                                  <label>Fecha de Nacimiento</label>
+                                  <div className="controls" style={{ margin: 0 }}>
+                                    <DatePicker
+                                      name="dateOfBirthUser"
+                                      selected={moment(dateOfBirthUser)}
+                                      onChange={handleChangeDate}
+                                      showMonthDropdown
+                                      showYearDropdown
+                                      dropdownMode="select"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="form-group col-sm-12 col-md-6">
+                                  <Label htmlFor="gender">Genero</Label>
+                                  <Input
+                                    onChange={handleChange}
+                                    type="select"
+                                    name="genderUser"
+                                    id="gender"
+                                    defaultValue={genderUser}
+                                  >
+                                    <option value={-1}>Genero</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Masculino">Masculino</option>
+                                  </Input>
+                                </div>
+
+                                {/**FIN DIV FECHA DE NACIMIENTO */}
+
+                                {/**CONTACT */}
+                                <div className="form-group col-sm-12 col-md-6">
+                                  <label htmlFor="email">Email</label>
+                                  <input
+                                    onChange={handleChange}
+                                    type="email"
+                                    className="form-control"
+                                    id="email"
+                                    name="emailUser"
+                                    defaultValue={emailUser}
+                                  //placeholder="example@gmail.com"
+                                  />
+                                </div>
+                                <div className="col-sm-12 col-md-6">
+                                  <Label htmlFor="field-11">Telefono Movil</Label>
+                                  <InputMask
+                                    onChange={handleChange}
+                                    id="field-11"
+                                    name="phoneUser"
+                                    defaultValue={phoneUser}
+                                    className="form-control"
+                                    mask="999 999 9999"
+                                    maskChar="_"
+                                  />
+                                </div>
+                                {/**FIN CONTACT */}
+
+                                <div className="form-group col-sm-12">
+                                  <label htmlFor="addres">Direccion</label>
+                                  <input
+                                    onChange={handleChange}
+                                    defaultValue={addressUser}
+                                    type="text"
+                                    className="form-control"
+                                    name="addressUser"
+                                    id="addres"
+                                    placeholder="Carrera 1E #12A - 02, Jamundi"
+                                  />
+                                </div>
+
+                              </div>
+
+                              <button style={styleButtonSave} type="submit" className="btn btn-primary">
+                                Guardar{' '}
+                                {loaders.updateLoad && (
+                                  <Spinner
+                                    style={{ width: '1.3rem', height: '1.3rem' }}
+                                    color="light"
+                                  />
+                                )}
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        </div>
+      </Modal.Body>
+    </Modal >
+  )
 }
 
 export default AddProfessor
