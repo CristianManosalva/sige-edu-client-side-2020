@@ -11,8 +11,8 @@ import {
   Stylebar,
   PrivateRoute,
 } from 'components'
-
 import universityRoutes from 'routes/university.jsx'
+import hospitalRoutes from 'routes/hospital.jsx'
 import crmlRoutes from 'routes/crm.jsx'
 import unIdentifierUser from 'routes/unIdentifierUser.jsx'
 
@@ -120,6 +120,10 @@ class UniversityLayout extends React.Component {
       } else if (user.user_data.staff) {
         this.setState({
           dashboardRoutes: crmlRoutes,
+        })
+      } else if (user.user_data.student) {
+        this.setState({
+          dashboardRoutes: hospitalRoutes,
         })
       } else {
         setTimeout(() => {
