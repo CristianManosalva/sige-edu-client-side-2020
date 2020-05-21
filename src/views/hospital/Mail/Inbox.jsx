@@ -36,7 +36,7 @@ class HospitalMailinbox extends React.Component{
                                             <div className="row">
                                                 <div className="col-12">
 
-                                                    <h3 className="mail_head">Inbox <sup>(5)</sup></h3>
+                                                    <h3 className="mail_head">Bandeja de entrada <sup>(1)</sup></h3>
                                                     
                                                     <i className='i-refresh icon-primary icon-xs icon-accent mail_head_icon float-right'></i>
                                                     <i className='i-magnifier icon-primary icon-xs icon-accent mail_head_icon float-right'></i>

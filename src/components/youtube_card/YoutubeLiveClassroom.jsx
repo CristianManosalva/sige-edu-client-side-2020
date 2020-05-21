@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
-import YouTube from 'react-youtube'
+import YoutubeLive from 'youtube-live-react'
+
+// var React = require('react');
+// var ReactDOM = require('react-dom');
+// var YoutubeLive = require('youtube-live-react');
 
 //https://www.youtube.com/watch?v=_nBlN9yp9R8
 //https://youtu.be/_nBlN9yp9R8
 
-class VideosYoutube extends Component {
+class YoutubeLiveClassroom extends Component {
   videoOnReady(event) {
     // access to player in all event handlers via event.target
     event.target.stopVideo()
@@ -20,10 +24,16 @@ class VideosYoutube extends Component {
     }
     const { videoId } = this.props
     return (
-      <div className="row">
-        <YouTube videoId={videoId} opts={opts} onReady={this.videoOnReady} />
+      <div>
+        <YoutubeLive
+          iframeWidth={400}
+          iframeHeight={300}
+          maxResults={50}
+          youtubeChannelId='UCcyMZE217fiWRcT2I92O1JQ'
+          googleApiKey='AIzaSyCfXoR0zMPQzTzEN19A6njL5c35evBGP6w' 
+          />
       </div>
     )
   }
 }
-export default VideosYoutube
+export default YoutubeLiveClassroom

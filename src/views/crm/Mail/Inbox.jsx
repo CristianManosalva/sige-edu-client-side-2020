@@ -21,7 +21,7 @@ class CrmMailinbox extends React.Component{
 
                     <div className="page-title">
                         <div className="float-left">
-                            <h1 className="title">Mailbox</h1>
+                            <h1 className="title">Email Institucional</h1>
                         </div>
                     </div>                            
                                         
@@ -36,7 +36,7 @@ class CrmMailinbox extends React.Component{
                                             <div className="row">
                                                 <div className="col-12">
 
-                                                    <h3 className="mail_head">Inbox <sup>(5)</sup></h3>
+                                                    <h3 className="mail_head">Mensajes <sup>(1)</sup></h3>
                                                     
                                                     <i className='i-refresh icon-primary icon-xs icon-accent mail_head_icon float-right'></i>
                                                     <i className='i-magnifier icon-primary icon-xs icon-accent mail_head_icon float-right'></i>

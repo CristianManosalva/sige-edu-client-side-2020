@@ -11,8 +11,11 @@ import {
   Stylebar,
   PrivateRoute,
 } from 'components'
+import universityRoutes from 'routes/university.jsx'
+import hospitalRoutes from 'routes/hospital.jsx'
+import crmlRoutes from 'routes/crm.jsx'
+import unIdentifierUser from 'routes/unIdentifierUser.jsx'
 
-import dashboardRoutes from 'routes/university.jsx'
 import {
   topbarStyle,
   menuBackgroundColor,
@@ -25,8 +28,8 @@ import {
 
 //var ps;
 const sideBarStyle = {
-  backgroundColor : '#1EAEDF',
-};
+  backgroundColor: '#1EAEDF',
+}
 const defaultOptions = {
   arrowColor: '#fff',
   backgroundColor: '#fff',
@@ -37,11 +40,13 @@ const defaultOptions = {
   textColor: '#333',
   width: undefined,
   zIndex: 100,
-};
+}
 class UniversityLayout extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      // dashboardRoutes: universityRoutes,
+      dashboardRoutes: unIdentifierUser,
       menuColor: menuBackgroundColor,
       topbarColor: topbarStyle,
       menuType: menuType,
@@ -49,11 +54,9 @@ class UniversityLayout extends React.Component {
       steps: [
         {
           target: '.joyride-welcome-1',
-          content:
-            'Aqui encontrarás tu foto de perfil, seguridad y estilos',
+          content: 'Aqui encontrarás tu foto de perfil, seguridad y estilos',
           title: 'Información sobre tu perfil',
           disableBeacon: true,
-          
         },
         {
           target: '.joyride-welcome-2',
@@ -88,6 +91,7 @@ class UniversityLayout extends React.Component {
     }
     this.menuSettings = this.menuSettings.bind(this)
     this.topbarSettings = this.topbarSettings.bind(this)
+    this.handleTypeOfUser = this.handleTypeOfUser.bind(this)
   }
 
   menuSettings(val1, val2) {
@@ -103,11 +107,47 @@ class UniversityLayout extends React.Component {
     })
   }
 
+  handleTypeOfUser() {
+    // console.log('Handeleando')
+    try {
+      let user = JSON.parse(localStorage.getItem('userv2'))
+      // console.log('El Usuarios', user)
+
+      if (user.user_data.teacher) {
+        this.setState({
+          dashboardRoutes: universityRoutes,
+        })
+      } else if (user.user_data.staff) {
+        this.setState({
+          dashboardRoutes: crmlRoutes,
+        })
+      } else if (user.user_data.student) {
+        this.setState({
+          dashboardRoutes: hospitalRoutes,
+        })
+      } else {
+        setTimeout(() => {
+          localStorage.removeItem('userv2')
+          // eslint-disable-next-line
+          location.reload(true)
+        }, 3000)
+      }
+    } catch (error) {
+      console.log('Error hanlder user ', error)
+      setTimeout(() => {
+        localStorage.removeItem('userv2')
+        // eslint-disable-next-line
+        location.reload(true)
+      }, 3000)
+    }
+  }
+
   componentDidMount() {
     /*if(navigator.platform.indexOf('Win') > -1){
             ps = new PerfectScrollbar(this.refs.mainPanel);
             document.body.classList.toggle("perfect-scrollbar-on");
         }*/
+    this.handleTypeOfUser()
   }
   componentWillUnmount() {
     /*if(navigator.platform.indexOf('Win') > -1){
@@ -129,7 +169,9 @@ class UniversityLayout extends React.Component {
       showSkipButton,
       locale,
       run,
+      dashboardRoutes,
     } = this.state
+
     return (
       <div
         className="wrapper"
@@ -154,7 +196,7 @@ class UniversityLayout extends React.Component {
               textColor: '#fff',
               width: 400,
               zIndex: 2000,
-            }
+            },
           }}
         />
         <Header {...this.props} navtype={navWidth} admintype={'university'} />
