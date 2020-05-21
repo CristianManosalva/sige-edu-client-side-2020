@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'reactstrap'
 import YoutubeVideoHelp from '../../../components/youtube_card/YoutubeVideoHelp'
-import YoutubeLiveClassroom from '../../../components/youtube_card/YoutubeLiveClassroom'
 import useInitialState from '../../../hooks/useInitialState';
 const API = 'http://api.sige-edu.com:8000/api/tutorials/create/'
 
@@ -30,8 +29,7 @@ const Help = () => {
                   <br />
                   <div className="row">
                     <div className="col-12">
-                      {/* <YoutubeVideoHelp videoId={initialState} /> */}
-                      <YoutubeLiveClassroom />
+                      <YoutubeVideoHelp videoId={initialState} />
                     </div>
                   </div>
                 </div>

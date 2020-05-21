@@ -6,6 +6,7 @@ import {
 import {  } from 'components';
 //import styles from 'jvectormap/jquery-jvectormap.css'
 import { VectorMap } from 'react-jvectormap';
+import VideosYoutube from '../../../components/youtube_card/VideosYoutube';
 
 class UniversityCentres extends React.Component{
     constructor(props) {
@@ -64,7 +65,7 @@ class UniversityCentres extends React.Component{
 
                     <div className="page-title">
                         <div className="float-left">
-                            <h1 className="title">Facility Locations</h1>
+                            <h1 className="title">Clases Virtuales</h1>
                         </div>
                     </div>
 
@@ -76,7 +77,7 @@ class UniversityCentres extends React.Component{
                     <div className="col-12">
                         <section className="box ">
                             <header className="panel_header">
-                                <h2 className="title float-left">Worldwide Locations</h2>
+                                {/* <h2 className="title float-left">Worldwide Locations</h2> */}
                                 
                             </header>
                             <div className="content-body">    
@@ -86,8 +87,9 @@ class UniversityCentres extends React.Component{
                                             <div className="row">
                                                 <div className="col-12 col-md-12">
                                     <div style={{width: 100+'%', height: 400}}>
+                                    <VideosYoutube videoId="sfAx4Wd2KIU" />
 
-                                        <VectorMap map={'world_mill'}
+                                        {/* <VectorMap map={'world_mill'}
                                                    backgroundColor=""
                                                    ref="map"
                                                    containerStyle={{
@@ -123,7 +125,7 @@ class UniversityCentres extends React.Component{
                                                     }}
                                                     markers={this.state.data1}
                                                    containerClassName="map"
-                                        />
+                                        /> */}
                                     </div>
 
                                                 </div>
