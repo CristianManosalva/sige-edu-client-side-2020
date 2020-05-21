@@ -28,7 +28,7 @@ const backgroundBlue = {
   color: 'white',
 }
 const stylesLabels = {
-  fontSize: 25,
+  fontSize: '21.5px',
   color: 'white',
 }
 const stylesLabelsTitle = {
@@ -77,6 +77,7 @@ const AddCourse = () => {
     enlace: '',
     description: '',
   })
+  const [currentSeccion, setCurrentSeccion] = useState({})
   const teacher_id = teacher.codeTeacher
   const [data, setData] = useState([])
   const [full, setFull] = useState([])
@@ -211,6 +212,29 @@ const AddCourse = () => {
       .finally(() => {})
   }
 
+  function getSeccions({ workspaceSecction, codeSecction }) {
+    fetch(`${config.apiOficial}/secctions/secction/${codeSecction}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setInputs({
+          name: data.nameSecction,
+          enlace: '',
+          description: data.descriptionSecction,
+          workspaceSecction: workspaceSecction,
+        })
+        console.log(data)
+        setCurrentSeccion(data)
+      })
+      .catch((error) => console.log(error))
+      .finally(() => {})
+  }
+
   function getSecctionsByTeacher(teacherId) {
     fetch(`${config.apiOficial}/workspaces/only/secctions/${teacherId}`, {
       method: 'GET',
@@ -268,6 +292,48 @@ const AddCourse = () => {
       .catch((error) => console.log(error))
       .finally(() => {})
   }
+
+  function editSeccion(body) {
+    console.log('Body: ', body)
+    let { workspaceSecction, codeSecction } = currentSeccion
+    body.workspaceSecction = workspaceSecction
+    body.codeSecction = codeSecction
+    fetch(`${config.apiOficial}/secctions/secction/update/${codeSecction}`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // handle2Modal()
+        // alert('Seccion editada')
+        setInputs({
+          name: '',
+          enlace: '',
+          description: '',
+        })
+        let number = 0
+        for (let i = 0; i < activities.length; i++) {
+          if (activities[i].codeSecction == codeSecction) {
+            number = i
+          }
+        }
+        if (number > 0) {
+          setActivities((prevState) => {
+            const data = [...prevState]
+            data[number] = body
+            return data
+          })
+        }
+        handle2Modal()
+        alert('Seccion editada')
+      })
+      .catch((error) => console.log(error))
+      .finally(() => {})
+  }
   //Fin post request
 
   // Inicio Handle functions
@@ -293,9 +359,24 @@ const AddCourse = () => {
       let body = {
         nameSecction: name,
         descriptionSecction: description,
-        workspaceSecction: selected.sWorkSpace,
+        // workspaceSecction: selected.sWorkSpace,
       }
       createSecction(body)
+    } else {
+      alert('Escribe el nombre y la descripción de la actividad')
+    }
+  }
+
+  function handleEdit(e) {
+    e.preventDefault()
+
+    if (name && description) {
+      let body = {
+        nameSecction: name,
+        descriptionSecction: description,
+        // workspaceSecction: selected.sWorkSpace,
+      }
+      editSeccion(body)
     } else {
       alert('Escribe el nombre y la descripción de la actividad')
     }
@@ -315,10 +396,9 @@ const AddCourse = () => {
   const { name, description, enlace } = inputs
 
   return (
-    
     <div>
       <div className="content">
-      <UseModalAddActivity />
+        <UseModalAddActivity />
         {/*MODAL*/}
         <Modal show={show} onHide={handleClose}>
           <Modal.Header style={backgroundBlue} closeButton>
@@ -411,13 +491,16 @@ const AddCourse = () => {
           </Modal.Header>
           <Modal.Body style={backgroundBlue}>
             <div className="content-body">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleEdit}>
                 <div className="form-row">
                   <div className="form-group col-md-12">
+                    <Label htmlFor="name" style={stylesLabels}>
+                      Nombre
+                    </Label>
                     <input
                       type="text"
                       className="form-control"
-                      id="inputname4"
+                      id="name"
                       placeholder=""
                       name="name"
                       placeholder="Nombre de la actividad"
@@ -426,43 +509,16 @@ const AddCourse = () => {
                     />
                   </div>
                   <div className="form-group col-md-12">
+                    <Label htmlFor="descriptionEdit" style={stylesLabels}>
+                      Descripcion
+                    </Label>
                     <Input
                       type="textarea"
                       name="description"
-                      id="description"
+                      id="descriptionEdit"
                       placeholder="Descripcion de la Actividad"
                       value={description}
                       onChange={handleChange}
-                    />
-                  </div>
-
-                  <div
-                    className="form-group col-md-12"
-                    style={{ color: 'black' }}
-                  >
-                    <Label htmlFor="exampleSelect3" style={stylesLabels}>
-                      Grupo
-                    </Label>
-                    <Select
-                      value={selected.sGroup}
-                      options={options}
-                      defaultValue={options[0]}
-                      onChange={handleChangeSelect}
-                      placeholder="Grupos"
-                    />
-                  </div>
-
-                  <div
-                    className="form-group col-md-12"
-                    style={{ color: 'black' }}
-                  >
-                    <Label htmlFor="exampleSelect3" style={stylesLabels}>
-                      Materia
-                    </Label>
-                    <Select
-                      options={subjects}
-                      defaultValue={subjects[0]}
-                      onChange={handleChangeSelectMateria}
                     />
                   </div>
                   <div className="form-group col-md-12">
@@ -525,7 +581,9 @@ const AddCourse = () => {
                                 return (
                                   <ActivityCarouselItem
                                     key={key}
+                                    load={getSeccions}
                                     activity={value}
+                                    showModalEdit={handle2Modal}
                                   />
                                 )
                               })}

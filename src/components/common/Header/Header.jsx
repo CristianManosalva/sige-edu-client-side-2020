@@ -23,9 +23,9 @@ import { notifications } from 'variables/topbar.jsx'
 
 var IMGDIR = process.env.REACT_APP_IMGDIR
 var BASEDIR = process.env.REACT_APP_BASEDIR
-let user = JSON.parse(localStorage.getItem('userv2'))
-var nameUserProfile = user.user_data.user.firstNameUser;
-//console.log('User..', user.user_data.user.firstNameUser)
+// let user = JSON.parse(localStorage.getItem('userv2'))
+// var nameUserProfile = user.user_data.user.firstNameUser; Compañero, comente esta parte, ya que en algunmomento puede dar indefinido
+//console.log('User..', user.user_data.user.firstNameUser) Ya acomode que muestre el nombre y no el apellido, tener en cuenta que algunos tienes el apellido donde va el nombre
 const navStyle = {
   backgroundColor: '#1EAEDF',
 }
@@ -47,7 +47,7 @@ class HeaderR extends React.Component {
       color: 'primary',
       profilename: 'Eric Nelson',
       //profileimg: IMGDIR + '/images/profile/profile.jpg',
-      profileimg: "https://image.flaticon.com/icons/svg/566/566985.svg",
+      profileimg: 'https://image.flaticon.com/icons/svg/566/566985.svg',
     }
     this.toggle = this.toggle.bind(this)
     this.userddToggle = this.userddToggle.bind(this)
@@ -187,7 +187,7 @@ class HeaderR extends React.Component {
       this.setState({
         // profilename: 'Henry Gibson',
         profilename: this.props.user
-          ? this.props.user.lastNameUser ||
+          ? this.props.user.firstNameUser ||
             this.props.user.lastNameUser ||
             'Henry Gibson'
           : 'Henry Gibson',
@@ -306,8 +306,9 @@ class HeaderR extends React.Component {
                     alt="react-logo"
                     className="avatar-image"
                   />{' '}
-                  <span>{nameUserProfile}</span>
-                  {console.log('this.state', this.state)}
+                  {/* <span>{nameUserProfile}</span> */}
+                  <span>{this.state.profilename}</span>
+                  {/* {console.log('this.state', this.state)} */}
                 </DropdownToggle>
                 <DropdownMenu right>
                   {/* <DropdownItem tag="a">

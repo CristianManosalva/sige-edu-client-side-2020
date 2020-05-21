@@ -8,6 +8,7 @@ import Library from 'views/university/Library/Library.jsx'
 import Professor from 'views/university/Professor/Professor.jsx'
 import AddProfessor from 'views/university/Professor/AddProfessor.jsx'
 import Student from 'views/university/Student/Student.jsx'
+import Centres from 'views/university/Centres/UniversityCentres'
 
 
 var BASEDIR = process.env.REACT_APP_BASEDIR
@@ -17,6 +18,12 @@ var dashRoutes = [
     name: 'Inicio',
     icon: 'home',
     component: University,
+  },
+  {
+    path: BASEDIR + '/university/centres',
+    name: 'Clase Virtual',
+    icon: 'social-youtube',
+    component: Centres,
   },
   // Options Teacher
   {
