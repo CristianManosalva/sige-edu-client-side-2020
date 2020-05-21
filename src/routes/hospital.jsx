@@ -24,28 +24,3 @@ var dashRoutes = [
   },
 ]
 export default dashRoutes
-
-/* var dashRoutes = [
-  {
-    path: BASEDIR + '/university/dashboard',
-
-    // name: 'Inicio',
-    // icon: 'home',
-    component: hola,
-    type: 'child',
-  },
-  // Options Teacher
-  {
-    path: BASEDIR + '/university/doctors',
-    // icon: 'user',
-    // name: 'Doctores',
-    component: hola,
-    type: 'child',
-  },
-  {
-    redirect: true,
-    path: BASEDIR + '/',
-    pathTo: '/university/dashboard',
-    // name: 'Dashboard',
-  },
-] */
