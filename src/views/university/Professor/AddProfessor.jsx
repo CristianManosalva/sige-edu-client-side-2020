@@ -7,6 +7,7 @@ import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import Modal from 'react-bootstrap/Modal'
 import { config } from '_config'
+import Button from 'react-bootstrap/Button'
 
 var api = process.env.REACT_APP_API_END_POINT_OFICIAL
 const backgroundBlue = {
@@ -55,7 +56,6 @@ const AddProfessor = (props) => {
   })
  
 
-  console.log('maestro desde usestate', teacher)
   //USER DEFINITION
   //let user = JSON.parse(localStorage.getItem('userv2'));
   // let nameUserProfile = teacher.firstNameUser
@@ -70,6 +70,9 @@ const AddProfessor = (props) => {
 
   const [show, setShow] = useState(true)
   const handleClose = () => setShow(false)
+
+  const [smShow, setSmShow] = useState(false);
+
 
   //   const [institutions] = useState([
   //     {
@@ -147,7 +150,6 @@ const AddProfessor = (props) => {
   //   const { user } = useSelector((state) => state.authentication.user)
 
   function getUserData() {
-    console.log(user);
     fetch(api + `/users/${user.documentIdUser}`, {
       method: 'GET',
       headers: {
@@ -168,7 +170,7 @@ const AddProfessor = (props) => {
 
   function handleChange(e) {
     const { name, value } = e.target
-    console.log(name, ' v ', value)
+    //console.log(name, ' v ', value)
 
     setTeacher((teacher) => ({
       ...teacher,
@@ -177,7 +179,7 @@ const AddProfessor = (props) => {
   }
 
   function handleChangeDate(date) {
-    console.log(date)
+    //console.log(date)
     setTeacher((teacher) => ({
       ...teacher,
       dateOfBirthUser: date.format('YYYY-MM-DD'),
@@ -257,14 +259,12 @@ const AddProfessor = (props) => {
     let auxTeacher = teacher;
     auxTeacher.password = teacher.passwordUser;
 
-    console.log('Maestro',auxTeacher)
-    console.log(api + '/users/update/' + documentIdUser)
 
     setLoaders((loaders) => ({
       ...loaders,
       updateLoad: true,
     }))
-    fetch(api + `/users/update/${documentIdUser}`, {
+    fetch(api + `/users/update/${documentIdUser}/`, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
@@ -272,7 +272,10 @@ const AddProfessor = (props) => {
       },
       body: JSON.stringify(auxTeacher),
     })
-      .then((response) => response.json() 
+      .then((response) => {response.json() 
+        setSmShow(true)
+        
+      }
       
       )
       .then((data) => {
@@ -382,6 +385,10 @@ const AddProfessor = (props) => {
   function handleSubmit(e) {
     e.preventDefault()
     updateTeacher(documentIdUser, teacher)
+  }
+
+  function closeSM(){
+    window.location.reload();
   }
 
   //   return (
@@ -723,11 +730,31 @@ const AddProfessor = (props) => {
   //   )
   const { firstNameUser, lastNameUser, typeIdeUser,documentIdUser,dateOfBirthUser,genderUser, emailUser, phoneUser,addressUser } = teacher;
   return (
-    <Modal show={show} onHide={handleClose}>
+    
+
+    <Modal show={show} onHide={handleClose,closeSM}>
       <Modal.Header style={backgroundBlue} closeButton>
         <Modal.Title>MI PERFIL</Modal.Title>
       </Modal.Header>
       <Modal.Body style={backgroundBlue}>
+
+      <Modal
+        size="sm"
+        show={smShow}
+        onHide={() => setSmShow(false)}
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
+        <Modal.Header style={backgroundBlue} closeButton>
+          <Modal.Title id="example-modal-sizes-title-sm">
+           Cambios guardados
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={backgroundBlue}> !Tus datos han sido actualizados éxitosamente! </Modal.Body>
+        <Modal.Footer style={backgroundBlue}>
+        <Button  style={styleButtonSave} onClick={closeSM}>Cerrar</Button>
+      </Modal.Footer>
+      </Modal>
+
         <div>
           <div className="content">
             <Row>

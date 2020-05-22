@@ -350,7 +350,7 @@ class HeaderR extends React.Component {
 
                   
                   {/**dropdown configuración{cambiar contraseña} */}
-                  <DropdownItem
+                  {/* <DropdownItem
                     onClick={() => {
                       console.log("componente cambiar contraseña")
                     }}
@@ -359,7 +359,7 @@ class HeaderR extends React.Component {
                     href="#!"
                   >
                     <i className="i-settings" href="#!"></i>Configuración
-                  </DropdownItem>
+                  </DropdownItem> */}
                   {/**fin dropdown configuración */}
                   <DropdownItem
                     onClick={() => {
