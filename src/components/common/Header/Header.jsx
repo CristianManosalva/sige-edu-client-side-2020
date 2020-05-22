@@ -321,7 +321,7 @@ class HeaderR extends React.Component {
                   {/* <DropdownItem tag="a">
                     <i className="i-wrench" href="#!"></i> Configuracion
                   </DropdownItem> */}
-                  {/* <DropdownItem
+                   <DropdownItem
                     tag="a"
                     onClick={() => {
                       // eslint-disable-next-line
@@ -331,13 +331,13 @@ class HeaderR extends React.Component {
                     }}
                   >
                     <i className="i-user" href="#!"></i> Perfil
-                  </DropdownItem> */}
+                  </DropdownItem> 
                   {/* <DropdownItem tag="a">
                     <i className="i-info" href="#!"></i> Ayuda
                   </DropdownItem> */}
 
                   {/**  dropdown de editar perfil */}
-                  <DropdownItem
+                  {/* <DropdownItem
                     onClick={() => {
                     }}
                     tag="a"
@@ -345,7 +345,7 @@ class HeaderR extends React.Component {
                     href="#!"
                   >
                     <i className="i-user" href="#!"></i>Perfil
-                  </DropdownItem>
+                  </DropdownItem> */}
                   {/**  fin dropdown de editar perfil */}
 
                   

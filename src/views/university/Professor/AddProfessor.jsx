@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import Modal from 'react-bootstrap/Modal'
-
+import { config } from '_config'
 
 var api = process.env.REACT_APP_API_END_POINT_OFICIAL
 const backgroundBlue = {
@@ -23,60 +23,54 @@ const styleButtonSave = {
   fontWeight: 'bold',
 }
 
-let teacherInitial = JSON.parse(localStorage.getItem('userv2'));
 
 const AddProfessor = (props) => {
-  const [teacher, setTeacher] = useState(
-    teacherInitial.user_data.user
-    /* {
-    "documentIdUser": "31965839",
-    "password": "",
-    "last_login": null,
-    "email": "",
-    "date_joined": "2020-05-03T20:22:46.167416Z",
-    "typeIdeUser": "CC",
-    "firstNameUser": "MARLENY ",
-    "lastNameUser": "BERMUDEZ  VIVEROS",
-    "emailUser": "maryi716@hotmail.com",
-    "phoneUser": "",
-    "addressUser": "",
-    "passwordUser": "pbkdf2_sha256$120000$aTA9KWLeoIdh$mhoSzSixjWvgwWFTSJRHmV2h3vFEvP2MuBvJWhYkdAQ=",
-    "dateOfBirthUser": "2018-04-12",
-    "dateLastAccessUser": "2020-05-01",
-    "genderUser": "",
-    "rhUser": "",
-    "is_active": true,
-    "is_staff": false,
-    "is_superuser": false,
-    "codeIE": "276364000141",
-    "codeHeadquarters": 1,
-    "groups": [],
-    "user_permissions": []
-  } */
-  );
-  // const [nameUserProfile, setNameUserProfile] = useState(teacher.user.firstNameUser);
-  // const [surnameUserProfile, setSurnameUserProfile] = useState(teacher.user.surnameUserProfile);
-  // const [typeIdeUser, setTypeIdeUser] = useState(teacher.user.typeIdeUser);
+  const { user } = useSelector((state) => state.authentication.user.user_data)
 
-  // const [nameUserProfile, setNameUserProfile] = useState(teacher.user.firstNameUser);
-  // const [nameUserProfile, setNameUserProfile] = useState(teacher.user.firstNameUser);
-  // const [nameUserProfile, setNameUserProfile] = useState(teacher.user.firstNameUser);
+  const [teacher, setTeacher] = useState({
+    documentIdUser: '',
+    password: '',
+    last_login: null,
+    email: '',
+    date_joined: '',
+    typeIdeUser: 'CC',
+    firstNameUser: ' ',
+    lastNameUser: '',
+    emailUser: '',
+    phoneUser: '',
+    addressUser: '',
+    passwordUser:
+      '',
+    dateOfBirthUser: '',
+    dateLastAccessUser: '',
+    genderUser: '',
+    rhUser: '',
+    is_active: true,
+    is_staff: false,
+    is_superuser: false,
+    codeIE: '',
+    codeHeadquarters: 1,
+    groups: [],
+    user_permissions: [],
+  })
+ 
 
-  console.log("maestro desde usestate",teacher);
+  console.log('maestro desde usestate', teacher)
   //USER DEFINITION
   //let user = JSON.parse(localStorage.getItem('userv2'));
-  let nameUserProfile = teacher.firstNameUser;
-  let surnameUserProfile = teacher.lastNameUser;
-  let typeIdeUser = teacher.typeIdeUser;
-  let documentIdUser = teacher.documentIdUser;
-  let dateOfBirthUser = teacher.dateOfBirthUser;
-  let genderUser = teacher.genderUser;
-  let emailUser = teacher.emailUser;
-  let phoneUser = teacher.phoneUser;
-  let addressUser = teacher.addressUser;
+  // let nameUserProfile = teacher.firstNameUser
+  // let surnameUserProfile = teacher.lastNameUser
+  // let typeIdeUser = teacher.typeIdeUser
+  // let documentIdUser = teacher.documentIdUser
+  // let dateOfBirthUser = teacher.dateOfBirthUser
+  // let genderUser = teacher.genderUser
+  // let emailUser = teacher.emailUser
+  // let phoneUser = teacher.phoneUser
+  // let addressUser = teacher.addressUser
 
   const [show, setShow] = useState(true)
   const handleClose = () => setShow(false)
+
   //   const [institutions] = useState([
   //     {
   //       name: 'Institución Educativa Central de Bachillerato Integrado',
@@ -152,6 +146,26 @@ const AddProfessor = (props) => {
   //   const [carga, setCarga] = useState([])
   //   const { user } = useSelector((state) => state.authentication.user)
 
+  function getUserData() {
+    console.log(user);
+    fetch(api + `/users/${user.documentIdUser}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then(( data ) => { setTeacher(data)})
+      .catch((error) => console.log(error))
+      .finally(() => {
+        /* setLoaders((loaders) => ({
+                ...loaders,
+                cargaLoad: false,
+              })) */
+      })
+  }
+
   function handleChange(e) {
     const { name, value } = e.target
     console.log(name, ' v ', value)
@@ -213,7 +227,6 @@ const AddProfessor = (props) => {
   //     }
   //   }
 
-
   //   function getTeacher() {
   //     setLoaders((loaders) => ({
   //       ...loaders,
@@ -241,10 +254,11 @@ const AddProfessor = (props) => {
   //   }
 
   function updateTeacher(documentIdUser, teacher) {
+    let auxTeacher = teacher;
+    auxTeacher.password = teacher.passwordUser;
 
-    console.log("Maestro",  JSON.stringify(teacher));
-    console.log(api + "/users/update/" + documentIdUser);
-
+    console.log('Maestro',auxTeacher)
+    console.log(api + '/users/update/' + documentIdUser)
 
     setLoaders((loaders) => ({
       ...loaders,
@@ -256,9 +270,11 @@ const AddProfessor = (props) => {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(teacher),
+      body: JSON.stringify(auxTeacher),
     })
-      .then((response) => response.json())
+      .then((response) => response.json() 
+      
+      )
       .then((data) => {
         console.log('content for put ', data)
       })
@@ -346,11 +362,9 @@ const AddProfessor = (props) => {
   //     })) */
   //   }
 
-  //   useEffect(() => {
-  //     getTeacher()
-  //     getCarga()
-  //     getMaterias()
-  //   }, [])
+    useEffect(() => {
+      getUserData()
+    }, [])
 
   //   const {
   //     id,
@@ -707,22 +721,21 @@ const AddProfessor = (props) => {
   //       </div>
   //     </div>
   //   )
+  const { firstNameUser, lastNameUser, typeIdeUser,documentIdUser,dateOfBirthUser,genderUser, emailUser, phoneUser,addressUser } = teacher;
   return (
-
     <Modal show={show} onHide={handleClose}>
       <Modal.Header style={backgroundBlue} closeButton>
         <Modal.Title>MI PERFIL</Modal.Title>
       </Modal.Header>
       <Modal.Body style={backgroundBlue}>
-        <div >
+        <div>
           <div className="content">
             <Row>
               <Col xs={12} md={12}>
-
                 <div className="row margin-0">
                   <div className="col-12">
                     <section style={backgroundBlue} className="box ">
-                      <header  className="panel_header">
+                      <header className="panel_header">
                         <h2 style={whiteText} className="title float-left">
                           Informacion Personal{' '}
                           {loaders.firstLoad && (
@@ -747,8 +760,8 @@ const AddProfessor = (props) => {
                                     type="text"
                                     className="form-control"
                                     id="name"
-                                    name="nameUserProfile"
-                                    defaultValue={nameUserProfile}
+                                    name="firstNameUser"
+                                    value={firstNameUser}
                                     placeholder=""
                                   />
                                 </div>
@@ -758,9 +771,9 @@ const AddProfessor = (props) => {
                                 <div className="form-group col-md-6">
                                   <label htmlFor="surname">Apellidos</label>
                                   <input
-                                    name="surnameUserProfile"
+                                    name="lastNameUser"
                                     onChange={handleChange}
-                                    defaultValue={surnameUserProfile}
+                                    value={lastNameUser}
                                     type="text"
                                     className="form-control"
                                     id="surname"
@@ -771,7 +784,9 @@ const AddProfessor = (props) => {
 
                                 {/**DIV DE DOCUMENTO */}
                                 <div className="form-group col-sm-12 col-md-6">
-                                  <label htmlFor="document-group">Documento</label>
+                                  <label htmlFor="document-group">
+                                    Documento
+                                  </label>
                                   <select
                                     onChange={handleChange}
                                     defaultValue={typeIdeUser}
@@ -781,7 +796,9 @@ const AddProfessor = (props) => {
                                     contentEditable={false}
                                   >
                                     {/* <option value={-1}>Tipo</option> */}
-                                    <option value={0}>Cedula de cuidadania</option>
+                                    <option value={0}>
+                                      Cedula de cuidadania
+                                    </option>
                                     {/* <option value={1}>Pasaporte</option> */}
                                   </select>
                                 </div>
@@ -798,7 +815,7 @@ const AddProfessor = (props) => {
                                     id="number-group"
                                     type="number"
                                     name="documentIdUser"
-                                    defaultValue={documentIdUser}
+                                    value={documentIdUser}
                                     className="form-control"
                                     placeholder="numero"
                                   />
@@ -808,7 +825,10 @@ const AddProfessor = (props) => {
                                 {/**DIV FECHA DE NACIMIENTO */}
                                 <div className="form-group col-sm-12 col-md-6">
                                   <label>Fecha de Nacimiento</label>
-                                  <div className="controls" style={{ margin: 0 }}>
+                                  <div
+                                    className="controls"
+                                    style={{ margin: 0 }}
+                                  >
                                     <DatePicker
                                       name="dateOfBirthUser"
                                       selected={moment(dateOfBirthUser)}
@@ -826,7 +846,7 @@ const AddProfessor = (props) => {
                                     type="select"
                                     name="genderUser"
                                     id="gender"
-                                    defaultValue={genderUser}
+                                    value={genderUser}
                                   >
                                     <option value={-1}>Genero</option>
                                     <option value="Femenino">Femenino</option>
@@ -845,17 +865,19 @@ const AddProfessor = (props) => {
                                     className="form-control"
                                     id="email"
                                     name="emailUser"
-                                    defaultValue={emailUser}
-                                  //placeholder="example@gmail.com"
+                                    value={emailUser}
+                                    //placeholder="example@gmail.com"
                                   />
                                 </div>
                                 <div className="col-sm-12 col-md-6">
-                                  <Label htmlFor="field-11">Telefono Movil</Label>
+                                  <Label htmlFor="field-11">
+                                    Telefono Movil
+                                  </Label>
                                   <InputMask
                                     onChange={handleChange}
                                     id="field-11"
                                     name="phoneUser"
-                                    defaultValue={phoneUser}
+                                    value={phoneUser}
                                     className="form-control"
                                     mask="999 999 9999"
                                     maskChar="_"
@@ -867,7 +889,7 @@ const AddProfessor = (props) => {
                                   <label htmlFor="addres">Direccion</label>
                                   <input
                                     onChange={handleChange}
-                                    defaultValue={addressUser}
+                                    value={addressUser}
                                     type="text"
                                     className="form-control"
                                     name="addressUser"
@@ -875,14 +897,20 @@ const AddProfessor = (props) => {
                                     placeholder="Carrera 1E #12A - 02, Jamundi"
                                   />
                                 </div>
-
                               </div>
 
-                              <button style={styleButtonSave} type="submit" className="btn btn-primary">
+                              <button
+                                style={styleButtonSave}
+                                type="submit"
+                                className="btn btn-primary"
+                              >
                                 Guardar{' '}
                                 {loaders.updateLoad && (
                                   <Spinner
-                                    style={{ width: '1.3rem', height: '1.3rem' }}
+                                    style={{
+                                      width: '1.3rem',
+                                      height: '1.3rem',
+                                    }}
                                     color="light"
                                   />
                                 )}
@@ -899,7 +927,7 @@ const AddProfessor = (props) => {
           </div>
         </div>
       </Modal.Body>
-    </Modal >
+    </Modal>
   )
 }
 
