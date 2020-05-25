@@ -39,6 +39,7 @@ import ContactIcon from './home_page/ContactIcon'
 import NewsCarouselItem from './home_page/NewsCarouselItem'
 import NavBarLogout from './home_page/NavBarLogout'
 import LoginForm from './home_page/LoginForm'
+import LoginFormNew from './home_page/LoginFormNew'
 
 export {
   //Common component
@@ -91,6 +92,7 @@ export {
   NewsCarouselItem,
   NavBarLogout,
   LoginForm,
+  LoginFormNew,
   //Hospital components
   Doctorslist,
   Patientslist,

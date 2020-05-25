@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col, NavItem, Nav } from "reactstrap";
 import { Link } from "react-router-dom";
 import "../../assets/scss/zest-admin/components/_NavBarLogout.scss";
+import SIGELOGONAVBAR from 'assets/img/SIGEONLY.png'
 
 const NavBarLogout = (props) => {
   return (
@@ -10,10 +11,14 @@ const NavBarLogout = (props) => {
         <Row className="container-row-custom">
           <Col xs={2}>
             <div className="custom-header__brand">
+              <a href="/home">
               <img
-                src="https://res.cloudinary.com/duyflkcyn/image/upload/v1578782555/WhatsApp_Image_2020-01-11_at_4-removebg-preview_dzramo.png"
+                src={SIGELOGONAVBAR}
                 alt="Sige"
+                
               />
+              </a>
+              
             </div>
           </Col>
           <Col xs={{ size: 5, offset: 5 }}>
@@ -24,7 +29,7 @@ const NavBarLogout = (props) => {
                     Ayuda
                   </Link>
                 </NavItem>
-                <NavItem>
+                {/* <NavItem>
                   <Link to="#" className="header-custom-link" href="#">
                     Regístarte
                   </Link>
@@ -38,7 +43,7 @@ const NavBarLogout = (props) => {
                   >
                     Inicia sesíon
                   </Link>
-                </NavItem>
+                </NavItem> */}
               </Nav>
             </div>
           </Col>

@@ -7249,7 +7249,8 @@ input[type=color] {
   -o-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1); }
 
 .form-group {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+ }
 
 .form-group .controls {
   margin: 5px 0; }
@@ -7317,7 +7318,8 @@ input[type=color] {
 
 .input-group.transparent .form-control {
   border: 0px solid transparent;
-  height: 32px; }
+  height: 32px;
+  border-radius: 5px; }
 
 .input-group-append.primary .input-group-text,
 .input-group-prepend.primary .input-group-text {
@@ -10203,7 +10205,33 @@ table.fixheight {
   background-size: cover;
   width: 100%;
   min-height: 100vh; }
+.super-position{
+  position: absolute;
+}
+.div-login-center{
+  vertical-align: center;
+  text-align: center;
 
+}
+.size-logo{
+  height: 150px;
+    width: 180px;
+}
+.home-image-new{
+  background-image: url("https://image.freepik.com/vector-gratis/concepto-tutoriales-linea_52683-37480.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  position: static }
+.div-image-login{
+  position: static;
+  width: 100%;
+  min-height: 100vh;
+}
+.bordered{
+  border-radius: 25px !important;
+}
 .main-home-container {
   padding: 0 !important; }
 
@@ -10348,10 +10376,13 @@ table.fixheight {
 
 /*47*/
 .custom-header-container {
-  position: absolute;
+  position: relative;
   width: 100%;
   top: 0;
-  left: 0; }
+  left: 0;
+  background-color: white; 
+  min-height:55px ;
+}
 
 /* .container-row-custom > div {
   border: 1px solid red;
@@ -10370,22 +10401,22 @@ table.fixheight {
   padding: 0.5rem 1rem;
   padding-right: 0.5rem;
   padding-left: 0.5rem;
-  color: white;
+  color: #009ad0;
   font-weight: bold;
   font-size: 1.6rem;
   transition: 450ms all; }
 
 .header-custom-link:hover {
-  color: white;
+  color: #009ad0;
   text-decoration: none;
   border: 1px solid white;
   border-radius: 7px; }
 
 .header-custom-link:active {
-  color: white; }
+  color: #009ad0; }
 
 .header-custom-link:visited {
-  color: white; }
+   color: #009ad0; }
 
 /*47*/
 .news-item {
@@ -10443,20 +10474,51 @@ table.fixheight {
   color: gray !important; }
 
 .col-form {
-  margin: 1rem 1rem 0 0; }
-
+  margin: 1rem 1rem 0 0;
+  border-radius: 5px;  
+}
+  
 .cb {
   padding-top: 0.5rem;
   color: white;
   font-weight: bold; }
 
 .button-register {
-  background-color: #28cb1f !important;
+  background-color: #009ad0 !important;
   width: 100%;
   color: white !important;
   font-weight: bold !important;
-  margin: 1rem 0; }
-
+  margin: 1rem 0;
+border-radius: 25px; }
+.text-register{
+  margin-bottom: 0px;
+}
+.color-text-remember{
+  color: #767676;
+}
+.align-left{
+  text-align: left;
+}
+.border-gray{
+  border: 1px solid #009ad0 !important;
+}
+.color-blue-sige{
+  color: #009ad0 !important
+}
+.modal-body-contact{
+  color: black;
+  font-size: 16px;
+}
+.button-register-green {
+  background-color: white !important;
+  width: 100%;
+  color: #00d023 !important;
+  font-weight: bold !important;
+  margin: 1rem 0;
+  border: #00d023 solid 1px !important;
+  border-radius: 25px;
+  margin-top: 0px;
+ }
 .line-separation {
   border: 0.5px solid white; }
 

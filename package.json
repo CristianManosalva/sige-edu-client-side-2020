@@ -13,7 +13,6 @@
     "draft-js": "0.10.x",
     "draftjs-to-html": "0.8.4",
     "faker": "^4.1.0",
-    "font-awesome": "^4.7.0",
     "history": "4.9.0",
     "html-to-draftjs": "1.4.0",
     "jquery": "^3.5.1",
