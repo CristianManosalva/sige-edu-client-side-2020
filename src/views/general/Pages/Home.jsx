@@ -41,10 +41,11 @@ const Home = () => {
         </Row>
       </div>
 
-      <div className="discover-sige">
-        <Container fluid={true}>
-          <h2>Descubre SIGE</h2>
-          <Carousel>
+      <Container fluid={true} className="div-center ">
+        <div className="div-discover">
+        <h2 className="style-discover-text">DESCUBRE SIGE</h2>
+        </div>
+        <Carousel>
             {news.map((value, key) => {
               return (
                 <NewsCarouselItem
@@ -55,19 +56,18 @@ const Home = () => {
               )
             })}
           </Carousel>
-        </Container>
-      </div>
-      <div className="videos-section">
+      </Container>
+      {/* <div className="videos-section">
         <div className="videos-section-container">
           <div className="videos-section-container__video">
-            {/* <iframe
+             <iframe
               width="560"
               height="315"
               src="https://www.youtube.com/embed/8r95xn7XTyo"
               frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               title="show-sige"
-            ></iframe> */}
+            ></iframe> 
           </div>
           <div className="videos-section-container__title">
             {/* <p>
@@ -79,10 +79,10 @@ const Home = () => {
               comunidad
               <br />
               educativa
-            </p> */}
+            </p> 
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="clients">
         <Container fluid={true}>
           <h2>

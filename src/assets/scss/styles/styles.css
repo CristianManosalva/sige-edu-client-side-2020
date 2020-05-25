@@ -1,0 +1,118 @@
+.button-register {
+    background-color: #009ad0 !important;
+    width: 100%;
+    color: white !important;
+    font-weight: bold !important;
+    margin: 1rem 0;
+  border-radius: 25px; }
+  .text-register{
+    margin-bottom: 0px;
+  }
+  .text-bold{
+    font-weight: bold !important;
+  }
+  .color-text-remember{
+    color: #767676;
+  }
+  .font-contact{
+      font-size: 26px;
+      color: #009ad0;
+  }
+  .align-left{
+    text-align: left;
+  }
+  .border-gray{
+    border: 1px solid #009ad0 !important;
+  }
+  .color-blue-sige{
+    color: #009ad0 !important
+  }
+  .blue-back{
+     background-color: #009ad0 !important; 
+  }
+  .modal-body-contact{
+    color: black;
+    font-size: 16px;
+  }
+  .button-register-green {
+    background-color: white !important;
+    width: 100%;
+    color: #00d023 !important;
+    font-weight: bold !important;
+    margin: 1rem 0;
+    border: #00d023 solid 1px !important;
+    border-radius: 25px;
+    margin-top: 0px;
+   }
+   .home-image {
+    background-image: url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh; }
+  .super-position{
+    position: absolute;
+  }
+  .div-login-center{
+    vertical-align: center;
+    text-align: center;
+  
+  }
+  .div-center{
+      text-align: center;
+      
+  }
+  .div-discover{
+      background-color: #009ad0;
+      border-radius: 5px;
+  }
+  .header-custom-link{
+    color: #009ad0;
+    border-radius: 10px;
+  }
+  .header-custom-link:visited {
+    color: #009ad0;
+    border-radius: 10px;
+    border: 1px solid #009ad0;  
+}
+.header-modal-contact{
+    padding: 0 !important;
+}
+  .custom-header-container-new {
+    position: static;
+    width: 100%;
+    background-color: white;
+    height: 55px;
+    top: 0;
+    left: 0;
+}
+  .style-discover-text{
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    padding: 2.5rem;
+  }
+  .size-logo{
+    height: 150px;
+      width: 180px;
+  }
+  .home-image-new{
+    background-image: url("https://image.freepik.com/vector-gratis/concepto-tutoriales-linea_52683-37480.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    position: static }
+  .div-image-login{
+    position: static;
+    width: 100%;
+    min-height: 100vh;
+  }
+  .bordered{
+    border-radius: 25px !important;
+  }
+  .modal-content {
+    border-radius: 25px !important;
+  }
+  .main-home-container {
+    padding: 0 !important; }
