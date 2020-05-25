@@ -411,7 +411,7 @@ const AddCourse = () => {
                   <div className="form-group col-md-12">
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control form-control-new"
                       id="inputname4"
                       placeholder=""
                       name="name"
@@ -428,6 +428,7 @@ const AddCourse = () => {
                       placeholder="Descripcion de la Actividad"
                       value={description}
                       onChange={handleChange}
+                      className="form-control-new"
                     />
                   </div>
 
@@ -457,12 +458,13 @@ const AddCourse = () => {
                       options={subjects}
                       defaultValue={subjects[0]}
                       onChange={handleChangeSelectMateria}
+                      className="form-control-new"
                     />
                   </div>
                   <div className="form-group col-md-12">
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control form-control-new"
                       id="input4"
                       placeholder=""
                       name="enlace"
@@ -474,7 +476,7 @@ const AddCourse = () => {
                 </div>
                 <button
                   type="submit"
-                  className="btn btn-primary"
+                  className="btn btn-primary form-control-new"
                   style={styleButtonSave}
                 >
                   Guardar

@@ -14,6 +14,8 @@ import {
   InputGroupAddon,
   Input,
 } from 'reactstrap'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { SvgIcon } from '@material-ui/core'
 
 import { Messages, Notifications } from 'components'
 import dashboardRoutes from 'routes/university.jsx'
@@ -307,12 +309,9 @@ class HeaderR extends React.Component {
                 toggle={(e) => this.userddToggle(e)}
                 className="userdd"
               >
-                <DropdownToggle caret nav className="joyride-welcome-1">
-                  <img
-                    src="https://image.flaticon.com/icons/svg/2089/2089828.svg"
-                    alt="react-logo"
-                    className="avatar-image"
-                  />{' '}
+                <DropdownToggle caret nav className="joyride-welcome-1 bordered border-white">
+                  <SvgIcon  component={AccountCircleIcon}/>
+                  
                   {/* <span>{nameUserProfile}</span> */}
                   <span>{this.state.profilename}</span>
                   {/* {console.log('this.state', this.state)} */}
@@ -410,7 +409,7 @@ class HeaderR extends React.Component {
                 </DropdownToggle>
                 <Notifications notifications={notifications} />
               </Dropdown */}
-              >
+              
             </Nav>
             <div
               className="screensize"

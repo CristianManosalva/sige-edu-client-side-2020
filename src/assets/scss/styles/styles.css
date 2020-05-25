@@ -14,6 +14,12 @@
   .color-text-remember{
     color: #767676;
   }
+  .border-white{
+    border: 1px solid white;
+  }
+  .form-control-new{
+    border-radius: 25px !important;
+  }
   .font-contact{
       font-size: 26px;
       color: #009ad0;
@@ -75,8 +81,16 @@
     border-radius: 10px;
     border: 1px solid #009ad0;  
 }
+.db_box{
+  border-radius: 15px;
+}
 .header-modal-contact{
     padding: 0 !important;
+}
+.header-modal-creating{
+  padding: 0 !important;
+  height: 100px;
+  width: auto;
 }
   .custom-header-container-new {
     position: static;

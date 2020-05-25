@@ -1,25 +1,32 @@
-import moment from 'moment'; // Example for onSort prop
-import React from 'react'; // Import React
+import moment from 'moment' // Example for onSort prop
+import React, { useState } from 'react' // Import React
 //import { render } from 'react-dom'; // Import render method
-import Datatable from 'react-bs-datatable'; // Import this package
-import {
-    Row, Col,
-} from 'reactstrap';
+import Datatable from 'react-bs-datatable' // Import this package
+import { Row, Col, Button } from 'reactstrap'
+import Modal from 'react-bootstrap/Modal'
+import creating from 'assets/img/creating.jpg'
+import { SvgIcon } from '@material-ui/core'
+import WhatsAppIcon from '@material-ui/icons/WhatsApp'
+import TelegramIcon from '@material-ui/icons/Telegram'
 
 const header = [
   { title: 'ID', prop: 'id', sortable: true, filterable: true },
   { title: 'Título', prop: 'title', sortable: true, filterable: true },
   { title: 'Asignatura', prop: 'subject', sortable: true, filterable: true },
   { title: 'Año', prop: 'year', sortable: true, filterable: true },
-  { title: 'Departamento', prop: 'department', sortable: true, filterable: true },
+  {
+    title: 'Departamento',
+    prop: 'department',
+    sortable: true,
+    filterable: true,
+  },
   { title: 'Precio', prop: 'price', sortable: true, filterable: true },
   { title: 'Tipo', prop: 'type', sortable: true, filterable: true },
   { title: 'Estado', prop: 'status', sortable: true, filterable: true },
-];
+]
 
-
-
-const body = [/* {id: 1, title: "Web Programming", subject: "Mechanics", year: "First Year", department: "Automobile Engg.", type: "Book", status: "In Stock", price: "$136.88"},
+const body = [
+  /* {id: 1, title: "Web Programming", subject: "Mechanics", year: "First Year", department: "Automobile Engg.", type: "Book", status: "In Stock", price: "$136.88"},
 {id: 2, title: "Designing", subject: "Mechanics", year: "First Year", department: "Automobile Engg.", type: "Newpaper", status: "Out of Stock", price: "$82.82"},
 {id: 3, title: "Mechanics", subject: "Computer", year: "Second Year", department: "Computer Engineering", type: "DVD", status: "Out of Stock", price: "$151.65"},
 {id: 4, title: "Theory of Relaivity", subject: "Animation", year: "First Year", department: "Civil Engg.", type: "CD", status: "In Stock", price: "$182.81"},
@@ -119,15 +126,16 @@ const body = [/* {id: 1, title: "Web Programming", subject: "Mechanics", year: "
 {id: 98, title: "Politics", subject: "Graphics", year: "First Year", department: "Mechanical Engineering", type: "DVD", status: "In Stock", price: "$166.12"},
 {id: 99, title: "Management Basics", subject: "Management", year: "Second Year", department: "Automobile Engg.", type: "Newpaper", status: "Out of Stock", price: "$118.85"},
 {id: 100, title: "Animation Graphic Fundamentals", subject: "Graphics", year: "Second Year", department: "MBA", type: "Book", status: "In Stock", price: "$145.11"}
- */];
+ */
+]
 
 const onSortFunction = {
   date(columnValue) {
     // Convert the string date format to UTC timestamp
     // So the table could sort it by number instead of by string
-    return moment(columnValue, 'Do MMMM YYYY').valueOf();
+    return moment(columnValue, 'Do MMMM YYYY').valueOf()
   },
-};
+}
 
 const customLabels = {
   first: '<<',
@@ -137,68 +145,83 @@ const customLabels = {
   show: 'Display ',
   entries: ' rows',
   noResults: 'No hay datos para mostrar',
-};
-
-class Library extends React.Component{
-
-
-    render(){
-
-        return (
-            <div>
-                <div className="content">
-                    <Row>
-                        <Col xs={12} md={12}>
-
-                    <div className="page-title">
-                        <div className="float-left">
-                            <h1 className="title">Inventario de La Biblioteca</h1>
-                        </div>
-                    </div>
-
-
-
-
-                    <div className="col-12">
-                        <section className="box ">
-                            <header className="panel_header">
-                                <h2 className="title float-left">Todos los Libros</h2>
-
-                            </header>
-                            <div className="content-body">
-                                <div className="row">
-                                    <div className="col-lg-12 dt-disp">
-
-  <Datatable
-  tableHeader={header}
-  tableBody={body}
-  keyName="userTable"
-  tableClass="striped table-hover table-responsive"
-  rowsPerPage={10}
-  rowsPerPageOption={[5, 10, 15, 20]}
-  initialSort={{prop: "id", isAscending: true}}
-  onSort={onSortFunction}
-  labels={customLabels}
-/>
-
-
-
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </section>
-                    </div>
-
-
-                        </Col>
-
-                    </Row>
-                </div>
-            </div>
-        );
-    }
 }
 
-export default Library;
+const Library = (props) => {
+  const [show, setShow] = useState(false)
+
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+  return (
+    <div>
+      <Modal className="bordered" show={show} onHide={handleClose}>
+        <Modal.Header className="header-modal-contact" closeButton>
+          <img src={creating} />
+        </Modal.Header>
+        <Modal.Body className="modal-body-contact">
+          <p className="div-center text-bold font-contact">
+            ESTAMOS CONSTRUYENDO...
+          </p>
+          <p>
+            Disculpa las molestias, estamos trabajando en esta funcionalidad,
+            pero puedes contactarnos al{' '}
+          </p>
+          <p>
+            Whatsapp{' '}
+            <SvgIcon style={{ color: 'green' }} component={WhatsAppIcon} />
+            3172426080
+          </p>
+          <p>
+            Telegram{' '}
+            <SvgIcon style={{ color: '#1976d2' }} component={TelegramIcon} />{' '}
+            @sigechat
+          </p>
+          <p>Para tener el gusto de atenderte, gracias!</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button className="blue-back bordered" onClick={handleClose}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <div className="content">
+        <Row>
+          <Col xs={12} md={12}>
+            <div className="page-title">
+              <div className="float-left">
+                <h1 className="title">Inventario de La Biblioteca</h1>
+              </div>
+            </div>
+
+            <div className="col-12">
+              <section className="box " onClick={handleShow}>
+                <header className="panel_header">
+                  <h2 className="title float-left">Todos los Libros</h2>
+                </header>
+                <div className="content-body">
+                  <div className="row">
+                    <div className="col-lg-12 dt-disp">
+                      <Datatable
+                        tableHeader={header}
+                        tableBody={body}
+                        keyName="userTable"
+                        tableClass="striped table-hover table-responsive"
+                        rowsPerPage={10}
+                        rowsPerPageOption={[5, 10, 15, 20]}
+                        initialSort={{ prop: 'id', isAscending: true }}
+                        onSort={onSortFunction}
+                        labels={customLabels}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </Col>
+        </Row>
+      </div>
+    </div>
+  )
+}
+
+export default Library
