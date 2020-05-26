@@ -12,10 +12,10 @@ import { students } from '../../../variables/university/students';
 import Inicio from '../../../components/common/Inicio/Inicio.jsx'
 import {inicioDiv } from '../../../components/university/Studentslist/stylesStudentsList'
 let user = JSON.parse(localStorage.getItem('userv2'))
-var codeTeacher = user.user_data.teacher.codeTeacher;
+// var codeTeacher = user.user_data.teacher.codeTeacher;
 
 
-const API = 'http://api.sige-edu.com:8000/api/enrollments/enrollment/byGroupmanager/${codeTeacher}'
+const API = 'http://api.sige-edu.com:8000/api/enrollments/enrollment/byGroupmanager/49'
 
 var IMGDIR = process.env.REACT_APP_IMGDIR
 var studentManagerGroup = localStorage.getItem('studentManagerGroup');
