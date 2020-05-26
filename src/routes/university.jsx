@@ -7,7 +7,7 @@ import CourseView from 'views/university/Course/CourseView.jsx'
 import Library from 'views/university/Library/Library.jsx'
 import Professor from 'views/university/Professor/Professor.jsx'
 import AddProfessor from 'views/university/Professor/AddProfessor.jsx'
-import Student from 'views/university/Student/Student.jsx'
+// import Student from 'views/university/Student/Student.jsx'
 // import Centres from 'views/university/Centres/UniversityCentres'
 import Wall from 'views/university/Community/Wall.jsx'
 
@@ -37,12 +37,12 @@ var dashRoutes = [
     component: AddProfessor,
     type: 'child',
   },
-  {
-    path: BASEDIR + '/university/students',
-    icon: 'people',
-    name: 'Estudiantes',
-    component: Student,
-  },
+  // {
+  //   path: BASEDIR + '/university/students',
+  //   icon: 'people',
+  //   name: 'Estudiantes',
+  //   component: Student,
+  // },
   {
     path: BASEDIR + '/university/courses',
     icon: 'star',
