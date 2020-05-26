@@ -1,6 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import { Row, Col, Table } from 'reactstrap'
+import { Row, Col, Table, Button } from 'reactstrap'
+import Modal from 'react-bootstrap/Modal'
 import { } from 'components'
+import { SvgIcon } from '@material-ui/core'
+import WhatsAppIcon from '@material-ui/icons/WhatsApp'
+import TelegramIcon from '@material-ui/icons/Telegram'
+import creating from 'assets/img/creating.jpg'
 import useStudents from '../../../hooks/useStudents';
 import Studentslist from '../../../components/university/Studentslist/Studentslist'
 import { students } from '../../../variables/university/students';
@@ -18,9 +23,40 @@ var studentManagerGroup = localStorage.getItem('studentManagerGroup');
 
 
 
-const University = () => {
+
+const University = (props) => {
+  const [show, setShow] = useState(false)
+
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
   const objectStudents = useStudents(API)
   const renderStudentList = (fixed) => (
+    <div>
+      <Modal className="bordered" show={show} onHide={handleClose}>
+        <Modal.Header className="header-modal-contact" closeButton>
+          <img src={creating} />
+        </Modal.Header>
+        <Modal.Body className="modal-body-contact">
+          <p className="div-center text-bold font-contact">ESTAMOS CONSTRUYENDO...</p>
+          <p>Disculpa las molestias, estamos trabajando en esta funcionalidad, pero puedes contactarnos al </p>
+          <p>
+            Whatsapp{' '}
+            <SvgIcon style={{ color: 'green' }} component={WhatsAppIcon} />
+            3172426080
+          </p>
+          <p>
+            Telegram{' '}
+            <SvgIcon style={{ color: '#1976d2' }} component={TelegramIcon} />{' '}
+            @sigechat
+          </p>
+          <p>Para tener el gusto de atenderte, gracias!</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button className="blue-back bordered" onClick={handleClose}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     <div>
       <div className="content">
         <Row>

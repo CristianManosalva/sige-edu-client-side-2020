@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 /*import 'font-awesome/css/font-awesome.min.css';*/
 import 'assets/scss/zest-admin.css'
 import 'assets/fonts/simple-line-icons.css'
-
+import 'assets/scss/styles/styles.css'
 ReactDOM.render(
   <Provider store={store}>
     <App />

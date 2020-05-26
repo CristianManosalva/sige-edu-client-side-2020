@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useState, useEffect } from 'react'
 import {
   Collapse,
   Navbar,
@@ -14,12 +14,17 @@ import {
   InputGroupAddon,
   Input,
 } from 'reactstrap'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { SvgIcon } from '@material-ui/core'
 
 import { Messages, Notifications } from 'components'
 import dashboardRoutes from 'routes/university.jsx'
 import { connect } from 'react-redux'
 import { messages } from 'variables/topbar.jsx'
 import { notifications } from 'variables/topbar.jsx'
+
+import Modal from 'react-bootstrap/Modal'
+import EditCustomer from '../../../views/crm/Customer/EditCustomer'
 
 var IMGDIR = process.env.REACT_APP_IMGDIR
 var BASEDIR = process.env.REACT_APP_BASEDIR
@@ -55,6 +60,8 @@ class HeaderR extends React.Component {
     this.notificationsddToggle = this.notificationsddToggle.bind(this)
     this.searchToggle = this.searchToggle.bind(this)
   }
+
+
   toggle() {
     if (this.state.isOpen) {
       this.setState({
@@ -248,6 +255,8 @@ class HeaderR extends React.Component {
       // this.refs.chatToggle.classList.toggle('toggled');
     }
   }
+
+  
   render() {
     return (
       // add or remove classes depending if we are on full-screen-maps page or not
@@ -300,12 +309,9 @@ class HeaderR extends React.Component {
                 toggle={(e) => this.userddToggle(e)}
                 className="userdd"
               >
-                <DropdownToggle caret nav className="joyride-welcome-1">
-                  <img
-                    src="https://image.flaticon.com/icons/svg/2089/2089828.svg"
-                    alt="react-logo"
-                    className="avatar-image"
-                  />{' '}
+                <DropdownToggle caret nav className="joyride-welcome-1 bordered border-white">
+                  <SvgIcon  component={AccountCircleIcon}/>
+                  
                   {/* <span>{nameUserProfile}</span> */}
                   <span>{this.state.profilename}</span>
                   {/* {console.log('this.state', this.state)} */}
@@ -314,7 +320,7 @@ class HeaderR extends React.Component {
                   {/* <DropdownItem tag="a">
                     <i className="i-wrench" href="#!"></i> Configuracion
                   </DropdownItem> */}
-                  {/* <DropdownItem
+                   <DropdownItem
                     tag="a"
                     onClick={() => {
                       // eslint-disable-next-line
@@ -324,10 +330,36 @@ class HeaderR extends React.Component {
                     }}
                   >
                     <i className="i-user" href="#!"></i> Perfil
-                  </DropdownItem> */}
+                  </DropdownItem> 
                   {/* <DropdownItem tag="a">
                     <i className="i-info" href="#!"></i> Ayuda
                   </DropdownItem> */}
+
+                  {/**  dropdown de editar perfil */}
+                  {/* <DropdownItem
+                    onClick={() => {
+                    }}
+                    tag="a"
+                    className=""
+                    href="#!"
+                  >
+                    <i className="i-user" href="#!"></i>Perfil
+                  </DropdownItem> */}
+                  {/**  fin dropdown de editar perfil */}
+
+                  
+                  {/**dropdown configuración{cambiar contraseña} */}
+                  {/* <DropdownItem
+                    onClick={() => {
+                      console.log("componente cambiar contraseña")
+                    }}
+                    tag="a"
+                    className=""
+                    href="#!"
+                  >
+                    <i className="i-settings" href="#!"></i>Configuración
+                  </DropdownItem> */}
+                  {/**fin dropdown configuración */}
                   <DropdownItem
                     onClick={() => {
                       localStorage.removeItem('userv2')
@@ -377,7 +409,7 @@ class HeaderR extends React.Component {
                 </DropdownToggle>
                 <Notifications notifications={notifications} />
               </Dropdown */}
-              >
+              
             </Nav>
             <div
               className="screensize"

@@ -5,26 +5,75 @@ import InputMask from 'react-input-mask'
 import 'react-datepicker/dist/react-datepicker.css'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
+import Modal from 'react-bootstrap/Modal'
+import { config } from '_config'
+import Button from 'react-bootstrap/Button'
 
-var api = process.env.REACT_APP_API_END_POINT
+var api = process.env.REACT_APP_API_END_POINT_OFICIAL
+const backgroundBlue = {
+  backgroundColor: '#1EAEDF',
+  color: 'white',
+}
+
+const whiteText = {
+  color: 'white',
+}
+const styleButtonSave = {
+  backgroundColor: '#29F441',
+  width: '100%',
+  fontWeight: 'bold',
+}
+
 
 const AddProfessor = (props) => {
-  //   const [teacher, setTeacher] = useState({
-  //     id: '',
-  //     national_id: '',
-  //     national_type_id: -1,
-  //     name: ' ',
-  //     surname: '',
-  //     email: '',
-  //     phone_number: '',
-  //     address: '',
-  //     password: '',
-  //     birthdate: '2000-01-01',
-  //     last_connection: '',
-  //     gender: '',
-  //     blood_type_id: 1,
-  //     is_active: 1,
-  //   })
+  const { user } = useSelector((state) => state.authentication.user.user_data)
+
+  const [teacher, setTeacher] = useState({
+    documentIdUser: '',
+    password: '',
+    last_login: null,
+    email: '',
+    date_joined: '',
+    typeIdeUser: 'CC',
+    firstNameUser: ' ',
+    lastNameUser: '',
+    emailUser: '',
+    phoneUser: '',
+    addressUser: '',
+    passwordUser:
+      '',
+    dateOfBirthUser: '',
+    dateLastAccessUser: '',
+    genderUser: '',
+    rhUser: '',
+    is_active: true,
+    is_staff: false,
+    is_superuser: false,
+    codeIE: '',
+    codeHeadquarters: 1,
+    groups: [],
+    user_permissions: [],
+  })
+ 
+
+  //USER DEFINITION
+  //let user = JSON.parse(localStorage.getItem('userv2'));
+  // let nameUserProfile = teacher.firstNameUser
+  // let surnameUserProfile = teacher.lastNameUser
+  // let typeIdeUser = teacher.typeIdeUser
+  // let documentIdUser = teacher.documentIdUser
+  // let dateOfBirthUser = teacher.dateOfBirthUser
+  // let genderUser = teacher.genderUser
+  // let emailUser = teacher.emailUser
+  // let phoneUser = teacher.phoneUser
+  // let addressUser = teacher.addressUser
+
+  const [show, setShow] = useState(true)
+  const handleClose = () => setShow(false)
+
+  const [smShow, setSmShow] = useState(false);
+
+
   //   const [institutions] = useState([
   //     {
   //       name: 'Institución Educativa Central de Bachillerato Integrado',
@@ -77,10 +126,10 @@ const AddProfessor = (props) => {
   //       ],
   //     },
   //   ])
-  //   const [loaders, setLoaders] = useState({
-  //     firstLoad: false,
-  //     updateLoad: false,
-  //   })
+  const [loaders, setLoaders] = useState({
+    firstLoad: false,
+    updateLoad: false,
+  })
   //   const [sedes, setSedes] = useState([])
   //   //   const [grados, setGrados] = useState(moment())
   //   const [grados] = useState({
@@ -99,22 +148,43 @@ const AddProfessor = (props) => {
   //   //{ ins: '112233', sede: '2', grupo: '6-2', materia: 'Español' },
   //   const [carga, setCarga] = useState([])
   //   const { user } = useSelector((state) => state.authentication.user)
-  //   function handleChange(e) {
-  //     const { name, value } = e.target
-  //     console.log(name, ' v ', value)
-  //     setTeacher((teacher) => ({
-  //       ...teacher,
-  //       [name]: value,
-  //     }))
-  //   }
 
-  //   function handleChangeDate(date) {
-  //     console.log(date)
-  //     setTeacher((teacher) => ({
-  //       ...teacher,
-  //       birthdate: date.format('YYYY-MM-DD'),
-  //     }))
-  //   }
+  function getUserData() {
+    fetch(api + `/users/${user.documentIdUser}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then(( data ) => { setTeacher(data)})
+      .catch((error) => console.log(error))
+      .finally(() => {
+        /* setLoaders((loaders) => ({
+                ...loaders,
+                cargaLoad: false,
+              })) */
+      })
+  }
+
+  function handleChange(e) {
+    const { name, value } = e.target
+    //console.log(name, ' v ', value)
+
+    setTeacher((teacher) => ({
+      ...teacher,
+      [name]: value,
+    }))
+  }
+
+  function handleChangeDate(date) {
+    //console.log(date)
+    setTeacher((teacher) => ({
+      ...teacher,
+      dateOfBirthUser: date.format('YYYY-MM-DD'),
+    }))
+  }
 
   //   function handleChangeInstitucions(e) {
   //     const { name, value } = e.target
@@ -185,31 +255,43 @@ const AddProfessor = (props) => {
   //       })
   //   }
 
-  //   function updateTeacher(id, teacher) {
-  //     setLoaders((loaders) => ({
-  //       ...loaders,
-  //       updateLoad: true,
-  //     }))
-  //     fetch(api + `/teachers/${id}`, {
-  //       method: 'PUT',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(teacher),
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         console.log('content for put ', data)
-  //       })
-  //       .catch((error) => console.log(error))
-  //       .finally(() => {
-  //         setLoaders((loaders) => ({
-  //           ...loaders,
-  //           updateLoad: false,
-  //         }))
-  //       })
-  //   }
+  function updateTeacher(documentIdUser, teacher) {
+    let auxTeacher = teacher;
+    auxTeacher.password = teacher.passwordUser;
+
+
+    setLoaders((loaders) => ({
+      ...loaders,
+      updateLoad: true,
+    }))
+    fetch(api + `/users/update/${documentIdUser}/`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(auxTeacher),
+    })
+      .then((response) => {response.json() 
+        setSmShow(true)
+        
+      }
+      
+      )
+      .then((data) => {
+        console.log('content for put ', data)
+      })
+      .catch((error) => console.log(error))
+      .finally(() => {
+        setLoaders((loaders) => ({
+          ...loaders,
+          updateLoad: false,
+        }))
+      })
+
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
+  }
 
   //   function createCarga(cargaitem) {
   //     fetch(api + `/cargas/`, {
@@ -283,11 +365,9 @@ const AddProfessor = (props) => {
   //     })) */
   //   }
 
-  //   useEffect(() => {
-  //     getTeacher()
-  //     getCarga()
-  //     getMaterias()
-  //   }, [])
+    useEffect(() => {
+      getUserData()
+    }, [])
 
   //   const {
   //     id,
@@ -302,10 +382,14 @@ const AddProfessor = (props) => {
   //     gender,
   //   } = teacher
 
-  //   function handleSubmit(e) {
-  //     e.preventDefault()
-  //     updateTeacher(id, teacher)
-  //   }
+  function handleSubmit(e) {
+    e.preventDefault()
+    updateTeacher(documentIdUser, teacher)
+  }
+
+  function closeSM(){
+    window.location.reload();
+  }
 
   //   return (
   //     <div>
@@ -644,7 +728,234 @@ const AddProfessor = (props) => {
   //       </div>
   //     </div>
   //   )
-  return <h1>Hola mundo</h1>
+  const { firstNameUser, lastNameUser, typeIdeUser,documentIdUser,dateOfBirthUser,genderUser, emailUser, phoneUser,addressUser } = teacher;
+  return (
+    
+
+    <Modal show={show} onHide={handleClose,closeSM}>
+      <Modal.Header style={backgroundBlue} closeButton>
+        <Modal.Title>MI PERFIL</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={backgroundBlue}>
+
+      <Modal
+        size="sm"
+        show={smShow}
+        onHide={() => setSmShow(false)}
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
+        <Modal.Header style={backgroundBlue} closeButton>
+          <Modal.Title id="example-modal-sizes-title-sm">
+           Cambios guardados
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={backgroundBlue}> !Tus datos han sido actualizados éxitosamente! </Modal.Body>
+        <Modal.Footer style={backgroundBlue}>
+        <Button  style={styleButtonSave} onClick={closeSM}>Cerrar</Button>
+      </Modal.Footer>
+      </Modal>
+
+        <div>
+          <div className="content">
+            <Row>
+              <Col xs={12} md={12}>
+                <div className="row margin-0">
+                  <div className="col-12">
+                    <section style={backgroundBlue} className="box ">
+                      <header className="panel_header">
+                        <h2 style={whiteText} className="title float-left">
+                          Informacion Personal{' '}
+                          {loaders.firstLoad && (
+                            <Spinner
+                              style={{ width: '1.3rem', height: '1.3rem' }}
+                              color="info"
+                            />
+                          )}
+                        </h2>
+                      </header>
+
+                      <div className="content-body">
+                        <div className="row">
+                          <div className="col-12 col-sm-12">
+                            <form onSubmit={handleSubmit}>
+                              <div className="form-row">
+                                {/**DIV DE NOMBRE */}
+                                <div className="form-group col-md-6">
+                                  <label htmlFor="name">Nombres</label>
+                                  <input
+                                    onChange={handleChange}
+                                    type="text"
+                                    className="form-control"
+                                    id="name"
+                                    name="firstNameUser"
+                                    value={firstNameUser}
+                                    placeholder=""
+                                  />
+                                </div>
+                                {/**FIN DIV DE NOMBRE */}
+
+                                {/**DIV DE APELLIDOS */}
+                                <div className="form-group col-md-6">
+                                  <label htmlFor="surname">Apellidos</label>
+                                  <input
+                                    name="lastNameUser"
+                                    onChange={handleChange}
+                                    value={lastNameUser}
+                                    type="text"
+                                    className="form-control"
+                                    id="surname"
+                                    placeholder=""
+                                  />
+                                </div>
+                                {/**FIN DIV DE APELLIDO */}
+
+                                {/**DIV DE DOCUMENTO */}
+                                <div className="form-group col-sm-12 col-md-6">
+                                  <label htmlFor="document-group">
+                                    Documento
+                                  </label>
+                                  <select
+                                    onChange={handleChange}
+                                    defaultValue={typeIdeUser}
+                                    name="typeIdeUser"
+                                    id="document-group"
+                                    className="form-control"
+                                    contentEditable={false}
+                                  >
+                                    {/* <option value={-1}>Tipo</option> */}
+                                    <option value={0}>
+                                      Cedula de cuidadania
+                                    </option>
+                                    {/* <option value={1}>Pasaporte</option> */}
+                                  </select>
+                                </div>
+                                {/**FIN DIV DE DOCUMENTO */}
+
+                                {/**DIV DE NUMERO DE DOCUMENTO */}
+                                <div className="form-group col-sm-12 col-md-6">
+                                  <label htmlFor="number-group">
+                                    <br />
+                                  </label>
+                                  <input
+                                    onChange={handleChange}
+                                    disabled={true}
+                                    id="number-group"
+                                    type="number"
+                                    name="documentIdUser"
+                                    value={documentIdUser}
+                                    className="form-control"
+                                    placeholder="numero"
+                                  />
+                                </div>
+                                {/**FIN DIV DE NUMERO DE DOCUMENTO */}
+
+                                {/**DIV FECHA DE NACIMIENTO */}
+                                <div className="form-group col-sm-12 col-md-6">
+                                  <label>Fecha de Nacimiento</label>
+                                  <div
+                                    className="controls"
+                                    style={{ margin: 0 }}
+                                  >
+                                    <DatePicker
+                                      name="dateOfBirthUser"
+                                      selected={moment(dateOfBirthUser)}
+                                      onChange={handleChangeDate}
+                                      showMonthDropdown
+                                      showYearDropdown
+                                      dropdownMode="select"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="form-group col-sm-12 col-md-6">
+                                  <Label htmlFor="gender">Genero</Label>
+                                  <Input
+                                    onChange={handleChange}
+                                    type="select"
+                                    name="genderUser"
+                                    id="gender"
+                                    value={genderUser}
+                                  >
+                                    <option value={-1}>Genero</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Masculino">Masculino</option>
+                                  </Input>
+                                </div>
+
+                                {/**FIN DIV FECHA DE NACIMIENTO */}
+
+                                {/**CONTACT */}
+                                <div className="form-group col-sm-12 col-md-6">
+                                  <label htmlFor="email">Email</label>
+                                  <input
+                                    onChange={handleChange}
+                                    type="email"
+                                    className="form-control"
+                                    id="email"
+                                    name="emailUser"
+                                    value={emailUser}
+                                    //placeholder="example@gmail.com"
+                                  />
+                                </div>
+                                <div className="col-sm-12 col-md-6">
+                                  <Label htmlFor="field-11">
+                                    Telefono Movil
+                                  </Label>
+                                  <InputMask
+                                    onChange={handleChange}
+                                    id="field-11"
+                                    name="phoneUser"
+                                    value={phoneUser}
+                                    className="form-control"
+                                    mask="999 999 9999"
+                                    maskChar="_"
+                                  />
+                                </div>
+                                {/**FIN CONTACT */}
+
+                                <div className="form-group col-sm-12">
+                                  <label htmlFor="addres">Direccion</label>
+                                  <input
+                                    onChange={handleChange}
+                                    value={addressUser}
+                                    type="text"
+                                    className="form-control"
+                                    name="addressUser"
+                                    id="addres"
+                                    placeholder="Carrera 1E #12A - 02, Jamundi"
+                                  />
+                                </div>
+                              </div>
+
+                              <button
+                                style={styleButtonSave}
+                                type="submit"
+                                className="btn btn-primary"
+                              >
+                                Guardar{' '}
+                                {loaders.updateLoad && (
+                                  <Spinner
+                                    style={{
+                                      width: '1.3rem',
+                                      height: '1.3rem',
+                                    }}
+                                    color="light"
+                                  />
+                                )}
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        </div>
+      </Modal.Body>
+    </Modal>
+  )
 }
 
 export default AddProfessor
