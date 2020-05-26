@@ -8,7 +8,7 @@ import Library from 'views/university/Library/Library.jsx'
 import Professor from 'views/university/Professor/Professor.jsx'
 import AddProfessor from 'views/university/Professor/AddProfessor.jsx'
 import Student from 'views/university/Student/Student.jsx'
-
+import Wall from 'views/university/Community/Wall.jsx'
 
 var BASEDIR = process.env.REACT_APP_BASEDIR
 var dashRoutes = [
@@ -17,6 +17,12 @@ var dashRoutes = [
     name: 'Inicio',
     icon: 'home',
     component: University,
+  },
+  {
+    path: BASEDIR + '/university/community',
+    name: 'Comunidad',
+    icon: ' fa fa-users',
+    component: Wall,
   },
   // Options Teacher
   {
@@ -60,7 +66,7 @@ var dashRoutes = [
     name: 'Actividad Online',
     component: AddCourse,
   },
- 
+
   {
     path: BASEDIR + '/university/library',
     icon: 'notebook',

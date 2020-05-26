@@ -1,0 +1,8 @@
+.description_container {
+  margin: 2rem 0;
+  white-space: pre-wrap;
+}
+
+.description_container-text-aria {
+  width: 100%;
+}
