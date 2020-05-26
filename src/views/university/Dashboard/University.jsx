@@ -31,32 +31,7 @@ const University = (props) => {
   const handleShow = () => setShow(true)
   const objectStudents = useStudents(API)
   const renderStudentList = (fixed) => (
-    <div>
-      <Modal className="bordered" show={show} onHide={handleClose}>
-        <Modal.Header className="header-modal-contact" closeButton>
-          <img src={creating} />
-        </Modal.Header>
-        <Modal.Body className="modal-body-contact">
-          <p className="div-center text-bold font-contact">ESTAMOS CONSTRUYENDO...</p>
-          <p>Disculpa las molestias, estamos trabajando en esta funcionalidad, pero puedes contactarnos al </p>
-          <p>
-            Whatsapp{' '}
-            <SvgIcon style={{ color: 'green' }} component={WhatsAppIcon} />
-            3172426080
-          </p>
-          <p>
-            Telegram{' '}
-            <SvgIcon style={{ color: '#1976d2' }} component={TelegramIcon} />{' '}
-            @sigechat
-          </p>
-          <p>Para tener el gusto de atenderte, gracias!</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button className="blue-back bordered" onClick={handleClose}>
-            Cerrar
-          </Button>
-        </Modal.Footer>
-      </Modal>
+    
     <div>
       <div className="content">
         <Row>
