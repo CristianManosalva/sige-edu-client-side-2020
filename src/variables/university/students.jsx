@@ -4,7 +4,7 @@
 var IMGDIR = process.env.REACT_APP_IMGDIR;
 
 const students = [
-    // {avatar: IMGDIR+"/images/university/students/student-9.jpg", name: "Lily White", position: "Architect", age: "13"},
+    {avatar: IMGDIR+"/images/university/students/student-9.jpg", name: "Lily White", position: "Architect", age: "13"},
     // {avatar: IMGDIR+"/images/university/students/student-7.jpg", name: "Leah Young", position: "Electrical Engg", age: "16"},
     // {avatar: IMGDIR+"/images/university/students/student-10.jpg", name: "Irene Smith", position: "Medical", age: "15"},
     // {avatar: IMGDIR+"/images/university/students/student-3.jpg", name: "Julia Vasar", position: "Management", age: "5"},
