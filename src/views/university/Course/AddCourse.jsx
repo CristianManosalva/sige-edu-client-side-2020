@@ -289,7 +289,10 @@ const AddCourse = () => {
       .then((data) => {
         alert('Seccion creada con exito')
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        console.log(error)
+        alert('Error al crear la seccion, contacta la soporte de SIGE')
+      })
       .finally(() => {})
   }
 
@@ -359,7 +362,7 @@ const AddCourse = () => {
       let body = {
         nameSecction: name,
         descriptionSecction: description,
-        // workspaceSecction: selected.sWorkSpace,
+        workspaceSecction: selected.sWorkSpace,
       }
       createSecction(body)
     } else {

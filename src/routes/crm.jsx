@@ -4,6 +4,7 @@ import CrmEvents from 'views/crm/Events/CrmEvents.jsx'
 import CrmReportsCustomers from 'views/crm/Reports/ReportsCustomers.jsx'
 import Centres from 'views/university/Centres/UniversityCentres'
 import Help from 'views/university/Help/Help.jsx'
+import Wall from 'views/university/Community/Wall.jsx'
 
 var BASEDIR = process.env.REACT_APP_BASEDIR
 var dashRoutes = [
@@ -13,6 +14,12 @@ var dashRoutes = [
     icon: 'home',
     badge: '',
     component: CrmReportsCustomers,
+  },
+  {
+    path: BASEDIR + '/university/community',
+    name: 'Comunidad',
+    icon: ' fa fa-users',
+    component: Wall,
   },
   {
     path: BASEDIR + '/university/customers',
