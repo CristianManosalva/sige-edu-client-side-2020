@@ -140,13 +140,23 @@ const ActivityItem = (props) => {
                         className="uprofile-list"
                         // style={{ position: 'absolute', bottom: '0', left: '15px' }}
                       >
-                        <span>
+                        {activity.lynks.map((value, key) => {
+                          return (
+                            <span>
+                              <i className="i-link"></i>{' '}
+                              <a href={value.url} target="_blank">
+                                {value.url}
+                              </a>
+                            </span>
+                          )
+                        })}
+                        {/* <span>
                           <i className="i-control-play"></i> historia del
                           renacimiento
                         </span>
                         <span>
                           <i className="i-control-play"></i> arte colonial
-                        </span>
+                        </span> */}
                       </p>
                     </CardBody>
                   </Card>
