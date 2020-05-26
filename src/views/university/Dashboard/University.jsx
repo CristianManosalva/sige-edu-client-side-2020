@@ -1,28 +1,24 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { Row, Col, Table, Button } from 'reactstrap'
 import Modal from 'react-bootstrap/Modal'
-import { } from 'components'
+import {} from 'components'
 import { SvgIcon } from '@material-ui/core'
 import WhatsAppIcon from '@material-ui/icons/WhatsApp'
 import TelegramIcon from '@material-ui/icons/Telegram'
 import creating from 'assets/img/creating.jpg'
-import useStudents from '../../../hooks/useStudents';
+import useStudents from '../../../hooks/useStudents'
 import Studentslist from '../../../components/university/Studentslist/Studentslist'
-import { students } from '../../../variables/university/students';
+import { students } from '../../../variables/university/students'
 import Inicio from '../../../components/common/Inicio/Inicio.jsx'
-import {inicioDiv } from '../../../components/university/Studentslist/stylesStudentsList'
-let user = JSON.parse(localStorage.getItem('userv2'))
-var codeTeacher = user.user_data.teacher.codeTeacher;
+import { inicioDiv } from '../../../components/university/Studentslist/stylesStudentsList'
+// let user = JSON.parse(localStorage.getItem('userv2'))
+// var codeTeacher = user.user_data.teacher.codeTeacher;
 
-
-const API = 'http://api.sige-edu.com:8000/api/enrollments/enrollment/byGroupmanager/${codeTeacher}'
+const API =
+  'http://api.sige-edu.com:8000/api/enrollments/enrollment/byGroupmanager/${codeTeacher}'
 
 var IMGDIR = process.env.REACT_APP_IMGDIR
-var studentManagerGroup = localStorage.getItem('studentManagerGroup');
-
-
-
-
+var studentManagerGroup = localStorage.getItem('studentManagerGroup')
 
 const University = (props) => {
   const [show, setShow] = useState(false)
@@ -31,7 +27,6 @@ const University = (props) => {
   const handleShow = () => setShow(true)
   const objectStudents = useStudents(API)
   const renderStudentList = (fixed) => (
-    
     <div>
       <div className="content">
         <Row>
@@ -40,7 +35,6 @@ const University = (props) => {
               <div className={fixed ? 'fixed' : ''}>
                 <Inicio />
               </div>
-
             </div>
 
             {/* <div className="row margin-0">
@@ -95,17 +89,13 @@ const University = (props) => {
 
             </div> */}
 
-
             <div className="col-lg-12 col-xl-12 col-md-12">
               <section className="box ">
                 <header className="panel_header">
                   <h2 className="title float-left">Estudiantes</h2>
                 </header>
                 <div className="content-body">
-
                   <Studentslist students={objectStudents} />
-
-
                 </div>
               </section>
             </div>
@@ -113,14 +103,9 @@ const University = (props) => {
         </Row>
       </div>
     </div>
-
   )
 
-  return (
-    <Fragment>
-      {renderStudentList()}
-    </Fragment>
-  );
+  return <Fragment>{renderStudentList()}</Fragment>
 }
 
 export default University

@@ -24,7 +24,6 @@ const styleButtonSave = {
   fontWeight: 'bold',
 }
 
-
 const AddProfessor = (props) => {
   const { user } = useSelector((state) => state.authentication.user.user_data)
 
@@ -40,8 +39,7 @@ const AddProfessor = (props) => {
     emailUser: '',
     phoneUser: '',
     addressUser: '',
-    passwordUser:
-      '',
+    passwordUser: '',
     dateOfBirthUser: '',
     dateLastAccessUser: '',
     genderUser: '',
@@ -54,7 +52,6 @@ const AddProfessor = (props) => {
     groups: [],
     user_permissions: [],
   })
- 
 
   //USER DEFINITION
   //let user = JSON.parse(localStorage.getItem('userv2'));
@@ -71,8 +68,7 @@ const AddProfessor = (props) => {
   const [show, setShow] = useState(true)
   const handleClose = () => setShow(false)
 
-  const [smShow, setSmShow] = useState(false);
-
+  const [smShow, setSmShow] = useState(false)
 
   //   const [institutions] = useState([
   //     {
@@ -158,7 +154,9 @@ const AddProfessor = (props) => {
       },
     })
       .then((response) => response.json())
-      .then(( data ) => { setTeacher(data)})
+      .then((data) => {
+        setTeacher(data)
+      })
       .catch((error) => console.log(error))
       .finally(() => {
         /* setLoaders((loaders) => ({
@@ -256,9 +254,9 @@ const AddProfessor = (props) => {
   //   }
 
   function updateTeacher(documentIdUser, teacher) {
-    let auxTeacher = teacher;
-    auxTeacher.password = teacher.passwordUser;
-
+    let auxTeacher = teacher
+    auxTeacher.password = teacher.documentIdUser
+    auxTeacher.passwordUser = teacher.documentIdUser
 
     setLoaders((loaders) => ({
       ...loaders,
@@ -272,12 +270,10 @@ const AddProfessor = (props) => {
       },
       body: JSON.stringify(auxTeacher),
     })
-      .then((response) => {response.json() 
+      .then((response) => {
+        response.json()
         setSmShow(true)
-        
-      }
-      
-      )
+      })
       .then((data) => {
         console.log('content for put ', data)
       })
@@ -365,9 +361,9 @@ const AddProfessor = (props) => {
   //     })) */
   //   }
 
-    useEffect(() => {
-      getUserData()
-    }, [])
+  useEffect(() => {
+    getUserData()
+  }, [])
 
   //   const {
   //     id,
@@ -387,8 +383,8 @@ const AddProfessor = (props) => {
     updateTeacher(documentIdUser, teacher)
   }
 
-  function closeSM(){
-    window.location.reload();
+  function closeSM() {
+    window.location.reload()
   }
 
   //   return (
@@ -728,32 +724,44 @@ const AddProfessor = (props) => {
   //       </div>
   //     </div>
   //   )
-  const { firstNameUser, lastNameUser, typeIdeUser,documentIdUser,dateOfBirthUser,genderUser, emailUser, phoneUser,addressUser } = teacher;
+  const {
+    firstNameUser,
+    lastNameUser,
+    typeIdeUser,
+    documentIdUser,
+    dateOfBirthUser,
+    genderUser,
+    emailUser,
+    phoneUser,
+    addressUser,
+  } = teacher
   return (
-    
-
-    <Modal show={show} onHide={handleClose,closeSM}>
+    <Modal show={show} onHide={(handleClose, closeSM)}>
       <Modal.Header style={backgroundBlue} closeButton>
         <Modal.Title>MI PERFIL</Modal.Title>
       </Modal.Header>
       <Modal.Body style={backgroundBlue}>
-
-      <Modal
-        size="sm"
-        show={smShow}
-        onHide={() => setSmShow(false)}
-        aria-labelledby="example-modal-sizes-title-sm"
-      >
-        <Modal.Header style={backgroundBlue} closeButton>
-          <Modal.Title id="example-modal-sizes-title-sm">
-           Cambios guardados
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body style={backgroundBlue}> !Tus datos han sido actualizados éxitosamente! </Modal.Body>
-        <Modal.Footer style={backgroundBlue}>
-        <Button  style={styleButtonSave} onClick={closeSM}>Cerrar</Button>
-      </Modal.Footer>
-      </Modal>
+        <Modal
+          size="sm"
+          show={smShow}
+          onHide={() => setSmShow(false)}
+          aria-labelledby="example-modal-sizes-title-sm"
+        >
+          <Modal.Header style={backgroundBlue} closeButton>
+            <Modal.Title id="example-modal-sizes-title-sm">
+              Cambios guardados
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body style={backgroundBlue}>
+            {' '}
+            !Tus datos han sido actualizados éxitosamente!{' '}
+          </Modal.Body>
+          <Modal.Footer style={backgroundBlue}>
+            <Button style={styleButtonSave} onClick={closeSM}>
+              Cerrar
+            </Button>
+          </Modal.Footer>
+        </Modal>
 
         <div>
           <div className="content">
