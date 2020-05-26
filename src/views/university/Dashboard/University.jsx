@@ -113,7 +113,6 @@ const University = (props) => {
         </Row>
       </div>
     </div>
-      </div>
 
   )
 
