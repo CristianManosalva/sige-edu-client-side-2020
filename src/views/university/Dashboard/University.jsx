@@ -1,6 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { Row, Col, Table, Button } from 'reactstrap'
 import Modal from 'react-bootstrap/Modal'
+import { useSelector } from 'react-redux'
+import { config } from '_config'
 import { } from 'components'
 import { SvgIcon } from '@material-ui/core'
 import WhatsAppIcon from '@material-ui/icons/WhatsApp'
@@ -11,27 +13,21 @@ import Studentslist from '../../../components/university/Studentslist/Studentsli
 import { students } from '../../../variables/university/students';
 import Inicio from '../../../components/common/Inicio/Inicio.jsx'
 import {inicioDiv } from '../../../components/university/Studentslist/stylesStudentsList'
-let user = JSON.parse(localStorage.getItem('userv2'))
-// var codeTeacher = user.user_data.teacher.codeTeacher;
 
 
-const API = 'http://api.sige-edu.com:8000/api/enrollments/enrollment/byGroupmanager/49'
+
 
 var IMGDIR = process.env.REACT_APP_IMGDIR
-var studentManagerGroup = localStorage.getItem('studentManagerGroup');
-
-
-
-
-
 const University = (props) => {
   const [show, setShow] = useState(false)
-
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
+  const { teacher } = useSelector((state) => state.authentication.user.user_data)
+  const teacher_id = teacher.codeTeacher
+  const API = `http://api.sige-edu.com:8000/api/enrollments/enrollment/byGroupmanager/${teacher_id}`
   const objectStudents = useStudents(API)
+
   const renderStudentList = (fixed) => (
-    
     <div>
       <div className="content">
         <Row>
