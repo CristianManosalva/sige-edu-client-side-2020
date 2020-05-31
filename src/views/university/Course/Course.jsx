@@ -4,6 +4,7 @@ import { Courseslist } from 'components'
 import Select from 'react-select'
 import SelectCourseModal from '../../../modal/SelectCourseModal'
 import { useDispatch, useSelector } from 'react-redux';
+import GruposLiteral from '../../../components/common/GruposLiteral/GruposLiteral'
 
 const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`;
 const nameCourses = [];
@@ -114,7 +115,7 @@ const Course = () => {
           <Col xs={12} md={12}>
             <div className="page-title">
               <div className="float-left">
-                <h1 className="title">Grupos</h1>
+                <GruposLiteral />
               </div>
             </div>
             <div className="col-xl-12">

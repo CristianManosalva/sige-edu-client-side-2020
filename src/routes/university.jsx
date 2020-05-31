@@ -37,12 +37,6 @@ var dashRoutes = [
     component: AddProfessor,
     type: 'child',
   },
-  // {
-  //   path: BASEDIR + '/university/students',
-  //   icon: 'people',
-  //   name: 'Estudiantes',
-  //   component: Student,
-  // },
   {
     path: BASEDIR + '/university/courses',
     icon: 'star',

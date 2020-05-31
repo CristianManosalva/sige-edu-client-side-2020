@@ -1,49 +1,48 @@
-import React from 'react';
-//import { DropdownMenu, DropdownItem, } from 'reactstrap';
-// used for making the prop types of this component
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { NavLink } from 'react-router-dom'
+import AvatarProfile from '../../common/Avatar/AvatarProfile'
+import AvatarProfileFemale from '../../common/Avatar/AvatarProfileFemale'
+import { CardWrapperMember, ImgTeacherDiv } from './stylesTeacherList'
+import SkeletonTeacherHome from '../../skeleton/SkeletonTeacherHome'
+var IMGDIR = process.env.REACT_APP_IMGDIR
+var BASEDIR = process.env.REACT_APP_BASEDIR
 
 
-var BASEDIR = process.env.REACT_APP_BASEDIR;
-
-
-class Professorslist extends React.Component{
-    render(){
-        var professorsList = [];
-        for (var i = 0; i < this.props.professors.length; i++) {
-            professorsList.push(
-
-
-                                            <div className="col-md-6 col-lg-4" key={i}>
-                                                <div className="team-member ">
-                                                    <div className="team-img">
-                                                        <img className="img-fluid" src={this.props.professors[i].avatar} alt="" />
-                                                    </div>
-                                                    <div className="team-info">
-                                                        <h3><NavLink to={BASEDIR+"/university/professor-profile"}>{ this.props.professors[i].name }</NavLink></h3>
-                                                        <span>{ this.props.professors[i].position }</span>
-                                                        <ul className="social-icons list-inline list-unstyled">
-                                                            <li className="list-inline-item"><a href={ this.props.professors[i].facebook }><i className="i-social-facebook icon-primary icon-xs"></i></a></li>
-                                                            <li className="list-inline-item"><a href={ this.props.professors[i].twitter }><i className="i-social-twitter icon-primary icon-xs"></i></a></li>
-                                                            <li className="list-inline-item"><a href={ this.props.professors[i].linkedin }><i className="i-social-linkedin icon-primary icon-xs"></i></a></li>
-                                                        </ul>
-                                                        <p>{ this.props.professors[i].msg }</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-            );
-        }
-        return (
-                                <div className="row">
-                                       { professorsList }
-                                </div>
-        );
+const Professorslist = (props) => {
+    if (props.loading) {
+        return <SkeletonTeacherHome />
     }
-}
+    return (
+        <div className="row">
+            {props.professors.map((teacher, key) => {
+                const nameTeacher = teacher.user.firstNameUser
+                return (
+                    <div className="col-md-6 col-lg-4" key={key}>
+                        <CardWrapperMember>
+                            <ImgTeacherDiv>
+                                <AvatarProfile />
+                            </ ImgTeacherDiv>
+                            <div className="team-info">
+                                <h3><NavLink to={BASEDIR + "/university/professor-profile"}>{nameTeacher}</NavLink></h3>
+                                <span>{}</span>
+                                {/* <ul className="social-icons list-inline list-unstyled">
+                                    <li className="list-inline-item"><a href={'#'}><i className="i-social-facebook icon-primary icon-xs"></i></a></li>
+                                    <li className="list-inline-item"><a href={'#'}><i className="i-social-twitter icon-primary icon-xs"></i></a></li>
+                                    <li className="list-inline-item"><a href={'#'}><i className="i-social-linkedin icon-primary icon-xs"></i></a></li>
+                                </ul> */}
+                                <p>{}</p>
+                            </div>
+                        </CardWrapperMember>
+                    </div>
+                )
+            }
+            )
 
-Professorslist.propTypes = {
-    professors: PropTypes.arrayOf(PropTypes.object)
-}
+            }
 
+        </div>
+
+    )
+}
 export default Professorslist;
