@@ -1,32 +1,36 @@
-import React from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import useTeacher from '../../../hooks/useTeacher'
 import { Row, Col } from 'reactstrap'
-
 import { Professorslist } from 'components'
-
 import { professors } from 'variables/university/professors.jsx'
+import DocentesLiteral from '../../../components/common/DocentesLiteral/DocentesLiteral'
 
-class Professor extends React.Component {
-  render() {
-    return (
+const Professor = (props) => {
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+  const { user } = useSelector((state) => state.authentication.user.user_data)
+  const teacherIdIE = user.codeIE
+  const API = `http://api.sige-edu.com:8000/api/users/teacher/byIE/${teacherIdIE}`
+  const { teacher, loading } = useTeacher(API)
+  const renderTeacherList = (fixed) => (
       <div>
         <div className="content">
           <Row>
             <Col xs={12} md={12}>
               <div className="page-title">
                 <div className="float-left">
-                  <h1 className="title">Docentes</h1>
+                  <DocentesLiteral />
                 </div>
               </div>
 
               <div className="col-xl-12">
                 <section className="box ">
-                  <header className="panel_header">
-                    <h2 className="title float-left">Todos los Docentes</h2>
-                  </header>
                   <div className="content-body">
                     <div className="row">
                       <div className="col-12">
-                        <Professorslist professors={professors} />
+                        <Professorslist professors={teacher} loading={loading}/>
                       </div>
                     </div>
                   </div>
@@ -37,7 +41,11 @@ class Professor extends React.Component {
         </div>
       </div>
     )
+    return (
+      <Fragment>
+        {renderTeacherList()}
+      </Fragment>
+    )
   }
-}
 
 export default Professor

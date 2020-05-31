@@ -8,6 +8,7 @@ import creating from 'assets/img/creating.jpg'
 import { SvgIcon } from '@material-ui/core'
 import WhatsAppIcon from '@material-ui/icons/WhatsApp'
 import TelegramIcon from '@material-ui/icons/Telegram'
+import BibliotecaLiteral from '../../../components/common/BiliotecaLiteral/BibliotecaLiteral'
 
 const header = [
   { title: 'ID', prop: 'id', sortable: true, filterable: true },
@@ -189,7 +190,7 @@ const Library = (props) => {
           <Col xs={12} md={12}>
             <div className="page-title">
               <div className="float-left">
-                <h1 className="title">Inventario de La Biblioteca</h1>
+                <BibliotecaLiteral />
               </div>
             </div>
 

@@ -4,13 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { config } from '_config'
 import Button from '@material-ui/core/Button'
 import { ActivityCarouselItem } from 'components'
-
-// import InputMask from 'react-input-mask';
 import 'react-datepicker/dist/react-datepicker.css'
 import Select from 'react-select'
 import UseModalAddActivity from '../../../modal/UseModalAddActivity'
 import { makeStyles } from '@material-ui/core/styles'
 import Modal from 'react-bootstrap/Modal'
+import ActividadesLiteral from '../../../components/common/ActividadesLiteral/ActividadesLiteral'
 
 const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`
 const apiSecction = `http://api.sige-edu.com:8000/api/secctions/secction/create/`
@@ -552,7 +551,7 @@ const AddCourse = () => {
           <Col xs={12} md={12}>
             <div className="page-title">
               <div className="float-left">
-                <h1 className="title">Actividades</h1>
+                <ActividadesLiteral />
               </div>
             </div>
             <div className="col-xl-12">

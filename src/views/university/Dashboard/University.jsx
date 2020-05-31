@@ -3,9 +3,8 @@ import { Row, Col, Table, Button } from 'reactstrap'
 import { useSelector } from 'react-redux'
 import { } from 'components'
 import useStudents from '../../../hooks/useStudents'
-import Studentslist from '../../../components/university/Studentslist/Studentslist'
-import Inicio from '../../../components/common/Inicio/Inicio.jsx'
-import SkeletonTeacherHome from '../../../components/skeleton/SkeletonTeacherHome'
+import {Studentslist} from 'components'
+import Inicio from '../../../components/common/InicioLiteral/InicioLiteral.jsx'
 
 const University = (props) => {
   const [show, setShow] = useState(false)
@@ -15,6 +14,7 @@ const University = (props) => {
   const teacher_id = teacher.codeTeacher
   const API = `http://api.sige-edu.com:8000/api/enrollments/enrollment/byGroupmanager/${teacher_id}`
   const { students, loading } = useStudents(API)
+
   const renderStudentList = (fixed) => (
     <div>
       <div className="content">
@@ -38,9 +38,6 @@ const University = (props) => {
       </div>
     </div>
   )
-  if (loading) {
-    return <SkeletonTeacherHome/> 
-  }
   return (
     <Fragment>
       {renderStudentList()}
