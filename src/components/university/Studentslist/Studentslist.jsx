@@ -19,13 +19,20 @@ const Studentslist = (props) => {
     <div className="row">
 
       {props.students.map((students, key) => {
-        var genderStudent;
-        genderStudent = <AvatarProfile />
+        var genderStudent =students.studentEnrollment.user.genderUser;
+        var studentGender;
+        if(genderStudent=='F'){
+          studentGender = <AvatarProfileFemale />
+        }else if(genderStudent=='M'){
+          studentGender = <AvatarProfile />
+        }else{
+          studentGender = <AvatarProfile />
+        }
         return (
           <div className="col-md-6 col-lg-3" key={key}>
             <CardWrapperMember>
               <ImgStudentDiv>
-                {genderStudent}
+                {studentGender}
               </ImgStudentDiv>
               <div className="team-info">
                 <h3>

@@ -11,6 +11,8 @@ const Professor = (props) => {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
   const { user } = useSelector((state) => state.authentication.user.user_data)
+  console.log(user);
+  
   const teacherIdIE = user.codeIE
   const API = `http://api.sige-edu.com:8000/api/users/teacher/byIE/${teacherIdIE}`
   const { teacher, loading } = useTeacher(API)
