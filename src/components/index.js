@@ -28,7 +28,9 @@ import UniStaffslist from './university/UniStaffslist/UniStaffslist'
 import Courseslist from './university/Courseslist/Courseslist'
 import SubjectList from './university/Courseslist/SubjectList'
 import ActivityItem from './university/Activities/ActivityItem'
+import Activity from './university/Activities/Activity'
 import ActivityCarouselItem from './university/Activities/ActivityCarouselItem'
+import AddActivity from './university/Activities/Form/AddActivity'
 
 /*--------------- Hospital Admin Components ------------------*/
 import Doctorslist from './hospital/Doctorslist/Doctorslist'
@@ -108,4 +110,6 @@ export {
   //item de actividad
   ActivityItem,
   ActivityCarouselItem,
+  Activity,
+  AddActivity,
 }

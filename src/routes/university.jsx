@@ -1,9 +1,10 @@
 import University from 'views/university/Dashboard/University.jsx'
 import Course from 'views/university/Course/Course.jsx'
-import Subjects from 'views/university/Course/Subjects.jsx'
+// import Subjects from 'views/university/Course/Subjects.jsx'
 import Help from 'views/university/Help/Help.jsx'
 import AddCourse from 'views/university/Course/AddCourse.jsx'
-import CourseView from 'views/university/Course/CourseView.jsx'
+// import CourseView from 'views/university/Course/CourseView.jsx'
+import Activities from 'views/university/Activities/Activities.jsx'
 import Library from 'views/university/Library/Library.jsx'
 import Professor from 'views/university/Professor/Professor.jsx'
 import AddProfessor from 'views/university/Professor/AddProfessor.jsx'
@@ -51,13 +52,15 @@ var dashRoutes = [
     tour: 'joyride-welcome-2',
     component: Course,
   },
+  // {
+  //   path: BASEDIR + '/university/subjects',
+  //   icon: 'people',
+  //   name: 'Materias',
+  //   component: Subjects,
+  // },
   {
-    path: BASEDIR + '/university/subjects',
-    icon: 'people',
-    name: 'Materias',
-    component: Subjects,
     path: BASEDIR + '/university/activity/:id_teacher/:id_group/:id_materia',
-    component: CourseView,
+    component: Activities,
     type: 'child',
   },
   {
