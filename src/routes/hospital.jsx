@@ -38,13 +38,13 @@ import HospitalReportsStats from 'views/hospital/Reports/ReportStats.jsx';
 var BASEDIR = process.env.REACT_APP_BASEDIR
 var dashRoutes = [
   
-  // {
-  //   path: BASEDIR + '/university/dashboard',
+   {
+     path: BASEDIR + '/university/dashboard',
 
-  //   name: 'Inicio',
-  //   icon: 'home',
-  //   component: Hospital,
-  // },
+     name: 'Inicio',
+     icon: 'home',
+    component: Hospital,
+   },
   // // Options Teacher
   // {
   //   path: BASEDIR + '/university/doctors',
