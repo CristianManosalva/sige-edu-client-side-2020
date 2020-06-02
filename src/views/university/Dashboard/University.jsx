@@ -3,7 +3,7 @@ import { Row, Col, Table, Button } from 'reactstrap'
 import { useSelector } from 'react-redux'
 import { } from 'components'
 import useStudents from '../../../hooks/useStudents'
-import {Studentslist} from 'components'
+import { Studentslist } from 'components'
 import Inicio from '../../../components/common/InicioLiteral/InicioLiteral.jsx'
 
 const University = (props) => {
@@ -18,9 +18,9 @@ const University = (props) => {
   const renderStudentList = (fixed) => (
     <div>
       <div className="content">
-      <div className="page-title">
-            <Inicio />
-      </div>
+        <div className="page-title">
+          <Inicio />
+        </div>
         <Row>
           <Col xs={12} md={12}>
             <div className="col-lg-12 col-xl-12 col-md-12">

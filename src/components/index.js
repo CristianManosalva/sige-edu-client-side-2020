@@ -28,7 +28,7 @@ import ActivityItem from './university/Activities/ActivityItem'
 import ActivityCarouselItem from './university/Activities/ActivityCarouselItem'
 
 /*--------------- Hospital Admin Components ------------------*/
-import Doctorslist from './hospital/Doctorslist/Doctorslist'
+import CoursesStudentList from './hospital/Doctorslist/CoursesStudentList'
 import Patientslist from './hospital/Patientslist/Patientslist'
 import Staffslist from './hospital/Staffslist/Staffslist'
 
@@ -94,7 +94,7 @@ export {
   LoginForm,
   LoginFormNew,
   //Hospital components
-  Doctorslist,
+  CoursesStudentList,
   Patientslist,
   Staffslist,
   SubjectList,
