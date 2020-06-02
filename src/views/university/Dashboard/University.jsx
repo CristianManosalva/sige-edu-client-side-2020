@@ -2,8 +2,6 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { Row, Col, Table, Button } from 'reactstrap'
 import { useSelector } from 'react-redux'
 import { } from 'components'
-import useStudents from '../../../hooks/useStudents'
-import { Studentslist } from 'components'
 import Inicio from '../../../components/common/InicioLiteral/InicioLiteral.jsx'
 import Modal from 'react-bootstrap/Modal'
 import {} from 'components'
@@ -14,7 +12,6 @@ import creating from 'assets/img/creating.jpg'
 import useStudents from '../../../hooks/useStudents'
 import Studentslist from '../../../components/university/Studentslist/Studentslist'
 import { students } from '../../../variables/university/students'
-import Inicio from '../../../components/common/Inicio/Inicio.jsx'
 import { inicioDiv } from '../../../components/university/Studentslist/stylesStudentsList'
 // let user = JSON.parse(localStorage.getItem('userv2'))
 // var codeTeacher = user.user_data.teacher.codeTeacher;
@@ -44,9 +41,6 @@ const University = (props) => {
         <Row>
           <Col xs={12} md={12}>
             <div className="page-title">
-              <div className={fixed ? 'fixed' : ''}>
-                <Inicio />
-              </div>
             </div>
             {/* <div className="row margin-0">
               <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
