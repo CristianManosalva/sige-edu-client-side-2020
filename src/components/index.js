@@ -11,6 +11,9 @@ import Chatgroups from './common/Chatbar/Chatgroups'
 import Notifications from './common/Notifications/Notifications'
 import Messages from './common/Messages/Messages'
 import Mailbox from './common/Mailbox/Mailbox'
+import Modal from './common/Modal/Modal'
+import CreatePost from './common/Post/Form/CreatePost'
+import Post from './common/Post/Post'
 /*--------------- General Admin Components ------------------*/
 import Messagewidget from './common/Messagewidget/Messagewidget'
 import Navmenudropdown from './common/Navmenudropdown/Navmenudropdown'
@@ -25,7 +28,9 @@ import UniStaffslist from './university/UniStaffslist/UniStaffslist'
 import Courseslist from './university/Courseslist/Courseslist'
 import SubjectList from './university/Courseslist/SubjectList'
 import ActivityItem from './university/Activities/ActivityItem'
+import Activity from './university/Activities/Activity'
 import ActivityCarouselItem from './university/Activities/ActivityCarouselItem'
+import AddActivity from './university/Activities/Form/AddActivity'
 
 /*--------------- Hospital Admin Components ------------------*/
 import CoursesStudentList from './hospital/Doctorslist/CoursesStudentList'
@@ -44,6 +49,10 @@ import LoginFormNew from './home_page/LoginFormNew'
 export {
   //Common component
   Messagewidget,
+  Modal,
+  //Post Component
+  Post,
+  CreatePost,
   //PrivateRoute
   PrivateRoute,
   // CardElements
@@ -101,4 +110,6 @@ export {
   //item de actividad
   ActivityItem,
   ActivityCarouselItem,
+  Activity,
+  AddActivity,
 }

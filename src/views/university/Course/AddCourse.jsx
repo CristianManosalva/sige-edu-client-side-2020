@@ -286,14 +286,41 @@ const AddCourse = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        addLink(enlace, data.codeSecction)
+        console.log('Create Data')
+      })
+      .catch((error) => {
+        console.log(error)
+        alert('Error al crear la seccion, contacta el soporte de SIGE')
+      })
+      .finally(() => {})
+  }
+
+  function addLink(enlace, codeSecction) {
+    fetch(`${config.apiOficial}/secctions/hyperLynks/create/`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        url: enlace,
+        secctionHyperlink: codeSecction,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
         alert('Seccion creada con exito')
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        console.log(error)
+        alert('Error al crear la seccion, contacta el soporte de SIGE')
+      })
       .finally(() => {})
   }
 
   function editSeccion(body) {
-    console.log('Body: ', body)
+    console.log('Bodys: ', body)
     let { workspaceSecction, codeSecction } = currentSeccion
     body.workspaceSecction = workspaceSecction
     body.codeSecction = codeSecction
@@ -358,7 +385,7 @@ const AddCourse = () => {
       let body = {
         nameSecction: name,
         descriptionSecction: description,
-        // workspaceSecction: selected.sWorkSpace,
+        workspaceSecction: selected.sWorkSpace,
       }
       createSecction(body)
     } else {

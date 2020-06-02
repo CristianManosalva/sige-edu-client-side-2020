@@ -1,0 +1,44 @@
+.activity_container {
+  background-color: #ffffff;
+  margin: 0px 0 30px 0;
+  box-shadow: 0 1px 3px rgba(33, 33, 33, 0.2);
+  -webkit-box-shadow: 0 1px 3px rgba(33, 33, 33, 0.2);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.activity_header_container {
+  display: block;
+  /* align-items: flex-start; */
+  /* justify-content: center; */
+  height: 4em;
+  margin-bottom: 1.3rem;
+  /* border: 1px solid red; */
+  /* flex-direction: column; */
+}
+
+.activity_header_container-name {
+  text-transform: capitalize;
+  font-weight: bold;
+  color: #1eaedf;
+  cursor: pointer;
+  margin: 0;
+}
+
+.activity_header_container-date {
+  /* margin-top: -0.3em; */
+  display: flex;
+  align-items: center;
+  margin: 0;
+  margin-left: 1em;
+}
+
+.acticity_content_container {
+  padding: 0 1em;
+  margin-bottom: 1.5rem;
+  white-space: pre-wrap;
+}
+
+.activity_support_material_container {
+  padding: 0 1em;
+}
