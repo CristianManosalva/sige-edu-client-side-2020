@@ -63,13 +63,13 @@ var dashRoutes = [
     component: Activities,
     type: 'child',
   },
-  {
-    path: BASEDIR + '/university/add-course',
-    icon: 'arrow-up-circle',
-    tour: 'joyride-welcome-3',
-    name: 'Actividad Online',
-    component: AddCourse,
-  },
+  // {
+  //   path: BASEDIR + '/university/add-course',
+  //   icon: 'arrow-up-circle',
+  //   tour: 'joyride-welcome-3',
+  //   name: 'Actividad Online',
+  //   component: AddCourse,
+  // },
 
   {
     path: BASEDIR + '/university/library',

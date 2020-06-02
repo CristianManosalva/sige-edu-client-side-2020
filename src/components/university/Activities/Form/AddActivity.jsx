@@ -10,11 +10,12 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
     name: '',
     description: '',
     files: [],
+    enlace: '',
   })
   const [loaders, setLoaders] = useState({
     postDescription: false,
   })
-  const { description, name, files } = inputs
+  const { description, name, files, enlace } = inputs
 
   const create = () => {
     if (!description) {
@@ -26,6 +27,7 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
         name,
         description,
         files,
+        enlace,
       })
     }
   }
@@ -111,6 +113,15 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
               </ul>
             </aside>
           )}
+        </Col>
+        <Col xs={12} className="form-group">
+          <Label for="enlace">Enlace destacado</Label>
+          <Input
+            type="text"
+            name="enlace"
+            id="enlace"
+            onChange={handleChange}
+          />
         </Col>
         <Col xs={12}>
           <Button

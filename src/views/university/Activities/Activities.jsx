@@ -66,7 +66,7 @@ const Activities = (props) => {
       .finally(() => {})
   }
 
-  function createActivity({ name, description, files }) {
+  function createActivity({ name, description, files, enlace }) {
     fetch(`${config.apiOficial}/secctions/secction/create/`, {
       method: 'POST',
       headers: {
@@ -90,7 +90,12 @@ const Activities = (props) => {
             data.resources.push(resource)
           })
         })
-        // addLink(enlace, data.codeSecction)
+        if (enlace != '') {
+          await addLink(enlace, data.codeSecction).then((link) => {
+            console.log('Data for link', link)
+            data.lynks.push(link)
+          })
+        }
         setSecctions((secctions) => [data, ...secctions])
         toggle()
         console.log('Create Data: ', data)
@@ -114,6 +119,24 @@ const Activities = (props) => {
       .catch((error) => {
         console.log(error)
         alert('Error al subir el archivo, por favor intenta mas tarde')
+      })
+  }
+
+  function addLink(enlace, codeSecction) {
+    return fetch(`${config.apiOficial}/secctions/hyperLynks/create/`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        url: enlace,
+        secctionHyperlink: codeSecction,
+      }),
+    })
+      .then((response) => response.json())
+      .catch((error) => {
+        console.log(error)
       })
   }
 

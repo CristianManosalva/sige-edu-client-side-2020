@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Collapse, Card, CardBody } from 'reactstrap'
 import { makeStyles } from '@material-ui/core/styles'
+import Linkify from 'react-linkify'
 
 const ActivityItem = (props) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -51,6 +52,11 @@ const ActivityItem = (props) => {
       return 'archivo'
     }
   }
+  const componentDecorator = (href, text, key) => (
+    <a href={href} key={key} target="_blank">
+      {text}
+    </a>
+  )
   return (
     <div className="col-xl-12">
       <section className="box profile-page">
@@ -87,7 +93,12 @@ const ActivityItem = (props) => {
                   Fecha de Creacion: {activity.uploadOnSecction}
                 </p>
                 <div className="clearfix"></div>
-                <p>{activity.descriptionSecction}</p>
+                <div className="post_content_container-content">
+                  <Linkify componentDecorator={componentDecorator}>
+                    {activity.descriptionSecction}
+                  </Linkify>
+                </div>
+                {/* <p>{activity.descriptionSecction}</p> */}
                 {/* Panel de expancion */}
                 <Button
                   color="primary"
