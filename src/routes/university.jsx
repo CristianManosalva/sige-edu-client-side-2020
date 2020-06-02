@@ -44,6 +44,7 @@ var dashRoutes = [
   //   name: 'Estudiantes',
   //   component: Student,
   // },
+
   {
     path: BASEDIR + '/university/courses',
     icon: 'star',

@@ -1,5 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { Row, Col, Table, Button } from 'reactstrap'
+import { useSelector } from 'react-redux'
+import { } from 'components'
+import useStudents from '../../../hooks/useStudents'
+import { Studentslist } from 'components'
+import Inicio from '../../../components/common/InicioLiteral/InicioLiteral.jsx'
 import Modal from 'react-bootstrap/Modal'
 import {} from 'components'
 import { SvgIcon } from '@material-ui/core'
@@ -20,15 +25,22 @@ const API =
 var IMGDIR = process.env.REACT_APP_IMGDIR
 var studentManagerGroup = localStorage.getItem('studentManagerGroup')
 
+
 const University = (props) => {
   const [show, setShow] = useState(false)
-
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
-  const objectStudents = useStudents(API)
+  const { teacher } = useSelector((state) => state.authentication.user.user_data)
+  const teacher_id = teacher.codeTeacher
+  const API = `http://api.sige-edu.com:8000/api/enrollments/enrollment/byGroupmanager/${teacher_id}`
+  const { students, loading } = useStudents(API)
+
   const renderStudentList = (fixed) => (
     <div>
       <div className="content">
+        <div className="page-title">
+          <Inicio />
+        </div>
         <Row>
           <Col xs={12} md={12}>
             <div className="page-title">
@@ -36,7 +48,6 @@ const University = (props) => {
                 <Inicio />
               </div>
             </div>
-
             {/* <div className="row margin-0">
               <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
                 <div className="db_box iconbox">
@@ -88,14 +99,13 @@ const University = (props) => {
               </div>
 
             </div> */}
-
             <div className="col-lg-12 col-xl-12 col-md-12">
               <section className="box ">
                 <header className="panel_header">
                   <h2 className="title float-left">Estudiantes</h2>
                 </header>
                 <div className="content-body">
-                  <Studentslist students={objectStudents} />
+                  <Studentslist students={students} loading={loading} />
                 </div>
               </section>
             </div>
@@ -104,8 +114,10 @@ const University = (props) => {
       </div>
     </div>
   )
-
-  return <Fragment>{renderStudentList()}</Fragment>
+  return (
+    <Fragment>
+      {renderStudentList()}
+    </Fragment>
+  )
 }
-
 export default University

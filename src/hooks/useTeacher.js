@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 
-const useStudents = (API) => {
-  const [students, setStudents] = useState([]);
+const useTeacher = (API) => {
+  const [teacher, setTeacher] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true)
     window.fetch(API)
       .then(res => res.json())
         .then(response => {
-          setStudents(response)
+          setTeacher(response)
           setLoading(false)
         });
   }, []);
-  return {students, loading};
+  return {teacher, loading};
 }
-export default useStudents;
+export default useTeacher;
