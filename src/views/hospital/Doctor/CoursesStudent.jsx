@@ -1,17 +1,23 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { Row, Col, } from 'reactstrap';
-import  CoursesStudentList  from '../../../components/hospital/Doctorslist/CoursesStudentList';
+import CoursesStudentList from '../../../components/hospital/Doctorslist/CoursesStudentList';
 import { doctors } from 'variables/hospital/doctors.jsx';
 import useCoursesStudent from '../../../hooks/useCoursesStudent'
 import { useSelector } from 'react-redux'
 import { } from 'components'
+let codeStudent = ''
+try {
+    codeStudent = useSelector((state) => state.authentication.user.user_data.student)
+}
+catch (error) {
+    codeStudent = ''
+}
+const API = `http://api.sige-edu.com:8000/api/courses/academiccharge/bystudent/${codeStudent}`
 const CoursesStudent = (props) => {
-    const { student } = useSelector((state) => state.authentication.user.user_data)
-    console.log(student);
-    const student_id = student.codeStudent
-    const API = `http://api.sige-edu.com:8000/api/courses/academiccharge/bystudent/${student_id}`
+    // const { student } = useSelector((state) => state.authentication.user.user_data)
+    // console.log(student);
+    // const student_id = student.codeStudent
     const { courses, loading } = useCoursesStudent(API)
-    console.log(courses);
     
     const renderCoursesStudentList = (fixed) => (
         <div>
