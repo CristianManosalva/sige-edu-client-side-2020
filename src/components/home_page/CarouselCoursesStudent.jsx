@@ -11,7 +11,6 @@ import React, { Fragment, useState, useEffect } from 'react'
 //     })
 // }, [])
 
-
 const CarouselCoursesStudent = (props) => {
   let urlImage = props.urlImage
   let title = props.title
@@ -19,34 +18,24 @@ const CarouselCoursesStudent = (props) => {
   let idGroup = props.idGroup
   // console.log(props);
   const ActivityCourses = (title) => {
-
-
     return (
-      <div className="news-item" >
+      <div className="news-item">
         {console.log('click', title)}
         {/* <img className="news-item__imagen" src={urlImage} alt="" />
         <a href="#ss">{title}</a> */}
       </div>
     )
   }
-  
 
   const carouselCourses = () => {
-
     return (
-      <div className="news-item" >
+      <div className="news-item" onClick={() => props.setActivities(idTeacher)}>
         <img className="news-item__imagen" src={urlImage} alt="" />
         <a>{title} </a>
       </div>
     )
   }
 
- 
-
-  return (
-    <Fragment>
-      {carouselCourses()}
-    </Fragment>
-  )
+  return <Fragment>{carouselCourses()}</Fragment>
 }
-export default CarouselCoursesStudent;
+export default CarouselCoursesStudent
