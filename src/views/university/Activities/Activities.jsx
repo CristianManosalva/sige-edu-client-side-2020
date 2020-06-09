@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Button } from 'reactstrap'
 import { ActivityItem, Activity, Modal, AddActivity } from 'components'
+import Loader from 'react-loader-spinner'
 import { config } from '_config'
 import './styles/activities.css'
 
@@ -11,6 +12,7 @@ const Activities = (props) => {
   const [secctions, setSecctions] = useState([])
   const [loaders, setLoaders] = useState({
     creating: false,
+    gettingActivities: true,
   })
   const [state, setState] = useState({
     work_space_id: '',
@@ -20,28 +22,24 @@ const Activities = (props) => {
   const toggle = () => setModal(!modal)
 
   const { work_space_id } = state
-  const { creating } = loaders
+  const { creating, gettingActivities } = loaders
 
   function removeDuplicityWork(array, codeMateria) {
-    console.log('\nCodigo Materia: ', codeMateria)
-    console.log('\nBefore Filter: ', array)
+    // console.log('\nCodigo Materia: ', codeMateria)
+    // console.log('\nBefore Filter: ', array)
     let hash = Object.create(null)
     let filter = array.reduce((result, value) => {
       if (!hash[value.academicCharge.codeAcademicCharge]) {
-        console.log(
-          'Espacio de trabajo 2: ',
-          value.academicCharge.codeAcademicCharge
-        )
         hash[value.academicCharge.codeAcademicCharge] = true
         result.push(value)
       }
       return result
     }, [])
-    console.log('\nFilter: ', filter)
+    // console.log('\nFilter: ', filter)
 
     return filter.reduce((result, value) => {
       if (value.academicCharge.courseDictate.codeCourse == codeMateria) {
-        console.log('Codigo materia: ', codeMateria)
+        // console.log('Codigo materia: ', codeMateria)
         result.push(value)
       }
       return result
@@ -61,25 +59,27 @@ const Activities = (props) => {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log('Codigo del espacio de trbajao del profesor: ', data)
+        // console.log('Codigo del espacio de trbajao del profesor: ', data)
         let depuredData = removeDuplicityWork(data, codeMateria)
-        console.log('Data depurada: ', depuredData)
+        // console.log('Data depurada: ', depuredData)
         let codeWorkSpace = depuredData ? depuredData[0].codeWorkSpace : ''
-        console.log(
-          'Codigo del espacio de trbajao del profesor: ',
-          codeWorkSpace
-        )
         setState((state) => ({ ...state, work_space_id: codeWorkSpace }))
-        console.log('Data Depurada: ', depuredData)
+        // console.log('Data Depurada: ', depuredData)
         let activities = depuredData && depuredData[0].secctions
-        // setSecctions((selected) => ({ ...selected, sWorkSpace: activities }))
-        setSecctions(activities)
+        setTimeout(() => {
+          setSecctions(activities)
+          setLoaders((loader) => ({ ...loader, gettingActivities: false }))
+        }, 500)
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        console.log(error)
+        setLoaders((loader) => ({ ...loader, gettingActivities: false }))
+      })
       .finally(() => {})
   }
 
   function createActivity({ name, description, files, enlace }) {
+    setLoaders((loader) => ({ ...loader, creating: true }))
     fetch(`${config.apiOficial}/secctions/secction/create/`, {
       method: 'POST',
       headers: {
@@ -109,8 +109,23 @@ const Activities = (props) => {
             data.lynks.push(link)
           })
         }
-        setSecctions((secctions) => [...secctions, data])
-        toggle()
+        let auxSeccion = secctions
+        auxSeccion.push(data)
+        console.log('Just data: ', data)
+
+        setSecctions([])
+        setLoaders((loader) => ({ ...loader, gettingActivities: true }))
+
+        setTimeout(() => {
+          setSecctions(auxSeccion)
+          setLoaders((loader) => ({ ...loader, gettingActivities: false }))
+        }, 500)
+
+        setTimeout(() => {
+          setLoaders((loader) => ({ ...loader, creating: false }))
+          toggle()
+        }, 500)
+
         console.log('Create Data: ', data)
       })
       .catch((error) => {
@@ -206,7 +221,63 @@ const Activities = (props) => {
                 )}
               </div> */}
               <div className="col-10 col-xl-7">
-                {secctions.length ? (
+                {gettingActivities && (
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '100',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <Loader
+                      type="BallTriangle"
+                      color="#1EAEDF"
+                      secondaryColor="Green"
+                      height="100"
+                      width="100"
+                    />
+                    <span
+                      style={{
+                        fontSize: '1.3rem',
+                        marginTop: '.8rem',
+                        color: '#1EAEDF',
+                      }}
+                    >
+                      Cargando...
+                    </span>
+                  </div>
+                )}
+                {secctions.length > 0 &&
+                  secctions.reverse().map((value, key) => {
+                    return <ActivityItem activity={value} key={key * 1000} />
+                  })}
+                {secctions.length == 0 && !gettingActivities && (
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '100',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      padding: '1rem',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: '1.3rem',
+                        marginTop: '.8rem',
+                        textAlign: 'center',
+                      }}
+                    >
+                      No Tienes ninguna actividad con este grupo para esta
+                      materia
+                    </span>
+                  </div>
+                )}
+                {/* {secctions.length ? (
                   secctions.reverse().map((value, key) => {
                     return <ActivityItem activity={value} key={key * 1000} />
                   })
@@ -214,7 +285,7 @@ const Activities = (props) => {
                   <p>
                     No Tienes ninguna actividad con este grupo para esta materia
                   </p>
-                )}
+                )} */}
               </div>
             </Row>
           </Col>
