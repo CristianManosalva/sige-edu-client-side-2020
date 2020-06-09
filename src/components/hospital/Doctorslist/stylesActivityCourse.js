@@ -83,8 +83,8 @@ border-radius: 3px;
 `
 export const Progresstext = styled.div`
 font-size: 10px;
-	opacity: 0.6;
-	letter-spacing: 1px;
+color: #ffffff;
+letter-spacing: 1px;
 `
 
 export const Progrescontainer = styled.div`

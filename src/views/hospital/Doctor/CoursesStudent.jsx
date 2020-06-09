@@ -85,7 +85,7 @@ const CoursesStudent = (props) => {
                     <div className="row">
                       {sections.length > 0 ? sections.map((value, key) => {
 
-                        return <div key={key}><ListOfActivityCards value={activities} /></div>
+                        return <div key={key}><ListOfActivityCards value={value} /></div>
                       }) : <SkeletonTeacherHome />}
                     </div>
                   </div>

@@ -18,7 +18,9 @@ var IMGDIR = process.env.REACT_APP_IMGDIR;
 const ListOfActivityCards = (props) => {
     
     var nameSection = props.value.nameSecction
-    console.log('valueEventAriaMessage..',props.value);
+    var descriptionSection = props.value.descriptionSecction
+    
+    console.log('valueEventAriaMessage..',props);
     let courses = props.courses
     if (props.loading) {
         return <SkeletonTeacherHome />
@@ -31,7 +33,7 @@ const ListOfActivityCards = (props) => {
                 <Coursepreview>
                         <Coursestudent>Lengua Castellana</Coursestudent>
                         <Textcourse>{nameSection}</Textcourse>
-                        {/* <a href="#">View all chapters <i class="fas fa-chevron-right"></i></a> */}
+                        <a href="#">Documentos</a>
 
                     </Coursepreview>
                     <Courseinfo>
@@ -41,8 +43,8 @@ const ListOfActivityCards = (props) => {
                                 5/10 Días para finalizar
 				            </Progresstext>
                         </Progrescontainer>
-                        <h6>Chapter 4</h6>
-                        <h2>Callbacks & Closures</h2>
+                        {/* <h6>Chapter 4</h6> */}
+                        <h2>{descriptionSection}</h2>
                         <Buttonrevisar>Enviar respuesta</Buttonrevisar>
                     </Courseinfo>
                 </Coursedetail>
