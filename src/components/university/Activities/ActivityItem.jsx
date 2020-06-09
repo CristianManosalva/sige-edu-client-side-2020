@@ -3,6 +3,8 @@ import { Button, Collapse, Card, CardBody } from 'reactstrap'
 import { Modal, ShowActivity } from 'components'
 import { config } from '_config'
 import Linkify from 'react-linkify'
+import moment from 'moment'
+
 const tempImg = [
   'https://images.pexels.com/photos/2170/creative-desk-pens-school.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
   'https://images.pexels.com/photos/1053687/pexels-photo-1053687.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
@@ -139,7 +141,12 @@ const ActivityItem = (props) => {
                 </button> */}
                 <div className="clearfix"></div>
                 <p className="uprofile-title">
-                  Fecha de Creacion: {activity.uploadOnSecction}
+                  <i
+                    className="i-clock mr-1"
+                    style={{ fontSize: '1.2em', color: '#1eaedf' }}
+                  />
+                  Fecha de Creacion:{' '}
+                  {moment(activity.uploadOnSecction).format('MMMM DD, hh:mm')}
                 </p>
                 <div className="clearfix"></div>
                 <div className="post_content_container-content">

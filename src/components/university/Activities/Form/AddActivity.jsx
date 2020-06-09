@@ -89,15 +89,17 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
         </Col>
         <Col xs={12} className="form-group">
           <Label for="name">Archivo</Label>
-          <div className="dropzone">
+          <div className="dropzone" style={{ cursor: 'pointer' }}>
             <Dropzone
               onDrop={onDrop}
               className="droparea"
               style={{ minHeight: '0' }}
             >
               <p>
-                Arrastra hasta aqui el archivo que deseas agregar o has click
-                para buscarlo
+                Arrastra hasta aqui el archivo que deseas agregar o{' '}
+                <strong style={{ color: '#1EAEDF' }}>
+                  has click aquí para seleccionarlo
+                </strong>
               </p>
             </Dropzone>
           </div>
@@ -139,7 +141,7 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
             ) : (
               <i className="fa fa-save mr-3"></i>
             )}
-            Compartir
+            Crear Actividad
           </Button>
         </Col>
       </Row>
