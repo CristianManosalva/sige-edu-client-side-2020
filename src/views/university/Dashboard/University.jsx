@@ -2,7 +2,6 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { Row, Col, Table, Button } from 'reactstrap'
 import { useSelector } from 'react-redux'
 import { } from 'components'
-import useStudents from '../../../hooks/useStudents'
 import Inicio from '../../../components/common/InicioLiteral/InicioLiteral.jsx'
 import Modal from 'react-bootstrap/Modal'
 import {} from 'components'
@@ -12,13 +11,17 @@ import TelegramIcon from '@material-ui/icons/Telegram'
 import creating from 'assets/img/creating.jpg'
 import Studentslist from '../../../components/university/Studentslist/Studentslist'
 import { students } from '../../../variables/university/students'
-//import Inicio from '../../../components/common/Inicio/Inicio.jsx'
 import { inicioDiv } from '../../../components/university/Studentslist/stylesStudentsList'
-// let user = JSON.parse(localStorage.getItem('userv2'))
+let user = JSON.parse(localStorage.getItem('userv2'))
+let codeTeacher = ''
+try {
+  codeTeacher = user.user_data.teacher.codeTeacher
+} catch (error) {
+  codeTeacher = ''
+}
 // var codeTeacher = user.user_data.teacher.codeTeacher;
 
-const API =
-  'http://api.sige-edu.com:8000/api/enrollments/enrollment/byGroupmanager/${codeTeacher}'
+const API = `http://api.sige-edu.com:8000/api/enrollments/enrollment/byGroupmanager/${codeTeacher}`
 
 var IMGDIR = process.env.REACT_APP_IMGDIR
 var studentManagerGroup = localStorage.getItem('studentManagerGroup')
@@ -42,9 +45,6 @@ const University = (props) => {
         <Row>
           <Col xs={12} md={12}>
             <div className="page-title">
-              <div className={fixed ? 'fixed' : ''}>
-                <Inicio />
-              </div>
             </div>
             {/* <div className="row margin-0">
               <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
