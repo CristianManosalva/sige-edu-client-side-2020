@@ -13,9 +13,12 @@ const ModalExample = ({ children, show, toggle, title, style }) => {
   } */
   return (
     /* ReactDOM.createPortal( */
-    <Modal isOpen={show} toggle={toggle} centered style={{ border: '0px' }}>
+    <Modal isOpen={show} toggle={toggle} centered style={style}>
       <ModalHeader style={{ backgroundColor: '#1EAEDF' }} toggle={toggle}>
-        <div className="div" style={{ color: 'whitesmoke' }}>
+        <div
+          className="div"
+          style={{ color: 'whitesmoke', fontSize: '18px', fontWeight: 'bold' }}
+        >
           {title}
         </div>
       </ModalHeader>
