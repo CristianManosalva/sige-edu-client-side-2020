@@ -3,16 +3,16 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize'
 import Linkify from 'react-linkify'
 import moment from 'moment'
 import { Collapse } from 'reactstrap'
-import { Spinner, Row, Col, Container, Button, Label, Input } from 'reactstrap'
+import { Tooltip, Row, Col, Container, Button, Label, Input } from 'reactstrap'
 import Dropzone from 'react-dropzone'
 import '../styles/show-activity.css'
 
 const ShowActivity = ({
-  toggle,
-  onChange,
+  //   toggle,
+  //   onChange,
   edit,
   activity,
-  loader,
+  //   loader,
   cancel,
   handleChange,
 }) => {
@@ -27,6 +27,9 @@ const ShowActivity = ({
   const [loaders, setLoaders] = useState({
     postDescription: false,
   })
+  const [tooltipOpen, setTooltipOpen] = useState(false)
+  const toggle = () => setTooltipOpen(!tooltipOpen)
+
   const componentDecorator = (href, text, key) => (
     <a href={href} key={key} target="_blank">
       {text}
@@ -169,19 +172,32 @@ const ShowActivity = ({
               </Button>
             </div>
           ) : (
-            <Button
-              style={{
-                display: 'inline-flex',
-                borderRadius: '50%',
-                padding: '10px',
-                paddingRight: '8px',
-              }}
-              color="primary"
-              size="sm"
-              onClick={() => setState((state) => ({ ...state, editing: true }))}
-            >
-              <i className="fa fa-edit" style={{ fontSize: '16px' }} />
-            </Button>
+            <div>
+              <Button
+                style={{
+                  display: 'inline-flex',
+                  borderRadius: '50%',
+                  padding: '10px',
+                  paddingRight: '8px',
+                }}
+                color="primary"
+                size="sm"
+                onClick={() =>
+                  setState((state) => ({ ...state, editing: true }))
+                }
+                id="TooltipExample"
+              >
+                <i className="fa fa-edit" style={{ fontSize: '16px' }} />
+              </Button>
+              <Tooltip
+                placement="right"
+                isOpen={tooltipOpen}
+                target="TooltipExample"
+                toggle={toggle}
+              >
+                Editar
+              </Tooltip>
+            </div>
           )}
         </Col>
         <Col xs={12}>
