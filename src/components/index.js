@@ -31,6 +31,7 @@ import ActivityItem from './university/Activities/ActivityItem'
 import Activity from './university/Activities/Activity'
 import ActivityCarouselItem from './university/Activities/ActivityCarouselItem'
 import AddActivity from './university/Activities/Form/AddActivity'
+import ShowActivity from './university/Activities/Form/ShowActivity'
 
 /*--------------- Hospital Admin Components ------------------*/
 import Doctorslist from './hospital/Doctorslist/Doctorslist'
@@ -112,4 +113,5 @@ export {
   ActivityCarouselItem,
   Activity,
   AddActivity,
+  ShowActivity,
 }

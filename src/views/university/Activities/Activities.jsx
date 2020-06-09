@@ -15,26 +15,33 @@ const Activities = (props) => {
   const [state, setState] = useState({
     work_space_id: '',
   })
-  const [modal, setModal] = useState(false)
 
+  const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
 
   const { work_space_id } = state
   const { creating } = loaders
 
   function removeDuplicityWork(array, codeMateria) {
+    console.log('\nCodigo Materia: ', codeMateria)
+    console.log('\nBefore Filter: ', array)
     let hash = Object.create(null)
     let filter = array.reduce((result, value) => {
-      if (!hash[value.nameWorkSpace]) {
-        //console.log(value.nameWorkSpace)
-        hash[value.nameWorkSpace] = true
+      if (!hash[value.academicCharge.codeAcademicCharge]) {
+        console.log(
+          'Espacio de trabajo 2: ',
+          value.academicCharge.codeAcademicCharge
+        )
+        hash[value.academicCharge.codeAcademicCharge] = true
         result.push(value)
       }
       return result
     }, [])
+    console.log('\nFilter: ', filter)
 
     return filter.reduce((result, value) => {
       if (value.academicCharge.courseDictate.codeCourse == codeMateria) {
+        console.log('Codigo materia: ', codeMateria)
         result.push(value)
       }
       return result
@@ -54,8 +61,14 @@ const Activities = (props) => {
     )
       .then((response) => response.json())
       .then((data) => {
+        console.log('Codigo del espacio de trbajao del profesor: ', data)
         let depuredData = removeDuplicityWork(data, codeMateria)
+        console.log('Data depurada: ', depuredData)
         let codeWorkSpace = depuredData ? depuredData[0].codeWorkSpace : ''
+        console.log(
+          'Codigo del espacio de trbajao del profesor: ',
+          codeWorkSpace
+        )
         setState((state) => ({ ...state, work_space_id: codeWorkSpace }))
         console.log('Data Depurada: ', depuredData)
         let activities = depuredData && depuredData[0].secctions
@@ -91,7 +104,13 @@ const Activities = (props) => {
           })
         })
         // addLink(enlace, data.codeSecction)
-        setSecctions((secctions) => [data, ...secctions])
+        setSecctions((secctions) => [...secctions, data])
+        // setSecctions((secctions) => {
+        //   console.log('Set seccions')
+        //   return [data, ...secctions]
+        // })
+        // secctions.push(data)
+        // secctions.unshift(data)
         toggle()
         console.log('Create Data: ', data)
       })
@@ -171,7 +190,7 @@ const Activities = (props) => {
               </div> */}
               <div className="col-10 col-xl-7">
                 {secctions.length ? (
-                  secctions.map((value, key) => {
+                  secctions.reverse().map((value, key) => {
                     return <ActivityItem activity={value} key={key * 1000} />
                   })
                 ) : (
