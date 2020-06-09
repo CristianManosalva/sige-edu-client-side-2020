@@ -46,7 +46,7 @@ const ActivityCarouselItem = (props) => {
             setTimeout(() => {
               props.showModalEdit()
             }, 200)
-            console.log(activity)
+            // console.log(activity)
             console.log('In button')
           }}
         >

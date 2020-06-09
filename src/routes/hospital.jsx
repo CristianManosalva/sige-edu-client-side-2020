@@ -47,30 +47,30 @@ var dashRoutes = [
     badge: '',
     component: CoursesStudent,
   },
-  {
-    path: BASEDIR + '/university/dashboard',
-    icon: 'calendar',
-    name: 'Horario',
-    badge: '',
-    component: CoursesStudent,
-  },
-  {
-    path: BASEDIR + '/university/dashboard',
-    icon: 'list',
-    name: 'Deberes',
-    component: CoursesStudent,
-  },
-  {
-    path: BASEDIR + '/university/dashboard',
-    icon: 'event',
-    name: 'Eventos',
-    component: CoursesStudent,
-  },
-  {
-    path: BASEDIR + '/university/dashboard',
-    icon: 'fire',
-    name: 'Libro de Bolsillo',
-    component: CoursesStudent,
-  },
+  // {
+  //   path: BASEDIR + '/university/dashboard',
+  //   icon: 'calendar',
+  //   name: 'Horario',
+  //   badge: '',
+  //   component: CoursesStudent,
+  // },
+  // {
+  //   path: BASEDIR + '/university/dashboard',
+  //   icon: 'list',
+  //   name: 'Deberes',
+  //   component: CoursesStudent,
+  // },
+  // {
+  //   path: BASEDIR + '/university/dashboard',
+  //   icon: 'event',
+  //   name: 'Eventos',
+  //   component: CoursesStudent,
+  // },
+  // {
+  //   path: BASEDIR + '/university/dashboard',
+  //   icon: 'fire',
+  //   name: 'Libro de Bolsillo',
+  //   component: CoursesStudent,
+  // },
 ]
 export default dashRoutes

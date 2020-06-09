@@ -1,42 +1,59 @@
 import React, { Fragment } from 'react'
-import { Router } from '@reach/router'
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import { Row, Col, Table, Button } from 'reactstrap'
-import CarouselCoursesStudent from '../../home_page/CarouselCoursesStudent'
-import { Carousel } from 'components'
 import SkeletonTeacherHome from '../../skeleton/SkeletonTeacherHome'
+import { 
+    Divcardactivity, 
+    Coursescontainer, 
+    Coursedetail, 
+    Coursepreview, 
+    Courseinfo, 
+    Coursestudent, 
+    Progrescontainer, 
+    Buttonrevisar, 
+    Progress, 
+    Progresstext, Textcourse } from './stylesActivityCourse'
+import { Button, Collapse, Card, CardBody } from 'reactstrap'
 // import CarouselStundet
 var IMGDIR = process.env.REACT_APP_IMGDIR;
 
 const ListOfActivityCards = (props) => {
+    
+    var nameSection = props.value.nameSecction
+    console.log('valueEventAriaMessage..',props.value);
     let courses = props.courses
     if (props.loading) {
         return <SkeletonTeacherHome />
     }
-   const llegamos = () => {
+    const activitiesCourse = () => {
 
-    return (
-        < div className="row">
-          <div className="col-xl-12">
-              <section className="box ">
-                  <div className="content-body">
-                      <div className="row">
-                          <div className="col-12">
-                              <h1>holaaa</h1>
-                          </div>
-                      </div>
-                  </div>
-              </section>
-          </div>
-      </div>
-    )
-   } 
-   
+        return (
+            <Divcardactivity>
+                <Coursedetail>
+                <Coursepreview>
+                        <Coursestudent>Lengua Castellana</Coursestudent>
+                        <Textcourse>{nameSection}</Textcourse>
+                        {/* <a href="#">View all chapters <i class="fas fa-chevron-right"></i></a> */}
+
+                    </Coursepreview>
+                    <Courseinfo>
+                        <Progrescontainer>
+                            <Progress></Progress>
+                            <Progresstext>
+                                5/10 Días para finalizar
+				            </Progresstext>
+                        </Progrescontainer>
+                        <h6>Chapter 4</h6>
+                        <h2>Callbacks & Closures</h2>
+                        <Buttonrevisar>Enviar respuesta</Buttonrevisar>
+                    </Courseinfo>
+                </Coursedetail>
+            </Divcardactivity>
+        )
+    }
+
     return (
         <Fragment>
             {/* {ScrollCourses()} */}
-            {llegamos()}
+            {activitiesCourse()}
         </Fragment>
     )
 }

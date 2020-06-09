@@ -13,23 +13,16 @@ import React, { Fragment, useState, useEffect } from 'react'
 
 const CarouselCoursesStudent = (props) => {
   let urlImage = props.urlImage
-  let title = props.title
-  let idTeacher = props.idTeacher
-  let idGroup = props.idGroup
-  // console.log(props);
-  const ActivityCourses = (title) => {
-    return (
-      <div className="news-item">
-        {console.log('click', title)}
-        {/* <img className="news-item__imagen" src={urlImage} alt="" />
-        <a href="#ss">{title}</a> */}
-      </div>
-    )
-  }
-
+  let loadingActivity = props.loadingActivity
+  let title = props.courses.courseDictate.nameCourse
+  let idCourse = props.courses.courseDictate.codeCourse
+  let idTeacher = props.courses.teacherDictate
+  let codeAcademicCharge = props.courses.codeAcademicCharge
+  let idGroup = props.courses.groupDictate
+  // console.log(props.courses);
   const carouselCourses = () => {
     return (
-      <div className="news-item" onClick={() => props.setActivities(idTeacher)}>
+      <div className="news-item" onClick={() => props.setActivities(idCourse, idTeacher, idGroup, title, codeAcademicCharge)}>
         <img className="news-item__imagen" src={urlImage} alt="" />
         <a>{title} </a>
       </div>

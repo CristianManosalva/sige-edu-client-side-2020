@@ -1,12 +1,13 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { Row, Col } from 'reactstrap'
-import { Router } from '@reach/router'
+import config from '_config'
 import useCoursesStudent from 'hooks/useCoursesStudent'
 import { useSelector } from 'react-redux'
 import CarouselCoursesStudent from 'components/home_page/CarouselCoursesStudent'
 import { Carousel } from 'components'
+import SkeletonTeacherHome from '../../../components/skeleton/SkeletonTeacherHome'
 import ListOfActivityCards from 'components/hospital/Doctorslist/ListOfActivityCards'
-import { config } from '_config'
+
 var IMGDIR = process.env.REACT_APP_IMGDIR
 const CoursesStudent = (props) => {
   const { student } = useSelector(
@@ -15,14 +16,16 @@ const CoursesStudent = (props) => {
   const student_id = student.codeStudent
   const API = `http://api.sige-edu.com:8000/api/courses/academiccharge/bystudent/${student_id}`
   const { courses, loading } = useCoursesStudent(API)
-  const [activities, setActivities] = useState([
-    { name: 'Tarea uno' },
-    { name: 'Tarea dos' },
-  ])
+  const nameCourse =  ''
+  const [activities, setActivities] = useState([])
+  const [sections, setSections] = useState([])
+  const [loadingActivity, setLoadingActivity] = useState(false);
 
-  const getActvitiesByCourse = (course) => {
+  const getActvitiesByCourse = (idCourse, idTeacher, idGroup, title, codeAcademicCharge) => {
+    
     fetch(
-      `${config.apiOficial}/ruta-para-obtener-las-actividades-de-cada-curso/${course}`,
+      // `http://localhost:3000/student`,
+      `http://api.sige-edu.com:8000/api/workspaces/coursedetailteacher/${codeAcademicCharge}`,
       {
         method: 'GET',
         headers: {
@@ -33,11 +36,16 @@ const CoursesStudent = (props) => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setActivities(data)
+        setSections(data[0].secctions)
+        setActivities(data[0])
+        setLoadingActivity(false)
+
       })
       .catch((error) => {
         console.log(error)
       })
+      // console.log(activities)
+      
   }
   const renderCoursesStudentList = (fixed) => (
     <div>
@@ -48,28 +56,21 @@ const CoursesStudent = (props) => {
             <div className="col-xl-12">
               <section className="box ">
                 <div className="content-body">
-                  <div className="row">
-                    <div className="col-12">
-                      <div className="row">
-                        {console.log(courses)}
-                        <Carousel>
-                          {courses.map((courses, key) => {
-                            let idAcademicCharge = courses.codeAcademicCharge
-                            let courseDictate = courses.groupDictate
+                  <div className="col-12">
+                    <div className="row">
+                      <Carousel>
+                        {courses.map((courses, key) => {
 
-                            return (
-                              <CarouselCoursesStudent
-                                setActivities={getActvitiesByCourse}
-                                key={key}
-                                urlImage={IMGDIR + `/images/cards/${key}.jpeg`}
-                                idTeacher={courses.teacherDictate}
-                                idGroup={'6-01-01-2020-1'}
-                                title={courses.courseDictate.nameCourse}
-                              />
-                            )
-                          })}
-                        </Carousel>
-                      </div>
+                          return (
+                            <CarouselCoursesStudent
+                              setActivities={getActvitiesByCourse}
+                              key={key}
+                              urlImage={IMGDIR + `/images/cards/${key}.jpeg`}
+                              courses={courses}
+                            />
+                          )
+                        })}
+                      </Carousel>
                     </div>
                   </div>
                 </div>
@@ -77,10 +78,19 @@ const CoursesStudent = (props) => {
             </div>
           </Col>
           <Col xs={12} md={12}>
-            <div className="activities_student_container">
-              {activities.map((value, key) => {
-                return <div key={key}>{value.name}</div>
-              })}
+            <div className="col-xl-12">
+              <section className="box ">
+                <div className="content-body">
+                  <div className="col-12">
+                    <div className="row">
+                      {sections.length > 0 ? sections.map((value, key) => {
+
+                        return <div key={key}><ListOfActivityCards value={activities} /></div>
+                      }) : <SkeletonTeacherHome />}
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
           </Col>
         </Row>
