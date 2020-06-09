@@ -1,7 +1,6 @@
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 import { CardWrapperMember, ImgStudentDiv } from '../university/Studentslist/stylesStudentsList'
-import { Row, Col, Table, Button } from 'reactstrap'
 
 const SkeletonTeacherHome = () => {
   return (
