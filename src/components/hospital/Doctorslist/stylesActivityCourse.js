@@ -24,47 +24,75 @@ background-image: linear-gradient(45deg, #7175da, #9790F2);
 	margin: 0;
 `
 export const Coursestudent = styled.h6`
-color: #fff;
+	color: #15ff54;
 	display: inline-block;
-	font-size: 12px;
-	opacity: 0.6;
-	margin-top: 0px;
+	font-size: 13px;
+	opacity: 0.55;
+	margin-top: 2px;
 	text-decoration: none;
+	letter-spacing: 1px;
 `
 export const Coursedetail = styled.div`
 background-color: #fff;
 	border-radius: 10px;
-	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
 	display: flex;
 	max-width: 100%;
 	overflow: hidden;
 	width: 35.25rem;
 `
 export const Buttonrevisar = styled.button`
-background-color: #2A265F;
+background-color: rgb(65, 83, 89);
 	border: 0;
-	border-radius: 50px;
+	border-radius: 10px;
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 	color: #fff;
 	font-size: 16px;
-	padding: 12px 25px;
+	// padding: 12px 25px;
 	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	letter-spacing: 1px;
+`
+export const Buttonrecursos = styled.button`
+background-color: #15ff54;
+	border: 0;
+	border-radius: 5px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	// color: #fff;
+	font-size: 14px;
+	// padding: 12px 25px;
+	// position: absolute;
 	bottom: 30px;
-	right: 30px;
+	// right: 30px;
 	letter-spacing: 1px;
 `
 
 export const Coursepreview = styled.div`
-background-color: #2A265F;
+background-color: rgb(65, 83, 89);
 	color: #fff;
-	padding: 30px;
-	max-width: 250px;
+	padding: 10px;
+	max-width: 300px;
 `
 
-export const Textcourse = styled.h2`
-letter-spacing: 1px;
-  margin: 10px 0;
+export const Textcourse = styled.div`
+ letter-spacing: 1px;
+ font-size: 25px;
+  margin: 2.5px 0;
   color: #ffffff;
+`
+export const Resource = styled.div`
+display: inline-flex;
+paddingTop: 10px;
+
+`
+export const Description = styled.div`
+	overflowY: 'scroll';
+	float: 'left';
+	font-size: 14px;
+  height:'500px';
+	position:'relative';
+	color: #000000;
 `
 export const Courseinfo = styled.div`
 padding: 30px;
