@@ -85,7 +85,10 @@ const CoursesStudent = (props) => {
                     <div className="row">
                       {sections.length > 0 ? sections.map((value, key) => {
 
-                        return <div key={key}><ListOfActivityCards value={value} /></div>
+                        return <div key={key}><ListOfActivityCards value={value} activities={activities} student_id={student_id}/>
+                        {/* {console.log('activities.academicCharge',activities)} */}
+                        
+                        </div>
                       }) : <SkeletonTeacherHome />}
                     </div>
                   </div>

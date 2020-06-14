@@ -1,33 +1,39 @@
 import React, { useState, useEffect } from 'react'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize'
-import { Spinner, Row, Col, Container, Button, Label, Input } from 'reactstrap'
+import { Spinner, Row, Col, Container, Button, Label, Input, Form, FormGroup, FormText } from 'reactstrap'
 import Dropzone from 'react-dropzone'
-import '../styles/create-activity.css'
+import swal from 'sweetalert';
+import { Divcardactivity } from '../stylesAddResponseSection'
 import { config } from '_config'
 
-const AddActivity = ({ toggle, creating, createActivity, loader }) => {
+// secctionResponse = secctioncode,
+// messageResponse = messageResponse,
+// response = files,
+// studentResponse = codeestudent,
+
+const AddResponseSection = ({ toggle, creating, createResponseCourse, loader, student_id, codeSecction }) => {
   const [inputs, setInputs] = useState({
-    name: '',
     description: '',
     files: [],
-    enlace: '',
   })
   const [loaders, setLoaders] = useState({
     postDescription: false,
   })
-  const { description, name, files, enlace } = inputs
+  const { description, files, enlace } = inputs
+  const id_student = student_id
+  const codeSecctions = codeSecction
 
   const create = () => {
     if (!description) {
-      alert('Por favor, escribe una descripcion')
-    } else if (!name) {
-      alert('Por favor, dale un nombre a la actividad')
+      swal("Algo nos falta!!", "Debes escribir tu respuesta!!", "error");
+    } else if (inputs.files.length <= 0) {
+      swal("¿Sin Archivo?", "Vas a enviar tu respuesta sin ningún archivo. \n ¿quieres continuar?", "warning");
     } else {
-      createActivity({
-        name,
+      createResponseCourse({
+        codeSecctions,
         description,
         files,
-        enlace,
+        student_id,
       })
     }
   }
@@ -69,14 +75,19 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
   return (
     <Container fluid={true} className="add_activity_main">
       <Row>
-        <Col xs={12} className="form-group">
+        {/* <Col xs={12} className="form-group">
           <Label for="name">Nombre de la Actvidad</Label>
           <Input type="text" name="name" id="name" onChange={handleChange} />
-        </Col>
+        </Col> */}
         <Col xs={12} className="form-group">
-          <Label for="name">Descripcion de la actividad</Label>
-          <div className="add_activity_description_container">
-            <TextareaAutosize
+          <Label for="name" style={{ color: '#000000' }}>Respuesta a la actividad</Label>
+          <Input 
+            type="textarea" 
+            name="description" 
+            placeholder="Tu respuesta..." 
+            aria-label="minimum height"
+            onChange={handleChange} />
+            {/* <TextareaAutosize
               aria-label="minimum height"
               rowsMin={8}
               rowsMax={24}
@@ -84,12 +95,11 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
               placeholder=""
               className="add_activity_description_container-text-aria"
               onChange={handleChange}
-            />
-          </div>
+            /> */}
         </Col>
         <Col xs={12} className="form-group">
-          <Label for="name">Archivo</Label>
-          <div className="dropzone" style={{ cursor: 'pointer' }}>
+          <Label for="name" style={{ color: '#000000' }}>Archivo</Label>
+          <div className="dropzone" style={{ cursor: 'pointer', color: '#000000' }}>
             <Dropzone
               onDrop={onDrop}
               className="droparea"
@@ -104,8 +114,8 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
             </Dropzone>
           </div>
           {inputs.files.length > 0 && (
-            <aside>
-              <h6>Archivo a subir</h6>
+            <aside style={{ color: '#000000' }}>
+              <h6>Archivo</h6>
               <ul>
                 {inputs.files.map((f) => (
                   <li key={f.name}>
@@ -116,15 +126,15 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
             </aside>
           )}
         </Col>
-        <Col xs={12} className="form-group">
-          <Label for="enlace">Enlace destacado</Label>
+        {/* <Col xs={12} className="form-group">
+          <Label for="enlace" style={{ color: '#000000' }}>Enlace destacado (opcional)</Label>
           <Input
             type="text"
             name="enlace"
             id="enlace"
             onChange={handleChange}
           />
-        </Col>
+        </Col> */}
         <Col xs={12}>
           <Button
             style={{
@@ -141,7 +151,7 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
             ) : (
               <i className="fa fa-save mr-3"></i>
             )}
-            Crear Actividad
+            Guardar Respuesta
           </Button>
         </Col>
       </Row>
@@ -149,4 +159,4 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
   )
 }
 
-export default AddActivity
+export default AddResponseSection

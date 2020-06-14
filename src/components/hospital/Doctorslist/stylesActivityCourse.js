@@ -67,6 +67,28 @@ background-color: #15ff54;
 	// right: 30px;
 	letter-spacing: 1px;
 `
+export const Buttonarchivos = styled.button`
+	background-color: #009ad0;
+	border: 0;
+	color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	font-size: 14px;
+	bottom: 30px;
+	left: 30px;
+	letter-spacing: 1px;
+`
+export const Buttonlink = styled.button`
+	background-color: #dc3545;
+	border: 0;
+	color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	font-size: 14px;
+	bottom: 30px;
+	left: 30px;
+	letter-spacing: 1px;
+`
 
 export const Coursepreview = styled.div`
 background-color: rgb(65, 83, 89);
