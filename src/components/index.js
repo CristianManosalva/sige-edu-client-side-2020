@@ -23,6 +23,8 @@ import PrivateRoute from './common/PrivateRoute/PrivateRoute'
 
 /*--------------- University Admin Components ------------------*/
 import Professorslist from './university/Professorslist/Professorslist'
+import ProfessorslistStaff from './university/Professorslist/ProfessorslistStaff'
+import CardTeacher from './university/Professorslist/CardTeacher'
 import Studentslist from './university/Studentslist/Studentslist'
 import UniStaffslist from './university/UniStaffslist/UniStaffslist'
 import Courseslist from './university/Courseslist/Courseslist'
@@ -95,6 +97,8 @@ export {
   Mailbox,
   StyleSettings,
   Professorslist,
+  ProfessorslistStaff,
+  CardTeacher,
   Studentslist,
   UniStaffslist,
   Courseslist,

@@ -42,7 +42,7 @@ background-color: #fff;
 	width: 35.25rem;
 `
 export const Buttonrevisar = styled.button`
-background-color: rgb(65, 83, 89);
+background: linear-gradient(#dE685E, #EE786E);
 	border: 0;
 	border-radius: 10px;
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);

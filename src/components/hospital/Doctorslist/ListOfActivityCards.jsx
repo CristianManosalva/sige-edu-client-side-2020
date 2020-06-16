@@ -3,6 +3,7 @@ import SkeletonTeacherHome from '../../skeleton/SkeletonTeacherHome'
 import { ActivityItem, Activity, Modal, AddResponseSection } from 'components'
 import Loader from 'react-loader-spinner'
 import { config } from '_config'
+import swal from 'sweetalert';
 // import './styles/activities.css'
 import { Button, Collapse, Card, CardBody } from 'reactstrap'
 import Scrollbar from 'react-scrollbars-custom'
@@ -43,8 +44,10 @@ const ListOfActivityCards = (props) => {
   var linkUrl = props.value.lynks[0].url
   var student_id = props.student_id
   var codeSecction = props.value.codeSecction
+  var nameCourse = props.nameCourse
+  // var urlFile = props.resource
 
-  // console.log('valueEventAriaMessage..', codeSecction);
+  // console.log('valueEventAriaMessage..', urlFile.resource);
 
   if (props.loading) {
     return <SkeletonTeacherHome />
@@ -59,7 +62,7 @@ const ListOfActivityCards = (props) => {
     // setLoaders((loader) => ({ ...loader, creating: true }))
     const formdatafile = new FormData()
     console.log('archivos: ', files)
-    console.log(codeSecction, ' -- ', student_id)
+    console.log(codeSecctions, ' -- ', student_id)
     formdatafile.append('secctionResponse', codeSecctions)
     formdatafile.append('messageResponse', description)
     formdatafile.append('response', files[0])
@@ -69,32 +72,21 @@ const ListOfActivityCards = (props) => {
       body: formdatafile,
     })
       .then((response) => {
-        console.log('response: ', response)
+        
+        if(response.status == 201){
+          setModal(!modal);
+          swal("Excelente!!", "Todo salió bien!! :)", "success");
+        }
         return response.json()
       })
       .then((data) => {
-        console.log('Data resource: ', data)
+        // console.log('Data resource: ', data)
       })
       .catch((error) => {
         console.log('El error: ', error)
-        alert('Error al crear la respuesta, contacta el soporte de SIGE')
+        swal("UPSS..!!", "Algo Sucedió, Intenta mas tarde!! :)", "warning");
       })
       .finally(() => {})
-  }
-
-  function addFile(file, codeSecction) {
-    const formdata = new FormData()
-    formdata.append('resource', file)
-    formdata.append('secctionResource', codeSecction)
-    return fetch(`${config.apiOficial}/secctions/responsesecction/create/`, {
-      method: 'POST',
-      body: formdata,
-    })
-      .then((response) => response.json())
-      .catch((error) => {
-        console.log(error)
-        alert('Error al subir el archivo, por favor intenta mas tarde')
-      })
   }
 
   const activitiesCourse = () => {
@@ -117,7 +109,7 @@ const ListOfActivityCards = (props) => {
         </Modal>
         <Coursedetail>
           <Coursepreview>
-            <Coursestudent>Lengua Castellana</Coursestudent>
+    <Coursestudent>{nameCourse}</Coursestudent>
             <Textcourse>{nameSection}</Textcourse>
             <Scrollbar>
               <Resource style={{ paddingTop: '10px' }}>
@@ -142,6 +134,16 @@ const ListOfActivityCards = (props) => {
                     </a>
                   </Buttonlink>
                 </Collapse>
+              </Resource>
+              <br></br>
+              <Resource style={{ paddingTop: '10px' }}>
+                <Buttonrecursos
+                  color="primary"
+                  // onClick={toggle}
+                  style={{ marginBottom: '1rem' }}
+                >
+                  Respuesta
+                </Buttonrecursos>
               </Resource>
             </Scrollbar>
           </Coursepreview>

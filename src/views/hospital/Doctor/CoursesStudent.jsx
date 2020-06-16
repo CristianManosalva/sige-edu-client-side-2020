@@ -16,7 +16,8 @@ const CoursesStudent = (props) => {
   const student_id = student.codeStudent
   const API = `http://api.sige-edu.com:8000/api/courses/academiccharge/bystudent/${student_id}`
   const { courses, loading } = useCoursesStudent(API)
-  const nameCourse =  ''
+  const [nameCourse, setNameCourse] =  useState(null)
+  const [resourceSection, setResourceSection] =  useState(null)
   const [activities, setActivities] = useState([])
   const [sections, setSections] = useState([])
   const [loadingActivity, setLoadingActivity] = useState(false);
@@ -44,7 +45,28 @@ const CoursesStudent = (props) => {
       .catch((error) => {
         console.log(error)
       })
-      // console.log(activities)
+      fetch(
+        // `http://localhost:3000/student`,
+        `http://api.sige-edu.com:8000/api/courses/academiccharge/namecourse/${codeAcademicCharge}`,
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setNameCourse(data[0].courseDictate.nameCourse)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+      //   sections.map((value, key) => {
+
+      //   }
+      // console.log('sections..',sections)
       
   }
   const renderCoursesStudentList = (fixed) => (
@@ -85,8 +107,12 @@ const CoursesStudent = (props) => {
                     <div className="row">
                       {sections.length > 0 ? sections.map((value, key) => {
 
-                        return <div key={key}><ListOfActivityCards value={value} activities={activities} student_id={student_id}/>
-                        {/* {console.log('activities.academicCharge',activities)} */}
+                        return <div key={key}>
+                          <ListOfActivityCards 
+                          value={value}
+                          activities={activities} 
+                          student_id={student_id} 
+                          nameCourse={nameCourse}/>
                         
                         </div>
                       }) : <SkeletonTeacherHome />}
