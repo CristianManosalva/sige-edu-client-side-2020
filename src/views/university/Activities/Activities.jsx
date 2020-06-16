@@ -168,6 +168,49 @@ const Activities = (props) => {
       })
   }
 
+  function deleteActivity(activity) {
+    let index = secctions.indexOf(activity)
+    index = -1
+    if (index != -1) {
+      fetch(
+        `${config.apiOficial}/secctions/secction/delete/${activity.codeSecction}`,
+        {
+          method: 'DELETE',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => console.log('data for delete: ', data))
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+
+    if (index != -1) {
+      let auxSeccion = secctions
+      // setSecctions([])
+      auxSeccion.splice(index, 1)
+      setLoaders((loader) => ({ ...loader, gettingActivities: true }))
+
+      setTimeout(() => {
+        setSecctions(auxSeccion)
+        setLoaders((loader) => ({ ...loader, gettingActivities: false }))
+      }, 500)
+
+      console.log(
+        'result: ',
+        index,
+        '  :  ',
+        auxSeccion.length,
+        '  :  ',
+        secctions.length
+      )
+    }
+  }
+
   useEffect(() => {
     getWorkSpaces(id_teacher, id_group, id_materia)
   }, [])
@@ -250,9 +293,16 @@ const Activities = (props) => {
                     </span>
                   </div>
                 )}
-                {secctions.length > 0 &&
+                {!gettingActivities &&
+                  secctions.length > 0 &&
                   secctions.reverse().map((value, key) => {
-                    return <ActivityItem activity={value} key={key * 1000} />
+                    return (
+                      <ActivityItem
+                        activity={value}
+                        key={key * 1000}
+                        deleteActivity={deleteActivity}
+                      />
+                    )
                   })}
                 {secctions.length == 0 && !gettingActivities && (
                   <div

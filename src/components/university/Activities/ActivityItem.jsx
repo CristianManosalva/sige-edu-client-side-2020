@@ -45,7 +45,7 @@ const ActivityItem = (props) => {
   const [activity, setActivity] = useState(props.activity)
   const [backup] = useState(props.activity)
 
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(activity.codeSecction == 71)
   const toggleModal = () => setModal(!modal)
 
   const handleChange = (e) => {
@@ -100,11 +100,12 @@ const ActivityItem = (props) => {
         <ShowActivity
           loader={null}
           createActivity={null}
-          toggle={toggleModal}
+          toggleModal={toggleModal}
           activity={activity}
           handleChange={handleChange}
           edit={editActivity}
           cancel={goBack}
+          deleteActivity={props.deleteActivity}
         />
       </Modal>
       <section className="box profile-page">

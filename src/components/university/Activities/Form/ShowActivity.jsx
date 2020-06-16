@@ -3,18 +3,32 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize'
 import Linkify from 'react-linkify'
 import moment from 'moment'
 import { Collapse } from 'reactstrap'
-import { Tooltip, Row, Col, Container, Button, Label, Input } from 'reactstrap'
+import {
+  Tooltip,
+  Row,
+  Col,
+  Container,
+  Button,
+  Label,
+  Input,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from 'reactstrap'
 import Dropzone from 'react-dropzone'
 import '../styles/show-activity.css'
+import { DialogContent } from '@material-ui/core'
 
 const ShowActivity = ({
-  //   toggle,
+  toggleModal,
   //   onChange,
   edit,
   activity,
   //   loader,
   cancel,
   handleChange,
+  deleteActivity,
 }) => {
   const [state, setState] = useState({
     editing: false,
@@ -28,7 +42,9 @@ const ShowActivity = ({
     postDescription: false,
   })
   const [tooltipOpen, setTooltipOpen] = useState(false)
+  const [tooltipOpen2, setTooltipOpen2] = useState(false)
   const toggle = () => setTooltipOpen(!tooltipOpen)
+  const toggle2 = () => setTooltipOpen2(!tooltipOpen2)
 
   const componentDecorator = (href, text, key) => (
     <a href={href} key={key} target="_blank">
@@ -50,103 +66,57 @@ const ShowActivity = ({
     // }
   }
 
-  //   const handleChange = (e) => {
-  //     const { name, value } = e.target
-  //     setInputs((inputs) => ({ ...inputs, [name]: value }))
-  //   }
-
   const onDrop = (files) => {
     setInputs((inputs) => ({ ...inputs, files: files }))
   }
+
+  const [modal, setModal] = useState(false)
+  const toggleModalConfirmation = () => setModal(!modal)
 
   useEffect(() => {}, [])
 
   const { editing } = state
   const {
+    codeSecction,
     descriptionSecction,
     nameSecction,
     files,
     uploadOnSecction,
     resources,
+    responses,
   } = activity
 
   return (
     <Container fluid={true} className="add_activity_main">
-      <Row>
-        {/* <Col xs={12} className="form-group">
-          <Label for="name">Nombre de la Actvidad</Label>
-          <p>{nameSecction}</p>
-          <Input
-            value={nameSecction}
-            type="text"
-            name="nameSecction"
-            id="name"
-            onChange={handleChange}
-          />
-        </Col>
-        <Col xs={12} className="form-group">
-          <Label for="name">Descripcion de la actividad</Label>
-          <div className="add_activity_description_container">
-            <TextareaAutosize
-              aria-label="minimum height"
-              rowsMin={8}
-              rowsMax={24}
-              name="descriptionSecction"
-              placeholder=""
-              className="add_activity_description_container-text-aria"
-              onChange={handleChange}
-              value={descriptionSecction}
-            />
-            <div>{descriptionSecction}</div>
-          </div>
-        </Col> */}
-        {/* <Col xs={12} className="form-group">
-          <Label for="name">Archivo</Label>
-          <div className="dropzone">
-            <Dropzone
-              onDrop={onDrop}
-              className="droparea"
-              style={{ minHeight: '0' }}
-            >
-              <p>
-                Arrastra hasta aqui el archivo que deseas agregar o has click
-                para buscarlo
-              </p>
-            </Dropzone>
-          </div>
-          {inputs.files.length > 0 && (
-            <aside>
-              <h6>Archivo a subir</h6>
-              <ul>
-                {inputs.files.map((f) => (
-                  <li key={f.name}>
-                    {f.name} - {f.size} bytes
-                  </li>
-                ))}
-              </ul>
-            </aside>
-          )}
-        </Col>
-        <Col xs={12}>
+      <Modal
+        isOpen={modal}
+        toggle={toggleModalConfirmation}
+        keyboard={false}
+        backdrop={'static'}
+      >
+        <ModalHeader>Confirmar Accion</ModalHeader>
+        <ModalBody>
+          <p style={{ fontSize: '18px', textAlign: 'center' }}>
+            ¿Estas seguro que deseas eliminar esta activiadad?
+          </p>
+        </ModalBody>
+        <ModalFooter>
           <Button
-            style={{
-              display: 'block',
-              width: '100%',
-              backgroundColor: '#1EAEDF',
+            color="danger"
+            onClick={() => {
+              deleteActivity(activity)
+              toggleModalConfirmation()
+              toggleModal()
             }}
-            color="primary"
             size="sm"
-            onClick={create}
           >
-            {loader ? (
-              <Spinner className="mr-2" size="sm" color="light" />
-            ) : (
-              <i className="fa fa-save mr-3"></i>
-            )}
-            Compartir
+            Eliminar
+          </Button>{' '}
+          <Button color="primary" onClick={toggleModalConfirmation} size="sm">
+            Cancelar
           </Button>
-        </Col> */}
-      </Row>
+        </ModalFooter>
+      </Modal>
       <Row>
         <Col xs={12} style={{ textAlign: 'end' }}>
           {editing ? (
@@ -194,8 +164,31 @@ const ShowActivity = ({
                 isOpen={tooltipOpen}
                 target="TooltipExample"
                 toggle={toggle}
+                //backdrop={backdrop}
               >
                 Editar
+              </Tooltip>
+              <Button
+                style={{
+                  display: 'inline-flex',
+                  borderRadius: '50%',
+                  padding: '10px',
+                  // paddingRight: '8px',
+                }}
+                color="danger"
+                size="sm"
+                onClick={toggleModalConfirmation}
+                id="delete_activity"
+              >
+                <i className="fa fa-trash-o" style={{ fontSize: '18px' }} />
+              </Button>
+              <Tooltip
+                placement="right"
+                isOpen={tooltipOpen2}
+                target="delete_activity"
+                toggle={toggle2}
+              >
+                Borrar
               </Tooltip>
             </div>
           )}
@@ -264,12 +257,103 @@ const ShowActivity = ({
             ></SupportMaterialCollapse>
           </div>
         </Col>
+        {!editing && responses && responses.length > 0 && (
+          <Col xs={12}>
+            <div className="activity_responses_secction">
+              <h5>Entregas de los estudiantes</h5>
+              <Container>
+                {responses.map((value, key) => {
+                  return <ResponseActivity response={value} key={key} />
+                })}
+              </Container>
+            </div>
+          </Col>
+        )}
       </Row>
     </Container>
   )
 }
 
 export default ShowActivity
+
+const ResponseActivity = (props) => {
+  const [isOpen, setIsOpen] = useState(false) //temporal, estado inical debe ser false
+  const toggle = () => setIsOpen(!isOpen)
+  const {
+    response,
+    messageResponse,
+    dateResponse,
+    studentResponse,
+  } = props.response
+  const { codeStudent, user } = studentResponse
+  /* inicio aux function */
+  const auxParseName = (url) => {
+    try {
+      return url.split('/').reverse()[0]
+    } catch (error) {
+      return 'archivo'
+    }
+  }
+  /* fin aux function  */
+  return (
+    <div className="mb-3">
+      <div
+        style={{
+          margin: '0',
+          width: '100%',
+          padding: '0 0',
+          display: 'flex',
+          justifyContent: 'space-between',
+          borderBottom: '1px solid #1eaedf',
+          fontSize: '1em',
+          cursor: 'pointer',
+        }}
+        onClick={toggle}
+      >
+        <div>
+          <i
+            className={
+              'fa ' +
+              (isOpen ? 'fa-folder-open-o' : 'fa-folder-o') +
+              ' ml-1 mr-2'
+            }
+            style={{ fontSize: '1.2em', color: '#1eaedf' }}
+          ></i>
+          <span>{user.firstNameUser + user.lastNameUser}</span>
+        </div>
+        <div
+          className="mr-1"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <i
+            className="i-clock mr-1"
+            style={{ fontSize: '1.2em', color: '#1eaedf' }}
+          />
+          <span>{moment(dateResponse).format('MMMM DD, hh:mm')}</span>
+        </div>
+      </div>
+      <Collapse isOpen={isOpen}>
+        <Container>
+          <p>{messageResponse}</p>
+          {response && (
+            <p className="uprofile-list">
+              <span>
+                <i className="i-doc"></i>{' '}
+                <a href={response} target="_blank">
+                  {auxParseName(response)}
+                </a>
+              </span>
+            </p>
+          )}
+        </Container>
+      </Collapse>
+    </div>
+  )
+}
 
 const SupportMaterialCollapse = ({ resources, type }) => {
   const [isOpen, setIsOpen] = useState(false) //temporal, estado inical debe ser false
