@@ -1,4 +1,4 @@
-import Customer from 'views/crm/Customer/Customer.jsx'
+import UserTeacher from 'views/crm/User/UserTeacher.jsx'
 import CrmMailinbox from 'views/crm/Mail/Inbox.jsx'
 import CrmEvents from 'views/crm/Events/CrmEvents.jsx'
 import CrmReportsCustomers from 'views/crm/Reports/ReportsCustomers.jsx'
@@ -10,22 +10,23 @@ var BASEDIR = process.env.REACT_APP_BASEDIR
 var dashRoutes = [
   {
     path: BASEDIR + '/university/dashboard',
-    name: 'Inicio',
-    icon: 'home',
-    badge: '',
-    component: CrmReportsCustomers,
-  },
-  {
-    path: BASEDIR + '/university/community',
     name: 'Comunidad',
     icon: ' fa fa-users',
+    badge: '',
     component: Wall,
   },
+  // {
+  //   path: BASEDIR + '/university/community',
+  //   name: 'Comunidad',
+  //   badge: '',
+  //   icon: ' fa fa-users',
+  //   component: Wall,
+  // },
   {
     path: BASEDIR + '/university/customers',
     name: 'Docentes',
     icon: 'people',
-    component: Customer,
+    component: UserTeacher,
   },
   // {
   //   path: BASEDIR + '/university/centres',
