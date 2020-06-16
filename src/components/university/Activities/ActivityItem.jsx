@@ -234,7 +234,9 @@ const ActivityItem = (props) => {
                   style={{ marginTop: '.8rem', marginBottom: '0' }}
                 >
                   <span>
-                    <i className="i-user"></i> 15 Estudiantes han entregado
+                    <i className="i-user"></i>{' '}
+                    {activity.responses && activity.responses.length}{' '}
+                    Estudiantes han entregado
                   </span>
                   <span>
                     <i className="i-briefcase"></i> Fecha de Cierre: 2020-05-15

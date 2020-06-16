@@ -170,7 +170,7 @@ const Activities = (props) => {
 
   function deleteActivity(activity) {
     let index = secctions.indexOf(activity)
-    index = -1
+    // index = -1
     if (index != -1) {
       fetch(
         `${config.apiOficial}/secctions/secction/delete/${activity.codeSecction}`,
@@ -182,8 +182,9 @@ const Activities = (props) => {
           },
         }
       )
-        .then((response) => response.json())
-        .then((data) => console.log('data for delete: ', data))
+        .then((response) => {
+          console.log(response)
+        })
         .catch((error) => {
           console.log(error)
         })
@@ -196,7 +197,7 @@ const Activities = (props) => {
       setLoaders((loader) => ({ ...loader, gettingActivities: true }))
 
       setTimeout(() => {
-        setSecctions(auxSeccion)
+        setSecctions(auxSeccion.reverse())
         setLoaders((loader) => ({ ...loader, gettingActivities: false }))
       }, 500)
 
