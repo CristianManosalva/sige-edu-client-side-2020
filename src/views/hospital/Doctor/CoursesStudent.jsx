@@ -26,7 +26,7 @@ const CoursesStudent = (props) => {
     
     fetch(
       // `http://localhost:3000/student`,
-      `http://api.sige-edu.com:8000/api/workspaces/coursedetailteacher/${codeAcademicCharge}`,
+      `http://api.sige-edu.com:8000/api/secctions/secction/byacademicharge/${codeAcademicCharge}`,
       {
         method: 'GET',
         headers: {
@@ -37,8 +37,8 @@ const CoursesStudent = (props) => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setSections(data[0].secctions)
-        setActivities(data[0])
+        setSections(data)
+        setActivities(data)
         setLoadingActivity(false)
 
       })
@@ -63,11 +63,6 @@ const CoursesStudent = (props) => {
         .catch((error) => {
           console.log(error)
         })
-      //   sections.map((value, key) => {
-
-      //   }
-      // console.log('sections..',sections)
-      
   }
   const renderCoursesStudentList = (fixed) => (
     <div>
@@ -110,7 +105,7 @@ const CoursesStudent = (props) => {
                         return <div key={key}>
                           <ListOfActivityCards 
                           value={value}
-                          activities={activities} 
+                          activities={activities[key]} 
                           student_id={student_id} 
                           nameCourse={nameCourse}/>
                         
