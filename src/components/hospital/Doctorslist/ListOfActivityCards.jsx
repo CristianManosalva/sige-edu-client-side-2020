@@ -31,6 +31,7 @@ var IMGDIR = process.env.REACT_APP_IMGDIR
 const ListOfActivityCards = (props) => {
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
+  const toggleInfo = () => { return swal("Importante!!", "Esta Actividad esta sin Archivos!!", "info"); }
   const [modal, setModal] = useState(false)
   const togglemodal = () => setModal(!modal)
   const [loaders, setLoaders] = useState({
@@ -41,13 +42,13 @@ const ListOfActivityCards = (props) => {
 
   var nameSection = props.value.nameSecction
   var descriptionSection = props.value.descriptionSecction
-  var linkUrl = props.value.lynks[0].url
+  var linkResource = props.value.resources
+  var linkUrl = props.value.lynks
   var student_id = props.student_id
   var codeSecction = props.value.codeSecction
   var nameCourse = props.nameCourse
-  // var urlFile = props.resource
-
-  // console.log('valueEventAriaMessage..', urlFile.resource);
+  
+  console.log('valueEventAriaMessage..IIII', linkUrl);
 
   if (props.loading) {
     return <SkeletonTeacherHome />
@@ -72,8 +73,8 @@ const ListOfActivityCards = (props) => {
       body: formdatafile,
     })
       .then((response) => {
-        
-        if(response.status == 201){
+
+        if (response.status == 201) {
           setModal(!modal);
           swal("Excelente!!", "Todo salió bien!! :)", "success");
         }
@@ -86,7 +87,7 @@ const ListOfActivityCards = (props) => {
         console.log('El error: ', error)
         swal("UPSS..!!", "Algo Sucedió, Intenta mas tarde!! :)", "warning");
       })
-      .finally(() => {})
+      .finally(() => { })
   }
 
   const activitiesCourse = () => {
@@ -109,7 +110,7 @@ const ListOfActivityCards = (props) => {
         </Modal>
         <Coursedetail>
           <Coursepreview>
-    <Coursestudent>{nameCourse}</Coursestudent>
+            <Coursestudent>{nameCourse}</Coursestudent>
             <Textcourse>{nameSection}</Textcourse>
             <Scrollbar>
               <Resource style={{ paddingTop: '10px' }}>
@@ -122,21 +123,41 @@ const ListOfActivityCards = (props) => {
                 </Buttonrecursos>
 
                 <Collapse isOpen={isOpen}>
-                  <Buttonarchivos
-                    onClick={toggle}
-                    style={{ marginBottom: '1rem', paddingLeft: '10px' }}
-                  >
-                    Archivos
-                  </Buttonarchivos>
-                  <Buttonlink style={{ marginBottom: '1rem' }}>
-                    <a href={linkUrl} target="_blank">
-                      Link's
-                    </a>
-                  </Buttonlink>
+
+                  {linkResource.length > 0 ?
+                    <Buttonarchivos
+                      style={{ marginBottom: '1rem', paddingLeft: '10px' }}>
+                      <a href={linkResource[0].resource} target="_blank">
+                        Archivos
+                        </a>
+                    </Buttonarchivos>
+                    :
+                    <Buttonarchivos
+                      onClick={toggleInfo}
+                      style={{ marginBottom: '1rem', paddingLeft: '10px' }}>
+
+                      Archivos
+                    </Buttonarchivos>
+                  }
+                  {linkUrl.length > 0 ? 
+                      <Buttonlink style={{ marginBottom: '1rem' }}>
+                      <a href={linkUrl[0].url} target="_blank">
+                        Link's
+                      </a>
+                      </Buttonlink>
+                  : 
+                      <Buttonlink 
+                      onClick={toggleInfo}
+                      style={{ marginBottom: '1rem' }}>
+                        Link's
+                      </Buttonlink>
+                }
+
+                  
                 </Collapse>
               </Resource>
               <br></br>
-              <Resource style={{ paddingTop: '10px' }}>
+              {/* <Resource style={{ paddingTop: '10px' }}>
                 <Buttonrecursos
                   color="primary"
                   // onClick={toggle}
@@ -144,7 +165,7 @@ const ListOfActivityCards = (props) => {
                 >
                   Respuesta
                 </Buttonrecursos>
-              </Resource>
+              </Resource> */}
             </Scrollbar>
           </Coursepreview>
 
