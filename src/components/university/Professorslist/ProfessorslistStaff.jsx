@@ -17,9 +17,10 @@ const ProfessorslistStaff = (props) => {
     <div className="row">
       {props.professors.map((teacher, key) => {
         const nameTeacher = teacher.user.firstNameUser
+        const lastNameTeacher = teacher.user.lastNameUser
         return (
-          <div className="col-md-6 col-lg-6" key={key}>
-            <CardTeacher nameTeacher={nameTeacher} />
+          <div className="col-md-6 col-lg-6" key={key} style={{ paddingTop: '50px' }} >
+            <CardTeacher nameTeacher={nameTeacher} lastNameTeacher={lastNameTeacher}/>
           </div>
         )
       })}

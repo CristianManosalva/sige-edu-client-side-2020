@@ -55,7 +55,7 @@ background: linear-gradient(#dE685E, #EE786E);
 	letter-spacing: 1px;
 `
 export const Buttonrecursos = styled.button`
-background-color: #15ff54;
+	background-color: #15ff54;
 	border: 0;
 	border-radius: 5px;
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);

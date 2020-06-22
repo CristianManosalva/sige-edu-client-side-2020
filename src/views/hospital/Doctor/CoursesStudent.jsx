@@ -16,8 +16,9 @@ const CoursesStudent = (props) => {
   const student_id = student.codeStudent
   const API = `http://api.sige-edu.com:8000/api/courses/academiccharge/bystudent/${student_id}`
   const { courses, loading } = useCoursesStudent(API)
+  console.log('loading..',loading);
+  
   const [nameCourse, setNameCourse] =  useState(null)
-  const [resourceSection, setResourceSection] =  useState(null)
   const [activities, setActivities] = useState([])
   const [sections, setSections] = useState([])
   const [loadingActivity, setLoadingActivity] = useState(false);
@@ -84,6 +85,7 @@ const CoursesStudent = (props) => {
                               key={key}
                               urlImage={IMGDIR + `/images/cards/${key}.jpeg`}
                               courses={courses}
+                              loading={loading}
                             />
                           )
                         })}

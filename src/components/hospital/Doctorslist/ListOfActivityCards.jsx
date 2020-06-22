@@ -1,10 +1,9 @@
 import React, { Fragment, useState } from 'react'
 import SkeletonTeacherHome from '../../skeleton/SkeletonTeacherHome'
-import { ActivityItem, Activity, Modal, AddResponseSection } from 'components'
+import { Modal, AddResponseSection, YoutubeLiveClassroom } from 'components'
 import Loader from 'react-loader-spinner'
 import { config } from '_config'
 import swal from 'sweetalert';
-// import './styles/activities.css'
 import { Button, Collapse, Card, CardBody } from 'reactstrap'
 import Scrollbar from 'react-scrollbars-custom'
 import {
@@ -33,6 +32,8 @@ const ListOfActivityCards = (props) => {
   const toggle = () => setIsOpen(!isOpen)
   const toggleInfo = () => { return swal("Importante!!", "Esta Actividad esta sin Archivos!!", "info"); }
   const [modal, setModal] = useState(false)
+  const [modalVideo, setModalVideo] = useState(false)
+  const togglemodalvideo = () => setModalVideo(!modalVideo)
   const togglemodal = () => setModal(!modal)
   const [loaders, setLoaders] = useState({
     creating: false,
@@ -44,11 +45,17 @@ const ListOfActivityCards = (props) => {
   var descriptionSection = props.value.descriptionSecction
   var linkResource = props.value.resources
   var linkUrl = props.value.lynks
+  var resourceActivityVideo = ''
+  if (linkUrl.length > 0 && linkUrl[0].url.toString().substring(0, 19) == 'https://www.youtube') {
+    resourceActivityVideo = linkUrl[0].url
+      .toString()
+      .substring(32, linkUrl[0].url.length)
+  }
   var student_id = props.student_id
   var codeSecction = props.value.codeSecction
   var nameCourse = props.nameCourse
-  
-  console.log('valueEventAriaMessage..IIII', linkUrl);
+
+  // console.log('valueEventAriaMessage..IIII', linkUrl);
 
   if (props.loading) {
     return <SkeletonTeacherHome />
@@ -91,8 +98,20 @@ const ListOfActivityCards = (props) => {
   }
 
   const activitiesCourse = () => {
+
     return (
       <Divcardactivity>
+        <Modal
+            title="Video"
+            show={modalVideo}
+            backdrop="static"
+            keyboard={false}
+            toggle={togglemodalvideo}
+            >
+              <YoutubeLiveClassroom
+                videoId={resourceActivityVideo}
+              />
+        </Modal>
         <Modal
           title="Responder Actividad"
           show={modal}
@@ -139,21 +158,32 @@ const ListOfActivityCards = (props) => {
                       Archivos
                     </Buttonarchivos>
                   }
-                  {linkUrl.length > 0 ? 
-                      <Buttonlink style={{ marginBottom: '1rem' }}>
-                      <a href={linkUrl[0].url} target="_blank">
-                        Link's
-                      </a>
+                  {linkUrl.length > 0 ?
+                    linkUrl[0].url.toString().substring(0, 19) == 'https://www.youtube' ?
+
+
+                      <Buttonlink
+                        style={{ marginBottom: '1rem' }}
+                        onClick={togglemodalvideo}
+                      >
+                        Video
                       </Buttonlink>
-                  : 
-                      <Buttonlink 
+                      :
+                      <Buttonlink
+                        style={{ marginBottom: '1rem' }}>
+                        <a href={linkUrl[0].url} target="_blank">
+                          Link's
+                        </a>
+                      </Buttonlink>
+                    :
+                    <Buttonlink
                       onClick={toggleInfo}
                       style={{ marginBottom: '1rem' }}>
-                        Link's
+                      Link's
                       </Buttonlink>
-                }
+                  }
 
-                  
+
                 </Collapse>
               </Resource>
               <br></br>
