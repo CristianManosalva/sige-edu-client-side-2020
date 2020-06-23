@@ -264,7 +264,7 @@ const Activities = (props) => {
                   </p>
                 )}
               </div> */}
-              <div className="col-10 col-xl-7">
+              <div className="col-12 col-lg-12 col-xl-8 offset-xl-2">
                 {gettingActivities && (
                   <div
                     style={{
