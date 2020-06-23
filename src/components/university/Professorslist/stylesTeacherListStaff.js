@@ -10,16 +10,16 @@ export const Card = styled.div`
   border-radius: 8px;
   overflow: hidden;
   position: relative;
-`;
+`
 export const Center = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-`;
+`
 export const PaddingCard = styled.div`
   padding: 100px;
-`;
+`
 export const Pointscenter = styled.div`
   color: #fff;
   text-transform: uppercase;
@@ -30,7 +30,7 @@ export const Pointscenter = styled.div`
   white-space: nowrap;
   position: bottom;
   float: bottom;
-`;
+`
 export const Additional = styled.div`
   ${Card}:hover & {
     width: 100%;
@@ -43,7 +43,7 @@ export const Additional = styled.div`
   overflow: hidden;
   z-index: 2;
   background: linear-gradient(#006c9f, #5ecbff);
-`;
+`
 export const Usercard = styled.div`
   width: 150px;
   height: 100%;
@@ -56,29 +56,28 @@ export const Usercard = styled.div`
   // background: linear-gradient(#5ecbff, #5ecbff);
   border-radius: 100px;
   white-space: nowrap;
-  &:after{
-    content: "";
-  display: block;
-  position: absolute;
-  top: 10%;
-  right: -2px;
-  height: 80%;
-  border-left: 2px solid rgba(0,0,0,0.025);
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 10%;
+    right: -2px;
+    height: 80%;
+    border-left: 2px solid rgba(0, 0, 0, 0.025);
   }
-`;
+`
 export const Level = styled.div`
-${Center};
-top: 15%;
+  ${Center};
+  top: 15%;
   color: #fff;
   text-transform: uppercase;
   font-size: 0.75em;
   font-weight: bold;
-  background: rgba(0,0,0,0.15);
+  background: rgba(0, 0, 0, 0.15);
   padding: 0.125rem 0.75rem;
   border-radius: 100px;
   white-space: nowrap;
-
-`;
+`
 export const Moreinfo = styled.div`
   width: 300px;
   height: 100%;
@@ -93,13 +92,13 @@ export const Moreinfo = styled.div`
   left: 150px;
   color: #fff;
   margin-bottom: 0;
-`;
+`
 export const Coords = styled.div`
-margin: 0 1rem;
+  margin: 0 1rem;
   color: #fff;
   font-size: 1rem;
   float: right;
-`;
+`
 export const General = styled.div`
   width: 300px;
   height: 100%;
@@ -114,30 +113,30 @@ export const General = styled.div`
   left: 150px;
   color: #006c9f;
   margin-bottom: 0;
-`;
+`
 export const Titlecard = styled.div`
-margin-top: 20px;
-margin-rigth: 5px;
-font-weight: bold;
-font-size: 1.5em;
-text-align: center;
-color: #006c9f;
-margin-bottom: 0;
-`;
+  margin-top: 20px;
+  margin-rigth: 5px;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
+  color: #006c9f;
+  margin-bottom: 0;
+`
 export const Titlecardmoreinfo = styled.div`
-margin-top: 20px;
-margin-rigth: 5px;
-font-weight: bold;
-font-size: 1.5em;
-text-align: center;
-color: #ffff;
-margin-bottom: 0;
-`;
+  margin-top: 20px;
+  margin-rigth: 5px;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
+  color: #ffff;
+  margin-bottom: 0;
+`
 export const ButtonTeacher = styled.button`
-${Usercard}:hover & {
-  background: linear-gradient(#5ecbff, #5ecbff);
-}  
-font-size: 1em;
+  ${Usercard}:hover & {
+    background: linear-gradient(#5ecbff, #5ecbff);
+  }
+  font-size: 1em;
   margin: 1em;
   border: 2px solid palevioletred;
   border-radius: 3px;
