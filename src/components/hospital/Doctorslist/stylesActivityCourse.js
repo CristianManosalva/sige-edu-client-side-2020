@@ -94,7 +94,8 @@ export const Coursepreview = styled.div`
 background-color: rgb(65, 83, 89);
 	color: #fff;
 	padding: 10px;
-	max-width: 300px;
+	max-width: 400px;
+	min-width: 185px;
 `
 
 export const Textcourse = styled.div`
