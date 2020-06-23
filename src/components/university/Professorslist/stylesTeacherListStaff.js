@@ -121,7 +121,7 @@
 // export const Imgteacherstaff = styled.div`
 //   ${fadeIn()}
 //   padding: 0px;
-;`
+//;`
 
 // export const inicioDiv = styled.div`
 //  display: flex;

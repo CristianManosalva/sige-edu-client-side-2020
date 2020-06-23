@@ -180,16 +180,18 @@ const ActivityItem = (props) => {
                         className="uprofile-list"
                         // style={{ position: 'absolute', bottom: '0', left: '15px' }}
                       >
-                        {activity.resources.map((value, key) => {
-                          return (
-                            <span key={key}>
-                              <i className="i-doc"></i>{' '}
-                              <a href={value.resource} target="_blank">
-                                {auxParseName(value.resource)}
-                              </a>
-                            </span>
-                          )
-                        })}
+                        {activity &&
+                          activity.resources &&
+                          activity.resources.map((value, key) => {
+                            return (
+                              <span key={key}>
+                                <i className="i-doc"></i>{' '}
+                                <a href={value.resource} target="_blank">
+                                  {auxParseName(value.resource)}
+                                </a>
+                              </span>
+                            )
+                          })}
                         {/* <span>
                           <i className="i-doc"></i> taller.pdf
                         </span>
