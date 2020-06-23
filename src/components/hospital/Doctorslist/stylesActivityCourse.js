@@ -55,7 +55,7 @@ background: linear-gradient(#dE685E, #EE786E);
 	letter-spacing: 1px;
 `
 export const Buttonrecursos = styled.button`
-background-color: #15ff54;
+	background-color: #15ff54;
 	border: 0;
 	border-radius: 5px;
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
@@ -94,7 +94,8 @@ export const Coursepreview = styled.div`
 background-color: rgb(65, 83, 89);
 	color: #fff;
 	padding: 10px;
-	max-width: 300px;
+	max-width: 400px;
+	min-width: 185px;
 `
 
 export const Textcourse = styled.div`

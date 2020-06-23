@@ -27,6 +27,8 @@ import ProfessorslistStaff from './university/Professorslist/ProfessorslistStaff
 import CardTeacher from './university/Professorslist/CardTeacher'
 import Studentslist from './university/Studentslist/Studentslist'
 import UniStaffslist from './university/UniStaffslist/UniStaffslist'
+import VideosYoutube from '../components/youtube_card/VideosYoutube'
+import YoutubeLiveClassroom from '../components/youtube_card/YoutubeLiveClassroom'
 import Courseslist from './university/Courseslist/Courseslist'
 import SubjectList from './university/Courseslist/SubjectList'
 import ActivityItem from './university/Activities/ActivityItem'
@@ -122,4 +124,6 @@ export {
   AddActivity,
   ShowActivity,
   AddResponseSection,
+  VideosYoutube,
+  YoutubeLiveClassroom,
 }

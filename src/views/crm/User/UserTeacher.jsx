@@ -11,7 +11,7 @@ const UserTeacher = (props) => {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
   const { user } = useSelector((state) => state.authentication.user.user_data)
-  console.log(user);
+  // console.log(user);
   
   const teacherIdIE = user.codeIE
   const API = `http://api.sige-edu.com:8000/api/users/teacher/byIE/${teacherIdIE}`
@@ -22,9 +22,9 @@ const UserTeacher = (props) => {
           <Row>
             <Col xs={12} md={12}>
               <div className="page-title">
-                <div className="float-left">
+                {/* <div className="float-left">
                   <DocentesLiteral />
-                </div>
+                </div> */}
               </div>
 
               <div className="col-xl-12">
