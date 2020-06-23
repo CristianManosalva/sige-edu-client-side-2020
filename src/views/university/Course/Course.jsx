@@ -3,11 +3,11 @@ import { Row, Col } from 'reactstrap'
 import { Courseslist } from 'components'
 import Select from 'react-select'
 import SelectCourseModal from '../../../modal/SelectCourseModal'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 import GruposLiteral from '../../../components/common/GruposLiteral/GruposLiteral'
 
-const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`;
-const nameCourses = [];
+const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`
+const nameCourses = []
 
 const Course = () => {
   const { teacher } = useSelector(
@@ -38,7 +38,7 @@ const Course = () => {
 
   function filterGroup(code, array) {
     return array.reduce((result, { courseDictate, groupDictate }) => {
-      if (courseDictate.codeCourse === code) {
+      if (courseDictate.codeCourse == code) {
         result.push(groupDictate)
       }
       return result
@@ -69,9 +69,8 @@ const Course = () => {
         filterMaterias(depuredData)
       })
       .catch((error) => console.log(error))
-      .finally(() => { })
+      .finally(() => {})
   }
-
 
   function filterMaterias(array) {
     let hash = Object.create(null)
@@ -82,24 +81,28 @@ const Course = () => {
           label: value.courseDictate.nameCourse,
           value: value.courseDictate.codeCourse,
         })
-        let namescourses = `${value.courseDictate.nameCourse}`;
-        let codecourses = `${value.courseDictate.codeCourse}`;
+        let namescourses = `${value.courseDictate.nameCourse}`
+        let codecourses = `${value.courseDictate.codeCourse}`
         nameCourses.push({
           key: codecourses,
-          value: namescourses
-        });
+          value: namescourses,
+        })
       }
       return result
     }, [])
+
     setOptions((options) => [...options, ...optionsfromarray])
+    if (optionsfromarray && optionsfromarray.length > 0) {
+      setSelectMateria(optionsfromarray[0])
+    }
   }
 
-  const handleChangeSelect = ({ value }) => {
+  const handleChangeSelect = ({ value, label }) => {
     value == -1
       ? setGroups(allgroups(data))
       : setGroups(filterGroup(value, data))
 
-    setSelectMateria(value)
+    setSelectMateria({ label, value })
   }
 
   useEffect(() => {
@@ -107,7 +110,6 @@ const Course = () => {
   }, [])
 
   return (
-    
     <div>
       <div className="content">
         <SelectCourseModal />
@@ -131,7 +133,8 @@ const Course = () => {
                         options={options}
                         label="Age"
                         className="nameCourse"
-                        defaultValue={options[0]}
+                        // defaultValue={options[0]}
+                        value={selectMateria}
                         onChange={handleChangeSelect}
                       />
                     </div>
@@ -139,12 +142,11 @@ const Course = () => {
                   <br />
                   <div className="row">
                     <div className="groupsCharge">
-
                       <Courseslist
                         courses={groups}
                         user={{
                           teacher_id: teacher_id,
-                          materia_id: selectMateria,
+                          materia_id: selectMateria.value,
                         }}
                         nameCourses={nameCourses}
                       />
