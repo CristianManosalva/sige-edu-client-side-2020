@@ -3,7 +3,6 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize'
 import { Spinner, Row, Col, Container, Button, Label, Input } from 'reactstrap'
 import Dropzone from 'react-dropzone'
 import '../styles/create-activity.css'
-import { config } from '_config'
 
 const AddActivity = ({ toggle, creating, createActivity, loader }) => {
   const [inputs, setInputs] = useState({
@@ -39,29 +38,6 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
 
   const onDrop = (files) => {
     setInputs((inputs) => ({ ...inputs, files: files }))
-    // files.forEach((file) => {
-    //   const formdata = new FormData()
-    //   formdata.append('resource', file)
-    //   formdata.append('secctionResource', 4)
-    //   fetch(`${config.apiEndPoint}/secctions/resource/create/`, {
-    //     method: 'POST',
-    //     // headers: {
-    //     //   // Accept: 'application/json',
-    //     //   // 'Content-Type': 'multipart/form-data',
-    //     // },
-    //     body: formdata,
-    //   })
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       // addLink(enlace, data.codeSecction)
-    //       console.log('Response por create: ', data)
-    //     })
-    //     .catch((error) => {
-    //       console.log(error)
-    //       alert('Error al subir el archivo, contacta el soporte de SIGE')
-    //     })
-    //     .finally(() => {})
-    // })
   }
 
   useEffect(() => {}, [])

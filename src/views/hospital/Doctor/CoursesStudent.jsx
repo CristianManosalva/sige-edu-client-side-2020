@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { Row, Col } from 'reactstrap'
-import config from '_config'
 import useCoursesStudent from 'hooks/useCoursesStudent'
 import { useSelector } from 'react-redux'
 import CarouselCoursesStudent from 'components/home_page/CarouselCoursesStudent'
 import { Carousel } from 'components'
+import { config } from '_config'
 import SkeletonTeacherHome from '../../../components/skeleton/SkeletonTeacherHome'
 import ListOfActivityCards from 'components/hospital/Doctorslist/ListOfActivityCards'
 
