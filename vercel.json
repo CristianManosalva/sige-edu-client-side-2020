@@ -5,7 +5,7 @@
       "NODE_PATH": "./src",
       "REACT_APP_BASEDIR": "",
       "REACT_APP_IMGDIR": "",
-      "REACT_APP_API_END_POINT": "http://api.sige-edu.com:8000/api"
+      "REACT_APP_API_END_POINT": "https://api-test.sige-edu.com:8000/api"
     }
   }
 }
