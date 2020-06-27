@@ -11,8 +11,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Modal from 'react-bootstrap/Modal'
 import ActividadesLiteral from '../../../components/common/ActividadesLiteral/ActividadesLiteral'
 
-const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`
-const apiSecction = `http://api.sige-edu.com:8000/api/secctions/secction/create/`
+const apiSecction = `${config.apiEndPoint}/secctions/secction/create/`
 const styleButton = {
   margin: '1rem 0 0 1rem',
   backgroundColor: '#1EAEDF',
@@ -193,13 +192,16 @@ const AddCourse = () => {
 
   //Inicio Fecth information
   function getGroups(teacher_id) {
-    fetch(api + `/${teacher_id}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
+    fetch(
+      `${config.apiEndPoint}/courses/academiccharge/byteacher/${teacher_id}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         let depuredArray = removeDuplicity(data)
@@ -212,7 +214,7 @@ const AddCourse = () => {
   }
 
   function getSeccions({ workspaceSecction, codeSecction }) {
-    fetch(`${config.apiOficial}/secctions/secction/${codeSecction}`, {
+    fetch(`${config.apiEndPoint}/secctions/secction/${codeSecction}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -235,7 +237,7 @@ const AddCourse = () => {
   }
 
   function getSecctionsByTeacher(teacherId) {
-    fetch(`${config.apiOficial}/workspaces/only/secctions/${teacherId}`, {
+    fetch(`${config.apiEndPoint}/workspaces/only/secctions/${teacherId}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -253,7 +255,7 @@ const AddCourse = () => {
 
   function getWorkSpaces(teacher_id, grupo_id, codeMateria) {
     fetch(
-      `http://api.sige-edu.com:8000/api/workspaces/courses/${teacher_id}/${grupo_id}`,
+      `${config.apiEndPoint}/workspaces/courses/${teacher_id}/${grupo_id}`,
       {
         method: 'GET',
         headers: {
@@ -276,7 +278,7 @@ const AddCourse = () => {
 
   //Inicio post request
   function createSecction(body) {
-    fetch(apiSecction, {
+    fetch(`${config.apiEndPoint}/secctions/secction/create/`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -297,7 +299,7 @@ const AddCourse = () => {
   }
 
   function addLink(enlace, codeSecction) {
-    fetch(`${config.apiOficial}/secctions/hyperLynks/create/`, {
+    fetch(`${config.apiEndPoint}/secctions/hyperLynks/create/`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -324,7 +326,7 @@ const AddCourse = () => {
     let { workspaceSecction, codeSecction } = currentSeccion
     body.workspaceSecction = workspaceSecction
     body.codeSecction = codeSecction
-    fetch(`${config.apiOficial}/secctions/secction/update/${codeSecction}`, {
+    fetch(`${config.apiEndPoint}/secctions/secction/update/${codeSecction}`, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',

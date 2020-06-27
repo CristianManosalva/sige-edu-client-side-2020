@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'reactstrap'
 import YoutubeVideoHelp from '../../../components/youtube_card/YoutubeVideoHelp'
-import useInitialState from '../../../hooks/useInitialState';
-const API = 'http://api.sige-edu.com:8000/api/tutorials/create/'
-
+import useInitialState from '../../../hooks/useInitialState'
+import { config } from '_config'
+const API = `${config.apiEndPoint}/tutorials/create/`
 
 const Help = () => {
- const initialState = useInitialState(API);
+  const initialState = useInitialState(API)
   return (
     <div>
       <div className="content">

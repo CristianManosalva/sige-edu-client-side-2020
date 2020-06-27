@@ -17,7 +17,7 @@ function login(documentIdUser, passwordUser) {
   }
 
   // console.log('Options: ', options)
-  return fetch(`${config.apiOficial}/users/login/`, options)
+  return fetch(`${config.apiEndPoint}/users/login/`, options)
     .then(handleResponse)
     .then(({ data }) => {
       localStorage.setItem('userv2', JSON.stringify(data))

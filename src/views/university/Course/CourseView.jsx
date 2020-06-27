@@ -31,7 +31,7 @@ const CourseProfile = (props) => {
 
   function getWorkSpaces(teacher_id, grupo_id, codeMateria) {
     fetch(
-      `http://api.sige-edu.com:8000/api/workspaces/courses/${teacher_id}/${grupo_id}`,
+      `${config.apiEndPoint}/workspaces/courses/${teacher_id}/${grupo_id}`,
       {
         method: 'GET',
         headers: {

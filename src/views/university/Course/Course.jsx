@@ -5,8 +5,8 @@ import Select from 'react-select'
 import SelectCourseModal from '../../../modal/SelectCourseModal'
 import { useDispatch, useSelector } from 'react-redux'
 import GruposLiteral from '../../../components/common/GruposLiteral/GruposLiteral'
+import { config } from '_config'
 
-const api = `http://api.sige-edu.com:8000/api/courses/academiccharge/byteacher`
 const nameCourses = []
 
 const Course = () => {
@@ -52,13 +52,16 @@ const Course = () => {
   }
 
   function getGroups(teacher_id) {
-    fetch(api + `/${teacher_id}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
+    fetch(
+      `${config.apiEndPoint}/courses/academiccharge/byteacher/${teacher_id}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         let depuredData = removeDuplicityAcademic(data)

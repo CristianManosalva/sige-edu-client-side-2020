@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import { config } from '_config'
 import Button from 'react-bootstrap/Button'
 
-var api = process.env.REACT_APP_API_END_POINT_OFICIAL
 const backgroundBlue = {
   backgroundColor: '#1EAEDF',
   color: 'white',
@@ -146,7 +145,7 @@ const AddProfessor = (props) => {
   //   const { user } = useSelector((state) => state.authentication.user)
 
   function getUserData() {
-    fetch(api + `/users/${user.documentIdUser}`, {
+    fetch(`${config.apiEndPoint}/users/${user.documentIdUser}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -262,7 +261,7 @@ const AddProfessor = (props) => {
       ...loaders,
       updateLoad: true,
     }))
-    fetch(api + `/users/update/${documentIdUser}/`, {
+    fetch(`${config.apiEndPoint}/users/update/${documentIdUser}/`, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',

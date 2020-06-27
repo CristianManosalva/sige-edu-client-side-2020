@@ -43,7 +43,7 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
     //   const formdata = new FormData()
     //   formdata.append('resource', file)
     //   formdata.append('secctionResource', 4)
-    //   fetch(`${config.apiOficial}/secctions/resource/create/`, {
+    //   fetch(`${config.apiEndPoint}/secctions/resource/create/`, {
     //     method: 'POST',
     //     // headers: {
     //     //   // Accept: 'application/json',

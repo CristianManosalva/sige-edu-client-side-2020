@@ -25,7 +25,7 @@ const Wall = () => {
       user: user.documentIdUser,
     }
     console.log('Post ', newPost)
-    fetch(`${config.apiOficial}/community/create/`, {
+    fetch(`${config.apiEndPoint}/community/create/`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -51,7 +51,7 @@ const Wall = () => {
   }
 
   const getPostByIe = (codeIE) => {
-    fetch(`${config.apiOficial}/community/byIE/${codeIE}`, {
+    fetch(`${config.apiEndPoint}/community/byIE/${codeIE}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',

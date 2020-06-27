@@ -3,7 +3,7 @@ import SkeletonTeacherHome from '../../skeleton/SkeletonTeacherHome'
 import { Modal, AddResponseSection, YoutubeLiveClassroom } from 'components'
 import Loader from 'react-loader-spinner'
 import { config } from '_config'
-import swal from 'sweetalert';
+import swal from 'sweetalert'
 import { Button, Collapse, Card, CardBody } from 'reactstrap'
 import Scrollbar from 'react-scrollbars-custom'
 import {
@@ -30,7 +30,9 @@ var IMGDIR = process.env.REACT_APP_IMGDIR
 const ListOfActivityCards = (props) => {
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
-  const toggleInfo = () => { return swal("Importante!!", "Esta Actividad esta sin Archivos!!", "info"); }
+  const toggleInfo = () => {
+    return swal('Importante!!', 'Esta Actividad esta sin Archivos!!', 'info')
+  }
   const [modal, setModal] = useState(false)
   const [modalVideo, setModalVideo] = useState(false)
   const togglemodalvideo = () => setModalVideo(!modalVideo)
@@ -46,7 +48,10 @@ const ListOfActivityCards = (props) => {
   var linkResource = props.value.resources
   var linkUrl = props.value.lynks
   var resourceActivityVideo = ''
-  if (linkUrl.length > 0 && linkUrl[0].url.toString().substring(0, 19) == 'https://www.youtube') {
+  if (
+    linkUrl.length > 0 &&
+    linkUrl[0].url.toString().substring(0, 19) == 'https://www.youtube'
+  ) {
     resourceActivityVideo = linkUrl[0].url
       .toString()
       .substring(32, linkUrl[0].url.length)
@@ -75,15 +80,14 @@ const ListOfActivityCards = (props) => {
     formdatafile.append('messageResponse', description)
     formdatafile.append('response', files[0])
     formdatafile.append('studentResponse', student_id)
-    fetch(`${config.apiOficial}/secctions/responsesecction/create/`, {
+    fetch(`${config.apiEndPoint}/secctions/responsesecction/create/`, {
       method: 'POST',
       body: formdatafile,
     })
       .then((response) => {
-
         if (response.status == 201) {
-          setModal(!modal);
-          swal("Excelente!!", "Todo salió bien!! :)", "success");
+          setModal(!modal)
+          swal('Excelente!!', 'Todo salió bien!! :)', 'success')
         }
         return response.json()
       })
@@ -92,25 +96,22 @@ const ListOfActivityCards = (props) => {
       })
       .catch((error) => {
         console.log('El error: ', error)
-        swal("UPSS..!!", "Algo Sucedió, Intenta mas tarde!! :)", "warning");
+        swal('UPSS..!!', 'Algo Sucedió, Intenta mas tarde!! :)', 'warning')
       })
-      .finally(() => { })
+      .finally(() => {})
   }
 
   const activitiesCourse = () => {
-
     return (
       <Divcardactivity>
         <Modal
-            title="Video"
-            show={modalVideo}
-            backdrop="static"
-            keyboard={false}
-            toggle={togglemodalvideo}
-            >
-              <YoutubeLiveClassroom
-                videoId={resourceActivityVideo}
-              />
+          title="Video"
+          show={modalVideo}
+          backdrop="static"
+          keyboard={false}
+          toggle={togglemodalvideo}
+        >
+          <YoutubeLiveClassroom videoId={resourceActivityVideo} />
         </Modal>
         <Modal
           title="Responder Actividad"
@@ -142,48 +143,46 @@ const ListOfActivityCards = (props) => {
                 </Buttonrecursos>
 
                 <Collapse isOpen={isOpen}>
-
-                  {linkResource.length > 0 ?
+                  {linkResource.length > 0 ? (
                     <Buttonarchivos
-                      style={{ marginBottom: '1rem', paddingLeft: '10px' }}>
+                      style={{ marginBottom: '1rem', paddingLeft: '10px' }}
+                    >
                       <a href={linkResource[0].resource} target="_blank">
                         Archivos
-                        </a>
+                      </a>
                     </Buttonarchivos>
-                    :
+                  ) : (
                     <Buttonarchivos
                       onClick={toggleInfo}
-                      style={{ marginBottom: '1rem', paddingLeft: '10px' }}>
-
+                      style={{ marginBottom: '1rem', paddingLeft: '10px' }}
+                    >
                       Archivos
                     </Buttonarchivos>
-                  }
-                  {linkUrl.length > 0 ?
-                    linkUrl[0].url.toString().substring(0, 19) == 'https://www.youtube' ?
-
-
+                  )}
+                  {linkUrl.length > 0 ? (
+                    linkUrl[0].url.toString().substring(0, 19) ==
+                    'https://www.youtube' ? (
                       <Buttonlink
                         style={{ marginBottom: '1rem' }}
                         onClick={togglemodalvideo}
                       >
                         Video
                       </Buttonlink>
-                      :
-                      <Buttonlink
-                        style={{ marginBottom: '1rem' }}>
+                    ) : (
+                      <Buttonlink style={{ marginBottom: '1rem' }}>
                         <a href={linkUrl[0].url} target="_blank">
                           Link's
                         </a>
                       </Buttonlink>
-                    :
+                    )
+                  ) : (
                     <Buttonlink
                       onClick={toggleInfo}
-                      style={{ marginBottom: '1rem' }}>
+                      style={{ marginBottom: '1rem' }}
+                    >
                       Link's
-                      </Buttonlink>
-                  }
-
-
+                    </Buttonlink>
+                  )}
                 </Collapse>
               </Resource>
               <br></br>

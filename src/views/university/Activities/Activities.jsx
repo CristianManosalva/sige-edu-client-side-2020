@@ -5,8 +5,6 @@ import Loader from 'react-loader-spinner'
 import { config } from '_config'
 import './styles/activities.css'
 
-var IMGDIR = process.env.REACT_APP_IMGDIR
-
 const Activities = (props) => {
   const { id_teacher, id_group, id_materia } = props.match.params
   const [secctions, setSecctions] = useState([])
@@ -48,7 +46,7 @@ const Activities = (props) => {
 
   function getWorkSpaces(teacher_id, grupo_id, codeMateria) {
     fetch(
-      `http://api.sige-edu.com:8000/api/workspaces/courses/${teacher_id}/${grupo_id}`,
+      `${config.apiEndPoint}/workspaces/courses/${teacher_id}/${grupo_id}`,
       {
         method: 'GET',
         headers: {
@@ -80,7 +78,7 @@ const Activities = (props) => {
 
   function createActivity({ name, description, files, enlace }) {
     setLoaders((loader) => ({ ...loader, creating: true }))
-    fetch(`${config.apiOficial}/secctions/secction/create/`, {
+    fetch(`${config.apiEndPoint}/secctions/secction/create/`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -139,7 +137,7 @@ const Activities = (props) => {
     const formdata = new FormData()
     formdata.append('resource', file)
     formdata.append('secctionResource', codeSecction)
-    return fetch(`${config.apiOficial}/secctions/resource/create/`, {
+    return fetch(`${config.apiEndPoint}/secctions/resource/create/`, {
       method: 'POST',
       body: formdata,
     })
@@ -151,7 +149,7 @@ const Activities = (props) => {
   }
 
   function addLink(enlace, codeSecction) {
-    return fetch(`${config.apiOficial}/secctions/hyperLynks/create/`, {
+    return fetch(`${config.apiEndPoint}/secctions/hyperLynks/create/`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -173,7 +171,7 @@ const Activities = (props) => {
     // index = -1
     if (index != -1) {
       fetch(
-        `${config.apiOficial}/secctions/secction/delete/${activity.codeSecction}`,
+        `${config.apiEndPoint}/secctions/secction/delete/${activity.codeSecction}`,
         {
           method: 'DELETE',
           headers: {

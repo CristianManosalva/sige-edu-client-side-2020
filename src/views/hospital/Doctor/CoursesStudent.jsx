@@ -14,20 +14,25 @@ const CoursesStudent = (props) => {
     (state) => state.authentication.user.user_data
   )
   const student_id = student.codeStudent
-  const API = `http://api.sige-edu.com:8000/api/courses/academiccharge/bystudent/${student_id}`
+  const API = `${config.apiEndPoint}/courses/academiccharge/bystudent/${student_id}`
   const { courses, loading } = useCoursesStudent(API)
-  console.log('loading..',loading);
-  
-  const [nameCourse, setNameCourse] =  useState(null)
+  console.log('loading..', loading)
+
+  const [nameCourse, setNameCourse] = useState(null)
   const [activities, setActivities] = useState([])
   const [sections, setSections] = useState([])
-  const [loadingActivity, setLoadingActivity] = useState(false);
+  const [loadingActivity, setLoadingActivity] = useState(false)
 
-  const getActvitiesByCourse = (idCourse, idTeacher, idGroup, title, codeAcademicCharge) => {
-    
+  const getActvitiesByCourse = (
+    idCourse,
+    idTeacher,
+    idGroup,
+    title,
+    codeAcademicCharge
+  ) => {
     fetch(
       // `http://localhost:3000/student`,
-      `http://api.sige-edu.com:8000/api/secctions/secction/byacademicharge/${codeAcademicCharge}`,
+      `${config.apiEndPoint}/secctions/secction/byacademicharge/${codeAcademicCharge}`,
       {
         method: 'GET',
         headers: {
@@ -41,29 +46,28 @@ const CoursesStudent = (props) => {
         setSections(data)
         setActivities(data)
         setLoadingActivity(false)
-
       })
       .catch((error) => {
         console.log(error)
       })
-      fetch(
-        // `http://localhost:3000/student`,
-        `http://api.sige-edu.com:8000/api/courses/academiccharge/namecourse/${codeAcademicCharge}`,
-        {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          setNameCourse(data[0].courseDictate.nameCourse)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+    fetch(
+      // `http://localhost:3000/student`,
+      `${config.apiEndPoint}/courses/academiccharge/namecourse/${codeAcademicCharge}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setNameCourse(data[0].courseDictate.nameCourse)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
   const renderCoursesStudentList = (fixed) => (
     <div>
@@ -78,7 +82,6 @@ const CoursesStudent = (props) => {
                     <div className="row">
                       <Carousel>
                         {courses.map((courses, key) => {
-
                           return (
                             <CarouselCoursesStudent
                               setActivities={getActvitiesByCourse}
@@ -102,17 +105,22 @@ const CoursesStudent = (props) => {
                 <div className="content-body">
                   <div className="col-12">
                     <div className="row">
-                      {sections.length > 0 ? sections.map((value, key) => {
-
-                        return <div key={key}>
-                          <ListOfActivityCards 
-                          value={value}
-                          activities={activities[key]} 
-                          student_id={student_id} 
-                          nameCourse={nameCourse}/>
-                        
-                        </div>
-                      }) : <SkeletonTeacherHome />}
+                      {sections.length > 0 ? (
+                        sections.map((value, key) => {
+                          return (
+                            <div key={key}>
+                              <ListOfActivityCards
+                                value={value}
+                                activities={activities[key]}
+                                student_id={student_id}
+                                nameCourse={nameCourse}
+                              />
+                            </div>
+                          )
+                        })
+                      ) : (
+                        <SkeletonTeacherHome />
+                      )}
                     </div>
                   </div>
                 </div>

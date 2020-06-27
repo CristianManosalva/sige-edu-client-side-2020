@@ -55,7 +55,7 @@ const ActivityItem = (props) => {
 
   const editActivity = () => {
     fetch(
-      `${config.apiOficial}/secctions/secction/update/${activity.codeSecction}`,
+      `${config.apiEndPoint}/secctions/secction/update/${activity.codeSecction}`,
       {
         method: 'PUT',
         headers: {
