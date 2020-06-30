@@ -49,17 +49,25 @@ var dashRoutes = [
   },
   // {
   //   path: BASEDIR + '/university/dashboard',
+  //   icon: 'settings',
+  //   name: 'Configuración',
+  //   badge: '',
+  //   component: PatientProfile,
+  // },
+  // {
+  //   path: BASEDIR + '/university/dashboard',
   //   icon: 'calendar',
   //   name: 'Horario',
   //   badge: '',
   //   component: CoursesStudent,
   // },
-  // {
-  //   path: BASEDIR + '/university/dashboard',
-  //   icon: 'list',
-  //   name: 'Deberes',
-  //   component: CoursesStudent,
-  // },
+  {
+    path: BASEDIR + '/settings',
+    icon: 'settings',
+    badge: '',
+    name: 'Configuración',
+    component: PatientProfile,
+  },
   // {
   //   path: BASEDIR + '/university/dashboard',
   //   icon: 'event',

@@ -11,6 +11,7 @@ import AddProfessor from 'views/university/Professor/AddProfessor.jsx'
 // import Student from 'views/university/Student/Student.jsx'
 // import Centres from 'views/university/Centres/UniversityCentres'
 import Wall from 'views/university/Community/Wall.jsx'
+import PatientProfile from 'views/hospital/Patient/PatientProfile.jsx';
 
 var BASEDIR = process.env.REACT_APP_BASEDIR
 var dashRoutes = [
@@ -77,6 +78,13 @@ var dashRoutes = [
     icon: 'notebook',
     name: 'Biblioteca',
     component: Library,
+  },
+  {
+    path: BASEDIR + '/settings',
+    icon: 'settings',
+    badge: '',
+    name: 'Configuración',
+    component: PatientProfile,
   },
   {
     path: '/university/help',

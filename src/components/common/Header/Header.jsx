@@ -16,7 +16,7 @@ import {
 } from 'reactstrap'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { SvgIcon } from '@material-ui/core'
-
+import { NavLink } from 'react-router-dom'
 import { Messages, Notifications } from 'components'
 import dashboardRoutes from 'routes/university.jsx'
 import { connect } from 'react-redux'
@@ -297,7 +297,7 @@ class HeaderR extends React.Component {
                 <Input placeholder="Buscar..." />
               </InputGroup>
             </form>
-
+            
             <NavbarBrand href="/">{this.getBrand()}</NavbarBrand>
           </div>
 
@@ -312,25 +312,26 @@ class HeaderR extends React.Component {
                 <DropdownToggle caret nav className="joyride-welcome-1 bordered border-white">
                   <SvgIcon  component={AccountCircleIcon}/>
                   
-                  {/* <span>{nameUserProfile}</span> */}
                   <span>{this.state.profilename}</span>
                   {/* {console.log('this.state', this.state)} */}
                 </DropdownToggle>
                 <DropdownMenu right>
-                  {/* <DropdownItem tag="a">
-                    <i className="i-wrench" href="#!"></i> Configuracion
-                  </DropdownItem> */}
                    <DropdownItem
-                    tag="a"
-                    onClick={() => {
-                      // eslint-disable-next-line
-                      this.props.history.push(
-                        BASEDIR + '/university/add-professors'
-                      )
-                    }}
+                    // tag="a"
+                    // onClick={() => {
+                    //   this.props.history.push(
+                    //     BASEDIR + '/university/dashboard/'
+                        
+                    //   )
+                    // }}
                   >
-                    <i className="i-user" href="#!"></i> Perfil
+                    <NavLink
+                      to={BASEDIR+"/hospital/patient-profile"}
+                    > Perfil
+                    </NavLink>
                   </DropdownItem> 
+                   
+
                   {/* <DropdownItem tag="a">
                     <i className="i-info" href="#!"></i> Ayuda
                   </DropdownItem> */}
