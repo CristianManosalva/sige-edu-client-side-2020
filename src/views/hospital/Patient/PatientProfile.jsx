@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react'
 import { Row, Col } from 'reactstrap';
 import { Modal, AvatarProfile, UpdateImgUser } from 'components';
 import { useSelector } from 'react-redux'
+import EdiText from 'react-editext';
 import './styles/profile.css'
 
 const PatientProfile = (props) => {
@@ -79,22 +80,28 @@ const ProfileUser = () => {
                                                         <div className="form-group">
                                                             <label className="col-md-2 col-sm-3 col-xs-12 control-label" style={{ color: '#000000' }}>Nombre</label>
                                                             <div className="col-md-10 col-sm-9 col-xs-12">
-                                                                <input type="text" className="form-control" defaultValue="Rebecca" />
+                                                            <EdiText
+                                                                type="text"
+                                                                value={value}
+                                                                onSave={handleSave}
+                                                            />
+                                                                {/* <input type="text" className="form-control" defaultValue="" /> 
+                                                                
                                                             </div>
                                                         </div>
 
                                                         <div className="form-group">
                                                             <label className="col-md-2 col-sm-3 col-xs-12 control-label" style={{ color: '#000000' }}>Apellido</label>
                                                             <div className="col-md-10 col-sm-9 col-xs-12">
-                                                                <input type="text" className="form-control" defaultValue="Rebecca" />
+                                                                <input type="text" className="form-control" defaultValue="" > {lastNameUser}</input>
                                                             </div>
                                                         </div>
-                                                        {/* <div className="form-group">
+                                                     <div className="form-group">
                                                             <label className="col-md-2 col-sm-3 col-xs-12 control-label" style={{ color: '#000000' }}>Last Name</label>
                                                             <div className="col-md-10 col-sm-9 col-xs-12">
                                                                 <input type="text" className="form-control" defaultValue="Sanders" />
                                                             </div>
-                                                        </div> 
+                                                        </div>  
                                                     </fieldset>
                                                     {/* <fieldset className="fieldset">
                                                         <h3 className="fieldset-title">Contact Info</h3>
@@ -119,7 +126,7 @@ const ProfileUser = () => {
                                                                 <p className="help-block">eg. https://www.linkedin.com/in/yourname</p>
                                                             </div>
                                                         </div>
-                                                    </fieldset> 
+                                                    </fieldset>  
                                                     <hr />
                                                     <div className="form-group">
                                                         <div className="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">

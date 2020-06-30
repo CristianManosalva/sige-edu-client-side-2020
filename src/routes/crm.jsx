@@ -31,9 +31,9 @@ var dashRoutes = [
   },
   {
     path: BASEDIR + '/settings',
-    icon: 'settings',
+    icon: 'info',
     badge: '',
-    name: 'Configuración',
+    name: 'Perfil',
     component: PatientProfile,
   },
   // {
