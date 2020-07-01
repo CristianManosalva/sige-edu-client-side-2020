@@ -1,141 +1,170 @@
-import React from 'react';
-import {
+import React, { Fragment, useState } from 'react'
+import { Row, Col } from 'reactstrap';
+import { Modal, AvatarProfile, UpdateImgUser } from 'components';
+import { useSelector } from 'react-redux'
+import EdiText from 'react-editext';
+import './styles/profile.css'
 
-    Row, Col,
-} from 'reactstrap';
-
-import {
+const PatientProfile = (props) => {
     
-} from 'components';
+    const { user } = useSelector(
+        (state) => state.authentication.user.user_data
+      )
+    const firstNameUser = user.firstNameUser
+    const lastNameUser  = user.lastNameUser
+      console.log('userProfile', user)
+    //   const student_id = userProfile.codeStudent
+    var IMGDIR = process.env.REACT_APP_IMGDIR;
+    const [modalUpdateimg, setModalUpdateimg] = useState(false);
+    const togglemodalimg = () => setModalUpdateimg(!modalUpdateimg);
 
-var IMGDIR = process.env.REACT_APP_IMGDIR;
-
-class PatientProfile extends React.Component{
-   
-    
-    render(){
+const ProfileUser = () => {
 
         return (
+
             <div>
+                <Modal
+                    title="Cambiar foto de perfil!!"
+                    show={modalUpdateimg}
+                    backdrop="static"
+                    keyboard={false}
+                    toggle={togglemodalimg}
+                >
+                    <UpdateImgUser
+                    // loader={creating}
+                    // createResponseCourse={createResponseCourse}
+                    // toggle={togglemodal}
+                    // student_id={student_id}
+                    // codeSecction={codeSecction}
+                />
+                </Modal>
                 <div className="content">
                     <Row>
                         <Col xs={12} md={12}>
 
-                    <div className="page-title">
-                        <div className="float-left">
-                            <h1 className="title">Patient Profile</h1>
-                        </div>
-                    </div>
+                            <div className="col-xl-12" style={{ paddingTop: '15px' }}>
 
-
-                            
-
-
-
-                    <div className="col-xl-12">
-                        <section className="box profile-page">
-                            <div className="content-body">
-                                    <div className="col-12">
-                                    <div className="row uprofile">
-                                        <div className="uprofile-image col-xl-2 col-lg-3 col-md-3 col-sm-4 col-12">
-                                            <img alt="" src={IMGDIR+"/images/hospital/patients/patient-2.jpg"} className="img-fluid" />
+                                <div className="container" style={{ paddingTop: '15px' }}>
+                                    <div className="panel profile-cover">
+                                        <div className="profile-cover__img">
+                                            {/* <img src="https://images.pexels.com/photos/4623636/pexels-photo-4623636.jpeg" alt="" width="150px" height="150px" /> */}
+                                            <AvatarProfile width="150px" height="150px" />
+                                            {/* <button type="submit" className="button_update" onClick={togglemodalimg}>Actualizar imagén</button> */}
                                         </div>
-                                        <div className="uprofile-name col-xl-10 col-lg-9 col-md-9 col-sm-8 col-12">
-                                            <h3 className="uprofile-owner">
-                                                <a href="#!">Mr. John Nelson</a>
-                                            </h3>
-                                            <button className="btn btn-primary btn-sm profile-btn">Send message</button>
-                                            <button className="btn btn-primary btn-sm profile-btn">Follow</button>
-                                            <div className="clearfix"></div>
-                                            <p className="uprofile-title">Developer</p>
-                                            <div className="clearfix"></div>
-                                            <p>Humans can evaluate these visual elements in several situations to find a sense of balance. Humans can evaluate these visual elements in several situations to find a sense of balance.</p>
-                                            <p className="uprofile-list">
-                                                <span><i className='i-home'></i> New York, USA</span> 
-                                                <span><i className='i-user'></i> 340 Contacts</span>
-                                                <span><i className='i-briefcase'></i> Tech Lead, YIAM</span>
-
-                                            </p>
+                                        <div className="profile-cover__action" data-overlay="0.3">
+                                            
+                                                <h3  className="h3" style={{ fontSize: '3.0em', color: '#ffffff' }}>{firstNameUser + ' ' + lastNameUser }</h3>
+                                                
+                                                {/* <h3 className="group" style={{ fontSize: '1.5em', color: '#ffffff', paddingLeft: '10px' }}>Grupo: 8-1</h3> */}
+                                            
+                                            {/* <button className="btn btn-rounded btn-info" >
+                                                <i className="fa fa-plus"></i>
+                                                <span>Follow</span>
+                                            </button> */}
+                                            {/* <button className="btn btn-rounded btn-info">
+                                                <i className="fa fa-comment"></i>
+                                                <span>Mensaje</span>
+                                            </button> */}
                                         </div>
+                                        {/* <div className="profile-cover__info">
+                                            <ul className="nav">
+                                                <li><strong>0</strong>Mensajes</li>
+                                            </ul>
+                                        </div> */}
                                     </div>
+                                    <div className="view-account">
+                                        <section className="module">
+                                            {/* <div>
+                                                <form className="form-horizontal">
+                                                    <fieldset className="fieldset">
+                                                        <div className="form-group">
+                                                            <label className="col-md-2 col-sm-3 col-xs-12 control-label" style={{ color: '#000000' }}>Nombre</label>
+                                                            <div className="col-md-10 col-sm-9 col-xs-12">
+                                                            <EdiText
+                                                                type="text"
+                                                                value={value}
+                                                                onSave={handleSave}
+                                                            />
+                                                                {/* <input type="text" className="form-control" defaultValue="" /> 
+                                                                
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="form-group">
+                                                            <label className="col-md-2 col-sm-3 col-xs-12 control-label" style={{ color: '#000000' }}>Apellido</label>
+                                                            <div className="col-md-10 col-sm-9 col-xs-12">
+                                                                <input type="text" className="form-control" defaultValue="" > {lastNameUser}</input>
+                                                            </div>
+                                                        </div>
+                                                     <div className="form-group">
+                                                            <label className="col-md-2 col-sm-3 col-xs-12 control-label" style={{ color: '#000000' }}>Last Name</label>
+                                                            <div className="col-md-10 col-sm-9 col-xs-12">
+                                                                <input type="text" className="form-control" defaultValue="Sanders" />
+                                                            </div>
+                                                        </div>  
+                                                    </fieldset>
+                                                    {/* <fieldset className="fieldset">
+                                                        <h3 className="fieldset-title">Contact Info</h3>
+                                                        <div className="form-group">
+                                                            <label className="col-md-2  col-sm-3 col-xs-12 control-label">Email</label>
+                                                            <div className="col-md-10 col-sm-9 col-xs-12">
+                                                                <input type="email" className="form-control" defaultValue="Rebecca@website.com" />
+                                                                <p className="help-block">This is the email </p>
+                                                            </div>
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label className="col-md-2  col-sm-3 col-xs-12 control-label">Twitter</label>
+                                                            <div className="col-md-10 col-sm-9 col-xs-12">
+                                                                <input type="text" className="form-control" defaultValue="SpeedyBecky" />
+                                                                <p className="help-block">Your twitter username</p>
+                                                            </div>
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label className="col-md-2  col-sm-3 col-xs-12 control-label">Linkedin</label>
+                                                            <div className="col-md-10 col-sm-9 col-xs-12">
+                                                                <input type="url" className="form-control" defaultValue="https://www.linkedin.com/in/lorem" />
+                                                                <p className="help-block">eg. https://www.linkedin.com/in/yourname</p>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>  
+                                                    <hr />
+                                                    <div className="form-group">
+                                                        <div className="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
+                                                            <input className="button_send" type="submit" defaultValue="Update Profile" />
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div> */}
+                                            <div>&nbsp;&nbsp;&nbsp;<br /> &nbsp;&nbsp;<br /> &nbsp;&nbsp;</div>
+                                        </section>
                                     </div>
+                                </div>
 
-                                    <div className="col-12">
+                            </div >
+                        </Col >
 
-                                        <hr/>
-
-                                        <h4>Biography:</h4>
-                                        <p>In the United States, the Ed.D. tends to be granted by the school of education of universities and is a terminal degree in education. Majors within the Ed.D. may include: counseling, curriculum and instruction/curriculum and teaching, educational administration, education policy, educational psychology, educational technology, higher education, human resource development, language/linguistics or leadership. </p>
-                                        <p>In the United States, the Ed.D. tends to be granted by the school of education of universities and is a terminal degree in education. Majors within the Ed.D. may include: counseling, curriculum and instruction/curriculum and teaching, educational administration, education policy, educational psychology, educational technology, higher education, human resource development, language/linguistics or leadership. </p>
-                                        <div className="clearfix"></div>
-                                        <hr/>
-                                        <h4>Education:</h4>
-                                        <ul>
-                                            <li>B.Com from Ski University</li>
-                                            <li>In hac habitasse platea dictumst.</li>
-                                            <li>In hac habitasse platea dictumst.</li>
-                                            <li>Vivamus elementum semper nisi.</li>
-                                            <li>Praesent ac sem eget est egestas volutpat.</li>
-                                        </ul>
-                                        <div className="clearfix"></div>
-                                        <hr/>
-                                        <h4>Past Visit History:</h4>
-                                        <ul>
-                                            <li>Integer tincidunt.</li>
-                                            <li>Praesent vestibulum dapibus nibh.</li>
-                                            <li>Integer tincidunt.</li>
-                                            <li>Praesent vestibulum dapibus nibh.</li>
-                                            <li>Integer tincidunt.</li>
-                                            <li>Praesent vestibulum dapibus nibh.</li>
-                                        </ul>
-
-                                        <div className="clearfix"></div>
-                                        <hr/>
-                                        <h4>Medical Issues:</h4>
-                                        <ul>
-                                            <li>Integer tincidunt.</li>
-                                            <li>Praesent vestibulum dapibus nibh.</li>
-                                            <li>M.B.B.S from Ski University</li>
-                                            <li>Praesent vestibulum dapibus nibh.</li>
-                                            <li>Proin pretium, leo ac pellentesque mollis justo.</li>
-                                            <li>unc ultrices eros, sed gravida augue augue</li>
-                                        </ul>
-                                        <div className="clearfix"></div>
-                                        <hr/>
-                                        <h4>Medications and Reports:</h4>
-                                        <ul>
-                                            <li>Integer tincidunt.</li>
-                                            <li>Praesent vestibulum dapibus nibh.</li>
-                                            <li> Phasellus consectetuer vestibulum elit.</li>
-                                            <li>M.B.B.S from Ski University</li>
-                                            <li>Praesent vestibulum dapibus nibh.</li>
-                                            <li>Proin pretium, leo ac pellentesque mollis justo.</li>
-                                            <li>unc ultrices eros, sed gravida augue augue</li>
-                                        </ul>
-                                        <div className="clearfix"></div>
-                                        <div className="clearfix"></div>
-
-
-
-
-                                    </div>
-
-
-                            </div>
-                            </section>
-                            </div>
-           
-
-
-
-                                
-                        </Col>
-
-                    </Row>
-                </div>
-            </div>
+                    </Row >
+                </div >
+            </div >
         );
     }
+
+    return (
+        <Fragment>
+            {/* {ScrollCourses()} */}
+            {ProfileUser()}
+        </Fragment>
+    )
 }
 
 export default PatientProfile;
+
+// api/profilepictures/
+// api/profilepictures/create/
+// api/profilepictures/update/
+// api/profilepictures/delete/
+// para la foto de perfil
+// es igual que mandar arhivo
+// pero recibe
+// photo = imagen
+// user = codeuser (docuemento id)

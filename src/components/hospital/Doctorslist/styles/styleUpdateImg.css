@@ -1,0 +1,38 @@
+.img_upload {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+.button_update {
+  background: linear-gradient(#de685e, #ee786e);
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  padding: 3px;
+  font-size: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  /* padding: 12px 25px; */
+  /* position: absolute; */
+  /* bottom: 10px;
+  right: 10px; */
+  letter-spacing: 1px;
+}
+.center {
+  margin: auto;
+  width: 50%;
+  /* border: 3px solid green; */
+  padding: 10px;
+}
+.container {
+  margin: 5px;
+  background: #ccc;
+  width: calc(100% - 50%);
+  height: calc(100vh - 50%);
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+}

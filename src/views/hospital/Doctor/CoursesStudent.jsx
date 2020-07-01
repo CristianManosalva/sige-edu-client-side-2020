@@ -119,8 +119,14 @@ const CoursesStudent = (props) => {
                           )
                         })
                       ) : (
-                        <SkeletonTeacherHome />
-                      )}
+                          <div style={{ fontSize: '18px', fontWeight: 'bold'}}>
+                            <p >
+                            Sin actividades asignadas!!.
+                            <br></br>
+                            selecciona una asignatura o Informale a tu docente.
+                            </p>
+                          </div>
+                        )}
                     </div>
                   </div>
                 </div>

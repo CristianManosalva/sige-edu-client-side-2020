@@ -54,6 +54,10 @@ import NavBarLogout from './home_page/NavBarLogout'
 import LoginForm from './home_page/LoginForm'
 import LoginFormNew from './home_page/LoginFormNew'
 
+//
+import AvatarProfile from '../components/common/Avatar/AvatarProfile'
+import UpdateImgUser from '../components/hospital/Doctorslist/UpdateImgUser'
+
 export {
   //Common component
   Messagewidget,
@@ -126,4 +130,6 @@ export {
   AddResponseSection,
   VideosYoutube,
   YoutubeLiveClassroom,
+  AvatarProfile,
+  UpdateImgUser,
 }
