@@ -55,6 +55,7 @@
     "react-dom": "16.8.6",
     "react-draft-wysiwyg": "1.13.2",
     "react-dropzone": "4.2.13",
+    "react-editext": "^3.16.0",
     "react-fontawesome": "^1.7.1",
     "react-google-maps": "9.2.2",
     "react-hotjar": "^2.2.0",
