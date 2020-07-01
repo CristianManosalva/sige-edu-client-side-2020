@@ -42,7 +42,7 @@ const ProfileUser = () => {
                     <Row>
                         <Col xs={12} md={12}>
 
-                            <div style={{ paddingTop: '15px' }}>
+                            <div className="col-xl-1" style={{ paddingTop: '15px' }}>
 
                                 <div className="container" style={{ paddingTop: '15px' }}>
                                     <div className="panel profile-cover">
