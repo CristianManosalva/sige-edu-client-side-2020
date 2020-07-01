@@ -57,7 +57,7 @@ export default function App() {
             </>
           )}
       </label>
-      {/* <>
+      <>
       <input
         type="file"
         id="upload-button"
@@ -66,7 +66,7 @@ export default function App() {
       />
       <br />
       <button onClick={handleUpload} className="button_update">Actualizar</button>
-      </> */}
+      </>
     </div>
   );
 }
