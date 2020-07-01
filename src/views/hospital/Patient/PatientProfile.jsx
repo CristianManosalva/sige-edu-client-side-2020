@@ -44,7 +44,7 @@ const ProfileUser = () => {
 
                             <div className="col-xl-12" style={{ paddingTop: '15px' }}>
 
-                                <div className="container" style={{ paddingTop: '15px' }}>
+                                <div className="container" style={{ paddingTop: '15px', width:"100%"}}>
                                     <div className="panel profile-cover">
                                         <div className="profile-cover__img">
                                             {/* <img src="https://images.pexels.com/photos/4623636/pexels-photo-4623636.jpeg" alt="" width="150px" height="150px" /> */}
