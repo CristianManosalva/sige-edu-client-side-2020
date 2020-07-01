@@ -40,9 +40,9 @@ const ProfileUser = () => {
                 </Modal>
                 <div className="content">
                     <Row>
-                        <Col xs={1} md={1}>
+                        <Col xs={12} md={12}>
 
-                            <div className="col-xl-12 col-xl-6" style={{ paddingTop: '15px' }}>
+                            <div className="col-xl-12" style={{ paddingTop: '15px' }}>
 
                                 <div className="container" style={{ paddingTop: '15px' }}>
                                     <div className="panel profile-cover">
