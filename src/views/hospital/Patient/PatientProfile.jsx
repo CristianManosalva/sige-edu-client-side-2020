@@ -74,18 +74,19 @@ const ProfileUser = () => {
                                     </div>
                                     <div className="view-account">
                                         <section className="module">
-                                            {/* <div>
+                                            <div>
                                                 <form className="form-horizontal">
                                                     <fieldset className="fieldset">
                                                         <div className="form-group">
                                                             <label className="col-md-2 col-sm-3 col-xs-12 control-label" style={{ color: '#000000' }}>Nombre</label>
                                                             <div className="col-md-10 col-sm-9 col-xs-12">
-                                                            <EdiText
+                                                            {/* <EdiText
                                                                 type="text"
-                                                                value={value}
-                                                                onSave={handleSave}
-                                                            />
-                                                                {/* <input type="text" className="form-control" defaultValue="" /> 
+                                                                value={firstNameUser}
+                                                                // onSave={handleSave}
+                                                            /> */}
+                                                                {/* <input type="text" className="form-control" defaultValue="" />  */}
+                                                                <input type="text" className="form-control" defaultValue="Sanders" />
                                                                 
                                                             </div>
                                                         </div>
@@ -93,7 +94,8 @@ const ProfileUser = () => {
                                                         <div className="form-group">
                                                             <label className="col-md-2 col-sm-3 col-xs-12 control-label" style={{ color: '#000000' }}>Apellido</label>
                                                             <div className="col-md-10 col-sm-9 col-xs-12">
-                                                                <input type="text" className="form-control" defaultValue="" > {lastNameUser}</input>
+                                                                {/* <input type="text" className="form-control" defaultValue="" > {lastNameUser}</input> */}
+                                                                <input type="text" className="form-control" defaultValue="Sanders" />
                                                             </div>
                                                         </div>
                                                      <div className="form-group">
@@ -126,7 +128,7 @@ const ProfileUser = () => {
                                                                 <p className="help-block">eg. https://www.linkedin.com/in/yourname</p>
                                                             </div>
                                                         </div>
-                                                    </fieldset>  
+                                                        </fieldset>  */}
                                                     <hr />
                                                     <div className="form-group">
                                                         <div className="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
@@ -134,13 +136,13 @@ const ProfileUser = () => {
                                                         </div>
                                                     </div>
                                                 </form>
-                                            </div> */}
+                                            </div> 
                                             <div>&nbsp;&nbsp;&nbsp;<br /> &nbsp;&nbsp;<br /> &nbsp;&nbsp;</div>
                                         </section>
                                     </div>
                                 </div>
 
-                            </div >
+                            </div>
                         </Col >
 
                     </Row >
