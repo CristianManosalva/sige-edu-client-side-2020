@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react'
+import React from 'react'
 import {
   Collapse,
   Navbar,
@@ -14,7 +14,7 @@ import {
   InputGroupAddon,
   Input,
 } from 'reactstrap'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import { SvgIcon } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
 import { Messages, Notifications } from 'components'
@@ -22,9 +22,8 @@ import dashboardRoutes from 'routes/university.jsx'
 import { connect } from 'react-redux'
 import { messages } from 'variables/topbar.jsx'
 import { notifications } from 'variables/topbar.jsx'
-
-import Modal from 'react-bootstrap/Modal'
 import EditCustomer from '../../../views/crm/Customer/EditCustomer'
+import { Modal, ChangePassword } from 'components'
 
 var IMGDIR = process.env.REACT_APP_IMGDIR
 var BASEDIR = process.env.REACT_APP_BASEDIR
@@ -50,6 +49,7 @@ class HeaderR extends React.Component {
       messagesddOpen: false,
       notificationsddOpen: false,
       color: 'primary',
+      modal: false,
       profilename: 'Eric Nelson',
       //profileimg: IMGDIR + '/images/profile/profile.jpg',
       profileimg: 'https://image.flaticon.com/icons/svg/566/566985.svg',
@@ -59,8 +59,12 @@ class HeaderR extends React.Component {
     this.messagesddToggle = this.messagesddToggle.bind(this)
     this.notificationsddToggle = this.notificationsddToggle.bind(this)
     this.searchToggle = this.searchToggle.bind(this)
+    this.toggleModal = this.toggleModal.bind(this)
   }
 
+  toggleModal() {
+    this.setState({ modal: !this.state.modal })
+  }
 
   toggle() {
     if (this.state.isOpen) {
@@ -256,7 +260,6 @@ class HeaderR extends React.Component {
     }
   }
 
-  
   render() {
     return (
       // add or remove classes depending if we are on full-screen-maps page or not
@@ -269,6 +272,13 @@ class HeaderR extends React.Component {
         }
       >
         <Container fluid style={navStyle}>
+          <Modal
+            title="Cambiar contraseña"
+            show={this.state.modal}
+            toggle={this.toggleModal}
+          >
+            <ChangePassword toggle={this.toggleModal} user={this.props.user} />
+          </Modal>
           <div className="navbar-wrapper">
             <div className="navbar-toggle">
               <button
@@ -297,7 +307,7 @@ class HeaderR extends React.Component {
                 <Input placeholder="Buscar..." />
               </InputGroup>
             </form>
-            
+
             <NavbarBrand href="/">{this.getBrand()}</NavbarBrand>
           </div>
 
@@ -309,29 +319,25 @@ class HeaderR extends React.Component {
                 toggle={(e) => this.userddToggle(e)}
                 className="userdd"
               >
-                <DropdownToggle caret nav className="joyride-welcome-1 bordered border-white">
-                  <SvgIcon  component={AccountCircleIcon}/>
-                  
+                <DropdownToggle
+                  caret
+                  nav
+                  className="joyride-welcome-1 bordered border-white"
+                >
+                  <SvgIcon component={AccountCircleIcon} />
+
                   <span>{this.state.profilename}</span>
                   {/* {console.log('this.state', this.state)} */}
                 </DropdownToggle>
                 <DropdownMenu right>
-                   <DropdownItem
-                    // tag="a"
-                    // onClick={() => {
-                    //   this.props.history.push(
-                    //     BASEDIR + '/university/dashboard/'
-                        
-                    //   )
-                    // }}
+                  <DropdownItem
+                    onClick={this.toggleModal}
+                    tag="a"
+                    className=""
+                    href="#!"
                   >
-                    <NavLink
-                      to={BASEDIR+"/hospital/patient-profile"}
-                    > Perfil
-                    </NavLink>
-                  </DropdownItem> 
-                   
-
+                    <i className="i-key"></i> Cambiar Contraseña
+                  </DropdownItem>
                   {/* <DropdownItem tag="a">
                     <i className="i-info" href="#!"></i> Ayuda
                   </DropdownItem> */}
@@ -348,7 +354,6 @@ class HeaderR extends React.Component {
                   </DropdownItem> */}
                   {/**  fin dropdown de editar perfil */}
 
-                  
                   {/**dropdown configuración{cambiar contraseña} */}
                   {/* <DropdownItem
                     onClick={() => {
@@ -410,7 +415,6 @@ class HeaderR extends React.Component {
                 </DropdownToggle>
                 <Notifications notifications={notifications} />
               </Dropdown */}
-              
             </Nav>
             <div
               className="screensize"
@@ -424,7 +428,6 @@ class HeaderR extends React.Component {
 }
 
 // export default Header
-
 function mapState(state) {
   const { user } = state.authentication.user.user_data
   return { user }

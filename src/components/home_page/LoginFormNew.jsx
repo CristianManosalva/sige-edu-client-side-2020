@@ -71,8 +71,7 @@ const LoginFormNew = (props) => {
     <div className="div-login-center">
       <Modal className="bordered" show={show} onHide={handleClose}>
         <Modal.Header className="header-modal-contact" closeButton>
-          <img  src={contactUs1} />
-         
+          <img src={contactUs1} />
         </Modal.Header>
         <Modal.Body className="modal-body-contact">
           <p className="div-center text-bold font-contact">CONTACTANOS</p>
@@ -122,6 +121,9 @@ const LoginFormNew = (props) => {
             />
           </FormGroup>
         </Col>
+        <Col xs="12" className="col-form">
+          <p style={AlertStyle}>{message}</p>
+        </Col>
         <Col xs="12" className="align-left">
           <FormGroup check className="cb">
             <Label check className="cb color-text-remember">
@@ -136,7 +138,7 @@ const LoginFormNew = (props) => {
         </Col>
         <Col xs="12">
           <Button className="button-register">
-            {loggingIn && <Spinner size="sm" color="info" />}
+            {loggingIn && <Spinner size="sm" color="light" className="mr-2" />}
             Inicia sesión
           </Button>
         </Col>
