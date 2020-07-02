@@ -20,6 +20,7 @@ import Navmenudropdown from './common/Navmenudropdown/Navmenudropdown'
 import Navmenugroup from './common/Navmenugroup/Navmenugroup'
 /*--------------- Custom Components ------------------*/
 import PrivateRoute from './common/PrivateRoute/PrivateRoute'
+import ChangePassword from './common/ChangePassword/ChangePassword'
 
 /*--------------- University Admin Components ------------------*/
 import Professorslist from './university/Professorslist/Professorslist'
@@ -67,6 +68,7 @@ export {
   CreatePost,
   //PrivateRoute
   PrivateRoute,
+  ChangePassword,
   // CardElements
   Navmenudropdown,
   // CustomButton
