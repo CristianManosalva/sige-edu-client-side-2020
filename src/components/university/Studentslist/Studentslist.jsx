@@ -41,11 +41,6 @@ const Studentslist = (props) => {
             nameStudent = students.user.firstNameUser
           }
           
-          // console.log(students[0]);
-          
-          
-          
-          
           return (
             <div className="col-md-6 col-lg-3" key={key}>
               <CardWrapperMember>
