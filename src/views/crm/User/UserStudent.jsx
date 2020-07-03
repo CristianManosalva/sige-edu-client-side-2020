@@ -12,10 +12,10 @@ const UserStudent = (props) => {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
   const { user } = useSelector((state) => state.authentication.user.user_data)
-  // console.log(user);
+  console.log('user', user);
 
-  const teacherIdIE = user.codeIE
-  const API = `${config.apiEndPoint}/users/student/byheadquarter/5`
+  const teacherIdIE = user.codeHeadquarters
+  const API = `${config.apiEndPoint}/users/student/byheadquarter/${teacherIdIE}`
   const { students, loading } = useStudents(API)
   // console.log(students);
   
