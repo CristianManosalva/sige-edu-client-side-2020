@@ -4,6 +4,9 @@
   padding: 10px;
   border-radius: 5px;
 }
+@media (min-width: 992px) {
+
+}
 .form-name{
   padding: 8px;
   display: flex;

@@ -12,6 +12,8 @@ var studentGender;
 
 
 const Studentslist = (props) => {
+  console.log(props);
+  
   const element = useRef(null)
   useEffect(function () {
     console.log(element);
@@ -26,45 +28,45 @@ const Studentslist = (props) => {
   if (props.loading) {
     return <SkeletonTeacherHome />
   }
-  const GenderUserStudent = (gender) => {
-    if (gender == 'F') {
-      studentGender = <AvatarProfileFemale />
-    } else if (genderStudent == 'M') {
-      studentGender = <AvatarProfile />
-    } else {
-      studentGender = <AvatarProfile />
-    }
-    return studentGender;
-  }
 
   return (
 
     < div className="row" ref={element}>
       {
         props.students.map((students, key) => {
-          genderStudent = students.studentEnrollment.user.genderUser;
-          studentGender = GenderUserStudent(genderStudent)
+          var nameStudent = 'students.user.firstNameUser';
+          if(students.studentEnrollment){
+            nameStudent = students.studentEnrollment.user.firstNameUser
+          }else{
+            nameStudent = students.user.firstNameUser
+          }
+          
+          // console.log(students[0]);
+          
+          
+          
+          
           return (
             <div className="col-md-6 col-lg-3" key={key}>
               <CardWrapperMember>
                 <ImgStudentDiv>
-                  {studentGender}
+                  <AvatarProfile/>
                 </ImgStudentDiv>
                 <div className="team-info">
                   <h3>
-                    <NavLink to={BASEDIR + '/university/student-profile'}>
-                      {students.studentEnrollment.user.firstNameUser}
+                    <NavLink to={'#'}>
+                      {nameStudent}
                     </NavLink>
                   </h3>
                   {/* <span>Nombre: {students.nameStudent}</span> /{' '} */}
-                  <span>Contacto: {students.studentEnrollment.user.phoneUser}</span>
-                  <ul className="social-icons list-inline list-unstyled">
+                  {/* <span>Contacto: {students.studentEnrollment.user.phoneUser}</span> */}
+                  {/* <ul className="social-icons list-inline list-unstyled">
                     <li className="list-inline-item">
                       <a href="#!">
                         <i className="i-envelope icon-primary icon-xs"></i>
                       </a>
                     </li>
-                  </ul>
+                  </ul> */}
                 </div>
               </CardWrapperMember>
             </div>

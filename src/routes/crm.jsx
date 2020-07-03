@@ -1,7 +1,8 @@
-import UserTeacher from 'views/crm/User/UserTeacher.jsx'
-import CrmMailinbox from 'views/crm/Mail/Inbox.jsx'
-import CrmEvents from 'views/crm/Events/CrmEvents.jsx'
-import CrmReportsCustomers from 'views/crm/Reports/ReportsCustomers.jsx'
+import UserTeacher from 'views/crm/User/UserTeacher'
+import UserStudent from 'views/crm/User/UserStudent'
+import CrmMailinbox from 'views/crm/Mail/Inbox'
+import CrmEvents from 'views/crm/Events/CrmEvents'
+import CrmReportsCustomers from 'views/crm/Reports/ReportsCustomers'
 // import Centres from 'views/university/Centres/UniversityCentres'
 import Help from 'views/university/Help/Help.jsx'
 import Wall from 'views/university/Community/Wall.jsx'
@@ -23,6 +24,12 @@ var dashRoutes = [
   //   icon: ' fa fa-users',
   //   component: Wall,
   // },
+  {
+    path: BASEDIR + '/university/student',
+    name: 'Estudiantes',
+    icon: 'graduation',
+    component: UserStudent,
+  },
   {
     path: BASEDIR + '/university/customers',
     name: 'Docentes',

@@ -27,13 +27,13 @@ var dashRoutes = [
     icon: ' fa fa-users',
     component: Wall,
   },
-  // Options Teacher
-  {
-    path: BASEDIR + '/university/professors',
-    icon: 'user',
-    name: 'Docentes',
-    component: Professor,
-  },
+  // // Options Teacher
+  // {
+  //   path: BASEDIR + '/university/professors',
+  //   icon: 'user',
+  //   name: 'Docentes',
+  //   component: Professor,
+  // },
   {
     path: BASEDIR + '/university/add-professors',
     component: AddProfessor,
