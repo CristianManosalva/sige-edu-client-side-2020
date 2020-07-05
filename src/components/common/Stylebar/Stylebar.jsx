@@ -82,7 +82,7 @@ class Stylebar extends React.Component{
 
                         <div className="style-settings" ref="SettingsToggle">
 
-                        <div className="style-wrap" ref="stylebar">
+                        {/* <div className="style-wrap" ref="stylebar">
                                 <p>Menu Style</p>
                                  <ul className="menu">
                                     <li onClick={(e) => this.menuToggle(e)} data-id="black">Black <i className="i-check"></i></li>
@@ -113,7 +113,7 @@ class Stylebar extends React.Component{
                                     <li onClick={(e) => this.topbarToggle(e)} data-id="image3">Image 3 <i className="i-check"></i></li>
                                     <li onClick={(e) => this.topbarToggle(e)} data-id="image4">Image 4 <i className="i-check"></i></li>
                                  </ul>
-                            </div>
+                            </div> */}
                         </div>
 
                 </div>

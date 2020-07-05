@@ -271,10 +271,10 @@ class UniversityLayout extends React.Component {
           chatwidth={chatWidth}
           chattype={chatType}
         />
-        <Stylebar
+        {/* <Stylebar
           menuSettings={this.menuSettings}
           topbarSettings={this.topbarSettings}
-        />
+        /> */}
       </div>
     )
   }
