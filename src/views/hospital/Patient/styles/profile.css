@@ -685,8 +685,11 @@ body {
 }
 
 .profile-cover__action {
+  height: 90px;
+  color: #ffffff;
+  font-size: 40px;
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
   padding: 5px 0px 0px 5px;
   border-radius: 5px 0 0 5px;
   background: rgba(73, 155, 234, 1);
@@ -712,7 +715,7 @@ body {
 
 .profile-cover__img {
 	display: flex;
-	border-radius: 0px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
   background: rgba(73, 155, 234, 1);
   float: right;
   flex-direction: column;
@@ -728,7 +731,14 @@ body {
   word-break: break-all;
  word-wrap: break-word;
 }
+.textnametitle{
+  width: auto;
+  color: #ffffff;
+  font-size: 10px;
+  word-break: break-all;
+ word-wrap: break-word;
 
+}
 .profile-cover__img > .h3 {
   color: #ffffff;
   font-size: 10px;
