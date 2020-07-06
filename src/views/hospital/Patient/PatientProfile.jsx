@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux'
 import './styles/profile.css'
 
 const PatientProfile = (props) => {
-
     const { user } = useSelector(
         (state) => state.authentication.user.user_data
     )
+    const idUser = user.documentIdUser
     // const firstNameUser = user.firstNameUser
     // const lastNameUser = user.lastNameUser
     console.log('userProfile', user)
@@ -32,11 +32,7 @@ const PatientProfile = (props) => {
                     toggle={togglemodalimg}
                 >
                     <UpdateImgUser
-                    // loader={creating}
-                    // createResponseCourse={createResponseCourse}
-                    // toggle={togglemodal}
-                    // student_id={student_id}
-                    // codeSecction={codeSecction}
+                    user={idUser}
                     />
                 </Modal>
                 <div className="content">
@@ -47,10 +43,11 @@ const PatientProfile = (props) => {
 
                                 <div className="container" style={{ paddingTop: '15px', width: "100%" }}>
                                     <div className="panel profile-cover">
-                                        <div className="profile-cover__img">
+                                        <div className="profile-cover__img" onClick={togglemodalimg}>
+                                        {/* <button type="submit" className="button_update" onClick={togglemodalimg}>Actualizar</button> */}
                                             {/* <img src="https://images.pexels.com/photos/4623636/pexels-photo-4623636.jpeg" alt="" width="150px" height="150px" /> */}
-                                            <AvatarProfile width="150px" height="150px" />
-                                            {/* <button type="submit" className="button_update" onClick={togglemodalimg}>Actualizar</button> */}
+                                            <AvatarProfile 
+                                            documentIdUser={idUser} />
                                         </div>
                                         {/* <div className="profile-cover__action" data-overlay="0.3">
                                             {firstNameUser + ' ' + lastNameUser}

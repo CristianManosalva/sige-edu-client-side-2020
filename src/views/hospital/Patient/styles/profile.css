@@ -714,14 +714,22 @@ body {
 }
 
 .profile-cover__img {
-	display: flex;
+  display: flex;
+  /* height: 150px;
+  width: 150px; */
+  /* max-width: 170px;
+  min-width: 100px;
+  max-height: 200px;
+  min-height: 100px; */
+  background-position: center center;
+  background-repeat: no-repeat;
+  justify-content: space-around;
 	border-radius: 5px 5px 5px 5px;
   background: rgba(73, 155, 234, 1);
   float: right;
-  flex-direction: column;
+  flex-direction: column-reverse;
   top: 10px;
   padding: 10px;
-  word-wrap: break-word;
 }
 
 .profile-cover__img > img {

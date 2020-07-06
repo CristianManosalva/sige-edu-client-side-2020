@@ -15,9 +15,10 @@ import {
 import AvatarProfile from '../../common/Avatar/AvatarProfile'
 
 const CardTeacher = (props) => {
-  // console.log('props...=?', props)
+  console.log('props...=?', props)
   let nameTeacher = props.nameTeacher
   let lastNameTeacher = props.lastNameTeacher
+  let documentIdUser = props.documentIdUser
   return (
     <Card>
       <Additional>
@@ -25,8 +26,8 @@ const CardTeacher = (props) => {
             <ButtonTeacher>
             Ver
             </ButtonTeacher>
-            <Center style={{ paddingTop: '25%' }}>
-            <AvatarProfile />
+            <Center style={{ paddingTop: '25%', width: '120px', maxWidth: '150px', minWidth:'100px' }}>
+            <AvatarProfile documentIdUser = { documentIdUser }/>
             </Center>
           </Usercard>
           <Moreinfo>
