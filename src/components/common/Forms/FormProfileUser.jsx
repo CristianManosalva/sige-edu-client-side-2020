@@ -18,33 +18,9 @@ const styleButtonSave = {
 }
 
 const FormProfileUser = (props) => {
- 
-  const [user, setUser] = useState({
-    documentIdUser: '',
-    password: '',
-    last_login: null,
-    email: '',
-    date_joined: '',
-    typeIdeUser: 'CC',
-    firstNameUser: ' ',
-    lastNameUser: '',
-    emailUser: '',
-    phoneUser: '',
-    addressUser: '',
-    passwordUser: '',
-    dateOfBirthUser: '',
-    dateLastAccessUser: '',
-    genderUser: '',
-    rhUser: '',
-    is_active: true,
-    is_staff: false,
-    is_superuser: false,
-    codeIE: '',
-    codeHeadquarters: 1,
-    groups: [],
-    user_permissions: [],
-  })
-  
+
+  const [user, setUser] = useState(props.user)
+
   const [show, setShow] = useState(true)
   const handleClose = () => setShow(false)
   const [smShow, setSmShow] = useState(false)
@@ -53,30 +29,30 @@ const FormProfileUser = (props) => {
     updateLoad: false,
   })
   function getUserData() {
-    setUser(props.user)
-    // fetch(`${config.apiEndPoint}/users/${user.documentIdUser}`, {
-    //   method: 'GET',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     setUser(data)
-    //   })
-    //   .catch((error) => console.log(error))
-    //   .finally(() => {
-    //     /* setLoaders((loaders) => ({
-    //             ...loaders,
-    //             cargaLoad: false,
-    //           })) */
-    //   })
+    // setUser(props.user)
+    fetch(`${config.apiEndPoint}/users/${user.documentIdUser}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUser(data)
+      })
+      .catch((error) => console.log(error))
+      .finally(() => {
+        setLoaders((loaders) => ({
+          ...loaders,
+          cargaLoad: false,
+        }))
+      })
   }
 
   function handleChange(e) {
     const { name, value } = e.target
-    console.log(name, ' v ', value, )
+    // console.log(name, ' v ', value, )
 
     setUser((user) => ({
       ...user,
@@ -93,11 +69,9 @@ const FormProfileUser = (props) => {
   }
   function updateTeacher(documentIdUser, user) {
     let auxTeacher = user
-    console.log('auxTeacher', auxTeacher);
-    
+    // console.log('auxTeacher', auxTeacher);
     auxTeacher.password = user.documentIdUser
     auxTeacher.passwordUser = user.documentIdUser
-
     setLoaders((loaders) => ({
       ...loaders,
       updateLoad: true,
@@ -115,7 +89,7 @@ const FormProfileUser = (props) => {
         setSmShow(true)
       })
       .then((data) => {
-        console.log('content for put ', data)
+        // console.log('content for put ', data)
       })
       .catch((error) => console.log(error))
       .finally(() => {
@@ -149,6 +123,7 @@ const FormProfileUser = (props) => {
     phoneUser,
     addressUser,
   } = user
+  // console.log('user...user...', user);
 
 
   return (
@@ -157,7 +132,7 @@ const FormProfileUser = (props) => {
         <div className="form-name">
           <label>Nombre: &nbsp; </label><br />
           <input
-            value={firstNameUser}
+            value={user.firstNameUser}
             type="text"
             className="form-control"
             // className={isError.name.length > 0 ? "is-invalid form-control" : "form-control"}
@@ -171,7 +146,7 @@ const FormProfileUser = (props) => {
           <label>Apellido: &nbsp; </label><br />
           <input
             type="text"
-            value={lastNameUser}
+            value={user.lastNameUser}
             className="form-control"
             // className={isError.lastname.length > 0 ? "is-invalid form-control" : "form-control"}
             name="lastNameUser"
@@ -187,7 +162,7 @@ const FormProfileUser = (props) => {
           <label>Teléfono: &nbsp; </label>
           <input
             type="text"
-            value={phoneUser}
+            value={user.phoneUser}
             className="form-control"
             // className={isError.phone.length > 0 ? "is-invalid form-control" : "form-control"}
             name="phoneUser"
@@ -200,7 +175,7 @@ const FormProfileUser = (props) => {
           <label>Email: &nbsp; </label>
           <input
             type="email"
-            value={emailUser}
+            value={user.emailUser}
             className="form-control"
             // className={isError.email.length > 0 ? "is-invalid form-control" : "form-control"}
             name="emailUser"
@@ -235,14 +210,14 @@ const FormProfileUser = (props) => {
           >
             Guardar{' '}
             {loaders.updateLoad && (
-                <Spinner
-                  style={{
-                    width: '1.3rem',
-                    height: '1.3rem',
-                  }}
-                  color="light"
-                />
-              )}
+              <Spinner
+                style={{
+                  width: '1.3rem',
+                  height: '1.3rem',
+                }}
+                color="light"
+              />
+            )}
           </button>
         </div>
       </form>
