@@ -58,6 +58,7 @@
     "react-editext": "^3.16.0",
     "react-fontawesome": "^1.7.1",
     "react-google-maps": "9.2.2",
+    "react-hook-form": "^6.0.1",
     "react-hotjar": "^2.2.0",
     "react-icons": "^3.10.0",
     "react-input-mask": "2.0.4",

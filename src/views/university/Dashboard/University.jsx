@@ -18,9 +18,6 @@ const University = (props) => {
   const renderStudentList = (fixed) => (
     <div>
       <div className="content">
-        <div className="page-title">
-          <Inicio />
-        </div>
         <Row>
           <Col xs={12} md={12}>
             <div className="page-title"></div>
