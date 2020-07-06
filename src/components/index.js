@@ -57,7 +57,7 @@ import LoginFormNew from './home_page/LoginFormNew'
 //
 import AvatarProfile from '../components/common/Avatar/AvatarProfile'
 import UpdateImgUser from '../components/hospital/Doctorslist/UpdateImgUser'
-import FormprofileUser from '../components/common/Forms/FormProfileUser'
+import FormProfileUser from '../components/common/Forms/FormProfileUser'
 
 export {
   //Common component
@@ -133,5 +133,5 @@ export {
   YoutubeLiveClassroom,
   AvatarProfile,
   UpdateImgUser,
-  FormprofileUser,
+  FormProfileUser,
 }

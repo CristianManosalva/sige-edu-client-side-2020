@@ -1,212 +1,216 @@
 import React, { Component, useState, useEffect } from "react";
-import { useForm } from 'react-hook-form';
+import { Spinner } from 'reactstrap'
 import './styles/styleforms.css'
 import { config } from '_config'
 
-
-function updateUser(documentIdUser, name) {
-  let firstNameUser = name;
-
-  console.log('user...user',firstNameUser);
-
-  // auxTeacher.password = teacher.documentIdUser
-  // auxTeacher.passwordUser = teacher.documentIdUser
-
-  // setLoaders((loaders) => ({
-  //   ...loaders,
-  //   updateLoad: true,
-  // }))
-  fetch(`${config.apiEndPoint}/users/update/${documentIdUser}/`, {
-    method: 'PUT',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(firstNameUser),
-  })
-    .then((response) => {
-      response.json()
-      // setSmShow(true)
-    })
-    .then((data) => {
-      console.log('content for put ', data)
-    })
-    .catch((error) => console.log(error))
-    .finally(() => {
-      // setLoaders((loaders) => ({
-      //   ...loaders,
-      //   updateLoad: false,
-      // }))
-    })
-
-  // const handleClose = () => setShow(false)
-  // const handleShow = () => setShow(true)
+const backgroundBlue = {
+  backgroundColor: '#1EAEDF',
+  color: 'white',
 }
 
-const regExp = RegExp(
-  /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
-)
+const whiteText = {
+  color: 'white',
+}
+const styleButtonSave = {
+  backgroundColor: '#29F441',
+  width: '100%',
+  fontWeight: 'bold',
+}
 
-const formValid = ({ isError, ...rest }) => {
-  let isValid = false;
-
-  Object.values(isError).forEach(val => {
-    if (val.length > 0) {
-      isValid = false
-    } else {
-      isValid = true
-    }
-  });
-
-  Object.values(rest).forEach(val => {
-    if (val === null) {
-      isValid = false
-    } else {
-      isValid = true
-    }
-  });
-
-  return isValid;
-};
-
-
-export default class UserForm extends Component {
-
-  constructor(props) {
-
-    var idUser = props.user.documentIdUser;
-    var nameuser = props.user.firstNameUser;
-    var lastUser = props.user.lastNameUser;
-    var phoneUser = props.user.phoneUser;
-    var emailUser = props.user.emailUser;
-
-    super(props)
-    this.state = {
-      name: nameuser,
-      email: emailUser,
-      phone: phoneUser,
-      lastname: lastUser,
-      iduser: idUser,
-      isError: {
-        name: '',
-        lastname: '',
-        email: '',
-        phone: ''
-      }
-    }
+const FormProfileUser = (props) => {
+ 
+  const [user, setUser] = useState({
+    documentIdUser: '',
+    password: '',
+    last_login: null,
+    email: '',
+    date_joined: '',
+    typeIdeUser: 'CC',
+    firstNameUser: ' ',
+    lastNameUser: '',
+    emailUser: '',
+    phoneUser: '',
+    addressUser: '',
+    passwordUser: '',
+    dateOfBirthUser: '',
+    dateLastAccessUser: '',
+    genderUser: '',
+    rhUser: '',
+    is_active: true,
+    is_staff: false,
+    is_superuser: false,
+    codeIE: '',
+    codeHeadquarters: 1,
+    groups: [],
+    user_permissions: [],
+  })
+  
+  const [show, setShow] = useState(true)
+  const handleClose = () => setShow(false)
+  const [smShow, setSmShow] = useState(false)
+  const [loaders, setLoaders] = useState({
+    firstLoad: false,
+    updateLoad: false,
+  })
+  function getUserData() {
+    setUser(props.user)
+    // fetch(`${config.apiEndPoint}/users/${user.documentIdUser}`, {
+    //   method: 'GET',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     setUser(data)
+    //   })
+    //   .catch((error) => console.log(error))
+    //   .finally(() => {
+    //     /* setLoaders((loaders) => ({
+    //             ...loaders,
+    //             cargaLoad: false,
+    //           })) */
+    //   })
   }
 
+  function handleChange(e) {
+    const { name, value } = e.target
+    console.log(name, ' v ', value, )
 
-  onSubmit = e => {
-    e.preventDefault();
-    const { name, lastname, email , phone, } = e.target
-    const user = [(name.value, lastname.value)]
-      
-    if (formValid(this.state)) {
-      updateUser(this.state.iduser, name.value)
-      // console.log('this.state', user )
-    } else {
-      console.log("Form is invalid!");
-    }
-  };
+    setUser((user) => ({
+      ...user,
+      [name]: value,
+    }))
+  }
 
-  formValChange = e => {
-    e.preventDefault();
-    console.log('e', e.target);
+  function handleChangeDate(date) {
+    //console.log(date)
+    setUser((user) => ({
+      ...user,
+      dateOfBirthUser: date.format('YYYY-MM-DD'),
+    }))
+  }
+  function updateTeacher(documentIdUser, user) {
+    let auxTeacher = user
+    console.log('auxTeacher', auxTeacher);
+    
+    auxTeacher.password = user.documentIdUser
+    auxTeacher.passwordUser = user.documentIdUser
 
-    const { name, value } = e.target;
-    console.log('value', value);
-
-    let isError = { ...this.state.isError };
-
-    switch (name) {
-      case "name":
-        isError.name =
-          value.length < 0 ? "Minimo 4 caracteres requeridos" : "";
-        break;
-      case "email":
-        isError.email = regExp.test(value)
-          ? ""
-          : "Dirrección invalida";
-        break;
-      case "lastname":
-        isError.lastname =
-          value.length < 0 ? "Minimo 0 caracteres requeridos" : "";
-        break;
-      case "phone":
-        isError.phone =
-          value.length < 7 ? "Minimo 7 caracteres requeridos" : "";
-        break;
-      default:
-        break;
-    }
-
-    this.setState({
-      isError,
-      [name]: value
+    setLoaders((loaders) => ({
+      ...loaders,
+      updateLoad: true,
+    }))
+    fetch(`${config.apiEndPoint}/users/update/${documentIdUser}/`, {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(auxTeacher),
     })
-  };
+      .then((response) => {
+        response.json()
+        setSmShow(true)
+      })
+      .then((data) => {
+        console.log('content for put ', data)
+      })
+      .catch((error) => console.log(error))
+      .finally(() => {
+        setLoaders((loaders) => ({
+          ...loaders,
+          updateLoad: false,
+        }))
+      })
+
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
+  }
+  useEffect(() => {
+    getUserData()
+  }, [])
+  function handleSubmit(e) {
+    e.preventDefault()
+    updateTeacher(documentIdUser, user)
+  }
+  function closeSM() {
+    window.location.reload()
+  }
+  const {
+    firstNameUser,
+    lastNameUser,
+    typeIdeUser,
+    documentIdUser,
+    dateOfBirthUser,
+    genderUser,
+    emailUser,
+    phoneUser,
+    addressUser,
+  } = user
 
 
-  render() {
-    const { isError } = this.state;
+  return (
+    <div className="form">
+      <form onSubmit={handleSubmit} noValidate >
+        <div className="form-name">
+          <label>Nombre: &nbsp; </label><br />
+          <input
+            value={firstNameUser}
+            type="text"
+            className="form-control"
+            // className={isError.name.length > 0 ? "is-invalid form-control" : "form-control"}
+            name="firstNameUser"
+            onChange={handleChange}
+            style={{ fontSize: '20px' }}
+          />
+          {/* {isError.name.length > 0 && (
+            <span className="invalid-feedback">{isError.name}</span>
+          )} */}
+          <label>Apellido: &nbsp; </label><br />
+          <input
+            type="text"
+            value={lastNameUser}
+            className="form-control"
+            // className={isError.lastname.length > 0 ? "is-invalid form-control" : "form-control"}
+            name="lastNameUser"
+            onChange={handleChange}
+            style={{ fontSize: '20px' }}
+          />
+          {/* {isError.lastname.length > 0 && (
+            <span className="invalid-feedback">{isError.lastname}</span>
+          )} */}
+        </div>
 
-    return (
-      <div className="form">
-        <form onSubmit={this.onSubmit} noValidate >
-          <div className="form-name">
-            <label>Nombre: &nbsp; </label><br />
-            <input
-              value={this.state.name}
-              type="text"
-              className={isError.name.length > 0 ? "is-invalid form-control" : "form-control"}
-              name="name"
-              onChange={this.formValChange}
-              style={{ fontSize: '20px' }}
-            />
-            {isError.name.length > 0 && (
-              <span className="invalid-feedback">{isError.name}</span>
-            )}
-            <label>Apellido: &nbsp; </label><br />
-            <input
-              type="text"
-              value={this.state.lastname}
-              className={isError.lastname.length > 0 ? "is-invalid form-control" : "form-control"}
-              name="lastname"
-              onChange={this.formValChange}
-              style={{ fontSize: '20px' }}
-            />
-            {isError.lastname.length > 0 && (
-              <span className="invalid-feedback">{isError.lastname}</span>
-            )}
-          </div>
-
-          <div className="form-email-rh">
-            <label>Teléfono: &nbsp; </label>
-            <input
-              type="text"
-              value={this.state.phone}
-              className={isError.phone.length > 0 ? "is-invalid form-control" : "form-control"}
-              name="phone"
-              onChange={this.formValChange}
-              style={{ fontSize: '20px' }}
-            />
-            {isError.phone.length > 0 && (
-              <span className="invalid-feedback">{isError.phone}</span>
-            )}
-            <label>Email: &nbsp; </label>
-            <input
-              type="email"
-              value={this.state.email}
-              className={isError.email.length > 0 ? "is-invalid form-control" : "form-control"}
-              name="email"
-              onChange={this.formValChange}
-              style={{ fontSize: '20px' }}
-            />
-            {isError.email.length > 0 && (
-              <span className="invalid-feedback">{isError.email}</span>
-            )}
-            {/* <label>Grupo Sanguíneo: &nbsp; </label>
+        <div className="form-email-rh">
+          <label>Teléfono: &nbsp; </label>
+          <input
+            type="text"
+            value={phoneUser}
+            className="form-control"
+            // className={isError.phone.length > 0 ? "is-invalid form-control" : "form-control"}
+            name="phoneUser"
+            onChange={handleChange}
+            style={{ fontSize: '20px' }}
+          />
+          {/* {isError.phone.length > 0 && (
+            <span className="invalid-feedback">{isError.phone}</span>
+          )} */}
+          <label>Email: &nbsp; </label>
+          <input
+            type="email"
+            value={emailUser}
+            className="form-control"
+            // className={isError.email.length > 0 ? "is-invalid form-control" : "form-control"}
+            name="emailUser"
+            onChange={handleChange}
+            style={{ fontSize: '20px' }}
+          />
+          {/* {isError.email.length > 0 && (
+            <span className="invalid-feedback">{isError.email}</span>
+          )} */}
+          {/* <label>Grupo Sanguíneo: &nbsp; </label>
             <select name="rh">
               <option value="-">-</option>
               <option value="A+">A+</option>
@@ -217,20 +221,20 @@ export default class UserForm extends Component {
               <option value="O+">O+</option>
               <option value="O-">O-</option>
             </select>*/}
-          </div>
+        </div>
 
-          <hr />
-          <div className="form-group">
-            {/* <div className="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
+        <hr />
+        <div className="form-group">
+          {/* <div className="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
               <input className="button_send" type="submit" defaultValue="Update Profile" />
             </div> */}
-            <button
-              style={{ borderRadius: '5px', fontSize: '20px' }}
-              type="submit"
-              className="btn btn-primary"
-            >
-              Guardar{' '}
-              {/* {loaders.updateLoad && (
+          <button
+            style={{ borderRadius: '5px', fontSize: '20px' }}
+            type="submit"
+            className="btn btn-primary"
+          >
+            Guardar{' '}
+            {loaders.updateLoad && (
                 <Spinner
                   style={{
                     width: '1.3rem',
@@ -238,11 +242,11 @@ export default class UserForm extends Component {
                   }}
                   color="light"
                 />
-              )} */}
-            </button>
-          </div>
-        </form>
-      </div>
-    );
-  }
+              )}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 }
+export default FormProfileUser

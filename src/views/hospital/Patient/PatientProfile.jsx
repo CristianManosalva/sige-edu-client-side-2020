@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { Row, Col } from 'reactstrap';
-import { Modal, AvatarProfile, UpdateImgUser, FormprofileUser } from 'components';
+import { Modal, AvatarProfile, UpdateImgUser, FormProfileUser } from 'components';
 import { useSelector } from 'react-redux'
 import './styles/profile.css'
 
@@ -50,7 +50,7 @@ const PatientProfile = (props) => {
                                         <div className="profile-cover__img">
                                             {/* <img src="https://images.pexels.com/photos/4623636/pexels-photo-4623636.jpeg" alt="" width="150px" height="150px" /> */}
                                             <AvatarProfile width="150px" height="150px" />
-                                            <button type="submit" className="button_update" onClick={togglemodalimg}>Actualizar</button>
+                                            {/* <button type="submit" className="button_update" onClick={togglemodalimg}>Actualizar</button> */}
                                         </div>
                                         {/* <div className="profile-cover__action" data-overlay="0.3">
                                             {firstNameUser + ' ' + lastNameUser}
@@ -63,7 +63,7 @@ const PatientProfile = (props) => {
                                     </div>
                                     <section>
                                         <div>
-                                            < FormprofileUser user={user}/>
+                                            <FormProfileUser user={user}/>
 
                                         </div>
                                         <div>&nbsp;&nbsp;&nbsp;<br /> &nbsp;&nbsp;<br /> &nbsp;&nbsp;</div>
