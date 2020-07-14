@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 1.3rem;
+  position: relative;
 }
 
 .post_container_name_container {
@@ -26,8 +27,31 @@
   text-transform: capitalize;
 }
 
+.post_container_header-date_container {
+  display: flex;
+  align-items: center;
+}
+
 .post_container_header-date {
   font-size: 0.8rem;
+}
+
+.post_header_container-settings {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.post_header_container_settings-toggle .dropdown-toggle {
+  background-color: rgba(0, 0, 0, 0) !important;
+  color: rgb(118, 118, 118) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+.post_header_container-settings i {
+  font-size: 18px;
 }
 
 .post_content_container {
