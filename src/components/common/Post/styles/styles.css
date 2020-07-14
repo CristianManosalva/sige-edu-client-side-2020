@@ -27,6 +27,11 @@
   text-transform: capitalize;
 }
 
+.post_container_header-date_container {
+  display: flex;
+  align-items: center;
+}
+
 .post_container_header-date {
   font-size: 0.8rem;
 }

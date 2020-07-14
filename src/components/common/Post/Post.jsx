@@ -6,10 +6,12 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  UncontrolledTooltip,
 } from 'reactstrap'
 import './styles/styles.css'
 import Avatar from '@material-ui/core/Avatar'
 import Linkify from 'react-linkify'
+import moment from 'moment'
 import { config } from '_config'
 import { Modal, EditPost } from 'components'
 
@@ -20,6 +22,8 @@ const Post = (props) => {
   const [modal, setModal] = useState(false)
   const [loader, setLoader] = useState(false)
   const toggle = () => setModal(!modal)
+
+  moment.locale('es')
 
   const editPost = (description) => {
     setLoader(true)
@@ -85,9 +89,22 @@ const Post = (props) => {
                 <span className="post_container_header-name">
                   {firstNameUser + ' ' + lastNameUser}
                 </span>
-                <span className="post_container_header-date">
-                  {dateCommunity}
-                </span>
+
+                <div
+                  className="post_container_header-date_container"
+                  id={'tooltip-' + codeCommunity + documentIdUser}
+                >
+                  <i className="i-clock mr-1"></i>
+                  <span className="post_container_header-date">
+                    {moment(dateCommunity, 'YYYY-MM-DD').fromNow()}
+                  </span>
+                  <UncontrolledTooltip
+                    placement="bottom"
+                    target={'tooltip-' + codeCommunity + documentIdUser}
+                  >
+                    {dateCommunity}
+                  </UncontrolledTooltip>
+                </div>
               </div>
               {props.hostUser.documentIdUser === documentIdUser && (
                 <div className="post_header_container-settings">
