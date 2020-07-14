@@ -13,6 +13,7 @@ import Messages from './common/Messages/Messages'
 import Mailbox from './common/Mailbox/Mailbox'
 import Modal from './common/Modal/Modal'
 import CreatePost from './common/Post/Form/CreatePost'
+import EditPost from './common/Post/Form/EditPost'
 import Post from './common/Post/Post'
 /*--------------- General Admin Components ------------------*/
 import Messagewidget from './common/Messagewidget/Messagewidget'
@@ -67,6 +68,7 @@ export {
   //Post Component
   Post,
   CreatePost,
+  EditPost,
   //PrivateRoute
   PrivateRoute,
   ChangePassword,

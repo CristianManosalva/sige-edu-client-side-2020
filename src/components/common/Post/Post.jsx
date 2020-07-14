@@ -1,14 +1,62 @@
 import React, { useState } from 'react'
-import { Row, Col } from 'reactstrap'
+import {
+  Row,
+  Col,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledTooltip,
+} from 'reactstrap'
 import './styles/styles.css'
 import Avatar from '@material-ui/core/Avatar'
 import Linkify from 'react-linkify'
+import moment from 'moment'
+import { config } from '_config'
+import { Modal, EditPost } from 'components'
 
-const Post = ({ post }) => {
-  const { user, dateCommunity, descriptionCommunity } = post
-  const { firstNameUser, lastNameUser } = user
-  // const description =
-  // 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error esse quod perspiciatis, assumenda illo dolorem! Architecto, provident iure, vero fuga autem tempore laudantium, dignissimos distinctio aspernatur quaerat blanditiis laborum numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Error esse quod perspiciatis, assumenda illo dolorem! Architecto, provident iure, vero fuga autem tempore laudantium, dignissimos distinctio aspernatur quaerat blanditiis laborum numquam?\n\nLorem ipsum dolor sit amet consectetur adipisicing elit. Error esse quod perspiciatis, assumenda illo dolorem! Architecto, provident iure, vero fuga autem tempore laudantium, dignissimos distinctio aspernatur quaerat blanditiis laborum numquam?\n\nhttps://www.hackerrank.com/'
+const Post = (props) => {
+  const [post, setPost] = useState(props.post)
+  const { user, dateCommunity, descriptionCommunity, codeCommunity } = post
+  const { firstNameUser, lastNameUser, documentIdUser } = user
+  const [modal, setModal] = useState(false)
+  const [loader, setLoader] = useState(false)
+  const toggle = () => setModal(!modal)
+
+  moment.locale('es')
+
+  const editPost = (description) => {
+    setLoader(true)
+    const newPost = {
+      descriptionCommunity: description,
+      titleCommunity: 'Generic Title',
+      user: documentIdUser,
+    }
+    console.log('Post ', newPost)
+    fetch(`${config.apiEndPoint}/community/upate/${codeCommunity}`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newPost),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setTimeout(() => {
+          setLoader(false)
+          data.user = user
+          // data.dateCommunity = moment().format('YYYY-MM-DD')
+          setPost(data)
+          toggle()
+        }, 2000)
+      })
+      .catch((error) => {
+        setLoader(false)
+        console.log('error: ', error)
+      })
+      .finally(() => {})
+  }
 
   const componentDecorator = (href, text, key) => (
     <a href={href} key={key} target="_blank">
@@ -22,6 +70,14 @@ const Post = ({ post }) => {
 
   return (
     <div>
+      <Modal show={modal} toggle={toggle} title="Editar publicación">
+        <EditPost
+          descriptionIn={descriptionCommunity}
+          loader={loader}
+          editPost={editPost}
+          toggle={toggle}
+        />
+      </Modal>
       <div className="post_container">
         <Row>
           <Col xs={12}>
@@ -33,10 +89,36 @@ const Post = ({ post }) => {
                 <span className="post_container_header-name">
                   {firstNameUser + ' ' + lastNameUser}
                 </span>
-                <span className="post_container_header-date">
-                  {dateCommunity}
-                </span>
+
+                <div
+                  className="post_container_header-date_container"
+                  id={'tooltip-' + codeCommunity + documentIdUser}
+                >
+                  <i className="i-clock mr-1"></i>
+                  <span className="post_container_header-date">
+                    {moment(dateCommunity, 'YYYY-MM-DD').fromNow()}
+                  </span>
+                  <UncontrolledTooltip
+                    placement="bottom"
+                    target={'tooltip-' + codeCommunity + documentIdUser}
+                  >
+                    {dateCommunity}
+                  </UncontrolledTooltip>
+                </div>
               </div>
+              {props.hostUser.documentIdUser === documentIdUser && (
+                <div className="post_header_container-settings">
+                  <UncontrolledDropdown className="post_header_container_settings-toggle">
+                    <DropdownToggle caret>
+                      <i className="i-settings"></i>
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem onClick={toggle}>Editar</DropdownItem>
+                      {/* <DropdownItem>Eliminar</DropdownItem> */}
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                </div>
+              )}
             </div>
           </Col>
           <Col xs={12}>

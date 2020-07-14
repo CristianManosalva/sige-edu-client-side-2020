@@ -177,7 +177,7 @@ const Wall = () => {
                 )}
                 {posts.length > 0 &&
                   posts.map((value, key) => {
-                    return <Post post={value} key={key} />
+                    return <Post hostUser={user} post={value} key={key} />
                   })}
                 {posts.length == 0 && !gettingPosts && (
                   <div
