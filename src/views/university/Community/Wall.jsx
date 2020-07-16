@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Loader from 'react-loader-spinner'
 import moment from 'moment'
+import swal from 'sweetalert'
 import { Row, Col, Button } from 'reactstrap'
 import { Modal, CreatePost, Post } from 'components'
 import { config } from '_config'
@@ -35,19 +36,117 @@ const Wall = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        data.user = user
+        data.dateCommunity = moment()
+        let auxPosts = posts
+        auxPosts.unshift(data)
+        setPosts([])
+        setLoader((loader) => ({ ...loader, gettingPosts: true }))
         setTimeout(() => {
+          setLoader((loader) => ({ ...loader, gettingPosts: false }))
+          setPosts(auxPosts)
           setLoader((loader) => ({ ...loader, makingPost: false }))
-          data.user = user
-          data.dateCommunity = moment().format('YYYY-MM-DD')
-          setPosts((posts) => [data, ...posts])
           toggle()
-        }, 2000)
+        }, 200)
       })
       .catch((error) => {
         setLoader((loader) => ({ ...loader, makingPost: false }))
         console.log(error)
       })
       .finally(() => {})
+  }
+
+  const deletePost = (id) => {
+    swal({
+      title: 'Estas Seguro?',
+      text: 'Una vez borrado la publicacion, no podrá recuperarse',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch(`${config.apiEndPoint}/community/delete/${id}`, {
+          method: 'DELETE',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              let array = [...posts]
+              const index = array.findIndex((item) => item.codeCommunity == id)
+              if (index >= 0) {
+                swal('Publicacion eliminada con exito', {
+                  icon: 'success',
+                })
+                console.log('Index: ', index)
+                console.log('id: ', id)
+                array.splice(index, 1)
+                setLoader((loader) => ({ ...loader, gettingPosts: true }))
+                setTimeout(() => {
+                  setPosts(array)
+                  setLoader((loader) => ({ ...loader, gettingPosts: false }))
+                }, 1500)
+              }
+            }
+          })
+          /* .then((data) => {
+            setTimeout(() => {
+              setLoader((loader) => ({ ...loader, makingPost: false }))
+              data.user = user
+              data.dateCommunity = moment().format('YYYY-MM-DD')
+              setPosts((posts) => [data, ...posts])
+              toggle()
+            }, 2000)
+          }) */
+          .catch((error) => {
+            setLoader((loader) => ({ ...loader, makingPost: false }))
+            console.log(error)
+          })
+          .finally(() => {})
+      }
+    })
+  }
+
+  const DDdeletePost = (id) => {
+    swal({
+      title: 'Estas Seguro?',
+      text: 'Una vez borrado la publicacion, no podrá recuperarse',
+      icon: 'warning',
+      buttons: ['Cancelar'],
+      dangerMode: true,
+    }).then((name) => {
+      console.log('Name: ', name)
+      return fetch(`https://itunes.apple.com/search?term=${name}&entity=movie`)
+    })
+    /* .then((results) => {
+        return results.json()
+      })
+      .then((json) => {
+        const movie = json.results[0]
+
+        if (!movie) {
+          return swal('No movie was found!')
+        }
+
+        const name = movie.trackName
+        const imageURL = movie.artworkUrl100
+
+        swal({
+          title: 'Top result:',
+          text: name,
+          icon: imageURL,
+        })
+      })
+      .catch((err) => {
+        if (err) {
+          swal('Oh noes!', 'The AJAX request failed!', 'error')
+        } else {
+          swal.stopLoading()
+          swal.close()
+        }
+      }) */
   }
 
   const getPostByIe = (codeIE) => {
@@ -63,7 +162,7 @@ const Wall = () => {
         setTimeout(() => {
           setLoader((loader) => ({ ...loader, gettingPosts: false }))
           setPosts(data.reverse())
-        }, 2000)
+        }, 200)
       })
       .catch((error) => {
         setLoader((loader) => ({ ...loader, gettingPosts: false }))
@@ -175,9 +274,17 @@ const Wall = () => {
                     </span>
                   </div>
                 )}
-                {posts.length > 0 &&
+                {!gettingPosts &&
+                  posts.length > 0 &&
                   posts.map((value, key) => {
-                    return <Post hostUser={user} post={value} key={key} />
+                    return (
+                      <Post
+                        hostUser={user}
+                        deletePost={deletePost}
+                        post={value}
+                        key={key}
+                      />
+                    )
                   })}
                 {posts.length == 0 && !gettingPosts && (
                   <div

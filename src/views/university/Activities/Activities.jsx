@@ -108,7 +108,7 @@ const Activities = (props) => {
           })
         }
         let auxSeccion = secctions
-        auxSeccion.push(data)
+        auxSeccion.unshift(data)
         console.log('Just data: ', data)
 
         setSecctions([])
@@ -117,12 +117,12 @@ const Activities = (props) => {
         setTimeout(() => {
           setSecctions(auxSeccion)
           setLoaders((loader) => ({ ...loader, gettingActivities: false }))
-        }, 500)
+        }, 200)
 
         setTimeout(() => {
           setLoaders((loader) => ({ ...loader, creating: false }))
           toggle()
-        }, 500)
+        }, 200)
 
         console.log('Create Data: ', data)
       })
@@ -195,9 +195,9 @@ const Activities = (props) => {
       setLoaders((loader) => ({ ...loader, gettingActivities: true }))
 
       setTimeout(() => {
-        setSecctions(auxSeccion.reverse())
+        setSecctions(auxSeccion)
         setLoaders((loader) => ({ ...loader, gettingActivities: false }))
-      }, 500)
+      }, 200)
 
       console.log(
         'result: ',
@@ -294,7 +294,7 @@ const Activities = (props) => {
                 )}
                 {!gettingActivities &&
                   secctions.length > 0 &&
-                  secctions.reverse().map((value, key) => {
+                  secctions.map((value, key) => {
                     return (
                       <ActivityItem
                         activity={value}
