@@ -8,12 +8,13 @@ import {
   DropdownItem,
   UncontrolledTooltip,
 } from 'reactstrap'
-import './styles/styles.css'
+import swal from 'sweetalert'
 import Avatar from '@material-ui/core/Avatar'
 import Linkify from 'react-linkify'
 import moment from 'moment'
 import { config } from '_config'
 import { Modal, EditPost } from 'components'
+import './styles/styles.css'
 
 const Post = (props) => {
   const [post, setPost] = useState(props.post)
@@ -57,6 +58,10 @@ const Post = (props) => {
       })
       .finally(() => {})
   }
+
+  // const deletePost = (id) => {
+  //   swal("Good job", "You deleted post", "success")
+  // }
 
   const componentDecorator = (href, text, key) => (
     <a href={href} key={key} target="_blank">
@@ -102,7 +107,7 @@ const Post = (props) => {
                     placement="bottom"
                     target={'tooltip-' + codeCommunity + documentIdUser}
                   >
-                    {dateCommunity}
+                    {moment(dateCommunity, 'YYYY-MM-DD').format('YYYY-MM-DD')}
                   </UncontrolledTooltip>
                 </div>
               </div>
@@ -114,7 +119,11 @@ const Post = (props) => {
                     </DropdownToggle>
                     <DropdownMenu>
                       <DropdownItem onClick={toggle}>Editar</DropdownItem>
-                      {/* <DropdownItem>Eliminar</DropdownItem> */}
+                      <DropdownItem
+                        onClick={() => props.deletePost(codeCommunity)}
+                      >
+                        Eliminar
+                      </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>
                 </div>
