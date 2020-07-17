@@ -13,19 +13,20 @@ const AddResponseSection = ({ toggle, creating, createResponseCourse, loader, st
   const { description, files, enlace } = inputs
   const id_student = student_id
   const codeSecctions = codeSecction
- console.log('codeSecction', codeSecction);
+//  console.log('codeSecction', codeSecction);
  
   const create = () => {
     if (!description) {
       swal("Algo nos falta!!", "Debes escribir tu respuesta!!", "error");
     } else if (inputs.files.length <= 0) {
-      swal("¿Sin Archivo?", "Vas a enviar tu respuesta sin ningún archivo. \n", "info");
       createResponseCourse({
         codeSecctions,
         description,
         files,
         student_id,
       })
+      swal("¿Sin Archivo?", "Vas a enviar tu respuesta sin ningún archivo. \n", "info");
+      
     } else {
       createResponseCourse({
         codeSecctions,

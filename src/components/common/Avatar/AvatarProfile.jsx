@@ -1,19 +1,54 @@
-import React, {Suspense} from 'react'
-
+import React, { Suspense, useState, useEffect } from "react";
 import { Img } from 'react-image'
-// import VisibilitySensor from 'react-visibility-sensor'
 import { Spinner } from 'reactstrap'
+import { useSelector } from 'react-redux'
+import { config } from '_config'
 
 
-function AvatarProfile(props) {
-  var documentIdUser = props.documentIdUser
+const  AvatarProfile = ({ documentIdUser, photouser, getUserPhotoUser }) =>{
+
+  console.log('photouser', photouser);
   
-  
+  const [urlphoto, setUrlPhoto] = useState('')
+  const [idphotouser, setIdPhotoUser] = useState('')
+  var codephoto
+
+  function getUserPhoto() {
+    // setUser(props.user)
+    // fetch(`${config.apiEndPoint}/profilepictures/${idPhoto}`, {
+    //   method: 'GET',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     // console.log('datadata', data);
+    //     setUrlPhoto(data.photo)
+    //     setIdPhotoUser(data.codePhoto)
+    //     codephoto = data.codePhoto
+    //   })
+    //   .catch((error) => console.log(error))
+    //   .finally(() => { })
+    // console.log('idphotouser: **...', idphotouser)
+  };
+
+
+  var photoUrl = urlphoto
+  if (photoUrl != undefined) {
+    photoUrl = urlphoto
+  } else {
+    photoUrl = 'https://s3-sige-file-20200523.s3.amazonaws.com/media/ProfilePrictures/Instituci%C3%B3n%20Educativa%20Central%20de%20Bachillerato%20Integrado/52005409/SIGEBird.png'
+  }
+  // console.log('urlphoto', urlphoto);
+
+  getUserPhoto()
   return (
+    
     <Suspense>
-    <Img
-      src={'https://images.pexels.com/photos/2927811/pexels-photo-2927811.jpeg'}
-      unloader={
+      <img src={photoUrl} alt="" />
+      {/* 
         // <svg width={200} height={200} viewBox="0 0 464.002 464.002" {...props}>
         //   <path
         //     d="M391.864 422.878l-.726-6.536a4.71 4.71 0 00-5.201-4.162l-.407.045-7.027-56.214a32.002 32.002 0 00-21.633-26.389l-44.914-14.972c-3.841-1.28-8.048.493-9.75 4.166-.078.168-.159.337-.237.506l-11.026-3.676a16 16 0 01-10.94-15.179v-25.802l34.461-14.359A47.996 47.996 0 00344.001 216v-8c13.255 0 24-10.745 24-24a23.892 23.892 0 00-4.989-14.641c4.809-23.816 13.571-70.214 12.959-89.359-.409-12.8-8.515-29.935-32-40-41.978-17.991-94.608-23.329-111.97-39.975V0l-.015.012-.015-.012v.025C214.609 16.671 161.979 22.009 120.001 40c-23.486 10.065-31.591 27.2-32 40-.612 19.153 8.157 65.583 12.965 89.39A23.889 23.889 0 0096.001 184c0 13.255 10.745 24 24 24v8a48.002 48.002 0 0029.538 44.308l34.462 14.36v25.801a16 16 0 01-10.94 15.179l-11.026 3.676c-.078-.168-.159-.337-.237-.506-1.703-3.673-5.91-5.446-9.75-4.166l-44.914 14.972a31.999 31.999 0 00-21.633 26.389l-7.027 56.214-.407-.045a4.711 4.711 0 00-5.202 4.162l-.726 6.536a4.71 4.71 0 004.161 5.201l11.702 1.3v18.621c0 8.836 7.163 16 16 16h256c8.837 0 16-7.164 16-16v-18.621l11.702-1.3a4.712 4.712 0 004.16-5.203z"
@@ -72,15 +107,7 @@ function AvatarProfile(props) {
         //     fill="#9d6e48"
         //   />
         // </svg>
-        <Spinner
-          style={{
-            width: '1.3rem',
-            height: '1.3rem',
-          }}
-          color="black"
-        />
-      }
-    />
+         */}
     </Suspense>
 
   )

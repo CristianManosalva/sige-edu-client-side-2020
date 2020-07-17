@@ -6,14 +6,10 @@ import PageviewIcon from '@material-ui/icons/Pageview';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import './styles/styleUpdateImg.css'
 
-
-const UpdateImgUser = (props) => {
-  const userID = props.user
-  const user = props
+const UpdateImgUser = ( {userId, idPhoto, getUserPhotoUser}) => {
+  const [idphotouser, setIdPhotoUser] = useState(idPhoto)
+  var codephoto
   const [image, setImage] = useState({ preview: "", raw: "" });
-  // console.log('image', image);
-  
-
   const handleChange = e => {
     if (e.target.files.length) {
       setImage({
@@ -22,11 +18,37 @@ const UpdateImgUser = (props) => {
       });
     }
   };
+
+  function deleteImageUser() {
+    // setUser(props.user)
+    fetch(`${config.apiEndPoint}/profilepictures/delete/${idPhoto}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('DELETE', data);
+        
+        // setUser(data)
+      })
+      .catch((error) => console.log(error))
+      .finally(() => {
+        // setLoaders((loaders) => ({
+        //   ...loaders,
+        //   cargaLoad: false,
+        // }))
+      })
+  }
+
   const handleUpload = async e => {
     e.preventDefault();
+    deleteImageUser();
     const formData = new FormData();
     formData.append("photo", image.raw);
-    formData.append("user", userID);
+    formData.append("user", userId);
 
     await fetch(`${config.apiEndPoint}/profilepictures/create/`, {
       method: 'POST',
@@ -44,41 +66,49 @@ const UpdateImgUser = (props) => {
       return response.json()
     })
     .then((data) => {
-      console.log('Data resource: ', data)
+      setIdPhotoUser(data.codePhoto)
+      codephoto = data.codePhoto
+      console.log('data', userId);
+      
     })
     .catch((error) => {
       console.log('El error: ', error)
       // swal('UPSS..!!', 'Algo Sucedió, Intenta mas tarde!! :)', 'warning')
     })
     .finally(() => {})
-  };
-  function getUserPhoto() {
-    // setUser(props.user)
-    fetch(`${config.apiEndPoint}/profilepictures/picture/`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user),
+    getUserPhotoUser({
+      userId,
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('data', data);
+    console.log('idphotouser: **', userId)
+  };
+  // function getUserPhoto() {
+  //   // setUser(props.user)
+  //   fetch(`${config.apiEndPoint}/profilepictures/${idPhoto}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       var codephoto = data.codePhoto
+  //       getUserPhotoUser({
+  //         codephoto,
+  //       })
+  //       console.log('dataprofilepictures', codephoto);
         
-        // setUser(data)
-      })
-      .catch((error) => console.log(error))
-      .finally(() => {
-        // setLoaders((loaders) => ({
-        //   ...loaders,
-        //   cargaLoad: false,
-        // }))
-      })
-  }
-  useEffect(() => {
-    getUserPhoto()
-  }, [])
+  //       // setUser(data)
+  //     })
+  //     .catch((error) => console.log(error))
+  //     .finally(() => {
+  //       // setLoaders((loaders) => ({
+  //       //   ...loaders,
+  //       //   cargaLoad: false,
+  //       // }))
+  //     })
+  // }
+  
  
   
   return (

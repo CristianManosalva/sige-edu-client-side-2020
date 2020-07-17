@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { Spinner } from 'reactstrap'
 import './styles/styleforms.css'
+import DatePicker from 'react-datepicker'
 import { config } from '_config'
 
 const backgroundBlue = {
@@ -168,6 +169,54 @@ const FormProfileUser = (props) => {
             name="phoneUser"
             onChange={handleChange}
             style={{ fontSize: '20px' }}
+          />
+          {/* {isError.phone.length > 0 && (
+            <span className="invalid-feedback">{isError.phone}</span>
+          )} */}
+          <label>Email: &nbsp; </label>
+          <input
+            type="email"
+            value={user.emailUser}
+            className="form-control"
+            // className={isError.email.length > 0 ? "is-invalid form-control" : "form-control"}
+            name="emailUser"
+            onChange={handleChange}
+            style={{ fontSize: '20px' }}
+          />
+          {/* {isError.email.length > 0 && (
+            <span className="invalid-feedback">{isError.email}</span>
+          )} */}
+          {/* <label>Grupo Sanguíneo: &nbsp; </label>
+            <select name="rh">
+              <option value="-">-</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="B-">B-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>*/}
+        </div>
+
+        <div className="form-email-rh">
+          <label>Fecha de Nacimiento: &nbsp; </label>
+          <input
+            type="text"
+            value={user.phoneUser}
+            className="form-control"
+            // className={isError.phone.length > 0 ? "is-invalid form-control" : "form-control"}
+            name="phoneUser"
+            onChange={handleChange}
+            style={{ fontSize: '20px' }}
+          />
+          <DatePicker
+            name="dateOfBirthUser"
+            // selected={moment(dateOfBirthUser)}
+            // onChange={handleChangeDate}
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
           />
           {/* {isError.phone.length > 0 && (
             <span className="invalid-feedback">{isError.phone}</span>

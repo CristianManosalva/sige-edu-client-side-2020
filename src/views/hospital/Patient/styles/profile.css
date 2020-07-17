@@ -724,18 +724,17 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
   justify-content: space-around;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 10% 10% 10% 10%;
   background: rgba(73, 155, 234, 1);
   float: right;
   flex-direction: column-reverse;
-  top: 10px;
-  padding: 10px;
+  padding: 5px;
 }
 
 .profile-cover__img > img {
   max-width: 150px;
   border: 5px solid #fff;
-  border-radius: 50%;
+  border-radius: 5%;
   word-break: break-all;
  word-wrap: break-word;
 }

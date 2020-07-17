@@ -1,26 +1,45 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { Row, Col } from 'reactstrap';
+import { config } from '_config'
 import { Modal, AvatarProfile, UpdateImgUser, FormProfileUser } from 'components';
+import useUserPhoto from '../../../hooks/useUserPhoto'
 import { useSelector } from 'react-redux'
 import './styles/profile.css'
+    
+    
 
 const PatientProfile = (props) => {
     const { user } = useSelector(
-        (state) => state.authentication.user.user_data
+        (state) => state.authentication
     )
-    const idUser = user.documentIdUser
-    // const firstNameUser = user.firstNameUser
-    // const lastNameUser = user.lastNameUser
-    console.log('userProfile', user)
-    //   const student_id = userProfile.codeStudent
-    var IMGDIR = process.env.REACT_APP_IMGDIR;
+    const { photouserurl, photouserid, loading }
+    const idPhoto
+    const [codephotouser, setCodephoto] = useState('')
+    const idUser = user.user_data.user.documentIdUser
+    const API = `${config.apiEndPoint}/profilepictures/${idUser}`
+    
+    
+    const userProfile = user.user_data.user
+    const idUser = user.user_data.user.documentIdUser
     const [modalUpdateimg, setModalUpdateimg] = useState(false);
     const togglemodalimg = () => setModalUpdateimg(!modalUpdateimg);
+    const [codephotouser, setCodephoto] = useState('')
+
+    function getPhotoUser () {
+    { photouserurl, photouserid, loading } = useUserPhoto(API)
+    idPhoto = photouserid
+    }
 
 
-    const ProfileUser = () => {
+    
+    const ProfileUser = () => {   
+       
 
-
+        function getUserPhotoUser({
+            userId,
+        }) {
+            getPhotoUser();
+          }
         return (
 
             <div>
@@ -32,7 +51,9 @@ const PatientProfile = (props) => {
                     toggle={togglemodalimg}
                 >
                     <UpdateImgUser
-                    user={idUser}
+                        userId={idUser}
+                        idPhoto={idPhoto}
+                        getUserPhotoUser={getUserPhotoUser}
                     />
                 </Modal>
                 <div className="content">
@@ -44,10 +65,14 @@ const PatientProfile = (props) => {
                                 <div className="container" style={{ paddingTop: '15px', width: "100%" }}>
                                     <div className="panel profile-cover">
                                         <div className="profile-cover__img" onClick={togglemodalimg}>
-                                        {/* <button type="submit" className="button_update" onClick={togglemodalimg}>Actualizar</button> */}
+                                            {/* <button type="submit" className="button_update" onClick={togglemodalimg}>Actualizar</button> */}
                                             {/* <img src="https://images.pexels.com/photos/4623636/pexels-photo-4623636.jpeg" alt="" width="150px" height="150px" /> */}
-                                            <AvatarProfile 
-                                            documentIdUser={idUser} />
+                                            {/* <AvatarProfile
+                                                documentIdUser={idUser}
+                                                photouser={photouser}
+                                                getUserPhotoUser={getUserPhotoUser}
+                                                /> */}
+                                                <img src={photouserurl} />
                                         </div>
                                         {/* <div className="profile-cover__action" data-overlay="0.3">
                                             {firstNameUser + ' ' + lastNameUser}
@@ -60,7 +85,7 @@ const PatientProfile = (props) => {
                                     </div>
                                     <section>
                                         <div>
-                                            <FormProfileUser user={user}/>
+                                            <FormProfileUser user={userProfile} />
 
                                         </div>
                                         <div>&nbsp;&nbsp;&nbsp;<br /> &nbsp;&nbsp;<br /> &nbsp;&nbsp;</div>
