@@ -1,0 +1,29 @@
+.cui-container {
+  width: calc(100% - 40px);
+  max-width: 1152px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .cui-container {
+    width: calc(100% - 64px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cui-container {
+    width: calc(100% - 184px);
+    max-width: 1152px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.activity_responses_secction {
+  padding: 0 1rem;
+}
+
+.response_content_container {
+  padding: 0.5rem;
+}

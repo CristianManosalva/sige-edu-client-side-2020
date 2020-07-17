@@ -248,85 +248,73 @@ const Activities = (props) => {
                 </section>
               </div>
             </Row>
-            <Row>
-              {/* <div className="col-10 col-xl-8" style={{ padding: '0 2em' }}>
-                {secctions.length ? (
-                  secctions.map((value) => {
-                    return (
-                      <Activity activity={value} key={value.codeSecction} />
-                    )
-                  })
-                ) : (
-                  <p>
-                    No Tienes ninguna actividad con este grupo para esta materia
-                  </p>
-                )}
-              </div> */}
-              <div className="col-12 col-lg-12 col-xl-8 offset-xl-2">
-                {gettingActivities && (
-                  <div
-                    style={{
-                      width: '100%',
-                      height: '100',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      flexDirection: 'column',
-                    }}
-                  >
-                    <Loader
-                      type="BallTriangle"
-                      color="#1EAEDF"
-                      secondaryColor="Green"
-                      height="100"
-                      width="100"
-                    />
-                    <span
+            <div className="cui-container">
+              <Row>
+                <div className="col-12 col-lg-12 col-xl-8 offset-xl-2">
+                  {gettingActivities && (
+                    <div
                       style={{
-                        fontSize: '1.3rem',
-                        marginTop: '.8rem',
-                        color: '#1EAEDF',
+                        width: '100%',
+                        height: '100',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'column',
                       }}
                     >
-                      Cargando...
-                    </span>
-                  </div>
-                )}
-                {!gettingActivities &&
-                  secctions.length > 0 &&
-                  secctions.map((value, key) => {
-                    return (
-                      <ActivityItem
-                        activity={value}
-                        key={key * 1000}
-                        deleteActivity={deleteActivity}
+                      <Loader
+                        type="BallTriangle"
+                        color="#1EAEDF"
+                        secondaryColor="Green"
+                        height="100"
+                        width="100"
                       />
-                    )
-                  })}
-                {secctions.length == 0 && !gettingActivities && (
-                  <div
-                    style={{
-                      width: '100%',
-                      height: '100',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      padding: '1rem',
-                    }}
-                  >
-                    <span
+                      <span
+                        style={{
+                          fontSize: '1.3rem',
+                          marginTop: '.8rem',
+                          color: '#1EAEDF',
+                        }}
+                      >
+                        Cargando...
+                      </span>
+                    </div>
+                  )}
+                  {!gettingActivities &&
+                    secctions.length > 0 &&
+                    secctions.map((value, key) => {
+                      return (
+                        <ActivityItem
+                          activity={value}
+                          key={key * 1000}
+                          deleteActivity={deleteActivity}
+                        />
+                      )
+                    })}
+                  {secctions.length == 0 && !gettingActivities && (
+                    <div
                       style={{
-                        fontSize: '1.3rem',
-                        marginTop: '.8rem',
-                        textAlign: 'center',
+                        width: '100%',
+                        height: '100',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        padding: '1rem',
                       }}
                     >
-                      No Tienes ninguna actividad con este grupo para esta
-                      materia
-                    </span>
-                  </div>
-                )}
-                {/* {secctions.length ? (
+                      <span
+                        style={{
+                          fontSize: '1.3rem',
+                          marginTop: '.8rem',
+                          textAlign: 'center',
+                        }}
+                      >
+                        No Tienes ninguna actividad con este grupo para esta
+                        materia
+                      </span>
+                    </div>
+                  )}
+                  {/* {secctions.length ? (
                   secctions.reverse().map((value, key) => {
                     return <ActivityItem activity={value} key={key * 1000} />
                   })
@@ -335,8 +323,9 @@ const Activities = (props) => {
                     No Tienes ninguna actividad con este grupo para esta materia
                   </p>
                 )} */}
-              </div>
-            </Row>
+                </div>
+              </Row>
+            </div>
           </Col>
         </Row>
       </div>
