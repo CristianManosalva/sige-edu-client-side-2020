@@ -326,7 +326,7 @@ const ResponseActivity = (props) => {
             }
             style={{ fontSize: '1.2em', color: '#1eaedf' }}
           ></i>
-          <span>{user.firstNameUser + user.lastNameUser}</span>
+          <span>{user.firstNameUser + ' ' + user.lastNameUser}</span>
         </div>
         <div
           className="mr-1"

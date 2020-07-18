@@ -45,6 +45,7 @@ import ShowActivity from './university/Activities/Form/ShowActivity'
 import CoursesStudentList from './hospital/Doctorslist/CoursesStudentList'
 import Patientslist from './hospital/Patientslist/Patientslist'
 import Staffslist from './hospital/Staffslist/Staffslist'
+import SubjectCard from './hospital/Subjects/SubjectCard'
 
 /*--------------- Home Page Components ------------------*/
 import Carousel from './home_page/Carousel'
@@ -138,4 +139,6 @@ export {
   AvatarProfile,
   UpdateImgUser,
   FormProfileUser,
+  //Students
+  SubjectCard,
 }

@@ -11,9 +11,17 @@ const University = (props) => {
   const { teacher } = useSelector(
     (state) => state.authentication.user.user_data
   )
-  const teacher_id = teacher.codeTeacher
+
+  let teacher_id = ''
+  if (teacher) {
+    teacher_id = teacher.codeTeacher
+  }
   const API = `${config.apiEndPoint}/enrollments/enrollment/byGroupmanager/${teacher_id}`
-  const { students, loading } = useStudents(API)
+  const { students, loading } = useStudents(API) || []
+
+  // const teacher_id = teacher.codeTeacher
+  // const API = `${config.apiEndPoint}/enrollments/enrollment/byGroupmanager/${teacher_id}`
+  // const { students, loading } = useStudents(API)
 
   const renderStudentList = (fixed) => (
     <div>
