@@ -258,8 +258,8 @@ const ActivityItem = (props) => {
         </ContentContainer>
         <ResourceContainer>
           <div className="row">
-            {activity.lynks.length > 0 && (
-              <div className="col-12 ">
+            <div className="col-12 mb-3">
+              {activity.lynks.length > 0 && (
                 <a
                   href={activity.lynks[0].url}
                   target="_blank"
@@ -267,17 +267,29 @@ const ActivityItem = (props) => {
                 >
                   Link's
                 </a>
-              </div>
-            )}
+              )}
+              {activity.lynks.length <= 0 && (
+                <div className="d-flex align-items-center">
+                  <i style={{ fontSize: '1.3em' }} className="i-info mr-2 " />
+                  <span>Tu profe no incluyó enlaces</span>
+                </div>
+              )}
+            </div>
 
-            {activity.resources.length > 0 && (
-              <div className="col-12">
+            <div className="col-12">
+              {activity.resources.length > 0 && (
                 <SupportMaterialCollapse
                   type={'Archivos'}
                   resources={activity.resources}
                 ></SupportMaterialCollapse>
-              </div>
-            )}
+              )}
+              {activity.resources.length <= 0 && (
+                <div className="d-flex align-items-center">
+                  <i style={{ fontSize: '1.3em' }} className="i-info mr-2 " />
+                  <span>Tu profe no incluyó archivos</span>
+                </div>
+              )}
+            </div>
           </div>
         </ResourceContainer>
         <ReponseContainer>
