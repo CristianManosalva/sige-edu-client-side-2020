@@ -1,34 +1,31 @@
-import React, { useState, useEffect } from 'react'
-import { Spinner, Row, Col, Container, Button, Label, Input} from 'reactstrap'
+import React, { useState } from 'react'
+import { Spinner, Row, Col, Container, Button, Label, Input } from 'reactstrap'
 import Dropzone from 'react-dropzone'
-import swal from 'sweetalert';
-const AddResponseSection = ({ toggle, creating, createResponseCourse, loader, student_id, codeSecction }) => {
+import swal from 'sweetalert'
+const AddResponseSection = ({
+  createResponseCourse,
+  loader,
+  student_id,
+  codeSecction,
+}) => {
   const [inputs, setInputs] = useState({
     description: '',
     files: [],
   })
-  const [loaders, setLoaders] = useState({
-    postDescription: false,
-  })
-  const { description, files, enlace } = inputs
-  const id_student = student_id
-  const codeSecctions = codeSecction
- console.log('codeSecction', codeSecction);
- 
+  const { description, files } = inputs
+
   const create = () => {
     if (!description) {
-      swal("Algo nos falta!!", "Debes escribir tu respuesta!!", "error");
+      swal('Algo nos falta!!', 'Debes escribir tu respuesta!!', 'error')
     } else if (inputs.files.length <= 0) {
-      swal("¿Sin Archivo?", "Vas a enviar tu respuesta sin ningún archivo. \n", "info");
-      createResponseCourse({
-        codeSecctions,
-        description,
-        files,
-        student_id,
-      })
+      swal(
+        '¿Sin Archivo?',
+        'Vas a enviar tu respuesta sin ningún archivo. \n',
+        'info'
+      )
     } else {
       createResponseCourse({
-        codeSecctions,
+        codeSecction,
         description,
         files,
         student_id,
@@ -45,23 +42,29 @@ const AddResponseSection = ({ toggle, creating, createResponseCourse, loader, st
     setInputs((inputs) => ({ ...inputs, files: files }))
   }
 
-  useEffect(() => {}, [])
-
   return (
     <Container fluid={true} className="add_activity_main">
       <Row>
         <Col xs={12} className="form-group">
-          <Label for="name" style={{ color: '#000000' }}>Respuesta a la actividad</Label>
-          <Input 
-            type="textarea" 
-            name="description" 
-            placeholder="Tu respuesta..." 
+          <Label for="name" style={{ color: '#000000' }}>
+            Respuesta a la actividad
+          </Label>
+          <Input
+            type="textarea"
+            name="description"
+            placeholder="Tu respuesta..."
             aria-label="minimum height"
-            onChange={handleChange} />
+            onChange={handleChange}
+          />
         </Col>
         <Col xs={12} className="form-group">
-          <Label for="name" style={{ color: '#000000' }}>Archivo</Label>
-          <div className="dropzone" style={{ cursor: 'pointer', color: '#000000' }}>
+          <Label for="name" style={{ color: '#000000' }}>
+            Archivo
+          </Label>
+          <div
+            className="dropzone"
+            style={{ cursor: 'pointer', color: '#000000' }}
+          >
             <Dropzone
               onDrop={onDrop}
               className="droparea"

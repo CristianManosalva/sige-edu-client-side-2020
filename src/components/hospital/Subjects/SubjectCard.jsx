@@ -1,5 +1,4 @@
 import React from 'react'
-
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardActions from '@material-ui/core/CardActions'
@@ -7,13 +6,13 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import Icon from '@material-ui/core/Icon'
-import SchoolIcon from '@material-ui/icons/School'
-
+import { history } from '_helpers'
 import './styles/subject-card.css'
 
+var BASEDIR = process.env.REACT_APP_BASEDIR
+
 const SubjectCard = ({ subject, urlImage }) => {
-  const { courseDictate } = subject
+  const { courseDictate, codeAcademicCharge } = subject
   const { user } = subject.teacherDictate
   const { nameCourse, picture } = courseDictate
   const { firstNameUser, lastNameUser } = user
@@ -22,7 +21,14 @@ const SubjectCard = ({ subject, urlImage }) => {
 
   return (
     <div className="subject-card">
-      <Card className="material-card">
+      <Card
+        className="material-card"
+        onClick={() =>
+          history.push(
+            BASEDIR + `/university/subjects-activities/${codeAcademicCharge}`
+          )
+        }
+      >
         <CardActionArea>
           <CardMedia
             component="img"

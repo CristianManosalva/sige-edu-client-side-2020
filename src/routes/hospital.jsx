@@ -1,6 +1,7 @@
 import PatientProfile from 'views/hospital/Patient/PatientProfile.jsx'
 import CoursesStudent from 'views/hospital/Doctor/CoursesStudent.jsx'
 import Subjects from 'views/hospital/Subjects/Subjects.jsx'
+import SubjectActivities from 'views/hospital/Subjects/SubjectActivities.jsx'
 // import Hospital from 'views/hospital/Dashboard/Hospital.jsx'
 // import Library from 'views/university/Library/Library.jsx'
 // import Course from 'views/university/Course/Course.jsx'
@@ -39,19 +40,31 @@ import Subjects from 'views/hospital/Subjects/Subjects.jsx'
 
 var BASEDIR = process.env.REACT_APP_BASEDIR
 var dashRoutes = [
+  // {
+  //   path: BASEDIR + '/university/dashboard',
+  //   icon: 'star',
+  //   name: 'Asignaturas',
+  //   badge: '',
+  //   component: CoursesStudent,
+  // },
   {
     path: BASEDIR + '/university/dashboard',
-    icon: 'star',
+    icon: ' fa fa-book',
     name: 'Asignaturas',
     badge: '',
-    component: CoursesStudent,
-  },
-  {
-    path: BASEDIR + '/university/subjects',
-    icon: ' fa fa-book',
-    name: 'Configuración',
-    badge: '',
     component: Subjects,
+  },
+  // {
+  //   path: BASEDIR + '/university/subjects',
+  //   icon: ' fa fa-book',
+  //   name: 'Configuración',
+  //   badge: '',
+  //   component: Subjects,
+  // },
+  {
+    path: BASEDIR + '/university/subjects-activities/:codeAcademicCharge',
+    component: SubjectActivities,
+    type: 'child',
   },
   // {
   //   path: BASEDIR + '/university/dashboard',

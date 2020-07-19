@@ -22,6 +22,7 @@ import Navmenugroup from './common/Navmenugroup/Navmenugroup'
 /*--------------- Custom Components ------------------*/
 import PrivateRoute from './common/PrivateRoute/PrivateRoute'
 import ChangePassword from './common/ChangePassword/ChangePassword'
+import DescriptionComponent from './common/DescriptionComponent/DescriptionComponent.jsx'
 
 /*--------------- University Admin Components ------------------*/
 import Professorslist from './university/Professorslist/Professorslist'
@@ -46,6 +47,7 @@ import CoursesStudentList from './hospital/Doctorslist/CoursesStudentList'
 import Patientslist from './hospital/Patientslist/Patientslist'
 import Staffslist from './hospital/Staffslist/Staffslist'
 import SubjectCard from './hospital/Subjects/SubjectCard'
+import SubjectActivity from './hospital/SubjectActivity/SubjectActivity'
 
 /*--------------- Home Page Components ------------------*/
 import Carousel from './home_page/Carousel'
@@ -66,6 +68,7 @@ export {
   //Common component
   Messagewidget,
   Modal,
+  DescriptionComponent,
   //Post Component
   Post,
   CreatePost,
@@ -141,4 +144,5 @@ export {
   FormProfileUser,
   //Students
   SubjectCard,
+  SubjectActivity,
 }
