@@ -5,6 +5,9 @@ import FolderIcon from '@material-ui/icons/Folder';
 import PageviewIcon from '@material-ui/icons/Pageview';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import './styles/styleUpdateImg.css'
+const CLOUDINARY_URL='https://api.cloudinary.com/v1_1/sigeedu/image/upload'
+const UPLOAD_PRESET = 'jf6wa5jo'
+const axios = require('axios').default;
 
 const UpdateImgUser = ( {userId, idPhoto, getUserPhotoUser}) => {
   const [idphotouser, setIdPhotoUser] = useState(idPhoto)
@@ -45,41 +48,17 @@ const UpdateImgUser = ( {userId, idPhoto, getUserPhotoUser}) => {
 
   const handleUpload = async e => {
     e.preventDefault();
-    deleteImageUser();
+    // deleteImageUser();
     const formData = new FormData();
-    formData.append("photo", image.raw);
-    formData.append("user", userId);
+    formData.append("file", image.raw);
+    formData.append("upload_preset", UPLOAD_PRESET);
 
-    await fetch(`${config.apiEndPoint}/profilepictures/create/`, {
-      method: 'POST',
-      body: formData,
-    })
-    .then((response) => {
-      console.log('response.status',response.status);
-      
-      if (response.status == 201) {
-        console.log('201', response.status);
-        
-        // setModal(!modal)
-        // swal('Excelente!!', 'Todo salió bien!! :)', 'success')
+    const res = await axios.post(CLOUDINARY_URL, formData, {
+      headers:{
+        'Content_Type': 'multipart/form-data'
       }
-      return response.json()
     })
-    .then((data) => {
-      setIdPhotoUser(data.codePhoto)
-      codephoto = data.codePhoto
-      console.log('data', userId);
-      
-    })
-    .catch((error) => {
-      console.log('El error: ', error)
-      // swal('UPSS..!!', 'Algo Sucedió, Intenta mas tarde!! :)', 'warning')
-    })
-    .finally(() => {})
-    getUserPhotoUser({
-      userId,
-    })
-    console.log('idphotouser: **', userId)
+    console.log('res', res);
   };
   // function getUserPhoto() {
   //   // setUser(props.user)

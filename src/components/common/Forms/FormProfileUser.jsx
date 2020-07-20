@@ -20,8 +20,7 @@ const styleButtonSave = {
 
 const FormProfileUser = (props) => {
 
-  const [user, setUser] = useState(props.user)
-
+  const [user, setUser] = useState(props.user);
   const [show, setShow] = useState(true)
   const handleClose = () => setShow(false)
   const [smShow, setSmShow] = useState(false)
@@ -31,7 +30,7 @@ const FormProfileUser = (props) => {
   })
   function getUserData() {
     // setUser(props.user)
-    fetch(`${config.apiEndPoint}/users/${user.documentIdUser}`, {
+    fetch(`${config.apiEndPoint}/users/52005409`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -128,12 +127,12 @@ const FormProfileUser = (props) => {
 
 
   return (
-    <div className="form">
+    <div className="form" style={{ borderRadius: '10px' }}>
       <form onSubmit={handleSubmit} noValidate >
         <div className="form-name">
           <label>Nombre: &nbsp; </label><br />
           <input
-            value={user.firstNameUser}
+            value={user.firstNameUser || ""}
             type="text"
             className="form-control"
             // className={isError.name.length > 0 ? "is-invalid form-control" : "form-control"}
@@ -147,7 +146,7 @@ const FormProfileUser = (props) => {
           <label>Apellido: &nbsp; </label><br />
           <input
             type="text"
-            value={user.lastNameUser}
+            value={user.lastNameUser || ""}
             className="form-control"
             // className={isError.lastname.length > 0 ? "is-invalid form-control" : "form-control"}
             name="lastNameUser"
@@ -163,7 +162,7 @@ const FormProfileUser = (props) => {
           <label>Teléfono: &nbsp; </label>
           <input
             type="text"
-            value={user.phoneUser}
+            value={user.phoneUser || ""}
             className="form-control"
             // className={isError.phone.length > 0 ? "is-invalid form-control" : "form-control"}
             name="phoneUser"
@@ -176,7 +175,7 @@ const FormProfileUser = (props) => {
           <label>Email: &nbsp; </label>
           <input
             type="email"
-            value={user.emailUser}
+            value={user.emailUser || ""}
             className="form-control"
             // className={isError.email.length > 0 ? "is-invalid form-control" : "form-control"}
             name="emailUser"
@@ -186,55 +185,21 @@ const FormProfileUser = (props) => {
           {/* {isError.email.length > 0 && (
             <span className="invalid-feedback">{isError.email}</span>
           )} */}
-          {/* <label>Grupo Sanguíneo: &nbsp; </label>
-            <select name="rh">
-              <option value="-">-</option>
-              <option value="A+">A+</option>
-              <option value="A-">A-</option>
-              <option value="AB+">AB+</option>
-              <option value="AB-">AB-</option>
-              <option value="B-">B-</option>
-              <option value="O+">O+</option>
-              <option value="O-">O-</option>
-            </select>*/}
+          
         </div>
 
-        <div className="form-email-rh">
-          <label>Fecha de Nacimiento: &nbsp; </label>
-          <input
-            type="text"
-            value={user.phoneUser}
-            className="form-control"
-            // className={isError.phone.length > 0 ? "is-invalid form-control" : "form-control"}
-            name="phoneUser"
-            onChange={handleChange}
-            style={{ fontSize: '20px' }}
-          />
+        {/* <div className="form-email-rh">
+          <label>Fecha <br /> Nacimiento: &nbsp; </label>
           <DatePicker
             name="dateOfBirthUser"
+            value={user.dateOfBirthUser || ""}
             // selected={moment(dateOfBirthUser)}
             // onChange={handleChangeDate}
             showMonthDropdown
             showYearDropdown
             dropdownMode="select"
           />
-          {/* {isError.phone.length > 0 && (
-            <span className="invalid-feedback">{isError.phone}</span>
-          )} */}
-          <label>Email: &nbsp; </label>
-          <input
-            type="email"
-            value={user.emailUser}
-            className="form-control"
-            // className={isError.email.length > 0 ? "is-invalid form-control" : "form-control"}
-            name="emailUser"
-            onChange={handleChange}
-            style={{ fontSize: '20px' }}
-          />
-          {/* {isError.email.length > 0 && (
-            <span className="invalid-feedback">{isError.email}</span>
-          )} */}
-          {/* <label>Grupo Sanguíneo: &nbsp; </label>
+          <label>Grupo Sanguíneo: &nbsp; </label>
             <select name="rh">
               <option value="-">-</option>
               <option value="A+">A+</option>
@@ -244,8 +209,8 @@ const FormProfileUser = (props) => {
               <option value="B-">B-</option>
               <option value="O+">O+</option>
               <option value="O-">O-</option>
-            </select>*/}
-        </div>
+            </select>
+        </div> */}
 
         <hr />
         <div className="form-group">

@@ -5,41 +5,43 @@ import { Modal, AvatarProfile, UpdateImgUser, FormProfileUser } from 'components
 import useUserPhoto from '../../../hooks/useUserPhoto'
 import { useSelector } from 'react-redux'
 import './styles/profile.css'
-    
-    
+
+
 
 const PatientProfile = (props) => {
     const { user } = useSelector(
         (state) => state.authentication
     )
-    const { photouserurl, photouserid, loading }
-    const idPhoto
-    const [codephotouser, setCodephoto] = useState('')
-    const idUser = user.user_data.user.documentIdUser
-    const API = `${config.apiEndPoint}/profilepictures/${idUser}`
     
-    
-    const userProfile = user.user_data.user
+    // const idPhoto = ''
+    // const [codephotouser, setCodephoto] = useState('')
     const idUser = user.user_data.user.documentIdUser
+    const API = `${config.apiEndPoint}/users/${idUser}`
+    const { photouserurl, loading } = useUserPhoto(API);
+    console.log(photouserurl.profile_picture);
+    
+
+
+    const userProfile = photouserurl
     const [modalUpdateimg, setModalUpdateimg] = useState(false);
     const togglemodalimg = () => setModalUpdateimg(!modalUpdateimg);
-    const [codephotouser, setCodephoto] = useState('')
+    // const [codephotouser, setCodephoto] = useState('')
 
-    function getPhotoUser () {
-    { photouserurl, photouserid, loading } = useUserPhoto(API)
-    idPhoto = photouserid
-    }
+    // function getPhotoUser() {
+    //     const { photouserurl, photouserid, loading } = useUserPhoto(API);
+        
+    // }
 
 
-    
-    const ProfileUser = () => {   
-       
 
-        function getUserPhotoUser({
-            userId,
-        }) {
-            getPhotoUser();
-          }
+    const ProfileUser = () => {
+
+
+        // function getUserPhotoUser({
+        //     userId,
+        // }) {
+        //     getPhotoUser();
+        // }
         return (
 
             <div>
@@ -51,9 +53,9 @@ const PatientProfile = (props) => {
                     toggle={togglemodalimg}
                 >
                     <UpdateImgUser
-                        userId={idUser}
-                        idPhoto={idPhoto}
-                        getUserPhotoUser={getUserPhotoUser}
+                        // userId={idUser}
+                        // idPhoto={idPhoto}
+                        // getUserPhotoUser={getUserPhotoUser}
                     />
                 </Modal>
                 <div className="content">
@@ -72,11 +74,11 @@ const PatientProfile = (props) => {
                                                 photouser={photouser}
                                                 getUserPhotoUser={getUserPhotoUser}
                                                 /> */}
-                                                <img src={photouserurl} />
+                                            <img src="https://res.cloudinary.com/sigeedu/image/upload/v1595252589/sigedu/SIGEBird_k7wgqh.png" />
                                         </div>
-                                        {/* <div className="profile-cover__action" data-overlay="0.3">
-                                            {firstNameUser + ' ' + lastNameUser}
-                                        </div> */}
+                                        <div className="profile-cover__action" data-overlay="0.3">
+                                            {/* {firstNameUser + ' ' + lastNameUser} */}
+                                        </div>
                                         {/* <div className="profile-cover__info">
                                             <ul className="nav">
                                                 <li><strong>0</strong>Mensajes</li>
