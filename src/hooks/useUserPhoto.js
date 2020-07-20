@@ -9,7 +9,7 @@ const useUserPhoto = (API) => {
       .then(res => res.json())
         .then(response => {
           setPhotoUserUrl(response)
-          console.log(response);
+          // console.log(response);
           setLoading(false)
         });
   }, []);

@@ -6,8 +6,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     {...rest}
     render={(props) =>
       localStorage.getItem('userv2')
-        ? (console.log('Paso el protected'), (<Component {...props} />))
-        : (console.log('No paso el protected'),
+        ? ( (<Component {...props} />))
+        : (
           (
             <Redirect
               to={{ pathname: '/home', state: { from: props.location } }}
