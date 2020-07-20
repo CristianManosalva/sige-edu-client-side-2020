@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { config } from '_config'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 import Avatar from '@material-ui/core/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
 import PageviewIcon from '@material-ui/icons/Pageview';
@@ -10,7 +11,9 @@ const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/sigeedu/image/upload'
 const UPLOAD_PRESET = 'jf6wa5jo'
 const axios = require('axios').default;
 
+
 const UpdateImgUser = ({ userId, getUserPhotoUser }) => {
+  const [progressimage, setProgressImg] = useState(-1); 
   const [image, setImage] = useState({ preview: "", raw: "" });
   const handleChange = e => {
     if (e.target.files.length) {
@@ -45,6 +48,11 @@ const UpdateImgUser = ({ userId, getUserPhotoUser }) => {
       formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
+      },
+      onUploadProgress(e){
+        let progress = Math.round((e.loaded * 100.0) / e.total);
+        setProgressImg(progress)
+        console.log(progress);
       }
     })
     updatePhotoUser(userId, res.data.secure_url)
@@ -109,7 +117,9 @@ const UpdateImgUser = ({ userId, getUserPhotoUser }) => {
         <br />
         <button onClick={handleUpload} className="button_update">Actualizar</button>
         <br />
-        <progress value="0" max="100"> </progress>
+        <br />
+        <ProgressBar  now={progressimage} variant="success"/>
+        <br />
       </>
     </div>
   );
