@@ -20,31 +20,24 @@ const PatientProfile = (props) => {
     const [modalUpdateimg, setModalUpdateimg] = useState(false);
     const togglemodalimg = () => setModalUpdateimg(!modalUpdateimg);
     const [urlphotouser, setUrlphoto] = useState('')
-    // setUrlphoto(photouserurl.profile_picture)
     useEffect(() => {
         getDatauser()
     }, []);
-
     const getDatauser = async e => {
         try {
             const response = await axios.get(`${config.apiEndPoint}/users/${idUser}`);
             setUrlphoto(response.data.profile_picture)
         } catch (e) {
         }
-
     }
     const ProfileUser = () => {
-
-
         const getUserPhotoUser = (
             urlImgUser
         ) => {
             getDatauser()
             setModalUpdateimg(false)
-
         }
         return (
-
             <div>
                 <Modal
                     title="Cambiar foto de perfil!!"
@@ -61,9 +54,7 @@ const PatientProfile = (props) => {
                 <div className="content">
                     <Row>
                         <Col xs={12} md={12}>
-
                             <div className="col-xl-12" style={{ paddingTop: '15px' }}>
-
                                 <div className="container" style={{ paddingTop: '15px', width: "100%" }}>
                                     <div className="panel profile-cover">
                                         <div className="profile-cover__img" onClick={togglemodalimg}>
@@ -76,7 +67,6 @@ const PatientProfile = (props) => {
                                     <section>
                                         <div>
                                             <FormProfileUser user={userProfile} />
-
                                         </div>
                                         <div>&nbsp;&nbsp;&nbsp;<br /> &nbsp;&nbsp;<br /> &nbsp;&nbsp;</div>
                                     </section>
@@ -88,10 +78,8 @@ const PatientProfile = (props) => {
             </div >
         );
     }
-
     return (
         <Fragment>
-            {/* {ScrollCourses()} */}
             {ProfileUser()}
         </Fragment>
     )

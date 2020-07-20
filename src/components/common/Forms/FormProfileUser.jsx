@@ -1,25 +1,10 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Spinner } from 'reactstrap'
 import './styles/styleforms.css'
 import DatePicker from 'react-datepicker'
 import { config } from '_config'
 
-const backgroundBlue = {
-  backgroundColor: '#1EAEDF',
-  color: 'white',
-}
-
-const whiteText = {
-  color: 'white',
-}
-const styleButtonSave = {
-  backgroundColor: '#29F441',
-  width: '100%',
-  fontWeight: 'bold',
-}
-
 const FormProfileUser = (props) => {
-
   const [user, setUser] = useState(props.user);
   const [show, setShow] = useState(true)
   const handleClose = () => setShow(false)
@@ -29,7 +14,6 @@ const FormProfileUser = (props) => {
     updateLoad: false,
   })
   function getUserData() {
-    // setUser(props.user)
     fetch(`${config.apiEndPoint}/users/52005409`, {
       method: 'GET',
       headers: {
@@ -52,8 +36,6 @@ const FormProfileUser = (props) => {
 
   function handleChange(e) {
     const { name, value } = e.target
-    // console.log(name, ' v ', value, )
-
     setUser((user) => ({
       ...user,
       [name]: value,
@@ -61,7 +43,6 @@ const FormProfileUser = (props) => {
   }
 
   function handleChangeDate(date) {
-    //console.log(date)
     setUser((user) => ({
       ...user,
       dateOfBirthUser: date.format('YYYY-MM-DD'),
@@ -69,7 +50,6 @@ const FormProfileUser = (props) => {
   }
   function updateTeacher(documentIdUser, user) {
     let auxTeacher = user
-    // console.log('auxTeacher', auxTeacher);
     auxTeacher.password = user.documentIdUser
     auxTeacher.passwordUser = user.documentIdUser
     setLoaders((loaders) => ({
@@ -89,7 +69,6 @@ const FormProfileUser = (props) => {
         setSmShow(true)
       })
       .then((data) => {
-        // console.log('content for put ', data)
       })
       .catch((error) => console.log(error))
       .finally(() => {
@@ -123,9 +102,6 @@ const FormProfileUser = (props) => {
     phoneUser,
     addressUser,
   } = user
-  // console.log('user...user...', user);
-
-
   return (
     <div className="form" style={{ borderRadius: '10px' }}>
       <form onSubmit={handleSubmit} noValidate >
@@ -135,27 +111,19 @@ const FormProfileUser = (props) => {
             value={user.firstNameUser || ""}
             type="text"
             className="form-control"
-            // className={isError.name.length > 0 ? "is-invalid form-control" : "form-control"}
             name="firstNameUser"
             onChange={handleChange}
             style={{ fontSize: '20px' }}
           />
-          {/* {isError.name.length > 0 && (
-            <span className="invalid-feedback">{isError.name}</span>
-          )} */}
           <label>Apellido: &nbsp; </label><br />
           <input
             type="text"
             value={user.lastNameUser || ""}
             className="form-control"
-            // className={isError.lastname.length > 0 ? "is-invalid form-control" : "form-control"}
             name="lastNameUser"
             onChange={handleChange}
             style={{ fontSize: '20px' }}
           />
-          {/* {isError.lastname.length > 0 && (
-            <span className="invalid-feedback">{isError.lastname}</span>
-          )} */}
         </div>
 
         <div className="form-email-rh">
@@ -164,28 +132,19 @@ const FormProfileUser = (props) => {
             type="text"
             value={user.phoneUser || ""}
             className="form-control"
-            // className={isError.phone.length > 0 ? "is-invalid form-control" : "form-control"}
             name="phoneUser"
             onChange={handleChange}
             style={{ fontSize: '20px' }}
           />
-          {/* {isError.phone.length > 0 && (
-            <span className="invalid-feedback">{isError.phone}</span>
-          )} */}
           <label>Email: &nbsp; </label>
           <input
             type="email"
             value={user.emailUser || ""}
             className="form-control"
-            // className={isError.email.length > 0 ? "is-invalid form-control" : "form-control"}
             name="emailUser"
             onChange={handleChange}
             style={{ fontSize: '20px' }}
           />
-          {/* {isError.email.length > 0 && (
-            <span className="invalid-feedback">{isError.email}</span>
-          )} */}
-          
         </div>
 
         {/* <div className="form-email-rh">
@@ -214,9 +173,6 @@ const FormProfileUser = (props) => {
 
         <hr />
         <div className="form-group">
-          {/* <div className="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
-              <input className="button_send" type="submit" defaultValue="Update Profile" />
-            </div> */}
           <button
             style={{ borderRadius: '5px', fontSize: '20px' }}
             type="submit"
