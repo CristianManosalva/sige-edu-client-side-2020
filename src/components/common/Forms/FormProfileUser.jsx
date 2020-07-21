@@ -6,6 +6,8 @@ import { config } from '_config'
 
 const FormProfileUser = (props) => {
   const [user, setUser] = useState(props.user);
+
+  
   const [show, setShow] = useState(true)
   const handleClose = () => setShow(false)
   const [smShow, setSmShow] = useState(false)
@@ -14,7 +16,7 @@ const FormProfileUser = (props) => {
     updateLoad: false,
   })
   function getUserData() {
-    fetch(`${config.apiEndPoint}/users/52005409`, {
+    fetch(`${config.apiEndPoint}/users/${props.idDocUser}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',

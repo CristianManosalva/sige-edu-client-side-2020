@@ -4,6 +4,7 @@ import { config } from '_config'
 import { Modal, AvatarProfile, UpdateImgUser, FormProfileUser } from 'components';
 import useUserPhoto from '../../../hooks/useUserPhoto'
 import { useSelector } from 'react-redux'
+import { useMediaQuery } from 'react-responsive'
 import './styles/profile.css'
 const axios = require('axios').default;
 
@@ -12,6 +13,12 @@ const PatientProfile = (props) => {
     const { user } = useSelector(
         (state) => state.authentication
     )
+    const isDesktopOrLaptop = useMediaQuery({ minDeviceWidth: 1224 })
+    const isBigScreen = useMediaQuery({ minDeviceWidth: 1824 })
+    const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 })
+    const isTabletOrMobileDevice = useMediaQuery({ maxDeviceWidth: 1224 })
+    const isPortrait = useMediaQuery({ orientation: 'portrait' })
+    const isRetina = useMediaQuery({ minResolution: '2dppx' })
     const idUser = user.user_data.user.documentIdUser
     const API = `${config.apiEndPoint}/users/${idUser}`
     const { photouserurl, loading } = useUserPhoto(API);
@@ -31,6 +38,8 @@ const PatientProfile = (props) => {
         }
     }
     const ProfileUser = () => {
+        console.log(urlphotouser);
+
         const getUserPhotoUser = (
             urlImgUser
         ) => {
@@ -52,28 +61,35 @@ const PatientProfile = (props) => {
                     />
                 </Modal>
                 <div className="content">
-                    <Row>
-                        <Col xs={12} md={12}>
-                            <div className="col-xl-12" style={{ paddingTop: '15px' }}>
-                                <div className="container" style={{ paddingTop: '15px', width: "100%" }}>
-                                    <div className="panel profile-cover">
-                                        <div className="profile-cover__img" onClick={togglemodalimg}>
-                                            <img src={urlphotouser} />
+                        <Row>
+                            <Col xs={12} md={12}>
+                                <div className="col-xl-12" style={{ paddingTop: '15px' }}>
+                                    <div className="container" style={{ paddingTop: '15px', width: "100%" }}>
+                                        <div className="panel profile-cover">
+                                            {urlphotouser == 'https://res.cloudinary.com/sigeedu/image/upload/v1594776164/sigedu/1528904524_boy_1_wehjsw.svg' ? (
+                                                <div className="profile-cover__img" onClick={togglemodalimg}>
+                                                    <img src={'https://res.cloudinary.com/sigeedu/image/upload/v1595252589/sigedu/SIGEBird_k7wgqh.png'} />
+                                                </div>
+                                            ) : (
+                                                    <div className="profile-cover__img" onClick={togglemodalimg}>
+                                                        <img src={urlphotouser} />
+                                                    </div>
+                                                )}
+
+                                            <div className="profile-cover__action" data-overlay="0.3">
+                                                {/* {firstNameUser + ' ' + lastNameUser} */}
+                                            </div>
                                         </div>
-                                        <div className="profile-cover__action" data-overlay="0.3">
-                                            {/* {firstNameUser + ' ' + lastNameUser} */}
-                                        </div>
+                                        <section>
+                                            <div>
+                                                <FormProfileUser user={userProfile} idDocUser={idUser} />
+                                            </div>
+                                            <div>&nbsp;&nbsp;&nbsp;<br /> &nbsp;&nbsp;<br /> &nbsp;&nbsp;</div>
+                                        </section>
                                     </div>
-                                    <section>
-                                        <div>
-                                            <FormProfileUser user={userProfile} />
-                                        </div>
-                                        <div>&nbsp;&nbsp;&nbsp;<br /> &nbsp;&nbsp;<br /> &nbsp;&nbsp;</div>
-                                    </section>
                                 </div>
-                            </div>
-                        </Col >
-                    </Row >
+                            </Col >
+                        </Row >
                 </div >
             </div >
         );
