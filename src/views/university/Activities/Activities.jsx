@@ -88,6 +88,8 @@ const Activities = (props) => {
         nameSecction: name,
         descriptionSecction: description,
         workspaceSecction: work_space_id,
+        date_close: '2020-07-21T05:45:16.828603Z',
+        image_found: 'https://res.cloudinary.com/duyflkcyn/image/upload/v1595312014/SIGE/ActivitiesPhothos/3_talrgu.jpg'
       }),
     })
       .then((response) => response.json())
