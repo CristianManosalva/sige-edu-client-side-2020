@@ -74,8 +74,8 @@ const ListOfActivityCards = (props) => {
   }) {
     // setLoaders((loader) => ({ ...loader, creating: true }))
     const formdatafile = new FormData()
-    console.log('archivos: ', files)
-    console.log(codeSecctions, ' -- ', student_id)
+    // console.log('archivos: ', files)
+    // console.log(codeSecctions, ' -- ', student_id)
     formdatafile.append('secctionResponse', codeSecctions)
     formdatafile.append('messageResponse', description)
     formdatafile.append('response', files[0])

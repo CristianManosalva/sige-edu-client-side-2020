@@ -12,14 +12,14 @@ var studentGender;
 
 
 const Studentslist = (props) => {
-  console.log(props);
+  // console.log(props);
   
   const element = useRef(null)
   useEffect(function () {
-    console.log(element);
+    // console.log(element);
     
     const observer = new window.IntersectionObserver(function (entries) {
-      console.log(entries);
+      // console.log(entries);
 
     })
     observer.observe(element.current)

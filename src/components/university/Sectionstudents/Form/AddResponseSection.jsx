@@ -12,8 +12,8 @@ const AddResponseSection = ({
     description: '',
     files: [],
   })
-  const { description, files } = inputs
 
+  const { description, files } = inputs
   const create = () => {
     if (!description) {
       swal('Algo nos falta!!', 'Debes escribir tu respuesta!!', 'error')

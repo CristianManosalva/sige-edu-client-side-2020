@@ -1,26 +1,13 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Spinner } from 'reactstrap'
 import './styles/styleforms.css'
+import DatePicker from 'react-datepicker'
 import { config } from '_config'
 
-const backgroundBlue = {
-  backgroundColor: '#1EAEDF',
-  color: 'white',
-}
-
-const whiteText = {
-  color: 'white',
-}
-const styleButtonSave = {
-  backgroundColor: '#29F441',
-  width: '100%',
-  fontWeight: 'bold',
-}
-
 const FormProfileUser = (props) => {
+  const [user, setUser] = useState(props.user);
 
-  const [user, setUser] = useState(props.user)
-
+  
   const [show, setShow] = useState(true)
   const handleClose = () => setShow(false)
   const [smShow, setSmShow] = useState(false)
@@ -29,8 +16,7 @@ const FormProfileUser = (props) => {
     updateLoad: false,
   })
   function getUserData() {
-    // setUser(props.user)
-    fetch(`${config.apiEndPoint}/users/${user.documentIdUser}`, {
+    fetch(`${config.apiEndPoint}/users/${props.idDocUser}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -52,8 +38,6 @@ const FormProfileUser = (props) => {
 
   function handleChange(e) {
     const { name, value } = e.target
-    // console.log(name, ' v ', value, )
-
     setUser((user) => ({
       ...user,
       [name]: value,
@@ -61,7 +45,6 @@ const FormProfileUser = (props) => {
   }
 
   function handleChangeDate(date) {
-    //console.log(date)
     setUser((user) => ({
       ...user,
       dateOfBirthUser: date.format('YYYY-MM-DD'),
@@ -69,7 +52,6 @@ const FormProfileUser = (props) => {
   }
   function updateTeacher(documentIdUser, user) {
     let auxTeacher = user
-    // console.log('auxTeacher', auxTeacher);
     auxTeacher.password = user.documentIdUser
     auxTeacher.passwordUser = user.documentIdUser
     setLoaders((loaders) => ({
@@ -89,7 +71,6 @@ const FormProfileUser = (props) => {
         setSmShow(true)
       })
       .then((data) => {
-        // console.log('content for put ', data)
       })
       .catch((error) => console.log(error))
       .finally(() => {
@@ -123,69 +104,63 @@ const FormProfileUser = (props) => {
     phoneUser,
     addressUser,
   } = user
-  // console.log('user...user...', user);
-
-
   return (
-    <div className="form">
+    <div className="form" style={{ borderRadius: '10px' }}>
       <form onSubmit={handleSubmit} noValidate >
         <div className="form-name">
           <label>Nombre: &nbsp; </label><br />
           <input
-            value={user.firstNameUser}
+            value={user.firstNameUser || ""}
             type="text"
             className="form-control"
-            // className={isError.name.length > 0 ? "is-invalid form-control" : "form-control"}
             name="firstNameUser"
             onChange={handleChange}
             style={{ fontSize: '20px' }}
           />
-          {/* {isError.name.length > 0 && (
-            <span className="invalid-feedback">{isError.name}</span>
-          )} */}
           <label>Apellido: &nbsp; </label><br />
           <input
             type="text"
-            value={user.lastNameUser}
+            value={user.lastNameUser || ""}
             className="form-control"
-            // className={isError.lastname.length > 0 ? "is-invalid form-control" : "form-control"}
             name="lastNameUser"
             onChange={handleChange}
             style={{ fontSize: '20px' }}
           />
-          {/* {isError.lastname.length > 0 && (
-            <span className="invalid-feedback">{isError.lastname}</span>
-          )} */}
         </div>
 
         <div className="form-email-rh">
           <label>Teléfono: &nbsp; </label>
           <input
             type="text"
-            value={user.phoneUser}
+            value={user.phoneUser || ""}
             className="form-control"
-            // className={isError.phone.length > 0 ? "is-invalid form-control" : "form-control"}
             name="phoneUser"
             onChange={handleChange}
             style={{ fontSize: '20px' }}
           />
-          {/* {isError.phone.length > 0 && (
-            <span className="invalid-feedback">{isError.phone}</span>
-          )} */}
           <label>Email: &nbsp; </label>
           <input
             type="email"
-            value={user.emailUser}
+            value={user.emailUser || ""}
             className="form-control"
-            // className={isError.email.length > 0 ? "is-invalid form-control" : "form-control"}
             name="emailUser"
             onChange={handleChange}
             style={{ fontSize: '20px' }}
           />
-          {/* {isError.email.length > 0 && (
-            <span className="invalid-feedback">{isError.email}</span>
-          )} */}
-          {/* <label>Grupo Sanguíneo: &nbsp; </label>
+        </div>
+
+        {/* <div className="form-email-rh">
+          <label>Fecha <br /> Nacimiento: &nbsp; </label>
+          <DatePicker
+            name="dateOfBirthUser"
+            value={user.dateOfBirthUser || ""}
+            // selected={moment(dateOfBirthUser)}
+            // onChange={handleChangeDate}
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
+          />
+          <label>Grupo Sanguíneo: &nbsp; </label>
             <select name="rh">
               <option value="-">-</option>
               <option value="A+">A+</option>
@@ -195,14 +170,11 @@ const FormProfileUser = (props) => {
               <option value="B-">B-</option>
               <option value="O+">O+</option>
               <option value="O-">O-</option>
-            </select>*/}
-        </div>
+            </select>
+        </div> */}
 
         <hr />
         <div className="form-group">
-          {/* <div className="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
-              <input className="button_send" type="submit" defaultValue="Update Profile" />
-            </div> */}
           <button
             style={{ borderRadius: '5px', fontSize: '20px' }}
             type="submit"
