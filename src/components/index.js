@@ -13,6 +13,7 @@ import Messages from './common/Messages/Messages'
 import Mailbox from './common/Mailbox/Mailbox'
 import Modal from './common/Modal/Modal'
 import CreatePost from './common/Post/Form/CreatePost'
+import EditPost from './common/Post/Form/EditPost'
 import Post from './common/Post/Post'
 /*--------------- General Admin Components ------------------*/
 import Messagewidget from './common/Messagewidget/Messagewidget'
@@ -21,6 +22,7 @@ import Navmenugroup from './common/Navmenugroup/Navmenugroup'
 /*--------------- Custom Components ------------------*/
 import PrivateRoute from './common/PrivateRoute/PrivateRoute'
 import ChangePassword from './common/ChangePassword/ChangePassword'
+import DescriptionComponent from './common/DescriptionComponent/DescriptionComponent.jsx'
 
 /*--------------- University Admin Components ------------------*/
 import Professorslist from './university/Professorslist/Professorslist'
@@ -44,6 +46,8 @@ import ShowActivity from './university/Activities/Form/ShowActivity'
 import CoursesStudentList from './hospital/Doctorslist/CoursesStudentList'
 import Patientslist from './hospital/Patientslist/Patientslist'
 import Staffslist from './hospital/Staffslist/Staffslist'
+import SubjectCard from './hospital/Subjects/SubjectCard'
+import SubjectActivity from './hospital/SubjectActivity/SubjectActivity'
 
 /*--------------- Home Page Components ------------------*/
 import Carousel from './home_page/Carousel'
@@ -64,9 +68,11 @@ export {
   //Common component
   Messagewidget,
   Modal,
+  DescriptionComponent,
   //Post Component
   Post,
   CreatePost,
+  EditPost,
   //PrivateRoute
   PrivateRoute,
   ChangePassword,
@@ -136,4 +142,7 @@ export {
   AvatarProfile,
   UpdateImgUser,
   FormProfileUser,
+  //Students
+  SubjectCard,
+  SubjectActivity,
 }

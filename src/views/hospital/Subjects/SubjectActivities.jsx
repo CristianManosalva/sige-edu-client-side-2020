@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Button } from 'reactstrap'
-import { ActivityItem, Activity, Modal, AddActivity } from 'components'
+import { useSelector } from 'react-redux'
+import { SubjectActivity, Activity, Modal, AddActivity } from 'components'
 import Loader from 'react-loader-spinner'
 import { config } from '_config'
-import './styles/activities.css'
+// import './styles/activities.css'
 
-const Activities = (props) => {
-  const { id_teacher, id_group, id_materia } = props.match.params
+const SubjectActivities = (props) => {
+  const { student } =
+    useSelector((state) => state.authentication.user.user_data) || {}
+  const { codeAcademicCharge } = props.match.params
   const [secctions, setSecctions] = useState([])
   const [loaders, setLoaders] = useState({
     creating: false,
@@ -210,19 +213,34 @@ const Activities = (props) => {
     }
   }
 
+  /* Fetchin data from api */
+  const getActivities = (code) => {
+    fetch(`${config.apiEndPoint}/secctions/secction/byacademicharge/${code}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setTimeout(() =>
+          setLoaders((loader) => ({ ...loader, gettingActivities: false }))
+        )
+        setSecctions(data)
+      })
+  }
+
+  /* Close fetchin data from api */
+
   useEffect(() => {
-    getWorkSpaces(id_teacher, id_group, id_materia)
+    // getWorkSpaces(id_teacher, id_group, id_materia)
+    getActivities(codeAcademicCharge)
   }, [])
 
   return (
     <div>
-      <Modal title="Crear actividad" show={modal} toggle={toggle}>
+      {/* <Modal title="Crear actividad" show={modal} toggle={toggle}>
         <AddActivity
           loader={creating}
           createActivity={createActivity}
           toggle={toggle}
         />
-      </Modal>
+      </Modal> */}
       <div className="content">
         <Row>
           <Col xs={12} md={12}>
@@ -231,10 +249,10 @@ const Activities = (props) => {
                 <h1 className="title">Actividades</h1>
               </div>
             </div>
-            <Row>
+            {/* <Row>
               <div className="col-12">
                 <section
-                  className="box" /*  style={{ borderRadius: '10px' }} */
+                  className="box"  style={{ borderRadius: '10px' }} 
                 >
                   <div className="action-bar_container">
                     <div className="row">
@@ -247,10 +265,11 @@ const Activities = (props) => {
                   </div>
                 </section>
               </div>
-            </Row>
+            </Row> */}
             <div className="cui-container">
               <Row>
-                <div className="col-12 col-lg-12 col-xl-8 offset-xl-2">
+                {/* <div className="col-12 "> */}
+                <div className="col-12 col-lg-12 col-xl-10 offset-xl-1">
                   {gettingActivities && (
                     <div
                       style={{
@@ -284,10 +303,11 @@ const Activities = (props) => {
                     secctions.length > 0 &&
                     secctions.map((value, key) => {
                       return (
-                        <ActivityItem
+                        <SubjectActivity
                           activity={value}
                           key={key * 1000}
                           deleteActivity={deleteActivity}
+                          student={student}
                         />
                       )
                     })}
@@ -309,14 +329,13 @@ const Activities = (props) => {
                           textAlign: 'center',
                         }}
                       >
-                        No Tienes ninguna actividad con este grupo para esta
-                        materia
+                        No Tienes ninguna actividad en esta asingnatura
                       </span>
                     </div>
                   )}
                   {/* {secctions.length ? (
                   secctions.reverse().map((value, key) => {
-                    return <ActivityItem activity={value} key={key * 1000} />
+                    return <SubjectActivity activity={value} key={key * 1000} />
                   })
                 ) : (
                   <p>
@@ -333,4 +352,4 @@ const Activities = (props) => {
   )
 }
 
-export default Activities
+export default SubjectActivities

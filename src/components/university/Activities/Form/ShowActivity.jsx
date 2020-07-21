@@ -259,13 +259,13 @@ const ShowActivity = ({
         </Col>
         {!editing && responses && responses.length > 0 && (
           <Col xs={12}>
+            <h5>Entregas de los estudiantes</h5>
             <div className="activity_responses_secction">
-              <h5>Entregas de los estudiantes</h5>
-              <Container>
+              <div className="custom-container">
                 {responses.map((value, key) => {
                   return <ResponseActivity response={value} key={key} />
                 })}
-              </Container>
+              </div>
             </div>
           </Col>
         )}
@@ -295,6 +295,13 @@ const ResponseActivity = (props) => {
     }
   }
   /* fin aux function  */
+
+  const componentDecorator = (href, text, key) => (
+    <a href={href} key={key} target="_blank">
+      {text}
+    </a>
+  )
+
   return (
     <div className="mb-3">
       <div
@@ -319,7 +326,7 @@ const ResponseActivity = (props) => {
             }
             style={{ fontSize: '1.2em', color: '#1eaedf' }}
           ></i>
-          <span>{user.firstNameUser + user.lastNameUser}</span>
+          <span>{user.firstNameUser + ' ' + user.lastNameUser}</span>
         </div>
         <div
           className="mr-1"
@@ -337,8 +344,11 @@ const ResponseActivity = (props) => {
         </div>
       </div>
       <Collapse isOpen={isOpen}>
-        <Container>
-          <p>{messageResponse}</p>
+        <div className="response_content_container">
+          <Linkify componentDecorator={componentDecorator}>
+            {messageResponse}
+          </Linkify>
+          <p>{}</p>
           {response && (
             <p className="uprofile-list">
               <span>
@@ -349,7 +359,7 @@ const ResponseActivity = (props) => {
               </span>
             </p>
           )}
-        </Container>
+        </div>
       </Collapse>
     </div>
   )
