@@ -68,7 +68,7 @@ const PatientProfile = (props) => {
                                         <div className="panel profile-cover">
                                             {urlphotouser == 'https://res.cloudinary.com/sigeedu/image/upload/v1594776164/sigedu/1528904524_boy_1_wehjsw.svg' ? (
                                                 <div className="profile-cover__img" onClick={togglemodalimg}>
-                                                    <img src={'https://res.cloudinary.com/sigeedu/image/upload/v1595252589/sigedu/SIGEBird_k7wgqh.png'} />
+                                                    <img src={'https://res.cloudinary.com/sigeedu/image/upload/v1595432004/userphoto_lxksb1.png'} />
                                                 </div>
                                             ) : (
                                                     <div className="profile-cover__img" onClick={togglemodalimg}>
