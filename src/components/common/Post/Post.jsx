@@ -8,12 +8,12 @@ import {
   DropdownItem,
   UncontrolledTooltip,
 } from 'reactstrap'
-import swal from 'sweetalert'
 import Avatar from '@material-ui/core/Avatar'
 import Linkify from 'react-linkify'
 import moment from 'moment'
 import { config } from '_config'
 import { Modal, EditPost } from 'components'
+import useUserPhoto from '../../../hooks/useUserPhoto'
 import './styles/styles.css'
 
 const Post = (props) => {
@@ -23,7 +23,8 @@ const Post = (props) => {
   const [modal, setModal] = useState(false)
   const [loader, setLoader] = useState(false)
   const toggle = () => setModal(!modal)
-
+  const API = `${config.apiEndPoint}/users/${documentIdUser}`
+  const { photouserurl, loading } = useUserPhoto(API);
   moment.locale('es')
 
   const editPost = (description) => {
@@ -56,23 +57,20 @@ const Post = (props) => {
         setLoader(false)
         console.log('error: ', error)
       })
-      .finally(() => {})
+      .finally(() => { })
   }
 
   // const deletePost = (id) => {
   //   swal("Good job", "You deleted post", "success")
   // }
-
   const componentDecorator = (href, text, key) => (
     <a href={href} key={key} target="_blank">
       {text}
     </a>
   )
-
   if (!user) {
     return null
   }
-
   return (
     <div>
       <Modal show={modal} toggle={toggle} title="Editar publicación">
@@ -88,13 +86,16 @@ const Post = (props) => {
           <Col xs={12}>
             <div className="post_header_container">
               <Avatar style={{ display: 'inline-flex' }}>
-                {firstNameUser.length > 0 ? firstNameUser[0] : 'U'}
+                {photouserurl.profile_picture == 'https://res.cloudinary.com/sigeedu/image/upload/v1594776164/sigedu/1528904524_boy_1_wehjsw.svg' ? (
+                  <img src={'https://res.cloudinary.com/sigeedu/image/upload/v1595432004/userphoto_lxksb1.png'} />
+                ) : (
+                    <img src={photouserurl.profile_picture} />
+                  )}
               </Avatar>
               <div className="post_container_name_container  ml-3">
                 <span className="post_container_header-name">
                   {firstNameUser + ' ' + lastNameUser}
                 </span>
-
                 <div
                   className="post_container_header-date_container"
                   id={'tooltip-' + codeCommunity + documentIdUser}
@@ -144,5 +145,4 @@ const Post = (props) => {
     </div>
   )
 }
-
 export default Post
