@@ -1,28 +1,46 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { Row, Col } from 'reactstrap';
+import { config } from '_config'
 import { Modal, AvatarProfile, UpdateImgUser, FormProfileUser } from 'components';
+import useUserPhoto from '../../../hooks/useUserPhoto'
 import { useSelector } from 'react-redux'
+import { useMediaQuery } from 'react-responsive'
 import './styles/profile.css'
+const axios = require('axios').default;
+
 
 const PatientProfile = (props) => {
-
     const { user } = useSelector(
-        (state) => state.authentication.user.user_data
+        (state) => state.authentication
     )
-    // const firstNameUser = user.firstNameUser
-    // const lastNameUser = user.lastNameUser
-    console.log('userProfile', user)
-    //   const student_id = userProfile.codeStudent
-    var IMGDIR = process.env.REACT_APP_IMGDIR;
+    const idUser = user.user_data.user.documentIdUser
+    const API = `${config.apiEndPoint}/users/${idUser}`
+    const { photouserurl, loading } = useUserPhoto(API);
+    const userProfile = photouserurl
+
     const [modalUpdateimg, setModalUpdateimg] = useState(false);
     const togglemodalimg = () => setModalUpdateimg(!modalUpdateimg);
-
-
+    const [urlphotouser, setUrlphoto] = useState('')
+    useEffect(() => {
+        getDatauser()
+    }, []);
+    const getDatauser = async e => {
+        try {
+            const response = await axios.get(`${config.apiEndPoint}/users/${idUser}`);
+            setUrlphoto(response.data.profile_picture)
+        } catch (e) {
+        }
+    }
     const ProfileUser = () => {
+        console.log(urlphotouser);
 
-
+        const getUserPhotoUser = (
+            urlImgUser
+        ) => {
+            getDatauser()
+            setModalUpdateimg(false)
+        }
         return (
-
             <div>
                 <Modal
                     title="Cambiar foto de perfil!!"
@@ -32,67 +50,48 @@ const PatientProfile = (props) => {
                     toggle={togglemodalimg}
                 >
                     <UpdateImgUser
-                    // loader={creating}
-                    // createResponseCourse={createResponseCourse}
-                    // toggle={togglemodal}
-                    // student_id={student_id}
-                    // codeSecction={codeSecction}
+                        userId={idUser}
+                        getUserPhotoUser={getUserPhotoUser}
                     />
                 </Modal>
                 <div className="content">
-                    <Row>
-                        <Col xs={12} md={12}>
+                        <Row>
+                            <Col xs={12} md={12}>
+                                <div className="col-xl-12" style={{ paddingTop: '15px' }}>
+                                    <div className="container" style={{ paddingTop: '15px', width: "100%" }}>
+                                        <div className="panel profile-cover">
+                                            {urlphotouser == 'https://res.cloudinary.com/sigeedu/image/upload/v1594776164/sigedu/1528904524_boy_1_wehjsw.svg' ? (
+                                                <div className="profile-cover__img" onClick={togglemodalimg}>
+                                                    <img src={'https://res.cloudinary.com/sigeedu/image/upload/v1595432004/userphoto_lxksb1.png'} />
+                                                </div>
+                                            ) : (
+                                                    <div className="profile-cover__img" onClick={togglemodalimg}>
+                                                        <img src={urlphotouser} />
+                                                    </div>
+                                                )}
 
-                            <div className="col-xl-12" style={{ paddingTop: '15px' }}>
-
-                                <div className="container" style={{ paddingTop: '15px', width: "100%" }}>
-                                    <div className="panel profile-cover">
-                                        <div className="profile-cover__img">
-                                            {/* <img src="https://images.pexels.com/photos/4623636/pexels-photo-4623636.jpeg" alt="" width="150px" height="150px" /> */}
-                                            <AvatarProfile width="150px" height="150px" />
-                                            {/* <button type="submit" className="button_update" onClick={togglemodalimg}>Actualizar</button> */}
+                                            <div className="profile-cover__action" data-overlay="0.3">
+                                                {/* {firstNameUser + ' ' + lastNameUser} */}
+                                            </div>
                                         </div>
-                                        {/* <div className="profile-cover__action" data-overlay="0.3">
-                                            {firstNameUser + ' ' + lastNameUser}
-                                        </div> */}
-                                        {/* <div className="profile-cover__info">
-                                            <ul className="nav">
-                                                <li><strong>0</strong>Mensajes</li>
-                                            </ul>
-                                        </div> */}
+                                        <section>
+                                            <div>
+                                                <FormProfileUser user={userProfile} idDocUser={idUser} />
+                                            </div>
+                                            <div>&nbsp;&nbsp;&nbsp;<br /> &nbsp;&nbsp;<br /> &nbsp;&nbsp;</div>
+                                        </section>
                                     </div>
-                                    <section>
-                                        <div>
-                                            <FormProfileUser user={user}/>
-
-                                        </div>
-                                        <div>&nbsp;&nbsp;&nbsp;<br /> &nbsp;&nbsp;<br /> &nbsp;&nbsp;</div>
-                                    </section>
                                 </div>
-                            </div>
-                        </Col >
-                    </Row >
+                            </Col >
+                        </Row >
                 </div >
             </div >
         );
     }
-
     return (
         <Fragment>
-            {/* {ScrollCourses()} */}
             {ProfileUser()}
         </Fragment>
     )
 }
-
 export default PatientProfile;
-
-// api/profilepictures/
-// api/profilepictures/create/
-// api/profilepictures/update/
-// api/profilepictures/delete/
-// para la foto de perfil
-// es igual que mandar arhivo
-// pero recibe
-// photo = imagen
-// user = codeuser (docuemento id)

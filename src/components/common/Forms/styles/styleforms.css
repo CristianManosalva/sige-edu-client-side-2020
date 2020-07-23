@@ -4,8 +4,23 @@
   padding: 10px;
   border-radius: 5px;
 }
-@media (min-width: 992px) {
-
+@media (max-width: 800px) {
+  .form-name{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+  }
+  .form-email-rh{
+    display: flex;
+    flex-direction: column;
+  }
+  .form {
+    background: #ffffff;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+  }
 }
 .form-name{
   padding: 8px;
