@@ -1,7 +1,17 @@
 import React, { useState } from 'react'
 import { Spinner, Row, Col, Container, Button, Label, Input } from 'reactstrap'
 import Dropzone from 'react-dropzone'
+import TextareaAutosize from '@material-ui/core/TextareaAutosize'
 import swal from 'sweetalert'
+import styled from 'styled-components'
+
+const ReponseDescription = styled.p`
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 300;
+  font-size: 13px;
+  line-height: normal;
+`
+
 const AddResponseSection = ({
   createResponseCourse,
   loader,
@@ -48,12 +58,18 @@ const AddResponseSection = ({
         <Col xs={12} className="form-group">
           <Label for="name" style={{ color: '#000000' }}>
             Respuesta a la actividad
+            <ReponseDescription className="mt-1">
+              Escribe todo lo que quieras, has descripciones detalladas, utiliza
+              salto de linea(enter), incluso pega enlaces.
+            </ReponseDescription>
           </Label>
-          <Input
-            type="textarea"
-            name="description"
-            placeholder="Tu respuesta..."
+          <TextareaAutosize
             aria-label="minimum height"
+            rowsMin={8}
+            rowsMax={24}
+            name="description"
+            placeholder="Escribe lo que necesites contarle a tu profe..."
+            className="description_container-text-aria"
             onChange={handleChange}
           />
         </Col>
