@@ -154,12 +154,12 @@ const ActivityItem = (props) => {
   /* aux function */
   const isResponse = (responses) => {
     responses.forEach((response) => {
-      const { studentResponse } = response
-      if (studentResponse.codeStudent == props.student.codeStudent) {
+      const { student_response } = response
+      if (student_response.codeStudent == props.student.codeStudent) {
         setResponse(response)
         return
       }
-      if (studentResponse == props.student.codeStudent) {
+      if (student_response == props.student.codeStudent) {
         setResponse(response)
         return
       }
@@ -167,7 +167,7 @@ const ActivityItem = (props) => {
   }
   /* close aux function */
 
-  useEffect(() => isResponse(activity.responses), [])
+  useEffect(() => isResponse(activity.response), [])
 
   const { responding } = loaders
 
@@ -339,9 +339,9 @@ const ResponseActivity = (props) => {
   const [isOpen, setIsOpen] = useState(false) //temporal, estado inical debe ser false
   const toggle = () => setIsOpen(!isOpen)
   const {
-    response,
-    messageResponse,
-    dateResponse,
+    homework,
+    message_response,
+    date_response,
     // studentResponse,
   } = props.response
   // const { codeStudent, user } = studentResponse
@@ -393,18 +393,18 @@ const ResponseActivity = (props) => {
             className="i-clock mr-1"
             style={{ fontSize: '1.2em', color: '#1eaedf' }}
           />
-          <span>{moment(dateResponse).format('MMMM DD, hh:mm')}</span>
+          <span>{moment(date_response).format('MMMM DD, hh:mm')}</span>
         </div>
       </div>
       <Collapse isOpen={isOpen}>
         <div className="response_content_container">
-          <DescriptionComponent>{messageResponse}</DescriptionComponent>
-          {response && (
+          <DescriptionComponent>{message_response}</DescriptionComponent>
+          {homework && homework.length >= 0 && (
             <p className="uprofile-list mt-2">
               <span>
                 <i className="i-doc"></i>{' '}
-                <a href={response} target="_blank">
-                  {auxParseName(response)}
+                <a href={homework[0].response_file} target="_blank">
+                  {auxParseName(homework[0].response_file)}
                 </a>
               </span>
             </p>
