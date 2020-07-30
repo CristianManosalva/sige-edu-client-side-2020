@@ -34,12 +34,7 @@ const AddResponseSection = ({
         'info'
       )
     } else {
-      createResponseCourse({
-        codeSecction,
-        description,
-        files,
-        student_id,
-      })
+      createResponseCourse(codeSecction, description, files, student_id)
     }
   }
 

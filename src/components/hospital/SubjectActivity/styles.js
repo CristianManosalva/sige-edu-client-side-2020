@@ -81,3 +81,15 @@ export const ToggleContainer = styled.div`
     background-color: rgba(0, 0, 0, 0.05);
   }
 `
+
+export const DeleteIcon = styled.span`
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  padding: 6px 7px !important;
+  margin: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
