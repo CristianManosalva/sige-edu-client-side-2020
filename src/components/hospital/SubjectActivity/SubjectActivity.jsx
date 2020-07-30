@@ -235,7 +235,7 @@ const ActivityItem = (props) => {
     }).then((willDelete) => {
       if (willDelete) {
         setLoaders((loader) => ({ ...loader, erasing: true }))
-        fetch(`${config.apiEndPoint}/secctions/delete/${id}`, {
+        fetch(`${config.apiEndPoint}/secctions/responses/delete/${id}`, {
           method: 'DELETE',
           headers: {
             Accept: 'application/json',
