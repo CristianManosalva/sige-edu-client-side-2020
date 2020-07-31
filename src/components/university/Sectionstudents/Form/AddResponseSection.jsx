@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
-import { Spinner, Row, Col, Container, Button, Label, Input } from 'reactstrap'
-import Dropzone from 'react-dropzone'
+import { Spinner, Row, Col, Container, Button, Label } from 'reactstrap'
+import Checkbox from '@material-ui/core/Checkbox'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize'
+import Dropzone from 'react-dropzone'
 import swal from 'sweetalert'
 import styled from 'styled-components'
+
+import './styles/fix-radio.css'
 
 const ReponseDescription = styled.p`
   color: rgba(0, 0, 0, 0.5);
@@ -21,20 +25,27 @@ const AddResponseSection = ({
   const [inputs, setInputs] = useState({
     description: '',
     files: [],
+    notSentField: false,
   })
+  const [checked, setChecked] = useState(false)
 
   const { description, files } = inputs
   const create = () => {
     if (!description) {
       swal('Algo nos falta!!', 'Debes escribir tu respuesta!!', 'error')
-    } else if (inputs.files.length <= 0) {
+    } else if (!checked && inputs.files.length <= 0) {
       swal(
         '¿Sin Archivo?',
         'Vas a enviar tu respuesta sin ningún archivo. \n',
         'info'
       )
     } else {
-      createResponseCourse(codeSecction, description, files, student_id)
+      createResponseCourse(
+        codeSecction,
+        description,
+        checked ? [] : files,
+        student_id
+      )
     }
   }
 
@@ -68,40 +79,55 @@ const AddResponseSection = ({
             onChange={handleChange}
           />
         </Col>
-        <Col xs={12} className="form-group">
-          <Label for="name" style={{ color: '#000000' }}>
-            Archivo
-          </Label>
-          <div
-            className="dropzone"
-            style={{ cursor: 'pointer', color: '#000000' }}
-          >
-            <Dropzone
-              onDrop={onDrop}
-              className="droparea"
-              style={{ minHeight: '0' }}
-            >
-              <p>
-                Arrastra hasta aqui el archivo que deseas agregar o{' '}
-                <strong style={{ color: '#1EAEDF' }}>
-                  has click aquí para seleccionarlo
-                </strong>
-              </p>
-            </Dropzone>
-          </div>
-          {inputs.files.length > 0 && (
-            <aside style={{ color: '#000000' }}>
-              <h6>Archivo</h6>
-              <ul>
-                {inputs.files.map((f) => (
-                  <li key={f.name}>
-                    {f.name} - {f.size} bytes
-                  </li>
-                ))}
-              </ul>
-            </aside>
-          )}
+        <Col xs={12} className="special_input_check_box">
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={checked}
+                onChange={() => setChecked(!checked)}
+                name="checked"
+                color="primary"
+              />
+            }
+            label="No agregar archivo"
+          />
         </Col>
+        {!checked && (
+          <Col xs={12} className="form-group">
+            <Label for="name" style={{ color: '#000000' }}>
+              Archivo
+            </Label>
+            <div
+              className="dropzone"
+              style={{ cursor: 'pointer', color: '#000000' }}
+            >
+              <Dropzone
+                onDrop={onDrop}
+                className="droparea"
+                style={{ minHeight: '0' }}
+              >
+                <p>
+                  Arrastra hasta aqui el archivo que deseas agregar o{' '}
+                  <strong style={{ color: '#1EAEDF' }}>
+                    has click aquí para seleccionarlo
+                  </strong>
+                </p>
+              </Dropzone>
+            </div>
+            {inputs.files.length > 0 && (
+              <aside style={{ color: '#000000' }}>
+                <h6>Archivo</h6>
+                <ul>
+                  {inputs.files.map((f) => (
+                    <li key={f.name}>
+                      {f.name} - {f.size} bytes
+                    </li>
+                  ))}
+                </ul>
+              </aside>
+            )}
+          </Col>
+        )}
         <Col xs={12}>
           <Button
             style={{

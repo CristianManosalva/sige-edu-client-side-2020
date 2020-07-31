@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import swal from 'sweetalert'
-import { Collapse, Container, UncontrolledTooltip } from 'reactstrap'
+import { Collapse, Container, UncontrolledTooltip, Spinner } from 'reactstrap'
 import moment from 'moment'
 import { Modal, AddResponseSection, DescriptionComponent } from 'components'
 import {
@@ -53,7 +53,7 @@ const ActivityItem = (props) => {
     responding: false,
     erasing: false,
   })
-  const [colapse, setColapse] = useState(true)
+  const [colapse, setColapse] = useState(false)
   const [response, setResponse] = useState(null)
   const [modal, setModal] = useState(false)
   const [activity, setActivity] = useState(props.activity)
@@ -168,7 +168,7 @@ const ActivityItem = (props) => {
       .then(async (newSecction) => {
         let fileDone = true
         console.log('creating files')
-        if (files.length >= 0) {
+        if (files.length > 0) {
           let homework = await addFile(files[0], newSecction.code_response)
           console.log('after done files')
           if (!homework) {
@@ -285,7 +285,7 @@ const ActivityItem = (props) => {
 
   useEffect(() => isResponse(activity.response), [])
 
-  const { responding } = loaders
+  const { responding, erasing } = loaders
 
   return (
     <Card>
@@ -415,6 +415,7 @@ const ActivityItem = (props) => {
                 <ResponseActivity
                   deleteResponse={deleteResponse}
                   response={response}
+                  loader={erasing}
                 />
               )}
               {!response && (
@@ -456,8 +457,8 @@ const ActivityItem = (props) => {
 
 export default ActivityItem
 
-const ResponseActivity = ({ response, deleteResponse }) => {
-  const [isOpen, setIsOpen] = useState(true) //temporal, estado inical debe ser false
+const ResponseActivity = ({ response, deleteResponse, loader }) => {
+  const [isOpen, setIsOpen] = useState(false) //temporal, estado inical debe ser false
   const toggle = () => setIsOpen(!isOpen)
   const {
     homework,
@@ -527,11 +528,16 @@ const ResponseActivity = ({ response, deleteResponse }) => {
             onClick={() => deleteResponse(code_response)}
             className="btn btn-danger btn-sm"
             id="delete_response"
+            loader={loader}
+            disabled={loader}
           >
-            <i className="fa fa-trash-o" style={{ fontSize: '18px' }} />
+            {loader && <Spinner color="ligth" size="sm" />}
+            {!loader && (
+              <i className="fa fa-trash-o" style={{ fontSize: '18px' }} />
+            )}
           </DeleteIcon>
           <DescriptionComponent>{message_response}</DescriptionComponent>
-          {homework && homework.length >= 0 && (
+          {homework && homework.length > 0 && (
             <p className="uprofile-list mt-2">
               <span>
                 <i className="i-doc"></i>{' '}

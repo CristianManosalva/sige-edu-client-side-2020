@@ -82,11 +82,12 @@ export const ToggleContainer = styled.div`
   }
 `
 
-export const DeleteIcon = styled.span`
+export const DeleteIcon = styled.button`
   position: absolute;
   top: 6px;
   right: 10px;
-  padding: 6px 7px !important;
+  padding: ${(props) => (props.loader ? '6px' : '6px 7px')} !important;
+  /* padding: 6px 7px !important; */
   margin: 0;
   border-radius: 50%;
   display: flex;

@@ -46,7 +46,7 @@ const ActivityItem = (props) => {
   const [activity, setActivity] = useState(props.activity)
   const [backup] = useState(props.activity)
 
-  const [modal, setModal] = useState(activity.codeSecction == 280)
+  const [modal, setModal] = useState(false)
   const toggleModal = () => setModal(!modal)
 
   const handleChange = (e) => {
