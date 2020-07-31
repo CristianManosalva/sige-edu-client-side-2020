@@ -4,6 +4,7 @@ import { Modal, ShowActivity } from 'components'
 import { config } from '_config'
 import Linkify from 'react-linkify'
 import moment from 'moment'
+import { error } from 'jquery'
 
 const tempImg = [
   'https://images.pexels.com/photos/2170/creative-desk-pens-school.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
@@ -45,7 +46,7 @@ const ActivityItem = (props) => {
   const [activity, setActivity] = useState(props.activity)
   const [backup] = useState(props.activity)
 
-  const [modal, setModal] = useState(activity.codeSecction == 71)
+  const [modal, setModal] = useState(activity.codeSecction == 280)
   const toggleModal = () => setModal(!modal)
 
   const handleChange = (e) => {
@@ -71,6 +72,29 @@ const ActivityItem = (props) => {
       })
       .catch((error) => console.log(error))
       .finally(() => {})
+  }
+
+  const createComment = (comment, codeResponse) => {
+    console.log(
+      'creando: ',
+      comment,
+      ' : ',
+      props.id_teacher,
+      ' : ',
+      codeResponse
+    )
+    return fetch(`${config.apiEndPoint}/secctions/commentsecction/create/`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        comment,
+        teacherComment: props.id_teacher,
+        responseToComment: codeResponse,
+      }),
+    }).catch((error) => console.log(error))
   }
 
   const goBack = () => {
@@ -106,6 +130,7 @@ const ActivityItem = (props) => {
           edit={editActivity}
           cancel={goBack}
           deleteActivity={props.deleteActivity}
+          createComment={createComment}
         />
       </Modal>
       <section className="box profile-page">
