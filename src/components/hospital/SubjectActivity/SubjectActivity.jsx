@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import swal from 'sweetalert'
-// import { Button, Collapse, Card, CardBody } from 'reactstrap'
-import { Collapse, Container } from 'reactstrap'
+import { Collapse, Container, UncontrolledTooltip, Spinner } from 'reactstrap'
 import moment from 'moment'
 import { Modal, AddResponseSection, DescriptionComponent } from 'components'
 import {
@@ -18,9 +17,10 @@ import {
   Score,
   ScoreTitle,
   ReponseContainer,
+  DeleteIcon,
 } from './styles'
 import { config } from '_config'
-import { error } from 'jquery'
+// import { error } from 'jquery'
 
 const tempImg = [
   'https://images.pexels.com/photos/2170/creative-desk-pens-school.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
@@ -51,27 +51,16 @@ const tempImg = [
 const ActivityItem = (props) => {
   const [loaders, setLoaders] = useState({
     responding: false,
+    erasing: false,
   })
   const [colapse, setColapse] = useState(false)
   const [response, setResponse] = useState(null)
-  const [isOpen, setIsOpen] = useState(false)
-  const [isOpen2, setIsOpen2] = useState(false)
   const [modal, setModal] = useState(false)
-  const toggle = () => {
-    setIsOpen(!isOpen)
-    setIsOpen2(false)
-  }
-  const toggle2 = () => {
-    setIsOpen2(!isOpen2)
-    setIsOpen(false)
-  }
-  const toggleColapse = () => setColapse(!colapse)
-  const toggleModal = () => setModal(!modal)
   const [activity, setActivity] = useState(props.activity)
   const [backup] = useState(props.activity)
 
-  // const [modal, setModal] = useState(activity.codeSecction == 71)
-  // const toggleModal = () => setModal(!modal)
+  const toggleModal = () => setModal(!modal)
+  const toggleColapse = () => setColapse(!colapse)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -111,7 +100,7 @@ const ActivityItem = (props) => {
   }
 
   /* fetching data */
-  function createResponseCourse({
+  function oldCreateResponseCourse({
     codeSecction,
     description,
     files,
@@ -129,7 +118,7 @@ const ActivityItem = (props) => {
     })
       .then((response) => {
         if (response.status != 201) {
-          throw new error('Algo anda mal')
+          throw new Error('Algo anda mal')
         }
         return response.json()
       })
@@ -149,17 +138,144 @@ const ActivityItem = (props) => {
       })
       .finally(() => {})
   }
+
+  function createResponseCourse(
+    secction_response,
+    message_response,
+    files,
+    student_response
+  ) {
+    console.log('Mensaje: ', message_response)
+    setLoaders((loader) => ({ ...loader, responding: true }))
+    fetch(`${config.apiEndPoint}/secctions/responses/create/`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        message_response,
+        secction_response,
+        student_response,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Error en la respuesta')
+        }
+        return response.json()
+      })
+      .then(async (newSecction) => {
+        let fileDone = true
+        console.log('creating files')
+        if (files.length > 0) {
+          let homework = await addFile(files[0], newSecction.code_response)
+          console.log('after done files')
+          if (!homework) {
+            fileDone = false
+          } else {
+            newSecction.homework = [homework]
+          }
+        }
+        console.log('activity done', newSecction)
+        setResponse(newSecction)
+        setLoaders((loader) => ({ ...loader, responding: false }))
+        setTimeout(() => {
+          toggleModal()
+          if (fileDone) {
+            swal('Excelente!!', 'Todo salió bien!! :)', 'success')
+          } else {
+            swal(
+              'Upss..!!',
+              'Tu actividad se creo, pero no fue posible agregar tu archivo :(',
+              'warning'
+            )
+          }
+        }, 300)
+      })
+      .catch((error) => {
+        console.log('El error: ', error)
+        setLoaders((loader) => ({ ...loader, responding: false }))
+        swal(
+          'Upss..!!',
+          'Algo salio mal, intenta mas tarde o contacta a soporte :(',
+          'warning'
+        )
+      })
+      .finally(() => {})
+  }
+
+  function addFile(file, response_secction) {
+    const formdata = new FormData()
+    formdata.append('response_file', file)
+    formdata.append('response_secction', response_secction)
+    return fetch(`${config.apiEndPoint}/secctions/homework/create/`, {
+      method: 'POST',
+      body: formdata,
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+        return null
+      })
+      .catch((error) => {
+        console.log(error)
+        return null
+      })
+  }
+
+  function deleteResponse(id) {
+    swal({
+      title: '¿Estas Seguro?',
+      text: 'Una vez borrada tu respuesta, no podrá recuperarse',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        setLoaders((loader) => ({ ...loader, erasing: true }))
+        fetch(`${config.apiEndPoint}/secctions/responses/delete/${id}`, {
+          method: 'DELETE',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error('Error al eleminar la respuesta')
+            }
+            setLoaders((loader) => ({ ...loader, erasing: false }))
+            setTimeout(() => {
+              setResponse(null)
+              swal('Excelente!!', 'Todo salió bien!! :)', 'success')
+            }, 300)
+          })
+          .catch((error) => {
+            setLoaders((loader) => ({ ...loader, erasing: false }))
+            console.log(error)
+            swal(
+              'Upss!!',
+              'Ocurrio un error al borrar tu entrega, contacta a soporte :)',
+              'error'
+            )
+          })
+          .finally(() => {})
+      }
+    })
+  }
   /* close fetching data */
 
   /* aux function */
   const isResponse = (responses) => {
     responses.forEach((response) => {
-      const { studentResponse } = response
-      if (studentResponse.codeStudent == props.student.codeStudent) {
+      const { student_response } = response
+      if (student_response.codeStudent == props.student.codeStudent) {
         setResponse(response)
         return
       }
-      if (studentResponse == props.student.codeStudent) {
+      if (student_response == props.student.codeStudent) {
         setResponse(response)
         return
       }
@@ -167,9 +283,9 @@ const ActivityItem = (props) => {
   }
   /* close aux function */
 
-  useEffect(() => isResponse(activity.responses), [])
+  useEffect(() => isResponse(activity.response), [])
 
-  const { responding } = loaders
+  const { responding, erasing } = loaders
 
   return (
     <Card>
@@ -295,7 +411,13 @@ const ActivityItem = (props) => {
         <ReponseContainer>
           <div className="row">
             <div className="col-12">
-              {response && <ResponseActivity response={response} />}
+              {response && (
+                <ResponseActivity
+                  deleteResponse={deleteResponse}
+                  response={response}
+                  loader={erasing}
+                />
+              )}
               {!response && (
                 <div className="d-flex align-items-center">
                   <i style={{ fontSize: '1.3em' }} className="i-info mr-2 " />
@@ -335,15 +457,16 @@ const ActivityItem = (props) => {
 
 export default ActivityItem
 
-const ResponseActivity = (props) => {
+const ResponseActivity = ({ response, deleteResponse, loader }) => {
   const [isOpen, setIsOpen] = useState(false) //temporal, estado inical debe ser false
   const toggle = () => setIsOpen(!isOpen)
   const {
-    response,
-    messageResponse,
-    dateResponse,
+    homework,
+    message_response,
+    date_response,
+    code_response,
     // studentResponse,
-  } = props.response
+  } = response
   // const { codeStudent, user } = studentResponse
   /* inicio aux function */
   const auxParseName = (url) => {
@@ -393,18 +516,33 @@ const ResponseActivity = (props) => {
             className="i-clock mr-1"
             style={{ fontSize: '1.2em', color: '#1eaedf' }}
           />
-          <span>{moment(dateResponse).format('MMMM DD, hh:mm')}</span>
+          <span>{moment(date_response).format('MMMM DD, hh:mm')}</span>
         </div>
       </div>
       <Collapse isOpen={isOpen}>
         <div className="response_content_container">
-          <DescriptionComponent>{messageResponse}</DescriptionComponent>
-          {response && (
+          <UncontrolledTooltip placement="right" target="delete_response">
+            Borrar
+          </UncontrolledTooltip>
+          <DeleteIcon
+            onClick={() => deleteResponse(code_response)}
+            className="btn btn-danger btn-sm"
+            id="delete_response"
+            loader={loader}
+            disabled={loader}
+          >
+            {loader && <Spinner color="ligth" size="sm" />}
+            {!loader && (
+              <i className="fa fa-trash-o" style={{ fontSize: '18px' }} />
+            )}
+          </DeleteIcon>
+          <DescriptionComponent>{message_response}</DescriptionComponent>
+          {homework && homework.length > 0 && (
             <p className="uprofile-list mt-2">
               <span>
                 <i className="i-doc"></i>{' '}
-                <a href={response} target="_blank">
-                  {auxParseName(response)}
+                <a href={homework[0].response_file} target="_blank">
+                  {auxParseName(homework[0].response_file)}
                 </a>
               </span>
             </p>

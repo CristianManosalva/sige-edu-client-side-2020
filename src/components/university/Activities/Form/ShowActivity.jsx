@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize'
-import Linkify from 'react-linkify'
 import moment from 'moment'
-import { Collapse } from 'reactstrap'
 import {
+  Collapse,
   Tooltip,
   Row,
   Col,
@@ -15,20 +14,31 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  UncontrolledTooltip,
+  Spinner,
 } from 'reactstrap'
-import Dropzone from 'react-dropzone'
+import { DescriptionComponent } from 'components'
 import '../styles/show-activity.css'
-import { DialogContent } from '@material-ui/core'
+import {
+  CommentContainer,
+  CommentTitle,
+  MessageContainer,
+} from '../styles/responseComment'
+import { config } from '_config'
+import { error } from 'jquery'
+
+const auxCountNewLines = (text) => {
+  return text.replace(/[^\n]/g, '').length
+}
 
 const ShowActivity = ({
   toggleModal,
-  //   onChange,
   edit,
   activity,
-  //   loader,
   cancel,
   handleChange,
   deleteActivity,
+  createComment,
 }) => {
   const [state, setState] = useState({
     editing: false,
@@ -52,20 +62,6 @@ const ShowActivity = ({
     </a>
   )
 
-  const create = () => {
-    // if (!description) {
-    //   alert('Por favor, escribe una descripcion')
-    // } else if (!name) {
-    //   alert('Por favor, dale un nombre a la actividad')
-    // } else {
-    //   createActivity({
-    //     name,
-    //     description,
-    //     files,
-    //   })
-    // }
-  }
-
   const onDrop = (files) => {
     setInputs((inputs) => ({ ...inputs, files: files }))
   }
@@ -83,7 +79,7 @@ const ShowActivity = ({
     files,
     uploadOnSecction,
     resources,
-    responses,
+    response,
   } = activity
 
   return (
@@ -241,9 +237,7 @@ const ShowActivity = ({
                 />
               </div>
             ) : (
-              <Linkify componentDecorator={componentDecorator}>
-                {descriptionSecction}
-              </Linkify>
+              <DescriptionComponent>{descriptionSecction}</DescriptionComponent>
             )}
 
             {/* </div> */}
@@ -257,13 +251,19 @@ const ShowActivity = ({
             ></SupportMaterialCollapse>
           </div>
         </Col>
-        {!editing && responses && responses.length > 0 && (
+        {!editing && response && response.length > 0 && (
           <Col xs={12}>
             <h5>Entregas de los estudiantes</h5>
             <div className="activity_responses_secction">
               <div className="custom-container">
-                {responses.map((value, key) => {
-                  return <ResponseActivity response={value} key={key} />
+                {response.map((value, key) => {
+                  return (
+                    <ResponseActivity
+                      createComment={createComment}
+                      response={value}
+                      key={key}
+                    />
+                  )
                 })}
               </div>
             </div>
@@ -276,16 +276,210 @@ const ShowActivity = ({
 
 export default ShowActivity
 
-const ResponseActivity = (props) => {
+const ResponseComment = ({
+  comment,
+  editLoader,
+  deleteLoader,
+  editResponse,
+  deleteReponse,
+  toggleEdit,
+  editing,
+}) => {
+  const { codeComment, comment: comment_teacher, dateComment, score } = comment
+  const [newComment, setNewComment] = useState(comment_teacher || '')
+
+  const handleChange = (e) => {
+    const { value } = e.target
+    setNewComment(value)
+  }
+
+  const edit = async () => {
+    //validacion
+    if (true) {
+      editResponse(codeComment, newComment)
+    }
+  }
+
+  return (
+    <CommentContainer>
+      <ActionsButtonsCircleBar
+        paddingDelete="6px 8px"
+        paddingEdit="8px 5px 6px 7px"
+        sizeDelete="16px"
+        space="8px"
+        style={{
+          position: 'absolute',
+          top: '2px',
+          right: '2px',
+          display: editing ? 'none' : 'block',
+        }}
+        editAction={toggleEdit}
+        deleteLoader={deleteLoader}
+        deleteAction={deleteReponse}
+      />
+      <CommentTitle>Retroalimentacion</CommentTitle>
+      <MessageContainer>
+        {!editing && (
+          <DescriptionComponent style={{ padding: '14px 0' }}>
+            {comment_teacher}
+          </DescriptionComponent>
+        )}
+        {editing && (
+          <TextareaAutosize
+            aria-label="minimum height"
+            rowsMin={auxCountNewLines(comment_teacher)}
+            rowsMax={24}
+            name="newComment"
+            placeholder=""
+            className="add_activity_description_container-text-aria"
+            onChange={handleChange}
+            value={newComment}
+            style={{ fontSize: '14px', marginLeft: '-13.7px' }}
+          />
+        )}
+        {editing && (
+          <ComfirmActionTwoButtonsBar
+            cancelAction={toggleEdit}
+            confirmAction={edit}
+            loader={editLoader}
+          />
+        )}
+      </MessageContainer>
+    </CommentContainer>
+  )
+}
+
+const ResponseActivity = ({ response, createComment }) => {
   const [isOpen, setIsOpen] = useState(false) //temporal, estado inical debe ser false
+  const [loaders, setLoaders] = useState({
+    creatingCommentLoader: false,
+    editCommentLoader: false,
+    deleteCommentLoader: false,
+  })
+  const [editing, setEditing] = useState(false) // temporal
+  const toggleEdit = () => setEditing(!editing)
+
   const toggle = () => setIsOpen(!isOpen)
   const {
-    response,
-    messageResponse,
-    dateResponse,
-    studentResponse,
-  } = props.response
-  const { codeStudent, user } = studentResponse
+    message_response,
+    date_response,
+    student_response,
+    homework,
+    comment,
+    code_response,
+  } = response
+
+  const [own_comment, setComment] = useState(comment)
+  const { user } = student_response
+
+  const OldeditResponse = (codeComment, comment) => {
+    return fetch(
+      `${config.apiEndPoint}/secctions/commentsecction/update/${codeComment}`,
+      {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          comment,
+        }),
+      }
+    )
+  }
+
+  const createCommentOwn = async (comment) => {
+    setLoaders((loaders) => ({ ...loaders, creatingCommentLoader: true }))
+    try {
+      let newComment = await createComment(comment, code_response).then(
+        (response) => {
+          if (!response.ok) {
+            return null
+          }
+          return response.json()
+        }
+      )
+      if (newComment) {
+        setComment(newComment)
+      }
+    } catch (error) {
+      console.log('error al crear comentario')
+    }
+    setLoaders((loaders) => ({ ...loaders, creatingCommentLoader: false }))
+  }
+
+  const editResponse = async (codeComment, comment) => {
+    setLoaders((loaders) => ({ ...loaders, editCommentLoader: true }))
+    try {
+      let done = await fetch(
+        `${config.apiEndPoint}/secctions/commentsecction/update/${codeComment}`,
+        {
+          method: 'PUT',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            comment,
+          }),
+        }
+      ).then((response) => {
+        if (!response.ok) {
+          return null
+        }
+        return response.json()
+      })
+      if (done) {
+        setComment((preComment) => ({ ...preComment, comment: comment }))
+      }
+    } catch (error) {
+      console.log('error al editar comentario')
+    }
+    setLoaders((loaders) => ({ ...loaders, editCommentLoader: false }))
+    toggleEdit()
+  }
+
+  const deleteReponse = async () => {
+    console.log('Making')
+    setLoaders((loaders) => ({ ...loaders, deleteCommentLoader: true }))
+    try {
+      let done = await fetch(
+        `${config.apiEndPoint}/secctions/commentsecction/delete/${own_comment.codeComment}`,
+        {
+          method: 'DELETE',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      ).then((response) => {
+        if (!response.ok) {
+          return null
+        }
+        return true
+      })
+      if (done) {
+        setComment(null)
+      }
+    } catch (error) {
+      console.log('error al borrar comentario')
+    }
+    setLoaders((loaders) => ({ ...loaders, deleteCommentLoader: false }))
+  }
+
+  // const deleteReponse = (codeComment) => {
+  //   return fetch(
+  //     `${config.apiEndPoint}/secctions/commentsecction/delete/${codeComment}`,
+  //     {
+  //       method: 'DELETE',
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //       },
+  //     }
+  //   )
+  // }
+
   /* inicio aux function */
   const auxParseName = (url) => {
     try {
@@ -296,11 +490,7 @@ const ResponseActivity = (props) => {
   }
   /* fin aux function  */
 
-  const componentDecorator = (href, text, key) => (
-    <a href={href} key={key} target="_blank">
-      {text}
-    </a>
-  )
+  const { editCommentLoader, deleteCommentLoader } = loaders
 
   return (
     <div className="mb-3">
@@ -340,27 +530,101 @@ const ResponseActivity = (props) => {
             className="i-clock mr-1"
             style={{ fontSize: '1.2em', color: '#1eaedf' }}
           />
-          <span>{moment(dateResponse).format('MMMM DD, hh:mm')}</span>
+          <span>{moment(date_response).format('MMMM DD, hh:mm')}</span>
         </div>
       </div>
       <Collapse isOpen={isOpen}>
         <div className="response_content_container">
-          <Linkify componentDecorator={componentDecorator}>
-            {messageResponse}
-          </Linkify>
+          <DescriptionComponent>{message_response}</DescriptionComponent>
           <p>{}</p>
-          {response && (
+          {homework && homework.length > 0 && (
             <p className="uprofile-list">
               <span>
                 <i className="i-doc"></i>{' '}
-                <a href={response} target="_blank">
-                  {auxParseName(response)}
+                <a href={homework[0].response_file} target="_blank">
+                  {auxParseName(homework[0].response_file)}
                 </a>
               </span>
             </p>
           )}
+          {own_comment && (
+            <ResponseComment
+              deleteReponse={deleteReponse}
+              deleteLoader={deleteCommentLoader}
+              editResponse={editResponse}
+              editLoader={editCommentLoader}
+              editing={editing}
+              comment={own_comment}
+              toggleEdit={toggleEdit}
+            />
+          )}
+          {!own_comment && (
+            <CreateComment
+              loader={loaders.creatingCommentLoader}
+              create={createCommentOwn}
+            />
+          )}
         </div>
       </Collapse>
+    </div>
+  )
+}
+
+const CreateComment = ({ loader, create, codeSecction }) => {
+  const [comment, setComment] = useState('')
+  const [creating, setCreating] = useState(false)
+  const [errors, setErrors] = useState({
+    nullComment: false,
+  })
+  const toggle = () => setCreating(!creating)
+
+  const handleChange = (e) => {
+    const { value } = e.target
+    setComment(value)
+  }
+
+  const createComment = () => {
+    if (comment.length > 0) {
+      setErrors((errors) => ({ ...errors, nullComment: false }))
+      create(comment)
+    } else {
+      setErrors((errors) => ({ ...errors, nullComment: true }))
+    }
+  }
+
+  return (
+    <div>
+      {!creating && (
+        <Button
+          style={{ borderRadius: '6px' }}
+          onClick={toggle}
+          color="primary"
+          size="sm"
+        >
+          Calificar
+        </Button>
+      )}
+      {creating && errors.nullComment && <p>Escribe tu mensaje :)</p>}
+      {creating && (
+        <TextareaAutosize
+          aria-label="minimum height"
+          rowsMin={1}
+          rowsMax={24}
+          name="newComment"
+          placeholder=""
+          className="add_activity_description_container-text-aria"
+          onChange={handleChange}
+          value={comment}
+          style={{ fontSize: '14px', marginLeft: '-13.7px' }}
+        />
+      )}
+      {creating && (
+        <ComfirmActionTwoButtonsBar
+          loader={loader}
+          confirmAction={createComment}
+          cancelAction={toggle}
+        />
+      )}
     </div>
   )
 }
@@ -421,6 +685,83 @@ const SupportMaterialCollapse = ({ resources, type }) => {
           </p>
         </Container>
       </Collapse>
+    </div>
+  )
+}
+
+const ActionsButtonsCircleBar = ({
+  editAction,
+  deleteAction,
+  paddingEdit,
+  paddingDelete,
+  sizeEdit,
+  sizeDelete,
+  space,
+  style,
+  deleteLoader,
+}) => {
+  const styleButtons = {
+    display: 'inline-flex',
+    borderRadius: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+  return (
+    <div style={style}>
+      <Button
+        style={{ ...styleButtons, padding: paddingEdit, marginRight: space }}
+        color="primary"
+        size="sm"
+        onClick={editAction}
+        id="edit_action_button"
+      >
+        <i className="fa fa-edit" style={{ fontSize: sizeEdit }} />
+      </Button>
+      <UncontrolledTooltip placement="right" target="edit_action_button">
+        Editar
+      </UncontrolledTooltip>
+      <Button
+        style={{ ...styleButtons, padding: paddingDelete }}
+        color="danger"
+        size="sm"
+        onClick={deleteAction}
+        id="delete_action_button"
+      >
+        {deleteLoader && <Spinner color="ligth" className="mr-1" size="sm" />}
+        {!deleteLoader && (
+          <i className="fa fa-trash-o" style={{ fontSize: sizeDelete }} />
+        )}
+      </Button>
+      <UncontrolledTooltip placement="right" target="delete_action_button">
+        Borrar
+      </UncontrolledTooltip>
+    </div>
+  )
+}
+
+const ComfirmActionTwoButtonsBar = ({
+  confirmAction,
+  cancelAction,
+  loader,
+}) => {
+  const styleButtons = {
+    fontSize: '13px',
+    padding: '2px 9px',
+    borderRadius: '11px',
+  }
+  return (
+    <div>
+      <Button
+        color="primary"
+        size="sm"
+        style={styleButtons}
+        onClick={confirmAction}
+      >
+        {loader && <Spinner color="ligth" className="mr-1" size="sm" />}Guardar
+      </Button>
+      <Button size="sm" style={styleButtons} onClick={cancelAction}>
+        Cancelar
+      </Button>
     </div>
   )
 }

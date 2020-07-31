@@ -87,7 +87,7 @@ const Wall = () => {
                 setTimeout(() => {
                   setPosts(array)
                   setLoader((loader) => ({ ...loader, gettingPosts: false }))
-                }, 1500)
+                }, 300)
               }
             }
           })
@@ -102,6 +102,11 @@ const Wall = () => {
           }) */
           .catch((error) => {
             setLoader((loader) => ({ ...loader, makingPost: false }))
+            swal(
+              'Upss!!',
+              'Ocurrio un error al borrar tu publicación, contacta a soporte :)',
+              'error'
+            )
             console.log(error)
           })
           .finally(() => {})

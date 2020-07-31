@@ -26,4 +26,5 @@
 
 .response_content_container {
   padding: 0.5rem;
+  position: relative;
 }
