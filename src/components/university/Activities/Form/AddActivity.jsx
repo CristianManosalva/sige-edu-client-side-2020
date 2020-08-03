@@ -14,7 +14,6 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
   const [loaders, setLoaders] = useState({
     postDescription: false,
   })
-  const { description, name, files, enlace } = inputs
 
   const create = () => {
     if (!description) {
@@ -42,12 +41,28 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
 
   useEffect(() => {}, [])
 
+  const { description, name, files, enlace } = inputs
+
   return (
     <Container fluid={true} className="add_activity_main">
       <Row>
         <Col xs={12} className="form-group">
-          <Label for="name">Nombre de la Actvidad</Label>
-          <Input type="text" name="name" id="name" onChange={handleChange} />
+          <Label for="name">Titulo de la Actvidad</Label>
+          <Input
+            type="text"
+            name="name"
+            id="name"
+            maxLength={100}
+            onChange={handleChange}
+          />
+          <div className="d-flex justify-content-between">
+            {name.length >= 100 && (
+              <span> el titulo no tener mas de 100 letras</span>
+            )}
+            {name.length < 100 && <span>{''}</span>}
+
+            <span>{name.length}/100</span>
+          </div>
         </Col>
         <Col xs={12} className="form-group">
           <Label for="name">Descripcion de la actividad</Label>
