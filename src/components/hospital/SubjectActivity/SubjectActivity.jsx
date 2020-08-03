@@ -465,7 +465,7 @@ const ResponseActivity = ({ response, deleteResponse, loader }) => {
     message_response,
     date_response,
     code_response,
-    // studentResponse,
+    comment,
   } = response
   // const { codeStudent, user } = studentResponse
   /* inicio aux function */
@@ -549,6 +549,17 @@ const ResponseActivity = ({ response, deleteResponse, loader }) => {
           )}
         </div>
       </Collapse>
+      {comment && (
+        <div className="d-flex align-items-center mt-4">
+          <i style={{ fontSize: '1.3em' }} className="i-info mr-2 " />
+          <span>Mensaje de tu profe</span>
+        </div>
+      )}
+      {comment && (
+        <div className="message-teacher-contianer ml-3 mt-1">
+          <DescriptionComponent>{comment.comment}</DescriptionComponent>
+        </div>
+      )}
     </div>
   )
 }
