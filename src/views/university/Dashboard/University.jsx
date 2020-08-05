@@ -46,7 +46,7 @@ const University = (props) => {
         }
         return response.json()
       })
-      // setUsers(auxGetUsersList(user))
+      setUsers(auxGetUsersList(user))
     } catch (error) {
       console.log(error)
     }
