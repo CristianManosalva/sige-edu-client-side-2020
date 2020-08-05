@@ -15,6 +15,10 @@ import Modal from './common/Modal/Modal'
 import CreatePost from './common/Post/Form/CreatePost'
 import EditPost from './common/Post/Form/EditPost'
 import Post from './common/Post/Post'
+import UsersTable from './common/UsersTable/UsersTable'
+import GlobalLoader from './common/Loader/GlobalLoader'
+import NotFoundInfo from './common/NotFoundInfo/NotFoundInfo'
+
 /*--------------- General Admin Components ------------------*/
 import Messagewidget from './common/Messagewidget/Messagewidget'
 import Navmenudropdown from './common/Navmenudropdown/Navmenudropdown'
@@ -69,6 +73,9 @@ export {
   Messagewidget,
   Modal,
   DescriptionComponent,
+  UsersTable,
+  GlobalLoader,
+  NotFoundInfo,
   //Post Component
   Post,
   CreatePost,
