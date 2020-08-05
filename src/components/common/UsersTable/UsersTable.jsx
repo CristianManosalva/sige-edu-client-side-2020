@@ -141,7 +141,7 @@ export default function UsersTable({ users }) {
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="custom pagination table">
-        <TableHead>
+        <TableHead style={{ backgroundColor: 'rgb(30, 174, 223)' }}>
           <TableRow>
             <TableCell className="custom-row">Foto</TableCell>
             <TableCell className="custom-row" align="left">
@@ -196,7 +196,7 @@ export default function UsersTable({ users }) {
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{
-                inputProps: { 'aria-label': 'rows per page' },
+                inputProps: { 'aria-label': 'Filas por pagina' },
                 native: true,
               }}
               onChangePage={handleChangePage}
