@@ -18,6 +18,7 @@ import Post from './common/Post/Post'
 import UsersTable from './common/UsersTable/UsersTable'
 import GlobalLoader from './common/Loader/GlobalLoader'
 import NotFoundInfo from './common/NotFoundInfo/NotFoundInfo'
+import CustomTabs from './common/CustomTabs/CustomTabs'
 
 /*--------------- General Admin Components ------------------*/
 import Messagewidget from './common/Messagewidget/Messagewidget'
@@ -76,6 +77,7 @@ export {
   UsersTable,
   GlobalLoader,
   NotFoundInfo,
+  CustomTabs,
   //Post Component
   Post,
   CreatePost,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Button } from 'reactstrap'
-import { ActivityItem, Activity, Modal, AddActivity } from 'components'
+import { ActivityItem, CustomTabs, Modal, AddActivity } from 'components'
 import Loader from 'react-loader-spinner'
 import { config } from '_config'
 import './styles/activities.css'
@@ -229,6 +229,7 @@ const Activities = (props) => {
       <div className="content">
         <Row>
           <Col xs={12} md={12}>
+            <CustomTabs />
             <div className="page-title">
               <div className="float-left">
                 <h1 className="title">Actividades</h1>
