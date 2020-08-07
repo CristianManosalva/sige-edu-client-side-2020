@@ -186,7 +186,7 @@ class UniversityLayout extends React.Component {
           steps={steps}
           showProgress={showProgress}
           continuous={continuous}
-          run={run}
+          run={false} //shutdown joyride
           showSkipButton={showSkipButton}
           locale={locale}
           styles={{

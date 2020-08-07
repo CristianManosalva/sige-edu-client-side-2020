@@ -71,11 +71,11 @@ const University = (props) => {
                   <h2 className="title float-left">Estudiantes</h2>
                 </header>
                 <div className="content-body">
-                  <div className="cui-container">
-                    {loader && <GlobalLoader />}
-                    {users.length > 0 && <UsersTable users={users} />}
-                    {!loader && users.length <= 0 && <NotFoundInfo />}
-                  </div>
+                  {/* <div className="cui-container"> */}
+                  {loader && <GlobalLoader />}
+                  {users.length > 0 && <UsersTable users={users} />}
+                  {!loader && users.length <= 0 && <NotFoundInfo />}
+                  {/* </div> */}
                   {/* <Studentslist students={students} loading={loading} />
                    */}
                   {/* {console.log(students)} */}

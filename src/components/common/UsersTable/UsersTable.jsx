@@ -164,15 +164,26 @@ export default function UsersTable({ users }) {
             : users
           ).map((row, key) => (
             <TableRow key={row.documentIdUser || key}>
-              <TableCell component="th" scope="row" style={{ width: '100px' }}>
+              <TableCell
+                className="custom-cell"
+                component="th"
+                scope="row"
+                style={{ width: '100px' }}
+              >
                 <ImgContainer>
                   <ImgTable src={row.profile_picture} alt="picture" />
                 </ImgContainer>
               </TableCell>
-              <TableCell align="left">{row.firstNameUser}</TableCell>
-              <TableCell align="left">{row.lastNameUser}</TableCell>
-              <TableCell align="left">{row.documentIdUser}</TableCell>
-              <TableCell align="left">
+              <TableCell className="custom-cell" align="left">
+                {row.firstNameUser}
+              </TableCell>
+              <TableCell className="custom-cell" align="left">
+                {row.lastNameUser}
+              </TableCell>
+              <TableCell className="custom-cell" align="left">
+                {row.documentIdUser}
+              </TableCell>
+              <TableCell className="custom-cell" align="left">
                 {row.emailUser || 'El usuario aun no ingresa su correo'}
               </TableCell>
               {/* <TableCell align="right">{row.fat}</TableCell> */}

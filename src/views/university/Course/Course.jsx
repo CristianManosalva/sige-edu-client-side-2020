@@ -18,6 +18,7 @@ const Course = () => {
   const [options, setOptions] = useState([])
   const [groups, setGroups] = useState([])
   const [data, setData] = useState([])
+  const [groups2, setGroups2] = useState([])
   const [selectMateria, setSelectMateria] = useState('')
 
   function removeDuplicityAcademic(array) {
@@ -37,6 +38,7 @@ const Course = () => {
   }
 
   function filterGroup(code, array) {
+    console.log('Calling ', array)
     return array.reduce((result, { courseDictate, groupDictate }) => {
       if (courseDictate.codeCourse == code) {
         result.push(groupDictate)
@@ -67,8 +69,8 @@ const Course = () => {
         let depuredData = removeDuplicityAcademic(data)
         // console.log('Depurado', depuredData)
         setData(depuredData)
-        // console.log(depuredData);
-        setGroups(allgroups(depuredData))
+        // console.log(depuredData);)
+        // setGroups(allgroups(depuredData))
         filterMaterias(depuredData)
       })
       .catch((error) => console.log(error))
@@ -97,10 +99,12 @@ const Course = () => {
     setOptions((options) => [...options, ...optionsfromarray])
     if (optionsfromarray && optionsfromarray.length > 0) {
       setSelectMateria(optionsfromarray[0])
+      setGroups(filterGroup(optionsfromarray[0].value, array))
     }
   }
 
   const handleChangeSelect = ({ value, label }) => {
+    console.log('Calling')
     value == -1
       ? setGroups(allgroups(data))
       : setGroups(filterGroup(value, data))

@@ -1,5 +1,12 @@
 .custom-row {
   font-weight: 600 !important;
-  font-size: 19px !important;
+  font-size: 14px !important;
   color: white !important;
+  padding-top: 0.2em !important;
+  padding-bottom: 0.2em !important;
+}
+
+.custom-cell {
+  padding-top: 0.6em !important;
+  padding-bottom: 0.6em !important;
 }
