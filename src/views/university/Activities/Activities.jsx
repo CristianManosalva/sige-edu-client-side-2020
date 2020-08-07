@@ -229,7 +229,7 @@ const Activities = (props) => {
       <div className="content">
         <Row>
           <Col xs={12} md={12}>
-            {/* <CustomTabs /> */}
+            <CustomTabs />
             <div className="page-title">
               <div className="float-left">
                 <h1 className="title">Actividades</h1>
