@@ -122,6 +122,7 @@ const useStyles2 = makeStyles({
 })
 
 export default function UsersTable({ users }) {
+  console.log('users__users', users);
   const classes = useStyles2()
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
@@ -163,17 +164,17 @@ export default function UsersTable({ users }) {
             ? users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : users
           ).map((row, key) => (
-            <TableRow key={row.documentIdUser || key}>
+            <TableRow key={row.user.documentIdUser || key}>
               <TableCell component="th" scope="row" style={{ width: '100px' }}>
                 <ImgContainer>
-                  <ImgTable src={row.profile_picture} alt="picture" />
+                  <ImgTable src={row.user.profile_picture} alt="picture" />
                 </ImgContainer>
               </TableCell>
-              <TableCell align="left">{row.firstNameUser}</TableCell>
-              <TableCell align="left">{row.lastNameUser}</TableCell>
-              <TableCell align="left">{row.documentIdUser}</TableCell>
+              <TableCell align="left">{row.user.firstNameUser}</TableCell>
+              <TableCell align="left">{row.user.lastNameUser}</TableCell>
+              <TableCell align="left">{row.user.documentIdUser}</TableCell>
               <TableCell align="left">
-                {row.emailUser || 'El usuario aun no ingresa su correo'}
+                {'El usuario aun no ingresa su correo'}
               </TableCell>
               {/* <TableCell align="right">{row.fat}</TableCell> */}
               {/* <TableCell align="right">{row.carbs}</TableCell> */}
