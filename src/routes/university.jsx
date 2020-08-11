@@ -16,14 +16,14 @@ import PatientProfile from 'views/hospital/Patient/PatientProfile.jsx';
 
 var BASEDIR = process.env.REACT_APP_BASEDIR
 var dashRoutes = [
+  // {
+  //   path: BASEDIR + '/university/dashboard',
+  //   name: 'Inicio',
+  //   icon: 'home',
+  //   component: University,
+  // },
   {
     path: BASEDIR + '/university/dashboard',
-    name: 'Inicio',
-    icon: 'home',
-    component: University,
-  },
-  {
-    path: BASEDIR + '/university/community',
     name: 'Comunidad',
     icon: ' fa fa-users',
     component: Wall,
