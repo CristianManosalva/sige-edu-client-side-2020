@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap'
 import { Courseslist } from 'components'
 import Select from 'react-select'
 import SelectCourseModal from '../../../modal/SelectCourseModal'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import GruposLiteral from '../../../components/common/GruposLiteral/GruposLiteral'
 import { config } from '_config'
 
@@ -25,10 +25,10 @@ const Course = () => {
     let hash = Object.create(null)
     return array.reduce((result, value) => {
       if (
-        !hash[value.groupDictate.nameGroup + value.courseDictate.nameCourse]
+        !hash[value.groupDictate.nameGroup + value.courseDictate.codeCourse]
       ) {
         hash[
-          value.groupDictate.nameGroup + value.courseDictate.nameCourse
+          value.groupDictate.nameGroup + value.courseDictate.codeCourse
         ] = true
         result.push(value)
       }
@@ -39,19 +39,20 @@ const Course = () => {
 
   function filterGroup(code, array) {
     console.log('Calling ', array)
-    return array.reduce((result, { courseDictate, groupDictate }) => {
+    return array.reduce((result, value) => {
+      const { courseDictate  } = value
       if (courseDictate.codeCourse == code) {
-        result.push(groupDictate)
+        result.push(value)
       }
       return result
     }, [])
   }
 
-  function allgroups(array) {
-    return array.map(({ groupDictate }, key) => {
-      return groupDictate
-    })
-  }
+  // function allgroups(array) {
+  //   return array.map(({ groupDictate }, key) => {
+  //     return groupDictate
+  //   })
+  // }
 
   function getGroups(teacher_id) {
     fetch(
@@ -86,17 +87,17 @@ const Course = () => {
           label: value.courseDictate.nameCourse,
           value: value.courseDictate.codeCourse,
         })
-        let namescourses = `${value.courseDictate.nameCourse}`
-        let codecourses = `${value.courseDictate.codeCourse}`
-        nameCourses.push({
-          key: codecourses,
-          value: namescourses,
-        })
+        // let namescourses = `${value.courseDictate.nameCourse}`
+        // let codecourses = `${value.courseDictate.codeCourse}`
+        // nameCourses.push({
+        //   key: codecourses,
+        //   value: namescourses,
+        // })
       }
       return result
     }, [])
 
-    setOptions((options) => [...options, ...optionsfromarray])
+    setOptions(optionsfromarray)
     if (optionsfromarray && optionsfromarray.length > 0) {
       setSelectMateria(optionsfromarray[0])
       setGroups(filterGroup(optionsfromarray[0].value, array))
@@ -106,9 +107,10 @@ const Course = () => {
   const handleChangeSelect = ({ value, label }) => {
     console.log('Calling')
     value == -1
-      ? setGroups(allgroups(data))
+      ? setGroups(data)
       : setGroups(filterGroup(value, data))
 
+      console.log("value: ",value)
     setSelectMateria({ label, value })
   }
 
@@ -140,7 +142,6 @@ const Course = () => {
                         options={options}
                         label="Age"
                         className="nameCourse"
-                        // defaultValue={options[0]}
                         value={selectMateria}
                         onChange={handleChangeSelect}
                       />
@@ -150,12 +151,7 @@ const Course = () => {
                   <div className="row">
                     <div className="groupsCharge">
                       <Courseslist
-                        courses={groups}
-                        user={{
-                          teacher_id: teacher_id,
-                          materia_id: selectMateria.value,
-                        }}
-                        nameCourses={nameCourses}
+                        academicCharges={groups}
                       />
                     </div>
                   </div>

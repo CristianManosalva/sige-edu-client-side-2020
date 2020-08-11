@@ -39,6 +39,7 @@ import VideosYoutube from '../components/youtube_card/VideosYoutube'
 import YoutubeLiveClassroom from '../components/youtube_card/YoutubeLiveClassroom'
 import Courseslist from './university/Courseslist/Courseslist'
 import SubjectList from './university/Courseslist/SubjectList'
+import Activities from './university/Activities/Activities'
 import ActivityItem from './university/Activities/ActivityItem'
 import Activity from './university/Activities/Activity'
 import ActivityCarouselItem from './university/Activities/ActivityCarouselItem'
@@ -140,6 +141,7 @@ export {
   Staffslist,
   SubjectList,
   //item de actividad
+  Activities,
   ActivityItem,
   ActivityCarouselItem,
   Activity,

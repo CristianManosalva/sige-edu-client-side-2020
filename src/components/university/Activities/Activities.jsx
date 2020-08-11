@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Button } from 'reactstrap'
-import { ActivityItem, CustomTabs, Modal, AddActivity } from 'components'
+import { ActivityItem, Modal, AddActivity } from 'components'
 import Loader from 'react-loader-spinner'
 import { config } from '_config'
 import './styles/activities.css'
 
-const Activities = (props) => {
-  const { id_teacher, id_group, id_materia } = props.match.params
+const Activities = ({codeAcademicCharge}) => {
+  const [workSpace, setWorkSpace] = useState({})
   const [secctions, setSecctions] = useState([])
   const [loaders, setLoaders] = useState({
     creating: false,
     gettingActivities: true,
   })
-  const [state, setState] = useState({
-    work_space_id: '',
-  })
+  // const [state, setState] = useState({
+  //   work_space_id: '',
+  // })
 
   const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
 
-  const { work_space_id } = state
+  // const { work_space_id } = state
   const { creating, gettingActivities } = loaders
+  const {codeWorkSpace, academicCharge, teacherDictate} = workSpace
 
   function removeDuplicityWork(array, codeMateria) {
     // console.log('\nCodigo Materia: ', codeMateria)
@@ -44,37 +45,86 @@ const Activities = (props) => {
     }, [])
   }
 
-  function getWorkSpaces(teacher_id, grupo_id, codeMateria) {
-    fetch(
-      `${config.apiEndPoint}/workspaces/courses/${teacher_id}/${grupo_id}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        // console.log('Codigo del espacio de trbajao del profesor: ', data)
-        let depuredData = removeDuplicityWork(data, codeMateria)
-        // console.log('Data depurada: ', depuredData)
-        let codeWorkSpace = depuredData ? depuredData[0].codeWorkSpace : ''
-        setState((state) => ({ ...state, work_space_id: codeWorkSpace }))
-        // console.log('Data Depurada: ', depuredData)
-        let activities = depuredData && depuredData[0].secctions
-        setTimeout(() => {
-          setSecctions(activities)
-          setLoaders((loader) => ({ ...loader, gettingActivities: false }))
-        }, 500)
-      })
-      .catch((error) => {
-        console.log(error)
-        setLoaders((loader) => ({ ...loader, gettingActivities: false }))
-      })
-      .finally(() => {})
+  async function getWorkSpaces(codeAcademicCharge) {
+    console.log("Calling get work ")
+    try {
+      let workSpace = await fetch(
+        `${config.apiEndPoint}/workspaces/by-academiccharge/${codeAcademicCharge}`,
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              'error al consular el espacio de trabajo por carga academica'
+            )
+          }
+          return response.json()
+        })
+        .then((data) => data[0])
+      setWorkSpace(workSpace)
+
+      let activities = await fetch(
+        `${config.apiEndPoint}/secctions/secction/byacademicharge/${codeAcademicCharge}`,
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              'error al consular el las actividades'
+            )
+          }
+          return response.json()
+        })
+        setSecctions(activities)
+    } catch (error) {
+      console.log(error)
+    }
+    setLoaders((loader) => ({ ...loader, gettingActivities: false }))
   }
+
+  // function getWorkSpacesOld(teacher_id, grupo_id, codeMateria) {
+  //   fetch(
+  //     `${config.apiEndPoint}/workspaces/courses/${teacher_id}/${grupo_id}`,
+  //     {
+  //       method: 'GET',
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //       },
+  //     }
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       // console.log('Codigo del espacio de trbajao del profesor: ', data)
+  //       let depuredData = removeDuplicityWork(data, codeMateria)
+  //       // console.log('Data depurada: ', depuredData)
+  //       let codeWorkSpace = depuredData ? depuredData[0].codeWorkSpace : ''
+  //       setState((state) => ({ ...state, work_space_id: codeWorkSpace }))
+  //       // console.log('Data Depurada: ', depuredData)
+  //       let activities = depuredData && depuredData[0].secctions
+  //       setTimeout(() => {
+  //         setSecctions(activities)
+  //         setLoaders((loader) => ({ ...loader, gettingActivities: false }))
+  //       }, 500)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //       setLoaders((loader) => ({ ...loader, gettingActivities: false }))
+  //     })
+  //     .finally(() => {})
+  // }
 
   function createActivity({ name, description, files, enlace }) {
     setLoaders((loader) => ({ ...loader, creating: true }))
@@ -87,7 +137,7 @@ const Activities = (props) => {
       body: JSON.stringify({
         nameSecction: name,
         descriptionSecction: description,
-        workspaceSecction: work_space_id,
+        workspaceSecction: codeWorkSpace,
         date_close: '2020-07-21T05:45:16.828603Z',
         image_found:
           'https://res.cloudinary.com/duyflkcyn/image/upload/v1595312014/SIGE/ActivitiesPhothos/3_talrgu.jpg',
@@ -214,7 +264,7 @@ const Activities = (props) => {
   }
 
   useEffect(() => {
-    getWorkSpaces(id_teacher, id_group, id_materia)
+    getWorkSpaces(codeAcademicCharge)
   }, [])
 
   return (
@@ -226,114 +276,90 @@ const Activities = (props) => {
           toggle={toggle}
         />
       </Modal>
-      <div className="content">
-        <Row>
-          <Col xs={12} md={12}>
-            <CustomTabs />
-            <div className="page-title">
-              <div className="float-left">
-                <h1 className="title">Actividades</h1>
-              </div>
+      <Row>
+        <div
+          className="col-12 col-lg-12 col-xl-8 offset-xl-2"
+          style={{ marginTop: '20px', marginBottom: '20px' }}
+        >
+          <Button
+            onClick={toggle}
+            color="primary"
+            size="sm"
+            style={{
+              // bac
+              borderRadius: '6px',
+            }}
+          >
+            <i className="fa fa-plus mr-1" /* style={{ fontSize: '19px' }} */ />
+            Crear Actividad
+          </Button>
+        </div>
+        <div className="col-12 col-lg-12 col-xl-8 offset-xl-2">
+          {gettingActivities && (
+            <div
+              style={{
+                width: '100%',
+                height: '100',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'column',
+              }}
+            >
+              <Loader
+                type="BallTriangle"
+                color="#1EAEDF"
+                secondaryColor="Green"
+                height="100"
+                width="100"
+              />
+              <span
+                style={{
+                  fontSize: '1.3rem',
+                  marginTop: '.8rem',
+                  color: '#1EAEDF',
+                }}
+              >
+                Cargando...
+              </span>
             </div>
-            <Row>
-              <div className="col-12">
-                <section
-                  className="box" /*  style={{ borderRadius: '10px' }} */
-                >
-                  <div className="action-bar_container">
-                    <div className="row">
-                      <div className="col-3">
-                        <Button onClick={toggle} color="primary" size="sm">
-                          Añadir Actividad
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </div>
-            </Row>
-            <div className="cui-container">
-              <Row>
-                <div className="col-12 col-lg-12 col-xl-8 offset-xl-2">
-                  {gettingActivities && (
-                    <div
-                      style={{
-                        width: '100%',
-                        height: '100',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        flexDirection: 'column',
-                      }}
-                    >
-                      <Loader
-                        type="BallTriangle"
-                        color="#1EAEDF"
-                        secondaryColor="Green"
-                        height="100"
-                        width="100"
-                      />
-                      <span
-                        style={{
-                          fontSize: '1.3rem',
-                          marginTop: '.8rem',
-                          color: '#1EAEDF',
-                        }}
-                      >
-                        Cargando...
-                      </span>
-                    </div>
-                  )}
-                  {!gettingActivities &&
-                    secctions.length > 0 &&
-                    secctions.map((value, key) => {
-                      return (
-                        <ActivityItem
-                          activity={value}
-                          key={key * 1000}
-                          deleteActivity={deleteActivity}
-                          id_teacher={id_teacher}
-                        />
-                      )
-                    })}
-                  {secctions.length == 0 && !gettingActivities && (
-                    <div
-                      style={{
-                        width: '100%',
-                        height: '100',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        padding: '1rem',
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: '1.3rem',
-                          marginTop: '.8rem',
-                          textAlign: 'center',
-                        }}
-                      >
-                        No Tienes ninguna actividad con este grupo para esta
-                        materia
-                      </span>
-                    </div>
-                  )}
-                  {/* {secctions.length ? (
-                  secctions.reverse().map((value, key) => {
-                    return <ActivityItem activity={value} key={key * 1000} />
-                  })
-                ) : (
-                  <p>
-                    No Tienes ninguna actividad con este grupo para esta materia
-                  </p>
-                )} */}
-                </div>
-              </Row>
+          )}
+          {!gettingActivities &&
+            secctions.length > 0 &&
+            secctions.map((value, key) => {
+              return (
+                <ActivityItem
+                  activity={value}
+                  key={key * 1000}
+                  deleteActivity={deleteActivity}
+                  id_teacher={teacherDictate}
+                />
+              )
+            })}
+          {secctions.length == 0 && !gettingActivities && (
+            <div
+              style={{
+                width: '100%',
+                height: '100',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: '1rem',
+              }}
+            >
+              <span
+                style={{
+                  fontSize: '1.3rem',
+                  marginTop: '.8rem',
+                  textAlign: 'center',
+                }}
+              >
+                No Tienes ninguna actividad con este grupo para esta materia
+              </span>
             </div>
-          </Col>
-        </Row>
-      </div>
+          )}
+        </div>
+      </Row>
     </div>
   )
 }
