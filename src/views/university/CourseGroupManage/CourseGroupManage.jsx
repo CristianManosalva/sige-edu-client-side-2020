@@ -3,7 +3,7 @@ import { CustomTabs, Activities, Forum } from 'components'
 
 const CourseGroupManage = (props) => {
   const { codeAcademicCharge } = props.match.params
-  const [valueTabs, setValueTabs] = useState(1)
+  const [valueTabs, setValueTabs] = useState(0)
 
   return (
     <div>
