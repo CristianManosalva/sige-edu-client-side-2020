@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner'
 import { config } from '_config'
 import './styles/activities.css'
 
-const Activities = ({codeAcademicCharge}) => {
+const Activities = ({ codeAcademicCharge }) => {
   const [workSpace, setWorkSpace] = useState({})
   const [secctions, setSecctions] = useState([])
   const [loaders, setLoaders] = useState({
@@ -21,7 +21,7 @@ const Activities = ({codeAcademicCharge}) => {
 
   // const { work_space_id } = state
   const { creating, gettingActivities } = loaders
-  const {codeWorkSpace, academicCharge, teacherDictate} = workSpace
+  const { codeWorkSpace, academicCharge, teacherDictate } = workSpace
 
   function removeDuplicityWork(array, codeMateria) {
     // console.log('\nCodigo Materia: ', codeMateria)
@@ -46,7 +46,6 @@ const Activities = ({codeAcademicCharge}) => {
   }
 
   async function getWorkSpaces(codeAcademicCharge) {
-    console.log("Calling get work ")
     try {
       let workSpace = await fetch(
         `${config.apiEndPoint}/workspaces/by-academiccharge/${codeAcademicCharge}`,
@@ -78,16 +77,13 @@ const Activities = ({codeAcademicCharge}) => {
             'Content-Type': 'application/json',
           },
         }
-      )
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(
-              'error al consular el las actividades'
-            )
-          }
-          return response.json()
-        })
-        setSecctions(activities)
+      ).then((response) => {
+        if (!response.ok) {
+          throw new Error('error al consular el las actividades')
+        }
+        return response.json()
+      })
+      setSecctions(activities)
     } catch (error) {
       console.log(error)
     }

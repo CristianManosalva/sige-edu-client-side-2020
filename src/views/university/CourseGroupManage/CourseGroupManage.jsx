@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
-import { CustomTabs, Activities } from 'components'
-import Loader from 'react-loader-spinner'
-// import { config } from '_config'
+import { CustomTabs, Activities, Forum } from 'components'
 
 const CourseGroupManage = (props) => {
   const { codeAcademicCharge } = props.match.params
-  // const { id_teacher, id_group, id_materia } = props.match.params
-  const [valueTabs, setValueTabs] = useState(0)
+  const [valueTabs, setValueTabs] = useState(1)
 
   return (
     <div>
@@ -29,7 +26,7 @@ const HandlerTabToRender = (props) => {
   if (props.value === 0) {
   return <Activities {...props} />
   }
-  return <p>Foro</p>
+  return <Forum {...props} />
 }
 
 export default CourseGroupManage

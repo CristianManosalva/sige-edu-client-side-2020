@@ -45,8 +45,10 @@ import Activity from './university/Activities/Activity'
 import ActivityCarouselItem from './university/Activities/ActivityCarouselItem'
 import AddActivity from './university/Activities/Form/AddActivity'
 import AddResponseSection from './university/Sectionstudents/Form/AddResponseSection'
-
 import ShowActivity from './university/Activities/Form/ShowActivity'
+import Forum from './university/Forum/Forum'
+import Feed from './university/Forum/Form/Feed'
+import CreateFeed from './university/Forum/Form/CreateFeed'
 
 /*--------------- Hospital Admin Components ------------------*/
 import CoursesStudentList from './hospital/Doctorslist/CoursesStudentList'
@@ -153,6 +155,10 @@ export {
   AvatarProfile,
   UpdateImgUser,
   FormProfileUser,
+  //Forum
+  Forum,
+  Feed,
+  CreateFeed,
   //Students
   SubjectCard,
   SubjectActivity,

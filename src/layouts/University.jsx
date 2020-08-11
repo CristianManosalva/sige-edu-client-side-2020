@@ -46,8 +46,8 @@ class UniversityLayout extends React.Component {
     super(props)
     this.state = {
       // dashboardRoutes: hospitalRoutes,
-      dashboardRoutes: universityRoutes,
-      // dashboardRoutes: unIdentifierUser,
+      // dashboardRoutes: universityRoutes,
+      dashboardRoutes: unIdentifierUser,
       menuColor: menuBackgroundColor,
       topbarColor: topbarStyle,
       menuType: menuType,
