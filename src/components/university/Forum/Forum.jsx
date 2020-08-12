@@ -292,7 +292,7 @@ const Forum = ({ codeAcademicCharge }) => {
                   textAlign: 'center',
                 }}
               >
-                Tu Comunidad aun no ha hecho publicaciones, se el primero!!
+                Tu Grupo aun no ha hecho publicaciones, se el primero!!
               </span>
             </div>
           )}

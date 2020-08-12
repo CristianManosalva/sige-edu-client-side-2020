@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Button } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import { useSelector } from 'react-redux'
-import { SubjectActivity, Activity, Modal, AddActivity } from 'components'
+import { SubjectActivity } from 'components'
 import Loader from 'react-loader-spinner'
 import { config } from '_config'
-// import './styles/activities.css'
 
 const SubjectActivities = (props) => {
   const { student } =
     useSelector((state) => state.authentication.user.user_data) || {}
-  const { codeAcademicCharge } = props.match.params
+  const { codeAcademicCharge } = props
   const [secctions, setSecctions] = useState([])
   const [loaders, setLoaders] = useState({
     creating: false,
@@ -234,120 +233,73 @@ const SubjectActivities = (props) => {
 
   return (
     <div>
-      {/* <Modal title="Crear actividad" show={modal} toggle={toggle}>
-        <AddActivity
-          loader={creating}
-          createActivity={createActivity}
-          toggle={toggle}
-        />
-      </Modal> */}
-      <div className="content">
-        <Row>
-          <Col xs={12} md={12}>
-            <div className="page-title">
-              <div className="float-left">
-                <h1 className="title">Actividades</h1>
-              </div>
+      <Row>
+        <div className="col-12 col-lg-12 col-xl-10 offset-xl-1">
+          {gettingActivities && (
+            <div
+              style={{
+                width: '100%',
+                height: '100',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'column',
+              }}
+            >
+              <Loader
+                type="BallTriangle"
+                color="#1EAEDF"
+                secondaryColor="Green"
+                height="100"
+                width="100"
+              />
+              <span
+                style={{
+                  fontSize: '1.3rem',
+                  marginTop: '.8rem',
+                  color: '#1EAEDF',
+                }}
+              >
+                Cargando...
+              </span>
             </div>
-            {/* <Row>
-              <div className="col-12">
-                <section
-                  className="box"  style={{ borderRadius: '10px' }} 
-                >
-                  <div className="action-bar_container">
-                    <div className="row">
-                      <div className="col-3">
-                        <Button onClick={toggle} color="primary" size="sm">
-                          Añadir Actividad
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </div>
-            </Row> */}
-            <div className="cui-container">
-              <Row>
-                {/* <div className="col-12 "> */}
-                <div className="col-12 col-lg-12 col-xl-10 offset-xl-1">
-                  {gettingActivities && (
-                    <div
-                      style={{
-                        width: '100%',
-                        height: '100',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        flexDirection: 'column',
-                      }}
-                    >
-                      <Loader
-                        type="BallTriangle"
-                        color="#1EAEDF"
-                        secondaryColor="Green"
-                        height="100"
-                        width="100"
-                      />
-                      <span
-                        style={{
-                          fontSize: '1.3rem',
-                          marginTop: '.8rem',
-                          color: '#1EAEDF',
-                        }}
-                      >
-                        Cargando...
-                      </span>
-                    </div>
-                  )}
-                  {!gettingActivities &&
-                    secctions.length > 0 &&
-                    secctions.map((value, key) => {
-                      return (
-                        <SubjectActivity
-                          activity={value}
-                          key={key * 1000}
-                          deleteActivity={deleteActivity}
-                          student={student}
-                        />
-                      )
-                    })}
-                  {secctions.length == 0 && !gettingActivities && (
-                    <div
-                      style={{
-                        width: '100%',
-                        height: '100',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        padding: '1rem',
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: '1.3rem',
-                          marginTop: '.8rem',
-                          textAlign: 'center',
-                        }}
-                      >
-                        No Tienes ninguna actividad en esta asingnatura
-                      </span>
-                    </div>
-                  )}
-                  {/* {secctions.length ? (
-                  secctions.reverse().map((value, key) => {
-                    return <SubjectActivity activity={value} key={key * 1000} />
-                  })
-                ) : (
-                  <p>
-                    No Tienes ninguna actividad con este grupo para esta materia
-                  </p>
-                )} */}
-                </div>
-              </Row>
+          )}
+          {!gettingActivities &&
+            secctions.length > 0 &&
+            secctions.map((value, key) => {
+              return (
+                <SubjectActivity
+                  activity={value}
+                  key={key * 1000}
+                  deleteActivity={deleteActivity}
+                  student={student}
+                />
+              )
+            })}
+          {secctions.length == 0 && !gettingActivities && (
+            <div
+              style={{
+                width: '100%',
+                height: '100',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: '1rem',
+              }}
+            >
+              <span
+                style={{
+                  fontSize: '1.3rem',
+                  marginTop: '.8rem',
+                  textAlign: 'center',
+                }}
+              >
+                No Tienes ninguna actividad en esta asingnatura
+              </span>
             </div>
-          </Col>
-        </Row>
-      </div>
+          )}
+        </div>
+      </Row>
     </div>
   )
 }

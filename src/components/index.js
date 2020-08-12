@@ -54,6 +54,7 @@ import CreateFeed from './university/Forum/Form/CreateFeed'
 import CoursesStudentList from './hospital/Doctorslist/CoursesStudentList'
 import Patientslist from './hospital/Patientslist/Patientslist'
 import Staffslist from './hospital/Staffslist/Staffslist'
+import SubjectActivities from './hospital/Subjects/SubjectActivities'
 import SubjectCard from './hospital/Subjects/SubjectCard'
 import SubjectActivity from './hospital/SubjectActivity/SubjectActivity'
 
@@ -162,4 +163,5 @@ export {
   //Students
   SubjectCard,
   SubjectActivity,
+  SubjectActivities
 }
