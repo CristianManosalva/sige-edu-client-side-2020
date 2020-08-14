@@ -21,14 +21,23 @@ const ModalExample = ({ children, show, toggle, title, style }) => {
       keyboard={false}
       backdrop={'static'}
     >
-      <ModalHeader style={{ backgroundColor: '#1EAEDF' }} toggle={toggle}>
-        <div
-          className="div"
-          style={{ color: 'whitesmoke', fontSize: '18px', fontWeight: 'bold' }}
-        >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          background: '#1EAEDF',
+          width: '100%',
+          padding: '0.5em',
+          paddingLeft: '1em'
+        }}
+      >
+        <span style={{ fontSize: '17px', color: 'white', fontWeight: 'bold' }}>
           {title}
-        </div>
-      </ModalHeader>
+        </span>
+        <span style={styleForButtonAction('#1EAEDF')} onClick={toggle}>
+          <i className="fa fa-close" style={{fontSize: '18px'}}/>
+        </span>
+      </div>
       <ModalBody>{children}</ModalBody>
     </Modal>
   ) /* ,
@@ -37,3 +46,21 @@ const ModalExample = ({ children, show, toggle, title, style }) => {
 }
 
 export default ModalExample
+
+const styleForButtonAction = (color, propiedad, valor) => {
+  let style = {
+    borderRadius: '50%',
+    color: '#FFFFFF',
+    backgroundColor: color,
+    border: `1px solid ${color}`,
+    fontWeight: '100',
+    cursor: 'pointer',
+    width: '1.8em',
+    height: '1.8em',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center ',
+  }
+  style[propiedad] = valor
+  return style
+}

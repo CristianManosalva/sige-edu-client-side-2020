@@ -16,7 +16,7 @@ const Activities = ({ codeAcademicCharge }) => {
   //   work_space_id: '',
   // })
 
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(true)
   const toggle = () => setModal(!modal)
 
   // const { work_space_id } = state
@@ -122,7 +122,7 @@ const Activities = ({ codeAcademicCharge }) => {
   //     .finally(() => {})
   // }
 
-  function createActivity({ name, description, files, enlace }) {
+  function createActivity({ name, description, files, enlace, date_close }) {
     setLoaders((loader) => ({ ...loader, creating: true }))
     fetch(`${config.apiEndPoint}/secctions/secction/create/`, {
       method: 'POST',
@@ -134,7 +134,7 @@ const Activities = ({ codeAcademicCharge }) => {
         nameSecction: name,
         descriptionSecction: description,
         workspaceSecction: codeWorkSpace,
-        date_close: '2020-07-21T05:45:16.828603Z',
+        date_close: date_close,
         image_found:
           'https://res.cloudinary.com/duyflkcyn/image/upload/v1595312014/SIGE/ActivitiesPhothos/3_talrgu.jpg',
       }),

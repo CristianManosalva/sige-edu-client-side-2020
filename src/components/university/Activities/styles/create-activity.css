@@ -10,3 +10,15 @@
 .add_activity_main label {
   font-weight: bold;
 }
+
+
+.reformat-datepicker input {
+  min-height: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+}
+
+.reformat-datepicker label {
+  font-size: 1.2rem;
+}

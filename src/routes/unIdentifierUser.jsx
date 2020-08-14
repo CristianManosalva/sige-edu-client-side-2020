@@ -3,7 +3,7 @@ import React from 'react'
 function hola() {
   return (
     <h1 style={{ position: 'absolute', left: '25%', top: '83%' }}>
-      Tienes un error con tu usuario, por favor contacta al soporte de SIGE
+      Tu usuario aun no esta identificado, por favor contacta al soporte de SIGE
     </h1>
   )
 }
