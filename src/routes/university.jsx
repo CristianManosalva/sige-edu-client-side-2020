@@ -16,37 +16,17 @@ import PatientProfile from 'views/hospital/Patient/PatientProfile.jsx';
 
 var BASEDIR = process.env.REACT_APP_BASEDIR
 var dashRoutes = [
-  // {
-  //   path: BASEDIR + '/university/dashboard',
-  //   name: 'Inicio',
-  //   icon: 'home',
-  //   component: University,
-  // },
   {
     path: BASEDIR + '/university/dashboard',
     name: 'Comunidad',
     icon: ' fa fa-users',
     component: Wall,
   },
-  // // Options Teacher
-  // {
-  //   path: BASEDIR + '/university/professors',
-  //   icon: 'user',
-  //   name: 'Docentes',
-  //   component: Professor,
-  // },
   {
     path: BASEDIR + '/university/add-professors',
     component: AddProfessor,
     type: 'child',
   },
-  // {
-  //   path: BASEDIR + '/university/students',
-  //   icon: 'people',
-  //   name: 'Estudiantes',
-  //   component: Student,
-  // },
-
   {
     path: BASEDIR + '/university/courses',
     icon: 'star',
@@ -55,25 +35,11 @@ var dashRoutes = [
     tour: 'joyride-welcome-2',
     component: Course,
   },
-  // {
-  //   path: BASEDIR + '/university/subjects',
-  //   icon: 'people',
-  //   name: 'Materias',
-  //   component: Subjects,
-  // },
   {
     path: BASEDIR + '/university/course-group-manage/:codeAcademicCharge',
     component: CourseGroupManage,
     type: 'child',
   },
-  // {
-  //   path: BASEDIR + '/university/add-course',
-  //   icon: 'arrow-up-circle',
-  //   tour: 'joyride-welcome-3',
-  //   name: 'Actividad Online',
-  //   component: AddCourse,
-  // },
-
   {
     path: BASEDIR + '/university/library',
     icon: 'notebook',

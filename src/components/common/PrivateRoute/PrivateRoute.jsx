@@ -5,14 +5,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
-      localStorage.getItem('userv2')
-        ? ( (<Component {...props} />))
-        : (
-          (
-            <Redirect
-              to={{ pathname: '/home', state: { from: props.location } }}
-            />
-          ))
+      localStorage.getItem('userv2') ? (
+        <Component {...props} {...rest}/>
+      ) : (
+        <Redirect to={{ pathname: '/home', state: { from: props.location } }} />
+      )
     }
   />
 )

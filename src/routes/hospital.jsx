@@ -1,7 +1,6 @@
 import PatientProfile from 'views/hospital/Patient/PatientProfile.jsx'
 import Subjects from 'views/hospital/Subjects/Subjects.jsx'
-// import SubjectActivities from 'views/hospital/Subjects/SubjectActivities.jsx'
-import CourseGroupManage from 'views/hospital/CourseGroupManage/CourseGroupManage.jsx'
+import CourseGroupManage from 'views/university/CourseGroupManage/CourseGroupManage.jsx'
 
 var BASEDIR = process.env.REACT_APP_BASEDIR
 var dashRoutes = [
@@ -23,6 +22,12 @@ var dashRoutes = [
     badge: '',
     name: 'Perfil',
     component: PatientProfile,
+  },
+  {
+    redirect: true,
+    path: BASEDIR + '/',
+    pathTo: '/university/dashboard',
+    name: 'Dashboard',
   },
 ]
 export default dashRoutes

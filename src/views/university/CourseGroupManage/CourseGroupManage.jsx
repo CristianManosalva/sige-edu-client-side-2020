@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { CustomTabs, Activities, Forum } from 'components'
+import { CustomTabs, Activities, Forum, SubjectActivities } from 'components'
 
 const CourseGroupManage = (props) => {
+  const { user_data } = props
   const { codeAcademicCharge } = props.match.params
   const [valueTabs, setValueTabs] = useState(0)
 
@@ -15,6 +16,7 @@ const CourseGroupManage = (props) => {
           <HandlerTabToRender
             value={valueTabs}
             codeAcademicCharge={codeAcademicCharge}
+            user_data={user_data}
           />
         </div>
       </div>
@@ -24,7 +26,10 @@ const CourseGroupManage = (props) => {
 
 const HandlerTabToRender = (props) => {
   if (props.value === 0) {
-  return <Activities {...props} />
+    if (props.user_data.student) {
+      return <SubjectActivities {...props} />
+    }
+    return <Activities {...props} />
   }
   return <Forum {...props} />
 }

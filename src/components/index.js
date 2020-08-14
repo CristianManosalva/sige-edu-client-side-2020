@@ -1,3 +1,6 @@
+/*--------------- Root Components ------------------*/
+import ScrollToTop from './common/ScrollToTop/ScrollToTop'
+
 /*--------------- Common Components ------------------*/
 import Header from './common/Header/Header'
 import Footer from './common/Footer/Footer'
@@ -74,6 +77,8 @@ import UpdateImgUser from '../components/hospital/Doctorslist/UpdateImgUser'
 import FormProfileUser from '../components/common/Forms/FormProfileUser'
 
 export {
+  //root components
+  ScrollToTop,
   //Common component
   Messagewidget,
   Modal,

@@ -8,7 +8,7 @@ import './style/subjects.css'
 
 var IMGDIR = process.env.REACT_APP_IMGDIR
 
-const Subjects = () => {
+const Subjects = (props) => {
   const { student } = useSelector(
     (state) => state.authentication.user.user_data
   )
