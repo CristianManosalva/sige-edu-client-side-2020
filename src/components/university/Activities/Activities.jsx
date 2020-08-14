@@ -16,7 +16,7 @@ const Activities = ({ codeAcademicCharge }) => {
   //   work_space_id: '',
   // })
 
-  const [modal, setModal] = useState(true)
+  const [modal, setModal] = useState(false)
   const toggle = () => setModal(!modal)
 
   // const { work_space_id } = state
