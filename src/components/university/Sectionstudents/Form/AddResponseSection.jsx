@@ -138,6 +138,7 @@ const AddResponseSection = ({
             color="primary"
             size="sm"
             onClick={create}
+            disabled={loader}
           >
             {loader ? (
               <Spinner className="mr-2" size="sm" color="light" />

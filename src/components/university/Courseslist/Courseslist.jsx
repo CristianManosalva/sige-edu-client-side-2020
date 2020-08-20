@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom'
 import { history } from '_helpers'
 
 var BASEDIR = process.env.REACT_APP_BASEDIR
-const Courseslist = (props) => {
-  const { teacher_id, materia_id } = props.user
-  const { nameCourses } = props.nameCourses
+const Courseslist = ({ academicCharges }) => {
+  // const { courseDictate } = academicCharge
+  // const { nameCourses } = props.nameCourses
 
   const tempImg = [
     'https://images.pexels.com/photos/2170/creative-desk-pens-school.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
@@ -58,26 +58,30 @@ const Courseslist = (props) => {
   ]
   return (
     <div className="row">
-      {props.courses.map((group, key) => {
-        console.log('Here: ', group)
+      {academicCharges.map(({ groupDictate, codeAcademicCharge }, key) => {
+        console.log('Here: ', groupDictate)
         var nameJourneyGroup
 
-        if (group.journeyGroup == 1) {
+        if (groupDictate.journeyGroup == 1) {
           nameJourneyGroup = 'Mañana'
-        } else if (group.journeyGroup == 2) {
+        } else if (groupDictate.journeyGroup == 2) {
           nameJourneyGroup = 'Tarde'
         } else {
           nameJourneyGroup = '-----'
         }
-        var nameGroup = group.nameGroup
-        // ? group.nameGroup.split('-')[0] + '-' + group.nameGroup.split('-')[1]
+        var nameGroup = groupDictate.nameGroup
+        // ? groupDictate.nameGroup.split('-')[0] + '-' + groupDictate.nameGroup.split('-')[1]
         // : '-----'
         if (nameGroup.substr(0, 1) == 'T') {
           nameGroup =
-            group.nameGroup.split('-')[1] + '-' + group.nameGroup.split('-')[2]
+            groupDictate.nameGroup.split('-')[1] +
+            '-' +
+            groupDictate.nameGroup.split('-')[2]
         } else {
           nameGroup =
-            group.nameGroup.split('-')[0] + '-' + group.nameGroup.split('-')[1]
+            groupDictate.nameGroup.split('-')[0] +
+            '-' +
+            groupDictate.nameGroup.split('-')[1]
         }
         return (
           <div
@@ -90,7 +94,7 @@ const Courseslist = (props) => {
               onClick={() =>
                 history.push(
                   BASEDIR +
-                    `/university/activity/${teacher_id}/${group.nameGroup}/${materia_id}`
+                    `/university/course-group-manage/${codeAcademicCharge}`
                 )
               }
             >
@@ -104,25 +108,12 @@ const Courseslist = (props) => {
               </div>
 
               <div className="team-info">
-                {materia_id ? (
-                  // console.log('0', materia_id),
-                  <h3>
-                    <NavLink
-                      to={
-                        BASEDIR +
-                        `/university/activity/${teacher_id}/${group.nameGroup}/${materia_id}`
-                      }
-                    >
-                      {nameGroup}
-                    </NavLink>
-                  </h3>
-                ) : (
-                  // console.log('1----', materia_id),
-                  <div></div>
-                )}
+                <h3 style={{color: 'rgb(30, 174, 223)'}}>
+                    {nameGroup}
+                </h3>
                 <span>Jornada </span>{' '}
                 <span>
-                  {group.journeyGroup && group.journeyGroup == 1
+                  {groupDictate.journeyGroup && groupDictate.journeyGroup == 1
                     ? 'Mañana'
                     : 'Tarde'}
                 </span>

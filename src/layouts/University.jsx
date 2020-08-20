@@ -1,20 +1,10 @@
-import React from 'react'
-import Joyride from 'react-joyride'
-// javascript plugin used to create scrollbars on windows
-// import PerfectScrollbar from 'perfect-scrollbar';
-import { /* Route, */ Switch, Redirect } from 'react-router-dom'
-import {
-  Header,
-  Footer,
-  Sidebar,
-  ChatSidebar,
-  Stylebar,
-  PrivateRoute,
-} from 'components'
+import React, { useState } from 'react'
+import { Switch, Redirect } from 'react-router-dom'
+import { Header, Footer, Sidebar, PrivateRoute } from 'components'
+import { useSelector } from 'react-redux'
 import universityRoutes from 'routes/university.jsx'
 import hospitalRoutes from 'routes/hospital.jsx'
 import crmlRoutes from 'routes/crm.jsx'
-import unIdentifierUser from 'routes/unIdentifierUser.jsx'
 
 import {
   topbarStyle,
@@ -22,263 +12,119 @@ import {
   menuType,
   topbarType,
   navWidth,
-  chatWidth,
-  chatType,
 } from 'variables/settings/university.jsx'
+import { useEffect } from 'react'
 
-//var ps;
 const sideBarStyle = {
   backgroundColor: '#1EAEDF',
 }
-const defaultOptions = {
-  arrowColor: '#fff',
-  backgroundColor: '#fff',
-  beaconSize: 36,
-  overlayColor: 'rgba(0, 0, 0, 0.5)',
-  primaryColor: '#f04',
-  spotlightShadow: '0 0 15px rgba(0, 0, 0, 0.5)',
-  textColor: '#333',
-  width: undefined,
-  zIndex: 100,
-}
-class UniversityLayout extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      // dashboardRoutes: hospitalRoutes,
-      // dashboardRoutes: universityRoutes,
-      dashboardRoutes: unIdentifierUser,
-      menuColor: menuBackgroundColor,
-      topbarColor: topbarStyle,
-      menuType: menuType,
-      topbarType: topbarType,
-      steps: [
-        {
-          target: '.joyride-welcome-1',
-          content: 'Aqui encontrarás tu foto de perfil, seguridad y estilos',
-          title: 'Información sobre tu perfil',
-          disableBeacon: true,
-        },
-        {
-          target: '.joyride-welcome-2',
-          title: 'Pagina de inicio',
-          content:
-            'Aqui encontraras informacion relevante y de manera resumidad',
-          placement: 'left',
-        },
-        {
-          target: '.joyride-welcome-3',
-          title: 'Cursos',
-          content: 'Aqui puedes agregar una actividad online a tus cursos',
-        },
-        {
-          target: '.joyride-welcome-4',
-          title: 'Ayuda',
-          content: 'Contactanos para resolver tus inquietudes',
-        },
-      ],
-      stepIndex: 0, // a controlled tour
-      showProgress: true,
-      run: false,
-      continuous: true,
-      showSkipButton: true,
-      locale: {
-        back: 'Atrás',
-        close: 'Cerrar',
-        next: 'Siguiente',
-        skip: 'Omitir',
-        last: 'Último',
-      },
-    }
-    this.menuSettings = this.menuSettings.bind(this)
-    this.topbarSettings = this.topbarSettings.bind(this)
-    this.handleTypeOfUser = this.handleTypeOfUser.bind(this)
+
+const UniversityLayout = (props) => {
+  //En un futuro minimizar el uso de useSelector y pasar
+  //el objeto user_data, desde este layout
+  const { user_data } = useSelector((state) => state.authentication.user)
+  const [state, setState] = useState({
+    dashboardRoutes: [], //definitive solution
+    menuColor: menuBackgroundColor,
+    topbarColor: topbarStyle,
+    menuType: menuType,
+    topbarType: topbarType,
+  })
+
+  const setPrevState = (appenState) => {
+    setState((preV) => ({ ...preV, ...appenState }))
   }
 
-  menuSettings(val1, val2) {
-    this.setState({
-      menuColor: val1,
-      menuType: val2,
-    })
-  }
-  topbarSettings(val1, val2) {
-    this.setState({
-      topbarColor: val1,
-      topbarType: val2,
-    })
-  }
-
-  handleTypeOfUser() {
-    // console.log('Handeleando')
+  const handleTypeOfUser = async () => {
     try {
-      let user = JSON.parse(localStorage.getItem('userv2'))
-      // console.log('El Usuarios', user)
+      let user = await JSON.parse(localStorage.getItem('userv2'))
 
       if (user.user_data.teacher) {
-        this.setState({
+        setPrevState({
           dashboardRoutes: universityRoutes,
         })
       } else if (user.user_data.staff) {
-        this.setState({
+        setPrevState({
           dashboardRoutes: crmlRoutes,
         })
       } else if (user.user_data.student) {
-        this.setState({
+        setPrevState({
           dashboardRoutes: hospitalRoutes,
         })
       } else {
-        setTimeout(() => {
-          localStorage.removeItem('userv2')
-          // eslint-disable-next-line
-          location.reload(true)
-        }, 3000)
-      }
-    } catch (error) {
-      console.log('Error hanlder user ', error)
-      setTimeout(() => {
+        // setTimeout(() => {
         localStorage.removeItem('userv2')
         // eslint-disable-next-line
         location.reload(true)
-      }, 3000)
+        // }, 100)
+      }
+    } catch (error) {
+      console.log('Error hanlder user ', error)
+      // setTimeout(() => {
+      localStorage.removeItem('userv2')
+      // eslint-disable-next-line
+      location.reload(true)
+      // }, 100)
     }
   }
 
-  componentDidMount() {
-    /*if(navigator.platform.indexOf('Win') > -1){
-            ps = new PerfectScrollbar(this.refs.mainPanel);
-            document.body.classList.toggle("perfect-scrollbar-on");
-        }*/
-    this.handleTypeOfUser()
-  }
-  componentWillUnmount() {
-    /*if(navigator.platform.indexOf('Win') > -1){
-            ps.destroy();
-            document.body.classList.toggle("perfect-scrollbar-on");
-        }*/
-  }
-  componentDidUpdate(e) {
-    if (e.history.action === 'PUSH') {
-      this.refs.mainPanel.scrollTop = 0
-      document.scrollingElement.scrollTop = 0
-    }
-  }
-  render() {
-    const {
-      steps,
-      showProgress,
-      continuous,
-      showSkipButton,
-      locale,
-      run,
-      dashboardRoutes,
-    } = this.state
+  useEffect(() => {
+    handleTypeOfUser()
+  }, [])
 
-    return (
-      <div
-        className="wrapper"
-        ref="themeWrapper"
-        data-menu={this.state.menuColor}
-        data-topbar={this.state.topbarColor}
-        data-menutype={this.state.menuType}
-        data-topbartype={this.state.topbarType}
-      >
-        <Joyride
-          steps={steps}
-          showProgress={showProgress}
-          continuous={continuous}
-          run={run}
-          showSkipButton={showSkipButton}
-          locale={locale}
-          styles={{
-            options: {
-              arrowColor: '#e3ffeb',
-              backgroundColor: 'rgb(30, 174, 223)',
-              primaryColor: '#15ff54',
-              textColor: '#fff',
-              width: 400,
-              zIndex: 2000,
-            },
-          }}
-        />
-        <Header {...this.props} navtype={navWidth} admintype={'university'} />
-        <Sidebar
-          style={sideBarStyle}
-          className="step-1"
-          {...this.props}
-          routes={dashboardRoutes}
-          admintype={'university'}
-        />
-        <div className="main-panel" ref="mainPanel">
-          <Switch>
-            {/* {dashboardRoutes.map((prop, key) => {
-              console.log(this.props.location.pathname);
-              if (this.props.location.pathname === prop.path) {
-                console.log(
-                  "-------------------\nCuajouna\n",
-                  prop.path,
-                  "\n-----------------\n",
-                  this.props.location.pathname,
-                  "\n-----------------\n"
-                );
+
+  const { dashboardRoutes } = state
+
+  return (
+    <div
+      className="wrapper"
+      // ref="themeWrapper"
+      data-menu={state.menuColor}
+      data-topbar={state.topbarColor}
+      data-menutype={state.menuType}
+      data-topbartype={state.topbarType}
+    >
+      <Header {...props} user_data={user_data} navtype={navWidth} admintype={'university'} />
+      <Sidebar
+        style={sideBarStyle}
+        className="step-1"
+        {...props}
+        routes={dashboardRoutes}
+        admintype={'university'}
+      />
+      <div className="main-panel" /* ref="mainPanel" */>
+        <Switch>
+          {dashboardRoutes.map((prop, key) => {
+            if (prop.collapse) {
+              return prop.views.map((prop2, key2) => {
                 return (
-                  <Route
-                    path={prop.path}
-                    component={prop.component}
-                    key={key}
+                  <PrivateRoute
+                    exact
+                    path={prop2.path}
+                    key={key2}
+                    component={prop2.component}
+                    user_data={user_data}
                   />
-                );
-              }
-              console.log("Piala mostro");
-              //Adding a redirect component
-              //   return "";
-              return (
-                <Redirect
-                  from={this.props.location.pathname}
-                  to="/university/dashboard"
-                  key={key}
-                />
-              );
-            })} */}
-            {dashboardRoutes.map((prop, key) => {
-              if (prop.collapse) {
-                return prop.views.map((prop2, key2) => {
-                  return (
-                    <PrivateRoute
-                      exact
-                      path={prop2.path}
-                      key={key2}
-                      component={prop2.component}
-                    />
-                  )
-                })
-              }
-              if (prop.redirect)
-                return <Redirect from={prop.path} to={prop.pathTo} key={key} />
-              return (
-                <PrivateRoute
-                  exact
-                  path={prop.path}
-                  key={key}
-                  component={prop.component}
-                />
-              )
-            })}
-          </Switch>
-          <Footer fluid />
-        </div>
-        <ChatSidebar
-          {...this.props}
-          routes={dashboardRoutes}
-          chatwidth={chatWidth}
-          chattype={chatType}
-        />
-        {/* <Stylebar
-          menuSettings={this.menuSettings}
-          topbarSettings={this.topbarSettings}
-        /> */}
+                )
+              })
+            }
+            if (prop.redirect)
+              return <Redirect from={prop.path} to={prop.pathTo} key={key} />
+            return (
+              <PrivateRoute
+                exact
+                path={prop.path}
+                key={key}
+                component={prop.component}
+                user_data={user_data}
+              />
+            )
+          })}
+        </Switch>
+        <Footer fluid />
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default UniversityLayout

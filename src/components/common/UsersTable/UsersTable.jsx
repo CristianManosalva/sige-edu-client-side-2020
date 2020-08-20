@@ -164,17 +164,41 @@ export default function UsersTable({ users }) {
             ? users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : users
           ).map((row, key) => (
-            <TableRow key={row.user.documentIdUser || key}>
-              <TableCell component="th" scope="row" style={{ width: '100px' }}>
+// <<<<<<< HEAD
+//             <TableRow key={row.user.documentIdUser || key}>
+//               <TableCell component="th" scope="row" style={{ width: '100px' }}>
+// =======
+            <TableRow key={row.documentIdUser || key}>
+              <TableCell
+                className="custom-cell"
+                component="th"
+                scope="row"
+                style={{ width: '100px' }}
+              >
+{/* >>>>>>> dev-stage */}
                 <ImgContainer>
                   <ImgTable src={row.user.profile_picture} alt="picture" />
                 </ImgContainer>
               </TableCell>
+{/* <<<<<<< HEAD
               <TableCell align="left">{row.user.firstNameUser}</TableCell>
               <TableCell align="left">{row.user.lastNameUser}</TableCell>
               <TableCell align="left">{row.user.documentIdUser}</TableCell>
               <TableCell align="left">
                 {'El usuario aun no ingresa su correo'}
+======= */}
+              <TableCell className="custom-cell" align="left">
+                {row.firstNameUser}
+              </TableCell>
+              <TableCell className="custom-cell" align="left">
+                {row.lastNameUser}
+              </TableCell>
+              <TableCell className="custom-cell" align="left">
+                {row.documentIdUser}
+              </TableCell>
+              <TableCell className="custom-cell" align="left">
+                {row.emailUser || 'El usuario aun no ingresa su correo'}
+{/* >>>>>>> dev-stage */}
               </TableCell>
               {/* <TableCell align="right">{row.fat}</TableCell> */}
               {/* <TableCell align="right">{row.carbs}</TableCell> */}

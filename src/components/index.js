@@ -1,3 +1,6 @@
+/*--------------- Root Components ------------------*/
+import ScrollToTop from './common/ScrollToTop/ScrollToTop'
+
 /*--------------- Common Components ------------------*/
 import Header from './common/Header/Header'
 import Footer from './common/Footer/Footer'
@@ -18,6 +21,7 @@ import Post from './common/Post/Post'
 import UsersTable from './common/UsersTable/UsersTable'
 import GlobalLoader from './common/Loader/GlobalLoader'
 import NotFoundInfo from './common/NotFoundInfo/NotFoundInfo'
+import CustomTabs from './common/CustomTabs/CustomTabs'
 
 /*--------------- General Admin Components ------------------*/
 import Messagewidget from './common/Messagewidget/Messagewidget'
@@ -38,18 +42,22 @@ import VideosYoutube from '../components/youtube_card/VideosYoutube'
 import YoutubeLiveClassroom from '../components/youtube_card/YoutubeLiveClassroom'
 import Courseslist from './university/Courseslist/Courseslist'
 import SubjectList from './university/Courseslist/SubjectList'
+import Activities from './university/Activities/Activities'
 import ActivityItem from './university/Activities/ActivityItem'
 import Activity from './university/Activities/Activity'
 import ActivityCarouselItem from './university/Activities/ActivityCarouselItem'
 import AddActivity from './university/Activities/Form/AddActivity'
 import AddResponseSection from './university/Sectionstudents/Form/AddResponseSection'
-
 import ShowActivity from './university/Activities/Form/ShowActivity'
+import Forum from './university/Forum/Forum'
+import Feed from './university/Forum/Form/Feed'
+import CreateFeed from './university/Forum/Form/CreateFeed'
 
 /*--------------- Hospital Admin Components ------------------*/
 import CoursesStudentList from './hospital/Doctorslist/CoursesStudentList'
 import Patientslist from './hospital/Patientslist/Patientslist'
 import Staffslist from './hospital/Staffslist/Staffslist'
+import SubjectActivities from './hospital/Subjects/SubjectActivities'
 import SubjectCard from './hospital/Subjects/SubjectCard'
 import SubjectActivity from './hospital/SubjectActivity/SubjectActivity'
 
@@ -69,6 +77,8 @@ import UpdateImgUser from '../components/hospital/Doctorslist/UpdateImgUser'
 import FormProfileUser from '../components/common/Forms/FormProfileUser'
 
 export {
+  //root components
+  ScrollToTop,
   //Common component
   Messagewidget,
   Modal,
@@ -76,6 +86,7 @@ export {
   UsersTable,
   GlobalLoader,
   NotFoundInfo,
+  CustomTabs,
   //Post Component
   Post,
   CreatePost,
@@ -138,6 +149,7 @@ export {
   Staffslist,
   SubjectList,
   //item de actividad
+  Activities,
   ActivityItem,
   ActivityCarouselItem,
   Activity,
@@ -149,7 +161,12 @@ export {
   AvatarProfile,
   UpdateImgUser,
   FormProfileUser,
+  //Forum
+  Forum,
+  Feed,
+  CreateFeed,
   //Students
   SubjectCard,
   SubjectActivity,
+  SubjectActivities
 }

@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
-import { Button, Collapse, Card, CardBody } from 'reactstrap'
+import {
+  Button,
+  Collapse,
+  Card,
+  CardBody,
+  UncontrolledTooltip,
+} from 'reactstrap'
 import { Modal, ShowActivity } from 'components'
 import { config } from '_config'
 import Linkify from 'react-linkify'
 import moment from 'moment'
-import { error } from 'jquery'
 
 const tempImg = [
   'https://images.pexels.com/photos/2170/creative-desk-pens-school.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
@@ -144,9 +149,7 @@ const ActivityItem = (props) => {
                 <img
                   alt=""
                   src={
-                    activity.picture
-                      ? activity.picture
-                      : tempImg[Math.floor(Math.random() * 20)]
+                    activity.image_found ? activity.image_found : defaultPicture
                   }
                   style={{ maxHeight: '100%', objectFit: 'cover' }}
                   className="img-fluid"
@@ -265,8 +268,9 @@ const ActivityItem = (props) => {
                     {activity.response && activity.response.length} Estudiantes
                     han entregado
                   </span>
-                  <span>
-                    <i className="i-briefcase"></i> Fecha de Cierre: 2020-05-15
+                  <span id={'activity_date_close_info_' + activity.codeSecction}>
+                    <i className="fa fa-calendar-check-o"></i> Fecha de Cierre:{' '}
+                    {moment(activity.date_close).fromNow()}
                   </span>
                 </p>
               </div>
@@ -274,8 +278,19 @@ const ActivityItem = (props) => {
           </div>
         </div>
       </section>
+      {/* Tooltips secction */}
+      <UncontrolledTooltip
+        placement="bottom"
+        target={'activity_date_close_info_' + activity.codeSecction}
+      >
+        {moment(activity.date_close).format('MMMM Do YYYY, h:mm:ss')}
+      </UncontrolledTooltip>
+      {/* end Tooltiops secction */}
     </div>
   )
 }
 
 export default ActivityItem
+
+const defaultPicture =
+  'https://res.cloudinary.com/duyflkcyn/image/upload/v1595312014/SIGE/ActivitiesPhothos/3_talrgu.jpg'

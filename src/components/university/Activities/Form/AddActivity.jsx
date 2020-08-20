@@ -1,7 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize'
-import { Spinner, Row, Col, Container, Button, Label, Input } from 'reactstrap'
+import Utils from '@date-io/moment'
+import AlarmIcon from "@material-ui/icons/AddAlarm";
+import { IconButton, InputAdornment } from "@material-ui/core";
+import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
+import {
+  Spinner,
+  Row,
+  Col,
+  Button,
+  Label,
+  Input,
+  UncontrolledTooltip,
+} from 'reactstrap'
 import Dropzone from 'react-dropzone'
+import moment from 'moment'
 import '../styles/create-activity.css'
 
 const AddActivity = ({ toggle, creating, createActivity, loader }) => {
@@ -11,6 +24,7 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
     files: [],
     enlace: '',
   })
+  const [selectedDate, handleDateChange] = useState(moment())
   const [loaders, setLoaders] = useState({
     postDescription: false,
   })
@@ -26,6 +40,7 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
         description,
         files,
         enlace,
+        date_close: selectedDate
       })
     }
   }
@@ -35,16 +50,30 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
     setInputs((inputs) => ({ ...inputs, [name]: value }))
   }
 
+  // const handleDateChange = (date) => {
+  //   setInputs((inputs) => ({ ...inputs, startDate: date }))
+  // }
+
   const onDrop = (files) => {
     setInputs((inputs) => ({ ...inputs, files: files }))
   }
 
   useEffect(() => {}, [])
 
-  const { description, name, files, enlace } = inputs
+  const { description, name, files, enlace, startDate } = inputs
 
   return (
-    <Container fluid={true} className="add_activity_main">
+    <div className="add_activity_main">
+      {/* Tooltips secction */}
+      <UncontrolledTooltip placement="right" target="icon_question_description">
+        Escribe todo lo que quieras, has descripciones detalladas, utiliza salto
+        de linea(enter), incluso pega enlaces.
+      </UncontrolledTooltip>
+      <UncontrolledTooltip placement="right" target="icon_question_close_time">
+        Selecciona el dia y la hora en que dejaras de recibir entregas por parte
+        de los estudiantes.
+      </UncontrolledTooltip>
+      {/* end Tooltiops secction */}
       <Row>
         <Col xs={12} className="form-group">
           <Label for="name">Titulo de la Actvidad</Label>
@@ -65,12 +94,19 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
           </div>
         </Col>
         <Col xs={12} className="form-group">
-          <Label for="name">Descripcion de la actividad</Label>
+          <Label for="name">
+            Descripcion de la actividad{' '}
+            <i
+              style={{ fontSize: '16px' }}
+              className="fa fa-question-circle"
+              id="icon_question_description"
+            />
+          </Label>
           <div className="add_activity_description_container">
             <TextareaAutosize
               aria-label="minimum height"
-              rowsMin={8}
-              rowsMax={24}
+              rowsMin={2}
+              rowsMax={16}
               name="description"
               placeholder=""
               className="add_activity_description_container-text-aria"
@@ -108,6 +144,36 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
           )}
         </Col>
         <Col xs={12} className="form-group">
+          <Label for="enlace">
+            Fecha de cierre{' '}
+            <i
+              style={{ fontSize: '16px' }}
+              className="fa fa-question-circle"
+              id="icon_question_close_time"
+            />
+          </Label>
+          <p style={{ margin: 0 }}></p>
+          <MuiPickersUtilsProvider utils={Utils}>
+            <DateTimePicker
+              autoOk
+              ampm={false}
+              // disableFuture
+              value={selectedDate}
+              className="reformat-datepicker"
+              onChange={handleDateChange}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton>
+                      <AlarmIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </MuiPickersUtilsProvider>
+        </Col>
+        <Col xs={12} className="form-group">
           <Label for="enlace">Enlace destacado</Label>
           <Input
             type="text"
@@ -126,17 +192,20 @@ const AddActivity = ({ toggle, creating, createActivity, loader }) => {
             color="primary"
             size="sm"
             onClick={create}
+            disabled={loader}
           >
             {loader ? (
               <Spinner className="mr-2" size="sm" color="light" />
             ) : (
-              <i className="fa fa-save mr-3"></i>
+              <span>
+                <i className="fa fa-save mr-3" />
+                Crear Actividad
+              </span>
             )}
-            Crear Actividad
           </Button>
         </Col>
       </Row>
-    </Container>
+    </div>
   )
 }
 
