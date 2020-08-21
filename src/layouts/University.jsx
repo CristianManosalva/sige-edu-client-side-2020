@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Switch, Redirect } from 'react-router-dom'
-import { Header, Footer, Sidebar, PrivateRoute, GlobalLoader } from 'components'
 import { useSelector } from 'react-redux'
+import { Header, Footer, Sidebar, PrivateRoute } from 'components'
 import universityRoutes from 'routes/university.jsx'
 import hospitalRoutes from 'routes/hospital.jsx'
 import crmlRoutes from 'routes/crm.jsx'
@@ -13,7 +13,6 @@ import {
   topbarType,
   navWidth,
 } from 'variables/settings/university.jsx'
-import { useEffect } from 'react'
 
 const sideBarStyle = {
   backgroundColor: '#1EAEDF',
