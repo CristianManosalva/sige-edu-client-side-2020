@@ -2,7 +2,7 @@ import React from 'react'
 import Loader from 'react-loader-spinner'
 // import { ThreeDotsLoader } from './ManyLoaders'
 
-const GlobalLoader = () => {
+const GlobalLoader = ({ style }) => {
   return (
     <div
       style={{
@@ -12,6 +12,7 @@ const GlobalLoader = () => {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
+        ...style,
       }}
     >
       <Loader

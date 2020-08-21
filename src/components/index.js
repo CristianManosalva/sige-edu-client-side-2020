@@ -29,6 +29,7 @@ import Navmenudropdown from './common/Navmenudropdown/Navmenudropdown'
 import Navmenugroup from './common/Navmenugroup/Navmenugroup'
 /*--------------- Custom Components ------------------*/
 import PrivateRoute from './common/PrivateRoute/PrivateRoute'
+import PrivateRouteCustom from './common/PrivateRouteCustom/PrivateRouteCustom'
 import ChangePassword from './common/ChangePassword/ChangePassword'
 import DescriptionComponent from './common/DescriptionComponent/DescriptionComponent.jsx'
 
@@ -93,6 +94,7 @@ export {
   EditPost,
   //PrivateRoute
   PrivateRoute,
+  PrivateRouteCustom,
   ChangePassword,
   // CardElements
   Navmenudropdown,

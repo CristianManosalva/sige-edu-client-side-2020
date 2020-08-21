@@ -1,35 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { history } from '_helpers'
-import { Router, Route, Switch, match } from 'react-router-dom'
-import { PrivateRoute, ScrollToTop } from 'components'
-import indexRoutes from 'routes/index.jsx'
-import { hotjar } from 'react-hotjar';
-hotjar.initialize(1778911, 6);
+import { Router, Route, Switch, Redirect } from 'react-router-dom'
+import { PrivateRoute, ScrollToTop, PrivateRouteCustom } from 'components'
+import Home from 'views/general/Pages/Home.jsx'
+import UniversityLayout from 'layouts/University.jsx'
+import { hotjar } from 'react-hotjar'
+hotjar.initialize(1778911, 6)
 
 const App = () => {
-  
+  console.log(`\n\n\nllamando app principal: ${new Date()} \n\n\n`)
   return (
     <Router history={history} basename={process.env.REACT_APP_BASEDIR}>
       <ScrollToTop />
       <Switch>
-        {indexRoutes.map((prop, key) => {
-          //console.log(prop.path, " / " , key , " / ", prop._public);
-          if (prop._public) {
-            //console.log("Entro aqui")
-            return (
-              <Route path={prop.path} key={key} component={prop.component} />
-            )
-          }
-          // console.log('Entro aqui ', prop.name)
-          return (
-            <PrivateRoute
-              exact
-              path={prop.path}
-              key={key}
-              component={prop.component}
-            />
-          )
-        })}
+        <PrivateRouteCustom
+          path="/home"
+          component={UniversityLayout}
+          unLoginComponent={Home}
+        />
+        <PrivateRoute path="/university" component={UniversityLayout} />
+        <Redirect to="/home" />
       </Switch>
     </Router>
   )
