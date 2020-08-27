@@ -429,7 +429,7 @@ class HeaderR extends React.Component {
 
 // export default Header
 function mapState(state) {
-  const { user } = state.authentication.user.user_data
+  const { userData: user } = state.authentication
   return { user }
 }
 

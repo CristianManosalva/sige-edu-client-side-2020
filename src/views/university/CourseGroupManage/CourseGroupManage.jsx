@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import { CustomTabs, Activities, Forum, SubjectActivities } from 'components'
 
 const CourseGroupManage = (props) => {
+  let localTab = null
+  if (localStorage.getItem('selectTabCGM')) {
+    localTab = JSON.parse(localStorage.getItem('selectTabCGM'))
+  }
   const { user_data } = props
   const { codeAcademicCharge } = props.match.params
-  const [valueTabs, setValueTabs] = useState(0)
+  const [valueTabs, setValueTabs] = useState(localTab || 0)
 
   return (
     <div>
