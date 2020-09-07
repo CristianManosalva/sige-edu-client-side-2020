@@ -4,7 +4,8 @@ import CourseGroupManage from 'views/university/CourseGroupManage/CourseGroupMan
 import Library from 'views/university/Library/Library.jsx'
 import AddProfessor from 'views/university/Professor/AddProfessor.jsx'
 import Wall from 'views/university/Community/Wall.jsx'
-import PatientProfile from 'views/hospital/Patient/PatientProfile.jsx';
+import PatientProfile from 'views/hospital/Patient/PatientProfile.jsx'
+// import AddStudent from 'views/crm/AddStudent/AddStudent.jsx'
 
 var BASEDIR = process.env.REACT_APP_BASEDIR
 var dashRoutes = [
@@ -52,6 +53,19 @@ var dashRoutes = [
     name: '¿Te Ayudamos?',
     component: Help,
   },
+  // {
+  //   path: '#',
+  //   name: 'Usuarios',
+  //   icon: 'user',
+  //   type: 'dropdown',
+  //   parentid: 'users',
+  //   child: [{ path: BASEDIR + '/university/add-student', name: 'Estudiantes' }],
+  // },
+  // {
+  //   path: BASEDIR + '/university/add-student',
+  //   component: AddStudent,
+  //   type: 'child',
+  // },
   {
     redirect: true,
     path: BASEDIR + '/',

@@ -20,6 +20,39 @@ const AlertErrorMessage = styled.p`
   }
 `
 
+const ImgContainer = styled.div`
+  display: block;
+  max-height: 130px;
+  height: 130px;
+  width: 130px;
+  position: relative;
+  border-radius: 50%;
+  border: 1px solid black;
+  overflow: hidden;
+`
+const Img = styled.img`
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  object-position: center;
+  max-width: 100%;
+`
+
+const ProfileContainerPicture = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 1.5em 0;
+`
+
+const ButtonEditPicture = styled.button`
+  border-radius: 6px;
+  margin: 0px;
+  margin-top: 0.5em;
+`
+
 let userFromStorage = JSON.parse(localStorage.getItem('userv2'))
 
 const PatientProfile = (props) => {
@@ -84,7 +117,19 @@ const PatientProfile = (props) => {
   return (
     <div>
       <div className="content">
-        <div className="cui-container">
+        <div className="cui-container mt-4">
+          <Row>
+            <div className="col-8 offset-2 col-xl-6 offset-xl-3">
+              <ProfileContainerPicture>
+                <ImgContainer>
+                  <Img src={user.profile_picture} />
+                </ImgContainer>
+                {/* <ButtonEditPicture className="btn btn-primary btn-sm  text-center">
+                  <i className="fa fa-file-picture-o mr-1" /> editar foto
+                </ButtonEditPicture> */}
+              </ProfileContainerPicture>
+            </div>
+          </Row>
           <Row>
             <div className="col-8 offset-2 col-xl-6 offset-xl-3">
               <form onSubmit={handleSubmit(onSubmit)}>
