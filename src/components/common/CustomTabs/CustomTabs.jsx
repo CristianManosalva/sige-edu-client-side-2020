@@ -10,12 +10,13 @@ const useStyles = makeStyles({
   },
 })
 
-export default function CenteredTabs({value, setValue}) {
+export default function CustomTabs({value, setValue}) {
   const classes = useStyles()
   // const [value, setValue] = React.useState(0)
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
+    localStorage.setItem('selectTabCGM', JSON.stringify(newValue))
   }
 
   return (

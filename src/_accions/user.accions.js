@@ -6,6 +6,7 @@ import { history } from '../_helpers'
 export const userActions = {
   login,
   logout,
+  updateUser
   // register,
   // getAll,
   // delete: _delete,
@@ -36,6 +37,12 @@ function login(documentIdUser, passwordUser) {
   }
   function failure(error) {
     return { type: userConstants.LOGIN_FAILURE, error }
+  }
+}
+
+function updateUser(user, userData) {
+  return (dispatch) => {
+    dispatch({ type: userConstants.LOGIN_SET_USER, user, userData })
   }
 }
 

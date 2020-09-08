@@ -606,17 +606,20 @@ const CreateComment = ({ loader, create, codeSecction }) => {
       )}
       {creating && errors.nullComment && <p>Escribe tu mensaje :)</p>}
       {creating && (
-        <TextareaAutosize
-          aria-label="minimum height"
-          rowsMin={1}
-          rowsMax={24}
-          name="newComment"
-          placeholder=""
-          className="add_activity_description_container-text-aria"
-          onChange={handleChange}
-          value={comment}
-          style={{ fontSize: '14px', marginLeft: '-13.7px' }}
-        />
+        <div>
+          <CommentTitle>Retroalimentacion</CommentTitle>
+          <TextareaAutosize
+            aria-label="minimum height"
+            rowsMin={1}
+            rowsMax={24}
+            name="newComment"
+            placeholder=""
+            className="add_activity_description_container-text-aria"
+            onChange={handleChange}
+            value={comment}
+            style={{ fontSize: '14px', marginLeft: '-13.7px' }}
+          />
+        </div>
       )}
       {creating && (
         <ComfirmActionTwoButtonsBar

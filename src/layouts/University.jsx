@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Switch, Redirect } from 'react-router-dom'
-import { Header, Footer, Sidebar, PrivateRoute } from 'components'
 import { useSelector } from 'react-redux'
+import { Header, Footer, Sidebar, PrivateRoute } from 'components'
 import universityRoutes from 'routes/university.jsx'
 import hospitalRoutes from 'routes/hospital.jsx'
 import crmlRoutes from 'routes/crm.jsx'
@@ -13,7 +13,6 @@ import {
   topbarType,
   navWidth,
 } from 'variables/settings/university.jsx'
-import { useEffect } from 'react'
 
 const sideBarStyle = {
   backgroundColor: '#1EAEDF',
@@ -25,6 +24,7 @@ const UniversityLayout = (props) => {
   const { user_data } = useSelector((state) => state.authentication.user)
   const [state, setState] = useState({
     dashboardRoutes: [], //definitive solution
+    // dashboardRoutes: universityRoutes,
     menuColor: menuBackgroundColor,
     topbarColor: topbarStyle,
     menuType: menuType,
@@ -72,8 +72,12 @@ const UniversityLayout = (props) => {
     handleTypeOfUser()
   }, [])
 
-
   const { dashboardRoutes } = state
+
+  if (dashboardRoutes.length < 1) {
+    // return <GlobalLoader style={{ height: '100vh' }} />
+    return null
+  }
 
   return (
     <div
@@ -84,7 +88,12 @@ const UniversityLayout = (props) => {
       data-menutype={state.menuType}
       data-topbartype={state.topbarType}
     >
-      <Header {...props} user_data={user_data} navtype={navWidth} admintype={'university'} />
+      <Header
+        {...props}
+        user_data={user_data}
+        navtype={navWidth}
+        admintype={'university'}
+      />
       <Sidebar
         style={sideBarStyle}
         className="step-1"

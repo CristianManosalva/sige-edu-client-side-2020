@@ -17,7 +17,7 @@ var dashRoutes = [
     type: 'child',
   },
   {
-    path: BASEDIR + '/settings',
+    path: BASEDIR + '/university/settings',
     icon: 'info',
     badge: '',
     name: 'Perfil',

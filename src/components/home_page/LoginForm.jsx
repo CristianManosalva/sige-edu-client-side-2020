@@ -65,7 +65,7 @@ const LoginForm = (props) => {
               <Input
                 type="number"
                 name="email"
-                placeholder="Ingresa tu numero de cedula"
+                placeholder="Ingresa tu numero de documento"
                 step={1}
                 onChange={handleChange}
               />

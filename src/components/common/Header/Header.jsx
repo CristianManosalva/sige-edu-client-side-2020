@@ -291,7 +291,7 @@ class HeaderR extends React.Component {
               </button>
             </div>
 
-            <form className="topbar-search-form">
+            {/* <form className="topbar-search-form">
               <InputGroup
                 className={
                   'topbar-search ' +
@@ -306,7 +306,7 @@ class HeaderR extends React.Component {
                 </InputGroupAddon>
                 <Input placeholder="Buscar..." />
               </InputGroup>
-            </form>
+            </form> */}
 
             <NavbarBrand href="/">{this.getBrand()}</NavbarBrand>
           </div>
@@ -429,7 +429,7 @@ class HeaderR extends React.Component {
 
 // export default Header
 function mapState(state) {
-  const { user } = state.authentication.user.user_data
+  const { userData: user } = state.authentication
   return { user }
 }
 

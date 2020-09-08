@@ -5,13 +5,19 @@ import Loader from 'react-loader-spinner'
 import { config } from '_config'
 import './styles/activities.css'
 
-const Activities = ({ codeAcademicCharge }) => {
+const Activities = ({ codeAcademicCharge, user_data }) => {
   const [workSpace, setWorkSpace] = useState({})
   const [secctions, setSecctions] = useState([])
   const [loaders, setLoaders] = useState({
     creating: false,
     gettingActivities: true,
   })
+  let teacher_id = ''
+  try {
+    teacher_id = user_data.teacher.codeTeacher
+  } catch (error) {
+    console.log("Error en activities linea 19")
+  }
   // const [state, setState] = useState({
   //   work_space_id: '',
   // })
@@ -328,7 +334,7 @@ const Activities = ({ codeAcademicCharge }) => {
                   activity={value}
                   key={key * 1000}
                   deleteActivity={deleteActivity}
-                  id_teacher={teacherDictate}
+                  id_teacher={teacher_id}
                 />
               )
             })}

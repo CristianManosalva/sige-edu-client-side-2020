@@ -64,7 +64,7 @@ const LoginFormNew = (props) => {
       //   alert('Datos de ingreso incorrectos')
       // }
     } else {
-      alert('Por favor ingrese su cedula y contraseña')
+      alert('ingrese el documento del usuario')
     }
   }
   return (
@@ -103,7 +103,7 @@ const LoginFormNew = (props) => {
             <Input
               type="number"
               name="email"
-              placeholder="Ingresa tu numero de cedula"
+              placeholder="Ingresa tu numero de documento"
               step={1}
               onChange={handleChange}
               className="bordered"

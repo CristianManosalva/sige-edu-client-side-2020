@@ -1,23 +1,16 @@
-import University from 'views/university/Dashboard/University.jsx'
 import Course from 'views/university/Course/Course.jsx'
-// import Subjects from 'views/university/Course/Subjects.jsx'
 import Help from 'views/university/Help/Help.jsx'
-// import AddCourse from 'views/university/Course/AddCourse.jsx'
-// import CourseView from 'views/university/Course/CourseView.jsx'
-// import Activities from 'views/university/Activities/Activities.jsx'
 import CourseGroupManage from 'views/university/CourseGroupManage/CourseGroupManage.jsx'
 import Library from 'views/university/Library/Library.jsx'
-// import Professor from 'views/university/Professor/Professor.jsx'
 import AddProfessor from 'views/university/Professor/AddProfessor.jsx'
-// import Student from 'views/university/Student/Student.jsx'
-// import Centres from 'views/university/Centres/UniversityCentres'
 import Wall from 'views/university/Community/Wall.jsx'
-import PatientProfile from 'views/hospital/Patient/PatientProfile.jsx';
+import PatientProfile from 'views/hospital/Patient/PatientProfile.jsx'
+// import AddStudent from 'views/crm/AddStudent/AddStudent.jsx'
 
 var BASEDIR = process.env.REACT_APP_BASEDIR
 var dashRoutes = [
   {
-    path: BASEDIR + '/university/dashboard',
+    path: BASEDIR + '/university',
     name: 'Comunidad',
     icon: ' fa fa-users',
     component: Wall,
@@ -47,7 +40,7 @@ var dashRoutes = [
     component: Library,
   },
   {
-    path: BASEDIR + '/settings',
+    path: BASEDIR + '/university/settings',
     icon: 'info',
     badge: '',
     name: 'Perfil',
@@ -60,10 +53,23 @@ var dashRoutes = [
     name: '¿Te Ayudamos?',
     component: Help,
   },
+  // {
+  //   path: '#',
+  //   name: 'Usuarios',
+  //   icon: 'user',
+  //   type: 'dropdown',
+  //   parentid: 'users',
+  //   child: [{ path: BASEDIR + '/university/add-student', name: 'Estudiantes' }],
+  // },
+  // {
+  //   path: BASEDIR + '/university/add-student',
+  //   component: AddStudent,
+  //   type: 'child',
+  // },
   {
     redirect: true,
     path: BASEDIR + '/',
-    pathTo: '/university/dashboard',
+    pathTo: '/university',
     name: 'Dashboard',
   },
 ]

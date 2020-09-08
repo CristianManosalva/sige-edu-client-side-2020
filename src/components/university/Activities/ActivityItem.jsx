@@ -81,7 +81,7 @@ const ActivityItem = (props) => {
 
   const createComment = (comment, codeResponse) => {
     console.log(
-      'creando: ',
+      'creando apa: ',
       comment,
       ' : ',
       props.id_teacher,
