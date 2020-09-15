@@ -122,7 +122,6 @@ const useStyles2 = makeStyles({
 })
 
 export default function UsersTable({ users }) {
-  console.log('users__users', users);
   const classes = useStyles2()
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(5)
@@ -164,10 +163,6 @@ export default function UsersTable({ users }) {
             ? users.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : users
           ).map((row, key) => (
-// <<<<<<< HEAD
-//             <TableRow key={row.user.documentIdUser || key}>
-//               <TableCell component="th" scope="row" style={{ width: '100px' }}>
-// =======
             <TableRow key={row.documentIdUser || key}>
               <TableCell
                 className="custom-cell"
@@ -175,18 +170,10 @@ export default function UsersTable({ users }) {
                 scope="row"
                 style={{ width: '100px' }}
               >
-{/* >>>>>>> dev-stage */}
                 <ImgContainer>
-                  <ImgTable src={row.user.profile_picture} alt="picture" />
+                  <ImgTable src={row.profile_picture} alt="picture" />
                 </ImgContainer>
               </TableCell>
-{/* <<<<<<< HEAD
-              <TableCell align="left">{row.user.firstNameUser}</TableCell>
-              <TableCell align="left">{row.user.lastNameUser}</TableCell>
-              <TableCell align="left">{row.user.documentIdUser}</TableCell>
-              <TableCell align="left">
-                {'El usuario aun no ingresa su correo'}
-======= */}
               <TableCell className="custom-cell" align="left">
                 {row.firstNameUser}
               </TableCell>
@@ -198,7 +185,6 @@ export default function UsersTable({ users }) {
               </TableCell>
               <TableCell className="custom-cell" align="left">
                 {row.emailUser || 'El usuario aun no ingresa su correo'}
-{/* >>>>>>> dev-stage */}
               </TableCell>
               {/* <TableCell align="right">{row.fat}</TableCell> */}
               {/* <TableCell align="right">{row.carbs}</TableCell> */}
