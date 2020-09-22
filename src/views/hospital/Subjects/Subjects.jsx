@@ -93,6 +93,7 @@ const Subjects = (props) => {
                             key={key}
                             urlImage={IMGDIR + `/images/cards/${key}.jpeg`}
                           />
+                          
                         ))}
                       {courses.length == 0 && !loader && (
                         <div
