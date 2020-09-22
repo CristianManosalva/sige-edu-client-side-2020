@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import { Badge } from 'reactstrap'
 import { history } from '_helpers'
 import './styles/subject-card.css'
 
@@ -48,7 +49,7 @@ const SubjectCard = ({ subject, urlImage }) => {
                 overflow: 'hidden',
               }}
             >
-              {nameCourse}
+              <Badge color="secondary" variant="dot">{nameCourse}</Badge>
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               <i className="fa fa-graduation-cap" />
