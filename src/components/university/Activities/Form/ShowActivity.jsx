@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize'
+import Utils from '@date-io/moment'
+import AlarmIcon from '@material-ui/icons/AddAlarm'
+import { IconButton, InputAdornment } from '@material-ui/core'
+import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 import moment from 'moment'
 import {
   Collapse,
@@ -39,6 +43,8 @@ const ShowActivity = ({
   handleChange,
   deleteActivity,
   createComment,
+  selectedDate,
+  handleDateChange,
 }) => {
   const [state, setState] = useState({
     editing: false,
@@ -220,8 +226,6 @@ const ShowActivity = ({
         </Col>
         <Col xs={12}>
           <div className="acticity_content_container">
-            {/* <div className="post_content_container-content"> */}
-
             {editing ? (
               <div>
                 <Label for="name">Descripcion de la actividad</Label>
@@ -239,8 +243,42 @@ const ShowActivity = ({
             ) : (
               <DescriptionComponent>{descriptionSecction}</DescriptionComponent>
             )}
-
-            {/* </div> */}
+          </div>
+        </Col>
+        <Col xs={12}>
+          <div className="acticity_content_container">
+            <Label for="enlace">
+              Fecha de cierre{' '}
+              <i
+                style={{ fontSize: '16px' }}
+                className="fa fa-question-circle"
+                id="icon_question_close_time"
+              />
+            </Label>
+            <p style={{ margin: 0 }}></p>
+            {editing ? (
+              <MuiPickersUtilsProvider utils={Utils}>
+                <DateTimePicker
+                  autoOk
+                  ampm={false}
+                  // disableFuture
+                  value={selectedDate}
+                  className="reformat-datepicker"
+                  onChange={handleDateChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton>
+                          <AlarmIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </MuiPickersUtilsProvider>
+            ) : (
+            <p>{selectedDate.format('MMMM DD, H:MM')}</p>
+            )}
           </div>
         </Col>
         <Col xs={12}>

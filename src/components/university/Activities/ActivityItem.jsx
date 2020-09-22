@@ -59,7 +59,12 @@ const ActivityItem = (props) => {
     setActivity((activity) => ({ ...activity, [name]: value }))
   }
 
+  const [selectedDate, handleDateChange] = useState(moment(activity.date_close, 'YYYY-MM-DDTHH:mm:ss.SSS[Z]'))
+
   const editActivity = () => {
+    let helperActivity = activity
+    helperActivity.date_close = selectedDate.format('YYYY-MM-DDTHH:mm:ss')
+    console.log('helper activity: ', helperActivity)
     fetch(
       `${config.apiEndPoint}/secctions/secction/update/${activity.codeSecction}`,
       {
@@ -68,7 +73,7 @@ const ActivityItem = (props) => {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(activity),
+        body: JSON.stringify(helperActivity),
       }
     )
       .then((response) => response.json())
@@ -128,6 +133,8 @@ const ActivityItem = (props) => {
       >
         <ShowActivity
           loader={null}
+          selectedDate={selectedDate}
+          handleDateChange={handleDateChange}
           createActivity={null}
           toggleModal={toggleModal}
           activity={activity}
@@ -283,7 +290,7 @@ const ActivityItem = (props) => {
         placement="bottom"
         target={'activity_date_close_info_' + activity.codeSecction}
       >
-        {moment(activity.date_close).format('MMMM Do YYYY, h:mm:ss')}
+        {moment(selectedDate).format('MMMM Do YYYY, H:MM')}
       </UncontrolledTooltip>
       {/* end Tooltiops secction */}
     </div>
