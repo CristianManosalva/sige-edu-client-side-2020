@@ -55,7 +55,7 @@ const ActivityItem = (props) => {
   })
   const [colapse, setColapse] = useState(false)
   const [response, setResponse] = useState(null)
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(props.activity.codeSecction == 1804)
   const [activity, setActivity] = useState(props.activity)
   const [backup] = useState(props.activity)
 
@@ -143,7 +143,8 @@ const ActivityItem = (props) => {
     secction_response,
     message_response,
     files,
-    student_response
+    student_response,
+    images
   ) {
     console.log('Mensaje: ', message_response)
     setLoaders((loader) => ({ ...loader, responding: true }))
@@ -166,6 +167,18 @@ const ActivityItem = (props) => {
         return response.json()
       })
       .then(async (newSecction) => {
+        /* bloque de imagenes */
+        let newImages = []
+        for (let i = 0; i < images.length; i++) {
+          let picture = await addPicture(images[i], newSecction.code_response)
+          console.log('picture: ', picture)
+          if (picture) {
+            newImages.push(picture)
+          }
+        }
+        newSecction.newImages = [newImages]
+        /* fin bloque de imagenes */
+
         let fileDone = true
         console.log('creating files')
         if (files.length > 0) {
@@ -203,6 +216,52 @@ const ActivityItem = (props) => {
         )
       })
       .finally(() => {})
+  }
+
+  const addPicture = async (img, codeSecction) => {
+    let formData = new FormData()
+    formData.append('profile', img.file)
+
+    let url = await fetch(
+      `https://api-upload-pictures.vercel.app/api/v1/media/upload`,
+      {
+        method: 'POST',
+        body: formData,
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+        return null
+      })
+      .catch((error) => {
+        console.log(error)
+        return null
+      })
+
+    return fetch(`${config.apiEndPoint}/images/create/`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        url: url.data,
+        name: 'generic_name',
+        response: codeSecction,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+        return null
+      })
+      .catch((error) => {
+        console.log(error)
+        return null
+      })
   }
 
   function addFile(file, response_secction) {
@@ -466,6 +525,7 @@ const ResponseActivity = ({ response, deleteResponse, loader }) => {
     date_response,
     code_response,
     comment,
+    images,
   } = response
   // const { codeStudent, user } = studentResponse
   /* inicio aux function */

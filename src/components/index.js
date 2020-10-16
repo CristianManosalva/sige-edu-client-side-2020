@@ -22,6 +22,7 @@ import UsersTable from './common/UsersTable/UsersTable'
 import GlobalLoader from './common/Loader/GlobalLoader'
 import NotFoundInfo from './common/NotFoundInfo/NotFoundInfo'
 import CustomTabs from './common/CustomTabs/CustomTabs'
+import ImageUploader from './common/ImageUploader/ImageUploader'
 
 /*--------------- General Admin Components ------------------*/
 import Messagewidget from './common/Messagewidget/Messagewidget'
@@ -88,6 +89,7 @@ export {
   GlobalLoader,
   NotFoundInfo,
   CustomTabs,
+  ImageUploader,
   //Post Component
   Post,
   CreatePost,
@@ -170,5 +172,5 @@ export {
   //Students
   SubjectCard,
   SubjectActivity,
-  SubjectActivities
+  SubjectActivities,
 }
