@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import ImageUploading from 'react-images-uploading'
 import {
   ImgContainer,
@@ -14,7 +14,6 @@ import {
 
 const ImageUploader = ({ images, setImages }) => {
   const refContainer = useRef()
-  // const [images, setImages] = useState([])
   const onClickRight = () => {
     refContainer.current.scrollLeft = refContainer.current.scrollWidth
   }
