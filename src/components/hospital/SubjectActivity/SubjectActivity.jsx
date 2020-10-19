@@ -55,7 +55,7 @@ const ActivityItem = (props) => {
   })
   const [colapse, setColapse] = useState(false)
   const [response, setResponse] = useState(null)
-  const [modal, setModal] = useState(props.activity.codeSecction == 1804)
+  const [modal, setModal] = useState(false)
   const [activity, setActivity] = useState(props.activity)
   const [backup] = useState(props.activity)
 
