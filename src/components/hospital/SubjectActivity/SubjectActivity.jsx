@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import swal from 'sweetalert'
-import { Collapse, Container, UncontrolledTooltip, Spinner } from 'reactstrap'
+import { Collapse, Container } from 'reactstrap'
 import moment from 'moment'
 import { Modal, AddResponseSection, DescriptionComponent } from 'components'
+import Response from './Response/Response'
 import {
   Card,
   CropImage,
@@ -17,7 +18,6 @@ import {
   Score,
   ScoreTitle,
   ReponseContainer,
-  DeleteIcon,
 } from './styles'
 import { config } from '_config'
 // import { error } from 'jquery'
@@ -55,7 +55,7 @@ const ActivityItem = (props) => {
   })
   const [colapse, setColapse] = useState(false)
   const [response, setResponse] = useState(null)
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(props.activity.codeSecction == 1804)
   const [activity, setActivity] = useState(props.activity)
   const [backup] = useState(props.activity)
 
@@ -143,7 +143,8 @@ const ActivityItem = (props) => {
     secction_response,
     message_response,
     files,
-    student_response
+    student_response,
+    images
   ) {
     console.log('Mensaje: ', message_response)
     setLoaders((loader) => ({ ...loader, responding: true }))
@@ -166,6 +167,18 @@ const ActivityItem = (props) => {
         return response.json()
       })
       .then(async (newSecction) => {
+        /* bloque de imagenes */
+        let newImages = []
+        for (let i = 0; i < images.length; i++) {
+          let picture = await addPicture(images[i], newSecction.code_response)
+          console.log('picture: ', picture)
+          if (picture) {
+            newImages.push(picture)
+          }
+        }
+        newSecction.images = [...newImages]
+        /* fin bloque de imagenes */
+
         let fileDone = true
         console.log('creating files')
         if (files.length > 0) {
@@ -203,6 +216,52 @@ const ActivityItem = (props) => {
         )
       })
       .finally(() => {})
+  }
+
+  const addPicture = async (img, codeSecction) => {
+    let formData = new FormData()
+    formData.append('profile', img.file)
+
+    let url = await fetch(
+      `https://api-upload-pictures.vercel.app/api/v1/media/upload`,
+      {
+        method: 'POST',
+        body: formData,
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+        return null
+      })
+      .catch((error) => {
+        console.log(error)
+        return null
+      })
+
+    return fetch(`${config.apiEndPoint}/images/create/`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        url: url.data,
+        name: 'generic_name',
+        response: codeSecction,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+        return null
+      })
+      .catch((error) => {
+        console.log(error)
+        return null
+      })
   }
 
   function addFile(file, response_secction) {
@@ -412,7 +471,7 @@ const ActivityItem = (props) => {
           <div className="row">
             <div className="col-12">
               {response && (
-                <ResponseActivity
+                <Response
                   deleteResponse={deleteResponse}
                   response={response}
                   loader={erasing}
@@ -457,112 +516,29 @@ const ActivityItem = (props) => {
 
 export default ActivityItem
 
-const ResponseActivity = ({ response, deleteResponse, loader }) => {
-  const [isOpen, setIsOpen] = useState(false) //temporal, estado inical debe ser false
-  const toggle = () => setIsOpen(!isOpen)
-  const {
-    homework,
-    message_response,
-    date_response,
-    code_response,
-    comment,
-  } = response
-  // const { codeStudent, user } = studentResponse
-  /* inicio aux function */
-  const auxParseName = (url) => {
-    try {
-      return url.split('/').reverse()[0]
-    } catch (error) {
-      return 'archivo'
-    }
-  }
-  /* fin aux function  */
-
-  return (
-    <div className="mb-3">
-      <div
-        style={{
-          margin: '0',
-          width: '100%',
-          padding: '0 0',
-          display: 'flex',
-          justifyContent: 'space-between',
-          borderBottom: '1px solid #1eaedf',
-          fontSize: '1em',
-          cursor: 'pointer',
-        }}
-        onClick={toggle}
-      >
-        <div>
-          <i
-            className={
-              'fa ' +
-              (isOpen ? 'fa-folder-open-o' : 'fa-folder-o') +
-              ' ml-1 mr-2'
-            }
-            style={{ fontSize: '1.2em', color: '#1eaedf' }}
-          ></i>
-          <span>Aquí esta tu entrega</span>
-        </div>
-        <div
-          className="mr-1"
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <i
-            className="i-clock mr-1"
-            style={{ fontSize: '1.2em', color: '#1eaedf' }}
-          />
-          <span>{moment(date_response).format('MMMM DD, hh:mm')}</span>
-        </div>
-      </div>
-      <Collapse isOpen={isOpen}>
-        <div className="response_content_container">
-          <UncontrolledTooltip placement="right" target="delete_response">
-            Borrar
-          </UncontrolledTooltip>
-          <DeleteIcon
-            onClick={() => deleteResponse(code_response)}
-            className="btn btn-danger btn-sm"
-            id="delete_response"
-            loader={loader}
-            disabled={loader}
-          >
-            {loader && <Spinner color="ligth" size="sm" />}
-            {!loader && (
-              <i className="fa fa-trash-o" style={{ fontSize: '18px' }} />
-            )}
-          </DeleteIcon>
-          <DescriptionComponent>{message_response}</DescriptionComponent>
-          {homework && homework.length > 0 && (
-            <p className="uprofile-list mt-2">
-              <span>
-                <i className="i-doc"></i>{' '}
-                <a href={homework[0].response_file} target="_blank">
-                  {auxParseName(homework[0].response_file)}
-                </a>
-              </span>
-            </p>
-          )}
-        </div>
-      </Collapse>
-      {comment && (
-        <div className="d-flex align-items-center mt-4">
-          <i style={{ fontSize: '1.3em' }} className="i-info mr-2 " />
-          <span>Mensaje de tu profe</span>
-        </div>
-      )}
-      {comment && (
-        <div className="message-teacher-contianer ml-3 mt-1">
-          <DescriptionComponent>{comment.comment}</DescriptionComponent>
-        </div>
-      )}
-    </div>
-  )
-}
+// const ImgContainer = styled.div`
+//   display: block;
+//   max-height: 100px;
+//   height: 100px;
+//   width: 100px;
+//   min-width: 100px;
+//   position: relative;
+//   margin-right: 4px;
+//   position: relative;
+// `
+// const Img = styled.img`
+//   object-fit: cover;
+//   height: 100%;
+//   width: 100%;
+//   object-position: center;
+//   max-width: 100%;
+// `
+/* 
+<ImgContainer key={key}>
+          <Img src={image.dataURL} alt="" width="100" />
+          <DeleteButton onClick={() => onImageRemove(key)}>x</DeleteButton>
+        </ImgContainer>
+ */
 
 const SupportMaterialCollapse = ({ resources, type }) => {
   const [isOpen, setIsOpen] = useState(false) //temporal, estado inical debe ser false

@@ -4,9 +4,9 @@ import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize'
 import Dropzone from 'react-dropzone'
+import { ImageUploader } from 'components'
 import swal from 'sweetalert'
 import styled from 'styled-components'
-
 import './styles/fix-radio.css'
 
 const ReponseDescription = styled.p`
@@ -27,6 +27,7 @@ const AddResponseSection = ({
     files: [],
     notSentField: false,
   })
+  const [images, setImages] = useState([])
   const [checked, setChecked] = useState(false)
 
   const { description, files } = inputs
@@ -44,7 +45,8 @@ const AddResponseSection = ({
         codeSecction,
         description,
         checked ? [] : files,
-        student_id
+        student_id,
+        images
       )
     }
   }
@@ -78,6 +80,9 @@ const AddResponseSection = ({
             className="description_container-text-aria"
             onChange={handleChange}
           />
+        </Col>
+        <Col xs={12} className="form-group">
+          <ImageUploader images={images} setImages={setImages} />
         </Col>
         <Col xs={12} className="special_input_check_box">
           <FormControlLabel
