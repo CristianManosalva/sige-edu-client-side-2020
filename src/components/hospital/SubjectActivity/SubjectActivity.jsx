@@ -200,7 +200,7 @@ const ActivityItem = (props) => {
           } else {
             swal(
               'Upss..!!',
-              'Tu actividad se creo, pero no fue posible agregar tu archivo :(',
+              'Tu archivo pesa más 25 Megas!!, Intenta de nuevo :)',
               'warning'
             )
           }

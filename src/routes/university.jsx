@@ -33,12 +33,12 @@ var dashRoutes = [
     component: CourseGroupManage,
     type: 'child',
   },
-  {
-    path: BASEDIR + '/university/library',
-    icon: 'notebook',
-    name: 'Biblioteca',
-    component: Library,
-  },
+  // {
+  //   path: BASEDIR + '/university/library',
+  //   icon: 'notebook',
+  //   name: 'Biblioteca',
+  //   component: Library,
+  // },
   {
     path: BASEDIR + '/university/settings',
     icon: 'info',
