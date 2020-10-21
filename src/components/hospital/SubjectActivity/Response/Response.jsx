@@ -93,7 +93,6 @@ const Response = ({ response, deleteResponse, loader }) => {
               )}
             </DeleteIcon>
           </ActionsContainer>
-          {images && <PictureViewer images={images} />}
           <UncontrolledTooltip placement="right" target="delete_response">
             Borrar
           </UncontrolledTooltip>
@@ -101,16 +100,20 @@ const Response = ({ response, deleteResponse, loader }) => {
           <DescriptionComponent>{message_response}</DescriptionComponent>
           {homework && homework.length > 0 && (
             <p className="uprofile-list mt-2">
-              <span>
-                <i className="i-doc"></i>{' '}
-                <a href={homework[0].response_file} target="_blank">
-                  {auxParseName(homework[0].response_file)}
-                </a>
-              </span>
+              {homework.map((value, key) => (
+                <span key={key}>
+                  <i className="i-doc"></i>{' '}
+                  <a href={value.response_file} target="_blank">
+                    {auxParseName(value.response_file)}
+                  </a>
+                </span>
+              ))}
             </p>
           )}
         </div>
+        {images && <PictureViewer images={images} />}
       </Collapse>
+
       {comment && (
         <div className="d-flex align-items-center mt-4">
           <i style={{ fontSize: '1.3em' }} className="i-info mr-2 " />

@@ -24,6 +24,7 @@ import NotFoundInfo from './common/NotFoundInfo/NotFoundInfo'
 import CustomTabs from './common/CustomTabs/CustomTabs'
 import ImageUploader from './common/ImageUploader/ImageUploader'
 import PictureViewer from './common/PictureViewer/PictureViewer'
+import ProgressCustom from './common/ProgressCustom/ProgressCustom'
 
 /*--------------- General Admin Components ------------------*/
 import Messagewidget from './common/Messagewidget/Messagewidget'
@@ -92,6 +93,7 @@ export {
   CustomTabs,
   ImageUploader,
   PictureViewer,
+  ProgressCustom,
   //Post Component
   Post,
   CreatePost,

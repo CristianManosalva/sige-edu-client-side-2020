@@ -2,9 +2,8 @@ import React, { useState, useCallback, useRef } from 'react'
 import ImageViewer from 'react-simple-image-viewer'
 import { ImgContainer, Img, CarouselContainer, Container } from './styles'
 
-const PictureViewer = ({ images: inImages }) => {
+const PictureViewer = ({ images }) => {
   const refContainer = useRef()
-  const [images, setImages] = useState(inImages)
   const [currentImage, setCurrentImage] = useState(0)
   const [isViewerOpen, setIsViewerOpen] = useState(false)
 

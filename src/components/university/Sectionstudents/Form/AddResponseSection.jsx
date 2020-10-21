@@ -4,7 +4,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize'
 import Dropzone from 'react-dropzone'
-import { ImageUploader } from 'components'
+import { ImageUploader, ProgressCustom } from 'components'
 import swal from 'sweetalert'
 import styled from 'styled-components'
 import './styles/fix-radio.css'
@@ -27,6 +27,8 @@ const AddResponseSection = ({
     files: [],
     notSentField: false,
   })
+  const [imagesLoadCharge, setImagesLoadCharge] = useState(0)
+  const [filesLoadCharge, setFilesLoadCharge] = useState(0)
   const [images, setImages] = useState([])
   const [checked, setChecked] = useState(false)
 
@@ -46,7 +48,9 @@ const AddResponseSection = ({
         description,
         checked ? [] : files,
         student_id,
-        images
+        images,
+        setImagesLoadCharge,
+        setFilesLoadCharge
       )
     }
   }
@@ -73,7 +77,7 @@ const AddResponseSection = ({
           </Label>
           <TextareaAutosize
             aria-label="minimum height"
-            rowsMin={8}
+            rowsMin={2}
             rowsMax={24}
             name="description"
             placeholder="Escribe lo que necesites contarle a tu profe..."
@@ -82,7 +86,12 @@ const AddResponseSection = ({
           />
         </Col>
         <Col xs={12} className="form-group">
-          <ImageUploader images={images} setImages={setImages} />
+          <ImageUploader
+            images={images}
+            setImages={setImages}
+            loadIndex={imagesLoadCharge}
+            loader={loader}
+          />
         </Col>
         <Col xs={12} className="special_input_check_box">
           <FormControlLabel
@@ -130,6 +139,13 @@ const AddResponseSection = ({
                   ))}
                 </ul>
               </aside>
+            )}
+            {loader && inputs.files.length > 0 && (
+              <ProgressCustom
+                parcial={filesLoadCharge}
+                total={inputs.files.length}
+                label="Subiendo archivos..."
+              />
             )}
           </Col>
         )}

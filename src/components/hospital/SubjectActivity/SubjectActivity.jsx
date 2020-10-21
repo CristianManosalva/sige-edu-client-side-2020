@@ -144,9 +144,10 @@ const ActivityItem = (props) => {
     message_response,
     files,
     student_response,
-    images
+    images,
+    setImagesLoadCharge,
+    setFilesLoadCharge
   ) {
-    console.log('Mensaje: ', message_response)
     setLoaders((loader) => ({ ...loader, responding: true }))
     fetch(`${config.apiEndPoint}/secctions/responses/create/`, {
       method: 'POST',
@@ -171,40 +172,53 @@ const ActivityItem = (props) => {
         let newImages = []
         for (let i = 0; i < images.length; i++) {
           let picture = await addPicture(images[i], newSecction.code_response)
-          console.log('picture: ', picture)
+          // console.log('picture: ', picture)
           if (picture) {
             newImages.push(picture)
+            setImagesLoadCharge((prev) => {
+              return prev + 1
+            })
           }
         }
         newSecction.images = [...newImages]
         /* fin bloque de imagenes */
 
-        let fileDone = true
-        console.log('creating files')
-        if (files.length > 0) {
-          let homework = await addFile(files[0], newSecction.code_response)
-          console.log('after done files')
-          if (!homework) {
-            fileDone = false
-          } else {
-            newSecction.homework = [homework]
+        /* fin bloque de archivos */
+        let newHomework = []
+        for (let i = 0; i < files.length; i++) {
+          let homework = await addFile(files[i], newSecction.code_response)
+          if (homework) {
+            newHomework.push(homework)
+            setFilesLoadCharge((prev) => {
+              return prev + 1
+            })
           }
         }
-        console.log('activity done', newSecction)
+        newSecction.homework = [...newHomework]
+        /* fin bloque de archivos */
+
+        // console.log('activity done', newSecction)
         setResponse(newSecction)
-        setLoaders((loader) => ({ ...loader, responding: false }))
+        setTimeout(() => {
+          setLoaders((loader) => ({ ...loader, responding: false }))
+        }, 300)
+
+        // setTimeout(() => {
+        //   toggleModal()
+        //   if (fileDone) {
+        //     swal('Excelente!!', 'Todo salió bien!! :)', 'success')
+        //   } else {
+        //     swal(
+        //       'Upss..!!',
+        //       'Tu archivo pesa más 25 Megas!!, Intenta de nuevo :)',
+        //       'warning'
+        //     )
+        //   }
+        // }, 300)
         setTimeout(() => {
           toggleModal()
-          if (fileDone) {
-            swal('Excelente!!', 'Todo salió bien!! :)', 'success')
-          } else {
-            swal(
-              'Upss..!!',
-              'Tu archivo pesa más 25 Megas!!, Intenta de nuevo :)',
-              'warning'
-            )
-          }
-        }, 300)
+          swal('Excelente!!', 'Todo salió bien!! :)', 'success')
+        }, 500)
       })
       .catch((error) => {
         console.log('El error: ', error)
@@ -215,7 +229,6 @@ const ActivityItem = (props) => {
           'warning'
         )
       })
-      .finally(() => {})
   }
 
   const addPicture = async (img, codeSecction) => {
@@ -515,30 +528,6 @@ const ActivityItem = (props) => {
 }
 
 export default ActivityItem
-
-// const ImgContainer = styled.div`
-//   display: block;
-//   max-height: 100px;
-//   height: 100px;
-//   width: 100px;
-//   min-width: 100px;
-//   position: relative;
-//   margin-right: 4px;
-//   position: relative;
-// `
-// const Img = styled.img`
-//   object-fit: cover;
-//   height: 100%;
-//   width: 100%;
-//   object-position: center;
-//   max-width: 100%;
-// `
-/* 
-<ImgContainer key={key}>
-          <Img src={image.dataURL} alt="" width="100" />
-          <DeleteButton onClick={() => onImageRemove(key)}>x</DeleteButton>
-        </ImgContainer>
- */
 
 const SupportMaterialCollapse = ({ resources, type }) => {
   const [isOpen, setIsOpen] = useState(false) //temporal, estado inical debe ser false
