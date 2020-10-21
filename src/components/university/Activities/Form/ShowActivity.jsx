@@ -21,7 +21,7 @@ import {
   UncontrolledTooltip,
   Spinner,
 } from 'reactstrap'
-import { DescriptionComponent } from 'components'
+import { DescriptionComponent, PictureViewer } from 'components'
 import '../styles/show-activity.css'
 import {
   CommentContainer,
@@ -277,7 +277,7 @@ const ShowActivity = ({
                 />
               </MuiPickersUtilsProvider>
             ) : (
-            <p>{selectedDate.format('MMMM DD, H:MM')}</p>
+              <p>{selectedDate.format('MMMM DD, H:MM')}</p>
             )}
           </div>
         </Col>
@@ -405,6 +405,7 @@ const ResponseActivity = ({ response, createComment }) => {
     homework,
     comment,
     code_response,
+    images,
   } = response
 
   const [own_comment, setComment] = useState(comment)
@@ -574,6 +575,7 @@ const ResponseActivity = ({ response, createComment }) => {
       <Collapse isOpen={isOpen}>
         <div className="response_content_container">
           <DescriptionComponent>{message_response}</DescriptionComponent>
+          {images && <PictureViewer images={images} />}
           <p>{}</p>
           {homework && homework.length > 0 && (
             <p className="uprofile-list">

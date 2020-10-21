@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import ImageUploading from 'react-images-uploading'
+import { ProgressCustom } from 'components'
 import {
   ImgContainer,
   Img,
@@ -12,11 +13,12 @@ import {
   TextButton,
 } from './style.js'
 
-const ImageUploader = ({ images, setImages }) => {
+const ImageUploader = ({ images, setImages, loadIndex, loader }) => {
   const refContainer = useRef()
   const onClickRight = () => {
     refContainer.current.scrollLeft = refContainer.current.scrollWidth
   }
+
   const maxNumber = 69
   const onChange = (imageList) => {
     setImages(imageList)
@@ -52,17 +54,25 @@ const ImageUploader = ({ images, setImages }) => {
               </CarouselContainer>
             )}
 
-            {imageList.length > 0 && (
+            {!loader && imageList.length > 0 && (
               <AddPictureButton onClick={onImageRemoveAll}>
                 <Icon color={'red'} className="fa fa-trash-o" />
                 <TextButton>Borrar todas las imagenes</TextButton>
               </AddPictureButton>
             )}
+
             {imageList.length == 0 && (
               <AddPictureButton onClick={onImageUpload}>
                 <Icon color={'rgb(30, 174, 223)'} className="fa fa-picture-o" />
                 <TextButton>Subir Foto</TextButton>
               </AddPictureButton>
+            )}
+            {loader && imageList.length > 0 && (
+              <ProgressCustom
+                parcial={loadIndex}
+                total={imageList.length}
+                label="Subiendo imagenes..."
+              />
             )}
           </Container>
         )}
