@@ -139,7 +139,7 @@ const ActivityItem = (props) => {
       .finally(() => {})
   }
 
-  function createResponseCourse(
+  const createResponseCourse = async (
     secction_response,
     message_response,
     files,
@@ -147,129 +147,83 @@ const ActivityItem = (props) => {
     images,
     setImagesLoadCharge,
     setFilesLoadCharge
-  ) {
+  ) => {
     setLoaders((loader) => ({ ...loader, responding: true }))
-    fetch(`${config.apiEndPoint}/secctions/responses/create/`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        message_response,
-        secction_response,
-        student_response,
-      }),
-    })
-      .then((response) => {
+    let header = 'Excelente!!'
+    let message = 'Todo salió bien!! :)'
+    let type = 'success'
+
+    try {
+      const newSecction = await fetch(
+        `${config.apiEndPoint}/secctions/responses/create/`,
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            message_response,
+            secction_response,
+            student_response,
+          }),
+        }
+      ).then((response) => {
         if (!response.ok) {
-          throw new Error('Error en la respuesta')
+          throw new Error(response.statusText)
         }
         return response.json()
       })
-      .then(async (newSecction) => {
-        /* bloque de imagenes */
-        let newImages = []
-        for (let i = 0; i < images.length; i++) {
-          let picture = await addPicture(images[i], newSecction.code_response)
-          // console.log('picture: ', picture)
-          if (picture) {
-            newImages.push(picture)
-            setImagesLoadCharge((prev) => {
-              return prev + 1
-            })
-          }
-        }
-        newSecction.images = [...newImages]
-        /* fin bloque de imagenes */
 
-        /* fin bloque de archivos */
-        let newHomework = []
-        for (let i = 0; i < files.length; i++) {
-          let homework = await addFile(files[i], newSecction.code_response)
-          if (homework) {
-            newHomework.push(homework)
-            setFilesLoadCharge((prev) => {
-              return prev + 1
-            })
-          }
-        }
-        newSecction.homework = [...newHomework]
-        /* fin bloque de archivos */
-
-        // console.log('activity done', newSecction)
-        setResponse(newSecction)
-        setTimeout(() => {
-          setLoaders((loader) => ({ ...loader, responding: false }))
-        }, 300)
-
-        // setTimeout(() => {
-        //   toggleModal()
-        //   if (fileDone) {
-        //     swal('Excelente!!', 'Todo salió bien!! :)', 'success')
-        //   } else {
-        //     swal(
-        //       'Upss..!!',
-        //       'Tu archivo pesa más 25 Megas!!, Intenta de nuevo :)',
-        //       'warning'
-        //     )
-        //   }
-        // }, 300)
-        setTimeout(() => {
-          toggleModal()
-          swal('Excelente!!', 'Todo salió bien!! :)', 'success')
-        }, 500)
+      const promisesPictures = images.map((value) => {
+        return addPicture(value, newSecction.code_response, setImagesLoadCharge)
       })
-      .catch((error) => {
-        console.log('El error: ', error)
-        setLoaders((loader) => ({ ...loader, responding: false }))
-        swal(
-          'Upss..!!',
-          'Algo salio mal, intenta mas tarde o contacta a soporte :(',
-          'warning'
-        )
+
+      const promisesFiles = files.map((value) => {
+        return addFile(value, newSecction.code_response, setFilesLoadCharge)
       })
+
+      await Promise.all(promisesPictures).then(
+        (response) => (newSecction.images = [...response])
+      )
+
+      await Promise.all(promisesFiles).then(
+        (response) => (newSecction.homework = [...response])
+      )
+      setResponse(newSecction)
+    } catch (error) {
+      console.log('Error: ', error.message)
+      header = 'Upss..!!'
+      message =
+        'Algo salio mal, por favor intenta mas tarde o contacta con soporte'
+      type = 'warning'
+    }
+    setTimeout(() => {
+      setLoaders((loader) => ({ ...loader, responding: false }))
+    }, 300)
+    setTimeout(() => {
+      toggleModal()
+      swal(header, message, type)
+    }, 500)
   }
 
-  const addPicture = async (img, codeSecction) => {
+  const addPicture = (img, codeSecction, setCounter) => {
     let formData = new FormData()
     formData.append('profile', img.file)
 
-    let url = await fetch(
-      `https://api-upload-pictures.vercel.app/api/v1/media/upload`,
+    return fetch(
+      `https://api-upload-pictures.vercel.app/api/v1/media/database/${codeSecction}`,
       {
         method: 'POST',
         body: formData,
       }
     )
       .then((response) => {
-        if (response.ok) {
-          return response.json()
+        if (!response.ok) {
+          throw new Error(response.statusText)
         }
-        return null
-      })
-      .catch((error) => {
-        console.log(error)
-        return null
-      })
-
-    return fetch(`${config.apiEndPoint}/images/create/`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        url: url.data,
-        name: 'generic_name',
-        response: codeSecction,
-      }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json()
-        }
-        return null
+        setCounter((prev) => prev + 1)
+        return response.json()
       })
       .catch((error) => {
         console.log(error)
@@ -277,7 +231,7 @@ const ActivityItem = (props) => {
       })
   }
 
-  function addFile(file, response_secction) {
+  function addFile(file, response_secction, setCounter) {
     const formdata = new FormData()
     formdata.append('response_file', file)
     formdata.append('response_secction', response_secction)
@@ -287,6 +241,7 @@ const ActivityItem = (props) => {
     })
       .then((response) => {
         if (response.ok) {
+          setCounter((prev) => prev + 1)
           return response.json()
         }
         return null
