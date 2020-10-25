@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react'
+import React, { useState, useRef, useCallback, useEffect } from 'react'
 import { Collapse, UncontrolledTooltip, Spinner } from 'reactstrap'
 import ImageViewer from 'react-simple-image-viewer'
 import moment from 'moment'
@@ -14,6 +14,9 @@ import {
   DeleteButton,
   ActionsContainer,
   SquareAdd,
+  AddPictureButton,
+  Icon,
+  TextButton,
 } from './style'
 import './styles-css.css'
 
@@ -59,7 +62,7 @@ const Response = ({ response: incomeResponse, deleteResponse, loader }) => {
     }, 500)
     setTimeout(() => {
       toggleModal()
-    }, 700)
+    }, 600)
   }
 
   const components = {
@@ -204,25 +207,32 @@ const PictureViewer = ({ images: inImages, allowAdd, setModal }) => {
     setImages(auxArray)
   }
 
+  const onClickRight = () => {
+    console.log('Calling')
+    refContainer.current.scrollLeft = refContainer.current.scrollWidth
+  }
+
   return (
     <Container>
       {images && images.length > 0 && (
         <CarouselContainer ref={refContainer}>
           {/* {error && error} */}
           {/* {isLoading && 'Borrando'} */}
-          {images.map((image, key) => (
-            <ImgContainer key={key} onClick={() => openImageViewer(key)}>
-              <Img src={image.url} alt="" width="100" />
-              <DeleteButton
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onImageRemove(image, key)
-                }}
-              >
-                x
-              </DeleteButton>
-            </ImgContainer>
-          ))}
+          {images.map((image, key) => {
+            return (
+              <ImgContainer key={key} onClick={() => openImageViewer(key)}>
+                <Img src={image.url} alt="" width="100" />
+                <DeleteButton
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onImageRemove(image, key)
+                  }}
+                >
+                  x
+                </DeleteButton>
+              </ImgContainer>
+            )
+          })}
           {allowAdd && (
             <SquareAdd onClick={() => setModal(true)}>
               <i className="fa fa-plus" />
@@ -242,6 +252,10 @@ const PictureViewer = ({ images: inImages, allowAdd, setModal }) => {
           }}
         />
       )}
+      <AddPictureButton onClick={() => setModal(true)}>
+        <Icon color={'rgb(30, 174, 223)'} className="fa fa-picture-o" />
+        <TextButton>Subir Foto</TextButton>
+      </AddPictureButton>
     </Container>
   )
 }

@@ -93,18 +93,18 @@ export const DeleteButton = styled.span`
   cursor: pointer;
 `
 
-// export const AddPictureButton = styled.button`
-//   background-color: transparent;
-//   border-color: transparent;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 8px;
-//   &:hover {
-//     background-color: rgba(0, 0, 0, 0.1);
-//     border-radius: 8px;
-//   }
-// `
+export const AddPictureButton = styled.button`
+  background-color: transparent;
+  border-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+`
 
 export const Icon = styled.i`
   margin-right: 11px;
@@ -112,7 +112,7 @@ export const Icon = styled.i`
   font-size: 22px;
 `
 
-// export const TextButton = styled.span`
-//   color: rgba(0, 0, 0, 0.5);
-//   font-weight: 500;
-// `
+export const TextButton = styled.span`
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+`
