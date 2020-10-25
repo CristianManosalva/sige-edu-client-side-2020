@@ -48,18 +48,18 @@ export const CarouselContainer = styled.div`
   }
 `
 
-// export const SquareAdd = styled.div`
-//   min-width: 100px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 100px;
-//   height: 100px;
-//   border: 2px dashed rgba(0, 0, 0, 0.3);
-//   margin-right: 4px;
-//   cursor: pointer;
-//   box-sizing: border-box;
-// `
+export const SquareAdd = styled.div`
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border: 2px dashed rgba(0, 0, 0, 0.3);
+  margin-right: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+`
 
 export const ImgContainer = styled.div`
   display: block;

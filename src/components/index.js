@@ -52,6 +52,7 @@ import Activity from './university/Activities/Activity'
 import ActivityCarouselItem from './university/Activities/ActivityCarouselItem'
 import AddActivity from './university/Activities/Form/AddActivity'
 import AddResponseSection from './university/Sectionstudents/Form/AddResponseSection'
+import AddPictures from './university/Sectionstudents/AddPictures/AddPictures'
 import ShowActivity from './university/Activities/Form/ShowActivity'
 import Forum from './university/Forum/Forum'
 import Feed from './university/Forum/Form/Feed'
@@ -164,6 +165,7 @@ export {
   AddActivity,
   ShowActivity,
   AddResponseSection,
+  AddPictures,
   VideosYoutube,
   YoutubeLiveClassroom,
   AvatarProfile,
