@@ -4,6 +4,7 @@ import { Collapse, Container } from 'reactstrap'
 import moment from 'moment'
 import { Modal, AddResponseSection, DescriptionComponent } from 'components'
 import Response from './Response/Response'
+import { auxParseName } from '_helpers'
 import {
   Card,
   CropImage,
@@ -20,35 +21,13 @@ import {
   ReponseContainer,
 } from './styles'
 import { config } from '_config'
-// import { error } from 'jquery'
 
 const tempImg = [
   'https://images.pexels.com/photos/2170/creative-desk-pens-school.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
   'https://images.pexels.com/photos/1053687/pexels-photo-1053687.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/632470/pexels-photo-632470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/247819/pexels-photo-247819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/256520/pexels-photo-256520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/159497/school-notebook-binders-notepad-159497.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/167682/pexels-photo-167682.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/265076/pexels-photo-265076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/298660/pexels-photo-298660.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/256517/pexels-photo-256517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/2170/creative-desk-pens-school.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/1053687/pexels-photo-1053687.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/632470/pexels-photo-632470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/247819/pexels-photo-247819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/256520/pexels-photo-256520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/159497/school-notebook-binders-notepad-159497.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/167682/pexels-photo-167682.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/265076/pexels-photo-265076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/298660/pexels-photo-298660.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/256517/pexels-photo-256517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-  'https://images.pexels.com/photos/632470/pexels-photo-632470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
 ]
 
-const ActivityItem = (props) => {
+const SubjectActivity = ({ activity, student }) => {
   const [loaders, setLoaders] = useState({
     responding: false,
     erasing: false,
@@ -56,89 +35,19 @@ const ActivityItem = (props) => {
   const [colapse, setColapse] = useState(false)
   const [response, setResponse] = useState(null)
   const [modal, setModal] = useState(false)
-  const [activity, setActivity] = useState(props.activity)
-  const [backup] = useState(props.activity)
+  const [component, setComponent] = useState('')
+  const [titleModal, setTitleModal] = useState('')
 
   const toggleModal = () => setModal(!modal)
   const toggleColapse = () => setColapse(!colapse)
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setActivity((activity) => ({ ...activity, [name]: value }))
-  }
-
-  const editActivity = () => {
-    fetch(
-      `${config.apiEndPoint}/secctions/secction/update/${activity.codeSecction}`,
-      {
-        method: 'PUT',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(activity),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('data editada: ', data)
-      })
-      .catch((error) => console.log(error))
-      .finally(() => {})
-  }
-
-  const goBack = () => {
-    setActivity(backup)
-  }
-
-  const auxParseName = (url) => {
-    try {
-      return url.split('/').reverse()[0]
-    } catch (error) {
-      return 'archivo'
-    }
+  const toggleComponent = (component, title) => {
+    setComponent(component)
+    setTitleModal(title)
+    toggleModal()
   }
 
   /* fetching data */
-  function oldCreateResponseCourse({
-    codeSecction,
-    description,
-    files,
-    student_id,
-  }) {
-    setLoaders((loader) => ({ ...loader, responding: true }))
-    const formdatafile = new FormData()
-    formdatafile.append('secctionResponse', codeSecction)
-    formdatafile.append('messageResponse', description)
-    formdatafile.append('response', files[0])
-    formdatafile.append('studentResponse', student_id)
-    fetch(`${config.apiEndPoint}/secctions/responsesecction/create/`, {
-      method: 'POST',
-      body: formdatafile,
-    })
-      .then((response) => {
-        if (response.status != 201) {
-          throw new Error('Algo anda mal')
-        }
-        return response.json()
-      })
-      .then((data) => {
-        console.log('Data resource for create response: ', data)
-        setResponse(data)
-        setLoaders((loader) => ({ ...loader, responding: false }))
-        setTimeout(() => {
-          setModal(!modal)
-          swal('Excelente!!', 'Todo salió bien!! :)', 'success')
-        }, 300)
-      })
-      .catch((error) => {
-        console.log('El error: ', error)
-        setLoaders((loader) => ({ ...loader, responding: false }))
-        swal('UPSS..!!', 'Algo Sucedió, Intenta mas tarde!! :)', 'warning')
-      })
-      .finally(() => {})
-  }
-
   const createResponseCourse = async (
     secction_response,
     message_response,
@@ -298,11 +207,11 @@ const ActivityItem = (props) => {
   const isResponse = (responses) => {
     responses.forEach((response) => {
       const { student_response } = response
-      if (student_response.codeStudent == props.student.codeStudent) {
+      if (student_response.codeStudent == student.codeStudent) {
         setResponse(response)
         return
       }
-      if (student_response == props.student.codeStudent) {
+      if (student_response == student.codeStudent) {
         setResponse(response)
         return
       }
@@ -314,22 +223,28 @@ const ActivityItem = (props) => {
 
   const { responding, erasing } = loaders
 
+  const components = {
+    AddResponseSection: (
+      <AddResponseSection
+        loader={responding}
+        createResponseCourse={createResponseCourse}
+        toggle={toggleModal}
+        student_id={student.codeStudent}
+        codeSecction={activity.codeSecction}
+      />
+    ),
+  }
+
   return (
     <Card>
       <Modal
-        title="Responder Actividad"
+        title={titleModal}
         show={modal}
         backdrop="static"
         keyboard={false}
         toggle={toggleModal}
       >
-        <AddResponseSection
-          loader={responding}
-          createResponseCourse={createResponseCourse}
-          toggle={toggleModal}
-          student_id={props.student.codeStudent}
-          codeSecction={activity.codeSecction}
-        />
+        <SwitchComponent component={component} components={components} />
       </Modal>
       <HeaderContainer>
         <div className="row">
@@ -450,7 +365,12 @@ const ActivityItem = (props) => {
                   <i style={{ fontSize: '1.3em' }} className="i-info mr-2 " />
                   <span>Aun no has hecho una entrega</span>
                   <button
-                    onClick={toggleModal}
+                    onClick={() =>
+                      toggleComponent(
+                        'AddResponseSection',
+                        'Responder Actividad'
+                      )
+                    }
                     className="btn btn-primary ml-2 btn-sm rounded-lg pt-0 pb-0"
                   >
                     Hacer entrega
@@ -482,20 +402,11 @@ const ActivityItem = (props) => {
   )
 }
 
-export default ActivityItem
+export default SubjectActivity
 
 const SupportMaterialCollapse = ({ resources, type }) => {
   const [isOpen, setIsOpen] = useState(false) //temporal, estado inical debe ser false
   const toggle = () => setIsOpen(!isOpen)
-  /* inicio aux function */
-  const auxParseName = (url) => {
-    try {
-      return url.split('/').reverse()[0]
-    } catch (error) {
-      return 'archivo'
-    }
-  }
-  /* fin aux function  */
   return (
     <div>
       <div
@@ -541,4 +452,8 @@ const SupportMaterialCollapse = ({ resources, type }) => {
       </Collapse>
     </div>
   )
+}
+
+const SwitchComponent = ({ component, components }) => {
+  return components[component]
 }

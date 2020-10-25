@@ -1,10 +1,10 @@
-import React, { useState, useRef, useCallback } from 'react'
+import React, { useState, useRef, useCallback, useEffect } from 'react'
 import { Collapse, UncontrolledTooltip, Spinner } from 'reactstrap'
 import ImageViewer from 'react-simple-image-viewer'
-// import Gallery from 'react-grid-gallery'
 import moment from 'moment'
-import { deleteFetch, deleteImage } from '_api-urls'
-import { DescriptionComponent } from 'components'
+import { deleteFetch, deleteImage, addPictures } from '_api-urls'
+import { auxParseName } from '_helpers'
+import { DescriptionComponent, Modal, AddPictures } from 'components'
 import {
   DeleteIcon,
   ImgContainer,
@@ -13,12 +13,21 @@ import {
   Container,
   DeleteButton,
   ActionsContainer,
+  SquareAdd,
+  AddPictureButton,
+  Icon,
+  TextButton,
 } from './style'
 import './styles-css.css'
 
-const Response = ({ response, deleteResponse, loader }) => {
+const Response = ({ response: incomeResponse, deleteResponse, loader }) => {
+  const [titleModal, setTitleModal] = useState('')
   const [isOpen, setIsOpen] = useState(true)
-  const toggle = () => setIsOpen(!isOpen)
+  const [modal, setModal] = useState(false)
+  const [response, setResponse] = useState(incomeResponse)
+  const [component, setComponent] = useState('')
+  const [loaderIn, setLoader] = useState(false)
+
   const {
     homework,
     message_response,
@@ -27,17 +36,50 @@ const Response = ({ response, deleteResponse, loader }) => {
     comment,
     images,
   } = response
-  const auxParseName = (url) => {
-    try {
-      return url.split('/').reverse()[0]
-    } catch (error) {
-      return 'archivo'
-    }
+
+  const toggleModal = () => setModal(!modal)
+  const toggleComponent = (component, title) => {
+    setComponent(component)
+    setTitleModal(title)
+    toggleModal()
   }
-  /* fin aux function  */
+  const toggle = () => setIsOpen(!isOpen)
+
+  const addPicture = async (images, setCharge) => {
+    setLoader(true)
+    try {
+      const pictures = await addPictures(images, code_response, setCharge)
+      console.log('Response: ', pictures)
+      const tempResponse = response
+      tempResponse.images = [...tempResponse.images, ...pictures]
+      setResponse([])
+      setResponse(tempResponse)
+    } catch (error) {
+      console.log('error: ', error)
+    }
+    setTimeout(() => {
+      setLoader(false)
+    }, 500)
+    setTimeout(() => {
+      toggleModal()
+    }, 600)
+  }
+
+  const components = {
+    AddPictures: <AddPictures loader={loaderIn} addPicture={addPicture} />,
+  }
 
   return (
     <div className="mb-3">
+      <Modal
+        title={titleModal}
+        show={modal}
+        backdrop="static"
+        keyboard={false}
+        toggle={toggleModal}
+      >
+        <SwitchComponent component={component} components={components} />
+      </Modal>
       <div
         style={{
           margin: '0',
@@ -111,7 +153,13 @@ const Response = ({ response, deleteResponse, loader }) => {
             </p>
           )}
         </div>
-        {images && <PictureViewer images={images} />}
+        {images && (
+          <PictureViewer
+            images={images}
+            allowAdd={true}
+            setModal={() => toggleComponent('AddPictures', 'Añade imagenes')}
+          />
+        )}
       </Collapse>
 
       {comment && (
@@ -131,28 +179,7 @@ const Response = ({ response, deleteResponse, loader }) => {
 
 export default Response
 
-//Este tiene la libreria mas completa de PictureViewer
-
-// const PictureViewer
-//= ({ images }) => {
-//   const parsePictures = images.map((value) => ({
-//     src: value.url,
-//     thumbnail: value.url,
-//     thumbnailWidth: 100,
-//     thumbnailHeight: 100,
-//   }))
-//   return (
-//     <>
-//       <Gallery
-//         style={{ border: '2px solid red' }}
-//         rowHeight={100}
-//         images={parsePictures}
-//       />
-//     </>
-//   )
-// }
-
-const PictureViewer = ({ images: inImages }) => {
+const PictureViewer = ({ images: inImages, allowAdd, setModal }) => {
   const refContainer = useRef()
   const [images, setImages] = useState(inImages)
   const [isLoading, setIsLoading] = useState(false)
@@ -180,25 +207,37 @@ const PictureViewer = ({ images: inImages }) => {
     setImages(auxArray)
   }
 
+  const onClickRight = () => {
+    console.log('Calling')
+    refContainer.current.scrollLeft = refContainer.current.scrollWidth
+  }
+
   return (
     <Container>
       {images && images.length > 0 && (
         <CarouselContainer ref={refContainer}>
           {/* {error && error} */}
           {/* {isLoading && 'Borrando'} */}
-          {images.map((image, key) => (
-            <ImgContainer key={key} onClick={() => openImageViewer(key)}>
-              <Img src={image.url} alt="" width="100" />
-              <DeleteButton
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onImageRemove(image, key)
-                }}
-              >
-                x
-              </DeleteButton>
-            </ImgContainer>
-          ))}
+          {images.map((image, key) => {
+            return (
+              <ImgContainer key={key} onClick={() => openImageViewer(key)}>
+                <Img src={image.url} alt="" width="100" />
+                <DeleteButton
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onImageRemove(image, key)
+                  }}
+                >
+                  x
+                </DeleteButton>
+              </ImgContainer>
+            )
+          })}
+          {allowAdd && (
+            <SquareAdd onClick={() => setModal(true)}>
+              <i className="fa fa-plus" />
+            </SquareAdd>
+          )}
         </CarouselContainer>
       )}
 
@@ -213,18 +252,14 @@ const PictureViewer = ({ images: inImages }) => {
           }}
         />
       )}
+      <AddPictureButton onClick={() => setModal(true)}>
+        <Icon color={'rgb(30, 174, 223)'} className="fa fa-picture-o" />
+        <TextButton>Subir Foto</TextButton>
+      </AddPictureButton>
     </Container>
   )
 }
 
-/* 
-
- const onImageRemove = (value, key) => {
-    const { url, options } = deleteImage(value.id)
-    deleteFetch(url, options, setIsLoading, setError)
-    const auxArray = images.slice()
-    auxArray.splice(key, 1)
-    setImages(auxArray)
-  }
-
-*/
+const SwitchComponent = ({ component, components }) => {
+  return components[component]
+}

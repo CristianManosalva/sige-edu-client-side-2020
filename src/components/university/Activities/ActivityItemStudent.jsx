@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Collapse, Card, CardBody } from 'reactstrap'
-import { makeStyles } from '@material-ui/core/styles'
+import { auxParseName } from '_helpers'
 import Linkify from 'react-linkify'
 
 const ActivityItemStudent = (props) => {
@@ -45,13 +45,6 @@ const ActivityItemStudent = (props) => {
 
     'https://res.cloudinary.com/duyflkcyn/image/upload/v1588575802/SIGE/ActivitiesPhothos/renacimiento_kr9xvo.jpg'
 
-  const auxParseName = (url) => {
-    try {
-      return url.split('/').reverse()[0]
-    } catch (error) {
-      return 'archivo'
-    }
-  }
   const componentDecorator = (href, text, key) => (
     <a href={href} key={key} target="_blank">
       {text}
