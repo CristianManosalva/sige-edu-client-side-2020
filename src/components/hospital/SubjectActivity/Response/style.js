@@ -48,18 +48,18 @@ export const CarouselContainer = styled.div`
   }
 `
 
-// export const SquareAdd = styled.div`
-//   min-width: 100px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 100px;
-//   height: 100px;
-//   border: 2px dashed rgba(0, 0, 0, 0.3);
-//   margin-right: 4px;
-//   cursor: pointer;
-//   box-sizing: border-box;
-// `
+export const SquareAdd = styled.div`
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border: 2px dashed rgba(0, 0, 0, 0.3);
+  margin-right: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+`
 
 export const ImgContainer = styled.div`
   display: block;
@@ -93,18 +93,18 @@ export const DeleteButton = styled.span`
   cursor: pointer;
 `
 
-// export const AddPictureButton = styled.button`
-//   background-color: transparent;
-//   border-color: transparent;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 8px;
-//   &:hover {
-//     background-color: rgba(0, 0, 0, 0.1);
-//     border-radius: 8px;
-//   }
-// `
+export const AddPictureButton = styled.button`
+  background-color: transparent;
+  border-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+`
 
 export const Icon = styled.i`
   margin-right: 11px;
@@ -112,7 +112,7 @@ export const Icon = styled.i`
   font-size: 22px;
 `
 
-// export const TextButton = styled.span`
-//   color: rgba(0, 0, 0, 0.5);
-//   font-weight: 500;
-// `
+export const TextButton = styled.span`
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+`

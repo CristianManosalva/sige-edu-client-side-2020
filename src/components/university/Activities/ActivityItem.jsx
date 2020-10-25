@@ -7,6 +7,7 @@ import {
   UncontrolledTooltip,
 } from 'reactstrap'
 import { Modal, ShowActivity } from 'components'
+import { auxParseName } from '_helpers'
 import { config } from '_config'
 import Linkify from 'react-linkify'
 import moment from 'moment'
@@ -59,7 +60,9 @@ const ActivityItem = (props) => {
     setActivity((activity) => ({ ...activity, [name]: value }))
   }
 
-  const [selectedDate, handleDateChange] = useState(moment(activity.date_close, 'YYYY-MM-DDTHH:mm:ss.SSS[Z]'))
+  const [selectedDate, handleDateChange] = useState(
+    moment(activity.date_close, 'YYYY-MM-DDTHH:mm:ss.SSS[Z]')
+  )
 
   const editActivity = () => {
     let helperActivity = activity
@@ -111,13 +114,6 @@ const ActivityItem = (props) => {
     setActivity(backup)
   }
 
-  const auxParseName = (url) => {
-    try {
-      return url.split('/').reverse()[0]
-    } catch (error) {
-      return 'archivo'
-    }
-  }
   const componentDecorator = (href, text, key) => (
     <a href={href} key={key} target="_blank">
       {text}
@@ -275,7 +271,9 @@ const ActivityItem = (props) => {
                     {activity.response && activity.response.length} Estudiantes
                     han entregado
                   </span>
-                  <span id={'activity_date_close_info_' + activity.codeSecction}>
+                  <span
+                    id={'activity_date_close_info_' + activity.codeSecction}
+                  >
                     <i className="fa fa-calendar-check-o"></i> Fecha de Cierre:{' '}
                     {moment(activity.date_close).fromNow()}
                   </span>
