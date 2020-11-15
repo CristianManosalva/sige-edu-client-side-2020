@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Col, Row, Collapse, Container } from 'reactstrap'
 import Linkify from 'react-linkify'
 import moment from 'moment'
+import { auxParseName } from '_helpers'
 import './styles/activity-item.css'
 
 const Activity = ({ activity }) => {
@@ -63,15 +64,6 @@ export default Activity
 const SupportMaterialCollapse = ({ resources, type }) => {
   const [isOpen, setIsOpen] = useState(false) //temporal, estado inical debe ser false
   const toggle = () => setIsOpen(!isOpen)
-  /* inicio aux function */
-  const auxParseName = (url) => {
-    try {
-      return url.split('/').reverse()[0]
-    } catch (error) {
-      return 'archivo'
-    }
-  }
-  /* fin aux function  */
   return (
     <div>
       <div

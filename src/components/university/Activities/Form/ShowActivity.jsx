@@ -5,6 +5,7 @@ import AlarmIcon from '@material-ui/icons/AddAlarm'
 import { IconButton, InputAdornment } from '@material-ui/core'
 import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 import moment from 'moment'
+import { auxParseName } from '_helpers'
 import {
   Collapse,
   Tooltip,
@@ -506,29 +507,6 @@ const ResponseActivity = ({ response, createComment }) => {
     setLoaders((loaders) => ({ ...loaders, deleteCommentLoader: false }))
   }
 
-  // const deleteReponse = (codeComment) => {
-  //   return fetch(
-  //     `${config.apiEndPoint}/secctions/commentsecction/delete/${codeComment}`,
-  //     {
-  //       method: 'DELETE',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //     }
-  //   )
-  // }
-
-  /* inicio aux function */
-  const auxParseName = (url) => {
-    try {
-      return url.split('/').reverse()[0]
-    } catch (error) {
-      return 'archivo'
-    }
-  }
-  /* fin aux function  */
-
   const { editCommentLoader, deleteCommentLoader } = loaders
 
   return (
@@ -675,15 +653,6 @@ const CreateComment = ({ loader, create, codeSecction }) => {
 const SupportMaterialCollapse = ({ resources, type }) => {
   const [isOpen, setIsOpen] = useState(false) //temporal, estado inical debe ser false
   const toggle = () => setIsOpen(!isOpen)
-  /* inicio aux function */
-  const auxParseName = (url) => {
-    try {
-      return url.split('/').reverse()[0]
-    } catch (error) {
-      return 'archivo'
-    }
-  }
-  /* fin aux function  */
   return (
     <div>
       <div
